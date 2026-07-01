@@ -1,0 +1,42 @@
+{
+  "project": "EVO CRM Status Label Overhaul Sprint",
+  "instructions": "In Asana: open task → ... → Mark as milestone. These gate the next phase.",
+  "milestones": [
+    {
+      "order": 1,
+      "task_name": "Document signed decisions — Status Framework v1 (PowerPoint / doc)",
+      "label": "Phase 0 sign-off",
+      "owners": ["Keren", "Joel"],
+      "blocks": "All Phase 1 tasks"
+    },
+    {
+      "order": 2,
+      "task_name": "Milestone: Baseline audit complete — all counts recorded in project doc",
+      "label": "Baseline audit complete",
+      "owners": ["Keren", "Avi"],
+      "blocks": "All Phase 2 tasks"
+    },
+    {
+      "order": 3,
+      "task_name": "Milestone: Staging remediation validated — gap acceptable",
+      "label": "Staging remediation validated",
+      "owners": ["Avi", "Keren"],
+      "blocks": "All Phase 4 tasks"
+    },
+    {
+      "order": 4,
+      "task_name": "UAT with Angelo (sales) and ops leads — no multi-click drill-down needed",
+      "label": "UAT passed",
+      "owners": ["Angelo", "Keren", "Joel"],
+      "blocks": "All Phase 6 tasks"
+    },
+    {
+      "order": 5,
+      "task_name": "Post-cutover: re-run audit Section 9 — confirm census gap closed",
+      "label": "Production cutover complete",
+      "owners": ["Avi", "Keren"],
+      "blocks": "All Phase 7 tasks"
+    }
+  ],
+  "chain": "Phase0 → Phase1 → Phase2 → Phase3 → Phase4 → Phase5 → Phase6 → Phase7"
+}

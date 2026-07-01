@@ -1,0 +1,132 @@
+{
+  "project": "EVO CRM Status Label Overhaul Sprint",
+  "instructions": "Create at Project → Customize → Fields. Names must match exactly for CSV import.",
+  "fields": [
+    {
+      "name": "Phase",
+      "type": "single_select",
+      "options": ["0", "1", "2", "3", "4", "5", "6", "7", "Ongoing"],
+      "description": "Sprint phase. Mutually exclusive per task."
+    },
+    {
+      "name": "Blocker",
+      "type": "single_select",
+      "options": ["Yes", "No"],
+      "description": "Yes for Phase 0 gates and phase milestones until complete."
+    },
+    {
+      "name": "Requires Stakeholder Decision",
+      "type": "single_select",
+      "options": ["Yes", "No"],
+      "description": "Yes when Joel/Speaker 1 must decide before work proceeds."
+    },
+    {
+      "name": "CRM Environment",
+      "type": "single_select",
+      "options": ["Discovery", "Staging", "Production"],
+      "description": "Where this task is executed."
+    },
+    {
+      "name": "Audit Section",
+      "type": "single_select",
+      "options": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "0-14"],
+      "description": "Maps to crm/audit/data-integrity-audit.sql sections. Phase 1 only."
+    },
+    {
+      "name": "Baseline / Target Metric",
+      "type": "text",
+      "description": "Measurable outcome e.g. ~1960 authorized → 1200-1300 census"
+    }
+  ],
+  "bulk_defaults_by_section": {
+    "Phase 0 — Stakeholder Sign-Off": {
+      "Phase": "0",
+      "Blocker": "Yes",
+      "Requires Stakeholder Decision": "Yes",
+      "CRM Environment": "Discovery"
+    },
+    "Phase 1 — Access & Baseline Audit": {
+      "Phase": "1",
+      "Blocker": "No",
+      "Requires Stakeholder Decision": "No",
+      "CRM Environment": "Discovery"
+    },
+    "Phase 1 milestone only": {
+      "Phase": "1",
+      "Blocker": "Yes",
+      "Requires Stakeholder Decision": "No",
+      "CRM Environment": "Discovery"
+    },
+    "Phase 2 — Schema Design (Staging)": {
+      "Phase": "2",
+      "Blocker": "No",
+      "Requires Stakeholder Decision": "No",
+      "CRM Environment": "Staging"
+    },
+    "Phase 3 — Data Remediation (Staging)": {
+      "Phase": "3",
+      "Blocker": "No",
+      "Requires Stakeholder Decision": "No",
+      "CRM Environment": "Staging"
+    },
+    "Phase 3 milestone only": {
+      "Phase": "3",
+      "Blocker": "Yes",
+      "Requires Stakeholder Decision": "No",
+      "CRM Environment": "Staging"
+    },
+    "Phase 4 — Validation & Automation (Staging)": {
+      "Phase": "4",
+      "Blocker": "No",
+      "Requires Stakeholder Decision": "No",
+      "CRM Environment": "Staging"
+    },
+    "Phase 5 — Dashboard Rebuild": {
+      "Phase": "5",
+      "Blocker": "No",
+      "Requires Stakeholder Decision": "No",
+      "CRM Environment": "Staging"
+    },
+    "Phase 6 — Production Cutover": {
+      "Phase": "6",
+      "Blocker": "No",
+      "Requires Stakeholder Decision": "No",
+      "CRM Environment": "Production"
+    },
+    "Phase 7 — Cleanup & Florida Handoff": {
+      "Phase": "7",
+      "Blocker": "No",
+      "Requires Stakeholder Decision": "No",
+      "CRM Environment": "Discovery"
+    },
+    "Ongoing — Discovery (Keren)": {
+      "Phase": "Ongoing",
+      "Blocker": "No",
+      "Requires Stakeholder Decision": "No",
+      "CRM Environment": "Discovery"
+    }
+  },
+  "exceptions": [
+    {
+      "task": "Ops sign-off on sample of 50 remediated records",
+      "Requires Stakeholder Decision": "Yes"
+    },
+    {
+      "task": "UAT with Angelo (sales) and ops leads — no multi-click drill-down needed",
+      "Requires Stakeholder Decision": "Yes"
+    },
+    {
+      "task": "Final stakeholder sign-off on staging UAT results",
+      "Blocker": "Yes",
+      "Requires Stakeholder Decision": "Yes"
+    },
+    {
+      "task": "Post-cutover: re-run audit Section 9 — confirm census gap closed",
+      "Blocker": "Yes"
+    },
+    {
+      "task": "Create Florida delta checklist (NY vs FL differences)",
+      "Requires Stakeholder Decision": "Yes"
+    }
+  ]
+}

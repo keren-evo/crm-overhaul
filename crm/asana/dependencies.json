@@ -1,0 +1,136 @@
+{
+  "project": "EVO CRM Status Label Overhaul Sprint",
+  "instructions": "In Asana: select task → Tab+D or Dependencies pane → add 'Blocked by' task.",
+  "cross_phase": [
+    {
+      "blocked": "All Phase 1 tasks",
+      "blocked_by": "Document signed decisions — Status Framework v1 (PowerPoint / doc)"
+    },
+    {
+      "blocked": "All Phase 2 tasks",
+      "blocked_by": "Milestone: Baseline audit complete — all counts recorded in project doc"
+    },
+    {
+      "blocked": "All Phase 3 tasks",
+      "blocked_by": "Document field mapping legacy → new (legacy-status-map.json)"
+    },
+    {
+      "blocked": "All Phase 4 tasks",
+      "blocked_by": "Milestone: Staging remediation validated — gap acceptable"
+    },
+    {
+      "blocked": "All Phase 5 tasks",
+      "blocked_by": "Implement SLA timers: lead 24h, follow-up 3d, referral→intake 7d, authorized→SOC 14d"
+    },
+    {
+      "blocked": "All Phase 6 tasks",
+      "blocked_by": "UAT with Angelo (sales) and ops leads — no multi-click drill-down needed"
+    },
+    {
+      "blocked": "All Phase 7 tasks",
+      "blocked_by": "Post-cutover: re-run audit Section 9 — confirm census gap closed"
+    }
+  ],
+  "within_phase": [
+    {
+      "task": "Keren completes Schema Manager audit (objects, fields, picklists, relationships)",
+      "blocked_by": "Grant Keren Schema Manager access (read-only preferred)"
+    },
+    {
+      "task": "Map CRM table/column names to audit SQL placeholders",
+      "blocked_by": "Grant Keren Schema Manager access (read-only preferred)"
+    },
+    {
+      "task": "Run crm/audit/data-integrity-audit.sql against staging or read replica",
+      "blocked_by": "Map CRM table/column names to audit SQL placeholders"
+    },
+    {
+      "task": "Record baseline — orphan authorized count",
+      "blocked_by": "Run crm/audit/data-integrity-audit.sql against staging or read replica"
+    },
+    {
+      "task": "Milestone: Baseline audit complete — all counts recorded in project doc",
+      "blocked_by": "Record baseline — census gap (legacy authorized vs true census)"
+    },
+    {
+      "task": "Import picklists from crm/schema/enums.json into Schema Manager",
+      "blocked_by": "Milestone: Baseline audit complete — all counts recorded in project doc"
+    },
+    {
+      "task": "Add person.lifecycle_stage enum (computed; admin override only)",
+      "blocked_by": "Import picklists from crm/schema/enums.json into Schema Manager"
+    },
+    {
+      "task": "Document field mapping legacy → new (legacy-status-map.json)",
+      "blocked_by": "Import picklists from crm/schema/enums.json into Schema Manager"
+    },
+    {
+      "task": "Build staging migration script from legacy-status-map.json",
+      "blocked_by": "Document field mapping legacy → new (legacy-status-map.json)"
+    },
+    {
+      "task": "Remediate pre-intake → ON_HOLD + hold_reason",
+      "blocked_by": "Build staging migration script from legacy-status-map.json"
+    },
+    {
+      "task": "Re-run data-integrity-audit.sql on staging; compare to Phase 1 baseline",
+      "blocked_by": "Voided/dropped intakes — clear authorized display"
+    },
+    {
+      "task": "Ops sign-off on sample of 50 remediated records",
+      "blocked_by": "Re-run data-integrity-audit.sql on staging; compare to Phase 1 baseline"
+    },
+    {
+      "task": "Milestone: Staging remediation validated — gap acceptable",
+      "blocked_by": "Ops sign-off on sample of 50 remediated records"
+    },
+    {
+      "task": "Implement automation triggers (all 7)",
+      "blocked_by": "Implement blocking rule: short-term-only cannot set person above REFERRAL_ACTIVE"
+    },
+    {
+      "task": "Implement computeLifecycleStage from crm/schema/lifecycle.ts (server-side computed field)",
+      "blocked_by": "Milestone: Staging remediation validated — gap acceptable"
+    },
+    {
+      "task": "Deploy views from crm/audit/dashboard-queries.sql (adjust table names)",
+      "blocked_by": "Implement computeLifecycleStage from crm/schema/lifecycle.ts (server-side computed field)"
+    },
+    {
+      "task": "Sales dashboard: v_sales_dashboard — gold LOBs only, no terminal, no short-term-only",
+      "blocked_by": "Deploy views from crm/audit/dashboard-queries.sql (adjust table names)"
+    },
+    {
+      "task": "UAT with Angelo (sales) and ops leads — no multi-click drill-down needed",
+      "blocked_by": "QA query: zero rows on \"never show on dashboard\" violations"
+    },
+    {
+      "task": "Final stakeholder sign-off on staging UAT results",
+      "blocked_by": "UAT with Angelo (sales) and ops leads — no multi-click drill-down needed"
+    },
+    {
+      "task": "Production migration window scheduled (communicate to sales + ops)",
+      "blocked_by": "Final stakeholder sign-off on staging UAT results"
+    },
+    {
+      "task": "Run remediation batch in production",
+      "blocked_by": "Final stakeholder sign-off on staging UAT results"
+    },
+    {
+      "task": "Enable validation rules in production",
+      "blocked_by": "Run remediation batch in production"
+    },
+    {
+      "task": "Enable computed lifecycle_stage in production",
+      "blocked_by": "Run remediation batch in production"
+    },
+    {
+      "task": "Switch dashboards to new views",
+      "blocked_by": "Enable computed lifecycle_stage in production"
+    },
+    {
+      "task": "Post-cutover: re-run audit Section 9 — confirm census gap closed",
+      "blocked_by": "Switch dashboards to new views"
+    }
+  ]
+}

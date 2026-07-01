@@ -1,0 +1,85 @@
+Section,Task Name,Phase,Blocker,Requires Stakeholder Decision,CRM Environment,Audit Section,Baseline / Target Metric,Assignee Primary,Assignee Secondary,Milestone,Depends On
+Phase 0 — Stakeholder Sign-Off,"Schedule definitions workshop: dropped off vs discharged vs voided vs deferred vs authorized vs SOC dates",0,Yes,Yes,Discovery,,Definitions doc signed,Joel,Keren,No,
+Phase 0 — Stakeholder Sign-Off,"Confirm LOB qualification checklists (LTC, NHTD, OPWDD, private pay)",0,Yes,Yes,Discovery,,Checklist per LOB documented,Joel,,No,
+Phase 0 — Stakeholder Sign-Off,"Confirm short-term rule: lead loss unless gold LOB open; hidden from sales dash",0,Yes,Yes,Discovery,,Rule documented,Joel,Keren,No,
+Phase 0 — Stakeholder Sign-Off,"Confirm NIA fail rule: 6-month ON_HOLD then re-engage approach",0,Yes,Yes,Discovery,,Rule documented,Joel,,No,
+Phase 0 — Stakeholder Sign-Off,"Confirm CDPAP remediation approach (discharge vs drop vs archive)",0,Yes,Yes,Discovery,,CDPAP cohort action agreed,Joel,Avi,No,
+Phase 0 — Stakeholder Sign-Off,"Confirm census definition (billing vs EVV vs CRM service episodes)",0,Yes,Yes,Discovery,,Census source of truth named,Joel,Avi,No,
+Phase 0 — Stakeholder Sign-Off,"Document signed decisions — Status Framework v1 (PowerPoint / doc)",0,Yes,Yes,Discovery,,Signed Framework v1,Keren,,Yes,
+Phase 1 — Access & Baseline Audit,"Grant Keren Schema Manager access (read-only preferred)",1,No,No,Discovery,,Access granted,Avi,,No,Document signed decisions — Status Framework v1 (PowerPoint / doc)
+Phase 1 — Access & Baseline Audit,"Keren completes Schema Manager audit (objects, fields, picklists, relationships)",1,No,No,Discovery,,Audit notes doc complete,Keren,,No,Grant Keren Schema Manager access (read-only preferred)
+Phase 1 — Access & Baseline Audit,"Map CRM table/column names to audit SQL placeholders",1,No,No,Discovery,,Mapping doc complete,Avi,Keren,No,Grant Keren Schema Manager access (read-only preferred)
+Phase 1 — Access & Baseline Audit,"Run crm/audit/data-integrity-audit.sql against staging or read replica",1,No,No,Discovery,0,Full audit exported,Avi,,No,Map CRM table/column names to audit SQL placeholders
+Phase 1 — Access & Baseline Audit,"Record baseline — orphan authorized count",1,No,No,Discovery,1,TBD → target 0,Keren,,No,Run crm/audit/data-integrity-audit.sql against staging or read replica
+Phase 1 — Access & Baseline Audit,"Record baseline — authorized + dropped/voided intake",1,No,No,Discovery,2,TBD → target 0,Keren,,No,Run crm/audit/data-integrity-audit.sql against staging or read replica
+Phase 1 — Access & Baseline Audit,"Record baseline — CDPAP remediation queue size",1,No,No,Discovery,3,TBD → target 0,Keren,,No,Run crm/audit/data-integrity-audit.sql against staging or read replica
+Phase 1 — Access & Baseline Audit,"Record baseline — third-party referrals (e.g. Girling) counted as patients",1,No,No,Discovery,4,TBD → target 0,Keren,,No,Run crm/audit/data-integrity-audit.sql against staging or read replica
+Phase 1 — Access & Baseline Audit,"Record baseline — pre-intake and closed counts",1,No,No,Discovery,5,pre-intake TBD → 0; closed split,Keren,,No,Run crm/audit/data-integrity-audit.sql against staging or read replica
+Phase 1 — Access & Baseline Audit,"Record baseline — multi-intake open conflicts",1,No,No,Discovery,6,TBD → resolved via computed stage,Keren,,No,Run crm/audit/data-integrity-audit.sql against staging or read replica
+Phase 1 — Access & Baseline Audit,"Record baseline — short-term-only pipeline",1,No,No,Discovery,7,TBD (informational),Keren,,No,Run crm/audit/data-integrity-audit.sql against staging or read replica
+Phase 1 — Access & Baseline Audit,"Record baseline — stale anticipated SOC",1,No,No,Discovery,8,TBD → target 0 stale,Keren,,No,Run crm/audit/data-integrity-audit.sql against staging or read replica
+Phase 1 — Access & Baseline Audit,"Record baseline — census gap (legacy authorized vs true census)",1,No,No,Discovery,9,~1960 authorized → 1200-1300 census,Keren,,No,Run crm/audit/data-integrity-audit.sql against staging or read replica
+Phase 1 — Access & Baseline Audit,"Record baseline — 12+ mo no service but still authorized/active",1,No,No,Discovery,10,TBD → target 0,Keren,,No,Run crm/audit/data-integrity-audit.sql against staging or read replica
+Phase 1 — Access & Baseline Audit,"Record baseline — Medicaid deferred > 30 days",1,No,No,Discovery,11,TBD (informational),Keren,,No,Run crm/audit/data-integrity-audit.sql against staging or read replica
+Phase 1 — Access & Baseline Audit,"Record baseline — duplicate person candidates",1,No,No,Discovery,12,TBD dup sets → merged,Keren,,No,Run crm/audit/data-integrity-audit.sql against staging or read replica
+Phase 1 — Access & Baseline Audit,"Record baseline — intake column count (121 fields)",1,No,No,Discovery,13,121 cols → target ~40,Keren,,No,Run crm/audit/data-integrity-audit.sql against staging or read replica
+Phase 1 — Access & Baseline Audit,"Export remediation batch IDs — orphan authorized (Section 14)",1,No,No,Discovery,14,Batch ID list exported,Avi,,No,Run crm/audit/data-integrity-audit.sql against staging or read replica
+Phase 1 — Access & Baseline Audit,"Keren identifies top unused intake fields for deprecation",1,No,No,Discovery,13,Deprecation candidate list,Keren,,No,Keren completes Schema Manager audit (objects, fields, picklists, relationships)
+Phase 1 — Access & Baseline Audit,"Milestone: Baseline audit complete — all counts recorded in project doc",1,Yes,No,Discovery,0-14,All sections filled,Avi,Keren,Yes,Record baseline — census gap (legacy authorized vs true census)
+Phase 2 — Schema Design (Staging),"PHASE 2 — Schema Design (section header)",2,No,No,Staging,,,Avi,,No,Milestone: Baseline audit complete — all counts recorded in project doc
+Phase 2 — Schema Design (Staging),"Import picklists from crm/schema/enums.json into Schema Manager",2,No,No,Staging,,All enums live in staging,Avi,,No,Milestone: Baseline audit complete — all counts recorded in project doc
+Phase 2 — Schema Design (Staging),"Add person.lifecycle_stage enum (computed; admin override only)",2,No,No,Staging,,Field live,Avi,,No,Import picklists from crm/schema/enums.json into Schema Manager
+Phase 2 — Schema Design (Staging),"Add intake.status, intake.nia_status, authorization.status, medicaid_ticket.status enums",2,No,No,Staging,,All child enums live,Avi,,No,Import picklists from crm/schema/enums.json into Schema Manager
+Phase 2 — Schema Design (Staging),"Add picklists: drop_reason_category, hold_reason, void_reason, line_of_business",2,No,No,Staging,,All picklists live,Avi,,No,Import picklists from crm/schema/enums.json into Schema Manager
+Phase 2 — Schema Design (Staging),"Remove/hide deprecated person fields: patient, lead, authorized, pre-intake, closed tags",2,No,No,Staging,,Legacy tags hidden,Avi,,No,Import picklists from crm/schema/enums.json into Schema Manager
+Phase 2 — Schema Design (Staging),"Normalize date fields: intake_opened_at, anticipated_soc_date, start_of_care_date, stage_entered_at",2,No,No,Staging,,Single canonical field per date,Avi,,No,Import picklists from crm/schema/enums.json into Schema Manager
+Phase 2 — Schema Design (Staging),"Add person_stage_history table for funnel reporting",2,No,No,Staging,,Table + triggers live,Avi,,No,Import picklists from crm/schema/enums.json into Schema Manager
+Phase 2 — Schema Design (Staging),"Document field mapping legacy → new (legacy-status-map.json)",2,No,No,Staging,,Mapping doc published,Avi,Keren,No,Import picklists from crm/schema/enums.json into Schema Manager
+Phase 3 — Data Remediation (Staging),"PHASE 3 — Data Remediation (section header)",3,No,No,Staging,,,Avi,,No,Document field mapping legacy → new (legacy-status-map.json)
+Phase 3 — Data Remediation (Staging),"Build staging migration script from legacy-status-map.json",3,No,No,Staging,,Script in staging repo,Avi,,No,Document field mapping legacy → new (legacy-status-map.json)
+Phase 3 — Data Remediation (Staging),"Remediate pre-intake → ON_HOLD + hold_reason",3,No,No,Staging,5,pre-intake → 0,Avi,,No,Build staging migration script from legacy-status-map.json
+Phase 3 — Data Remediation (Staging),"Split closed → DROPPED_OFF or DISCHARGED",3,No,No,Staging,5,closed → 0,Avi,,No,Build staging migration script from legacy-status-map.json
+Phase 3 — Data Remediation (Staging),"Remediate person-level authorized → compute from intakes + auth",3,No,No,Staging,1,orphan authorized ↓,Avi,,No,Build staging migration script from legacy-status-map.json
+Phase 3 — Data Remediation (Staging),"CDPAP batch — apply sunset rules",3,No,No,Staging,3,CDPAP stale → remediated,Avi,,No,Build staging migration script from legacy-status-map.json
+Phase 3 — Data Remediation (Staging),"Third-party referral batch (Girling; is_agency_patient=false)",3,No,No,Staging,4,third-party on census → 0,Avi,,No,Build staging migration script from legacy-status-map.json
+Phase 3 — Data Remediation (Staging),"Orphan authorized batch — downgrade intakes without AUTH_APPROVED",3,No,No,Staging,14,orphan authorized → 0,Avi,,No,Build staging migration script from legacy-status-map.json
+Phase 3 — Data Remediation (Staging),"Voided/dropped intakes — clear authorized display",3,No,No,Staging,2,auth+dropped pairs → 0,Avi,,No,Build staging migration script from legacy-status-map.json
+Phase 3 — Data Remediation (Staging),"Re-run data-integrity-audit.sql on staging; compare to Phase 1 baseline",3,No,No,Staging,9,census gap closed vs baseline,Avi,Keren,No,Voided/dropped intakes — clear authorized display
+Phase 3 — Data Remediation (Staging),"Ops sign-off on sample of 50 remediated records",3,No,Yes,Staging,,50 records approved,Joel,Keren,No,Re-run data-integrity-audit.sql on staging; compare to Phase 1 baseline
+Phase 3 — Data Remediation (Staging),"Milestone: Staging remediation validated — gap acceptable",3,Yes,No,Staging,9,Gap within agreed threshold,Avi,Keren,Yes,Ops sign-off on sample of 50 remediated records
+Phase 4 — Validation & Automation (Staging),"PHASE 4 — Validation & Automation (section header)",4,No,No,Staging,,,Avi,,No,Milestone: Staging remediation validated — gap acceptable
+Phase 4 — Validation & Automation (Staging),"Implement blocking rule: AUTHORIZED_PENDING_SOC requires AUTH_APPROVED auth",4,No,No,Staging,,Rule blocks bad saves,Avi,,No,Milestone: Staging remediation validated — gap acceptable
+Phase 4 — Validation & Automation (Staging),"Implement blocking rule: PATIENT_ACTIVE requires start_of_care_date",4,No,No,Staging,,Rule blocks bad saves,Avi,,No,Milestone: Staging remediation validated — gap acceptable
+Phase 4 — Validation & Automation (Staging),"Implement blocking rule: DROPPED_OFF requires drop_reason + category",4,No,No,Staging,,Rule blocks bad saves,Avi,,No,Milestone: Staging remediation validated — gap acceptable
+Phase 4 — Validation & Automation (Staging),"Implement blocking rule: ON_HOLD requires hold_reason + hold_until_date",4,No,No,Staging,,Rule blocks bad saves,Avi,,No,Milestone: Staging remediation validated — gap acceptable
+Phase 4 — Validation & Automation (Staging),"Implement blocking rule: short-term-only cannot set person above REFERRAL_ACTIVE",4,No,No,Staging,7,Rule blocks bad saves,Avi,,No,Milestone: Staging remediation validated — gap acceptable
+Phase 4 — Validation & Automation (Staging),"Implement automation triggers (all 7)",4,No,No,Staging,,All triggers firing in staging,Avi,,No,Implement blocking rule: short-term-only cannot set person above REFERRAL_ACTIVE
+Phase 4 — Validation & Automation (Staging),"Implement computeLifecycleStage from crm/schema/lifecycle.ts (server-side computed field)",4,No,No,Staging,6,Multi-intake conflicts resolved,Avi,,No,Milestone: Staging remediation validated — gap acceptable
+Phase 4 — Validation & Automation (Staging),"Implement SLA timers: lead 24h, follow-up 3d, referral→intake 7d, authorized→SOC 14d",4,No,No,Staging,,SLA alerts firing in staging,Avi,,No,Implement automation triggers (all 7)
+Phase 5 — Dashboard Rebuild,"PHASE 5 — Dashboard Rebuild (section header)",5,No,No,Staging,,,Avi,,No,Implement SLA timers: lead 24h, follow-up 3d, referral→intake 7d, authorized→SOC 14d
+Phase 5 — Dashboard Rebuild,"Deploy views from crm/audit/dashboard-queries.sql (adjust table names)",5,No,No,Staging,,All views live in staging,Avi,,No,Implement computeLifecycleStage from crm/schema/lifecycle.ts (server-side computed field)
+Phase 5 — Dashboard Rebuild,"Sales dashboard: v_sales_dashboard — gold LOBs only, no terminal, no short-term-only",5,No,No,Staging,7,Sales list matches rules,Avi,Angelo,No,Deploy views from crm/audit/dashboard-queries.sql (adjust table names)
+Phase 5 — Dashboard Rebuild,"Add list columns: lifecycle_stage, primary_lob, intake_opened_at, next_action_date, nia_status, days_in_stage",5,No,No,Staging,,No drill-down needed for basic status,Avi,,No,Deploy views from crm/audit/dashboard-queries.sql (adjust table names)
+Phase 5 — Dashboard Rebuild,"Ops dashboard: v_ops_dashboard + stale anticipated SOC + CDPAP remediation queues",5,No,No,Staging,8,Ops queues visible,Avi,,No,Deploy views from crm/audit/dashboard-queries.sql (adjust table names)
+Phase 5 — Dashboard Rebuild,"True census widget: COUNT from v_active_census",5,No,No,Staging,9,Widget shows ~1200-1300 not 1960,Avi,,No,Deploy views from crm/audit/dashboard-queries.sql (adjust table names)
+Phase 5 — Dashboard Rebuild,"Funnel leakage report: v_funnel_leakage by drop_reason_category",5,No,No,Staging,,Leakage by reason visible,Avi,Keren,No,Deploy views from crm/audit/dashboard-queries.sql (adjust table names)
+Phase 5 — Dashboard Rebuild,"QA query: zero rows on ""never show on dashboard"" violations",5,No,No,Staging,,0 violation rows,Avi,,No,Deploy views from crm/audit/dashboard-queries.sql (adjust table names)
+Phase 5 — Dashboard Rebuild,"UAT with Angelo (sales) and ops leads — no multi-click drill-down needed",5,No,Yes,Staging,,UAT sign-off recorded,Angelo,Keren,Yes,QA query: zero rows on ""never show on dashboard"" violations
+Phase 6 — Production Cutover,"PHASE 6 — Production Cutover (section header)",6,No,No,Production,,,Avi,,No,UAT with Angelo (sales) and ops leads — no multi-click drill-down needed
+Phase 6 — Production Cutover,"Final stakeholder sign-off on staging UAT results",6,Yes,Yes,Production,,Written sign-off,Keren,Joel,No,UAT with Angelo (sales) and ops leads — no multi-click drill-down needed
+Phase 6 — Production Cutover,"Production migration window scheduled (communicate to sales + ops)",6,No,No,Production,,Comms sent,Leah,,No,Final stakeholder sign-off on staging UAT results
+Phase 6 — Production Cutover,"Run remediation batch in production",6,No,No,Production,14,Prod data remediated,Avi,,No,Final stakeholder sign-off on staging UAT results
+Phase 6 — Production Cutover,"Enable validation rules in production",6,No,No,Production,,Rules live,Avi,,No,Run remediation batch in production
+Phase 6 — Production Cutover,"Enable computed lifecycle_stage in production",6,No,No,Production,,Computed field live,Avi,,No,Run remediation batch in production
+Phase 6 — Production Cutover,"Switch dashboards to new views",6,No,No,Production,,Dashboards live,Avi,,No,Enable computed lifecycle_stage in production
+Phase 6 — Production Cutover,"Post-cutover: re-run audit Section 9 — confirm census gap closed",6,Yes,No,Production,9,~1960 → 1200-1300 confirmed,Avi,Keren,Yes,Switch dashboards to new views
+Phase 6 — Production Cutover,"Monitor SLA alerts for 2 weeks post-cutover",6,No,No,Production,,No critical SLA misses,Avi,,No,Post-cutover: re-run audit Section 9 — confirm census gap closed
+Phase 7 — Cleanup & Florida Handoff,"Deprecate unused intake fields (121 → ~40 target)",7,No,No,Staging,13,Field count ≤ 40,Avi,Keren,No,Post-cutover: re-run audit Section 9 — confirm census gap closed
+Phase 7 — Cleanup & Florida Handoff,"Document NY Status Framework v1 as canonical",7,No,No,Discovery,,Doc published,Keren,,No,Post-cutover: re-run audit Section 9 — confirm census gap closed
+Phase 7 — Cleanup & Florida Handoff,"Create Florida delta checklist (NY vs FL differences)",7,No,Yes,Discovery,,FL checklist draft,Keren,Joel,No,Document NY Status Framework v1 as canonical
+Phase 7 — Cleanup & Florida Handoff,"Rename Teams group to New York Operations (if not done)",7,No,No,Discovery,,Group renamed,Leah,,No,
+Ongoing — Discovery (Keren),"Raise pointed questions via Teams as inconsistencies found — no prod changes",Ongoing,No,No,Discovery,,Questions log maintained,Keren,,No,
+Ongoing — Discovery (Keren),"Produce PowerPoint deliverable: labels, LOB rules, use cases, lead-to-patient flow",Ongoing,No,No,Discovery,,Deck complete,Keren,,No,
+Ongoing — Discovery (Keren),"Maintain open questions log until Phase 0 closed",Ongoing,No,No,Discovery,,Log empty at Phase 0 sign-off,Keren,,No,
+Ongoing — Discovery (Keren),"Joel: compile and share department playbooks (Angela playbook + others)",Ongoing,No,No,Discovery,,Playbooks linked in project,Joel,,No,
+Ongoing — Discovery (Keren),"Send Keren the Angela playbook",Ongoing,No,No,Discovery,,Playbook received,Joel,,No,
