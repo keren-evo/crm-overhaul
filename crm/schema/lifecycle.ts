@@ -52,17 +52,30 @@ const INTAKE_STATUS_TO_LIFECYCLE: Partial<Record<IntakeStatus, LifecycleStage>> 
   [IntakeStatus.INTAKE_ACTIVE]: LifecycleStage.PATIENT_ACTIVE,
 };
 
+function todayIsoDate(): string {
+  return new Date().toISOString().slice(0, 10);
+}
+
+/** Matches v_active_census SQL: AUTH_APPROVED and not past end_date */
+function isAuthorizationCurrent(intake: IntakeRecord): boolean {
+  if (intake.authorization_status !== AuthorizationStatus.AUTH_APPROVED) {
+    return false;
+  }
+  if (!intake.authorization_end_date) {
+    return true;
+  }
+  return intake.authorization_end_date >= todayIsoDate();
+}
+
 function intakeToLifecycleStage(intake: IntakeRecord): LifecycleStage | null {
   if ((TERMINAL_INTAKE_STATUSES as readonly string[]).includes(intake.status)) {
     return null;
   }
 
   if (intake.status === IntakeStatus.INTAKE_AUTHORIZED) {
-    const authValid =
-      intake.authorization_status === AuthorizationStatus.AUTH_APPROVED &&
-      (!intake.authorization_end_date ||
-        intake.authorization_end_date >= new Date().toISOString().slice(0, 10));
-    if (!authValid) return LifecycleStage.INTAKE_IN_PROGRESS;
+    if (!isAuthorizationCurrent(intake)) {
+      return LifecycleStage.INTAKE_IN_PROGRESS;
+    }
   }
 
   if (intake.status === IntakeStatus.INTAKE_ACTIVE) {
@@ -72,7 +85,8 @@ function intakeToLifecycleStage(intake: IntakeRecord): LifecycleStage | null {
   return INTAKE_STATUS_TO_LIFECYCLE[intake.status] ?? null;
 }
 
-function shortTermOnly(intakes: IntakeRecord[]): boolean {
+/** True when open intakes are exclusively short-term custodial (no gold LOBs). */
+function shortTermOnlyOpen(intakes: IntakeRecord[]): boolean {
   const open = intakes.filter((i) => isOpenIntake(i.status));
   if (open.length === 0) return false;
   return open.every((i) => i.lob === LineOfBusiness.SHORT_TERM_CUSTODIAL);
@@ -99,7 +113,12 @@ export function computeLifecycleStage(
     );
   }
 
-  if (shortTermOnly(openIntakes)) {
+  // Open gold LOB work exists — do not downgrade to short-term-only REFERRAL_ACTIVE
+  if (goldOpen.length > 0) {
+    return LifecycleStage.INTAKE_IN_PROGRESS;
+  }
+
+  if (shortTermOnlyOpen(openIntakes)) {
     return LifecycleStage.REFERRAL_ACTIVE;
   }
 
@@ -174,11 +193,12 @@ export function isSalesDashboardVisible(
   if (isTerminalLifecycle(lifecycleStage)) return false;
   if (lifecycleStage === LifecycleStage.PATIENT_ACTIVE) return false;
 
-  const hasGoldOpen = intakes.some(
-    (i) => isOpenIntake(i.status) && isGoldLob(i.lob) && i.lob !== LineOfBusiness.CDPAP
+  const openIntakes = intakes.filter((i) => isOpenIntake(i.status));
+  const hasGoldOpen = openIntakes.some(
+    (i) => isGoldLob(i.lob) && i.lob !== LineOfBusiness.CDPAP
   );
 
-  if (shortTermOnly(intakes.filter((i) => isOpenIntake(i.status)))) {
+  if (!hasGoldOpen && shortTermOnlyOpen(openIntakes)) {
     return false;
   }
 
@@ -196,7 +216,7 @@ export function isActiveCensusMember(
     (i) =>
       i.status === IntakeStatus.INTAKE_ACTIVE &&
       i.start_of_care_date != null &&
-      i.authorization_status === AuthorizationStatus.AUTH_APPROVED &&
+      isAuthorizationCurrent(i) &&
       i.lob !== LineOfBusiness.CDPAP
   );
 }

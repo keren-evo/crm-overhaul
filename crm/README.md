@@ -14,6 +14,8 @@ Executable specs for the Lead → Referral → Intake → Patient lifecycle over
 | `audit/data-integrity-audit.sql` | Run against live CRM DB before migration |
 | `audit/dashboard-queries.sql` | Sales, ops, census, funnel leakage queries |
 | `asana/` | **Asana sprint organization kit** — CSV, sections, dependencies, AI prompt |
+| `alignment-meeting/` | **Alignment meeting package** — share-with-team, walkthrough, decisions, Asana sync, Phase 0 workshop |
+| `crm-bot-discovery.prompt.md` | Copy-paste prompts for CRM bot discovery (Phase 0–1) |
 
 ## Asana project setup
 

@@ -30,6 +30,7 @@ Standardize Lead → Referral → Intake → Patient lifecycle labels, fix autho
 | Pre-migration audit SQL | `crm/audit/data-integrity-audit.sql` |
 | Dashboard queries | `crm/audit/dashboard-queries.sql` |
 | Asana execution kit | `crm/asana/` |
+| Alignment meeting package | `crm/alignment-meeting/` |
 | Discovery session notes | `1-1-CRM Status Label Overhaul — Lead-to-Patient Workflow Discovery Session.md` |
 
 ## Team
