@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>leadtrap</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    :root {
+      --bg: #f4f6f9;
+      --card: #ffffff;
+      --text: #172033;
+      --muted: #5c6578;
+      --accent: #0f766e;
+      --accent-light: #e6f4f2;
+      --border: #d8dee9;
+      --code-bg: #f1f5f9;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.65 "Segoe UI", system-ui, -apple-system, sans-serif;
+    }
+    .topbar {
+      background: linear-gradient(135deg, #0f766e 0%, #134e4a 100%);
+      color: #fff;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.9rem;
+    }
+    .topbar a {
+      color: #fff;
+      text-decoration: none;
+      opacity: 0.95;
+    }
+    .topbar a:hover { text-decoration: underline; }
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+    article {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem 2.25rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    article h1 {
+      margin-top: 0;
+      font-size: 1.75rem;
+      color: #0d5c56;
+      line-height: 1.25;
+      border-bottom: 2px solid var(--accent-light);
+      padding-bottom: 0.5rem;
+    }
+    article h2 {
+      margin-top: 2rem;
+      font-size: 1.25rem;
+      color: #134e4a;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.35rem;
+    }
+    article h3 { margin-top: 1.5rem; color: #1e3a38; }
+    article h4 { margin-top: 1.25rem; }
+    a { color: var(--accent); }
+    a:hover { color: #0d5c56; }
+    p { margin: 0.85rem 0; }
+    ul, ol { padding-left: 1.5rem; }
+    li { margin: 0.35rem 0; }
+    li > ul { margin-top: 0.25rem; }
+    blockquote {
+      margin: 1.25rem 0;
+      padding: 0.75rem 1rem;
+      border-left: 4px solid var(--accent);
+      background: var(--accent-light);
+      border-radius: 0 8px 8px 0;
+    }
+    blockquote p { margin: 0.35rem 0; }
+    code {
+      font-family: Consolas, "SF Mono", monospace;
+      font-size: 0.9em;
+      background: var(--code-bg);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+    }
+    pre {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 1rem 1.15rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+    pre code {
+      background: transparent;
+      padding: 0;
+      color: inherit;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.25rem 0;
+      font-size: 0.95rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.6rem 0.75rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #f8fafc;
+      font-weight: 600;
+      color: #134e4a;
+    }
+    tr:nth-child(even) td { background: #fafbfc; }
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+    .mermaid {
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+    .toc {
+      background: var(--accent-light);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .toc ul { margin: 0.5rem 0 0; }
+    input[type="checkbox"] { margin-right: 0.35rem; }
+    @media print {
+      body { background: #fff; }
+      .topbar { display: none; }
+      article { box-shadow: none; border: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topbar"><a href="../index.html">← CRM Overhaul Hub</a></nav>
+  <main><article><h2 id="key-updates">Key Updates</h2>
+<ul>
+<li>
+<p><strong>Faith Healthcare</strong> operates in <strong>South Florida</strong> (Miami-Dade, Broward, and Palm Beach Counties), servicing from approximately <strong>Vero Beach / Indian River south to Miami and the Keys</strong>; geographic qualification will be handled by <strong>zip code</strong>.</p>
+</li>
+<li>
+<p>The company runs <strong>two primary lines of business</strong>:</p>
+</li>
+<li>
+<p><strong>Skilled care</strong> – nurses, PTs, OTs, wound care; primarily funded by <strong>Medicare, managed care, and commercial/PPO insurance</strong>; leads typically come via referrals from hospitals, doctors' offices, and nursing homes rather than digital channels.</p>
+</li>
+<li>
+<p><strong>Long-term care (non-skilled)</strong> – home health aides (HHAs/PCAs); Medicaid-funded (managed Medicaid / long-term care plans such as Molina); this is the <strong>primary digital funnel target</strong>.</p>
+</li>
+<li>
+<p>A <strong>separate private-pay model</strong> exists under a different brand/website; not the focus of this engagement.</p>
+</li>
+<li>
+<p>Faith recently <strong>migrated fully off Salesforce</strong> (~6 months ago) and built a <strong>proprietary CRM</strong> with \~2.5 full-time developers + CTO; Salesforce was abandoned due to pricing inflexibility and lack of AI integration.</p>
+</li>
+<li>
+<p>The meeting covered: <strong>AI chatbot setup on the website, phone agent ("Ava") configuration, follow-up email automation, and CRM webhook integration</strong>.</p>
+</li>
+</ul>
+<hr>
+<h2 id="what-to-care-about">What to Care About</h2>
+<h3 id="two-separate-lead-funnels">Two Separate Lead Funnels</h3>
+<ul>
+<li>
+<p><strong>Patient funnel</strong>: people seeking to receive care (or family members acting on their behalf — majority are family representatives, not the patient directly).</p>
+</li>
+<li>
+<p><strong>Caregiver funnel</strong>: HHAs and other non-skilled workers actively recruited; some caregivers bring patients with them when switching agencies.</p>
+</li>
+<li>
+<p>Agency transfers are <strong>not a current targeting priority</strong>, but are welcomed if they come in.</p>
+</li>
+</ul>
+<h3 id="primary-digital-target-long-term-care-medicaid">Primary Digital Target: Long-Term Care / Medicaid</h3>
+<ul>
+<li>
+<p>Faith's sales team actively pursues people who <strong>don't yet have Medicaid</strong> and helps them get enrolled, as well as those who have Medicaid but need service authorization.</p>
+</li>
+<li>
+<p>Another key sales channel: <strong>insurance company case managers</strong> (B2B referral channel).</p>
+</li>
+<li>
+<p>Skilled nursing / therapy leads are <strong>not expected to come through digital</strong>; online focus should be on long-term / personal care.</p>
+</li>
+</ul>
+<h3 id="insurance-complexity">Insurance Complexity</h3>
+<ul>
+<li>
+<p>Patients may not know their plan (e.g., Molina) is technically Medicaid; the bot should present <strong>multiple-choice insurance options</strong> (top managed Medicaid plans + private pay) rather than just "Medicaid vs. private pay."</p>
+</li>
+<li>
+<p>Faith has a <strong>Medicaid transition team</strong> for leads who present with Medicare or other non-qualifying insurance.</p>
+</li>
+<li>
+<p>Outlier programs exist (e.g., <strong>APD/iBudget</strong> in Florida, analogous to OPWDD in New York) that should not be ignored.</p>
+</li>
+</ul>
+<h3 id="caregiver-qualification">Caregiver Qualification</h3>
+<ul>
+<li>
+<p>HHAs <strong>must already be certified</strong>; Faith does not assist with initial certification, only in-service hour updates.</p>
+</li>
+<li>
+<p>Uncertified applicants should be told to return once certified; resumes are desirable but <strong>not a hard requirement</strong>.</p>
+</li>
+</ul>
+<h3 id="spanish-language-market">Spanish-Language Market</h3>
+<ul>
+<li>The phone system already has a <strong>Spanish-language greeting</strong>; a <strong>Spanish bot flow and routing to a Spanish-speaking intake line</strong> should be created in parallel.</li>
+</ul>
+<hr>
+<h2 id="feedback-concerns">Feedback &amp; Concerns</h2>
+<h3 id="bot-flow-qualification-logic">Bot Flow &amp; Qualification Logic</h3>
+<ul>
+<li>
+<p>Current demo flow was acknowledged as a <strong>starting point needing refinement</strong>; Hillel confirmed willingness to iterate post-launch.</p>
+</li>
+<li>
+<p>Age is <strong>not a common disqualifier</strong> and should not be a hard gate in the bot for now; can be added later if needed.</p>
+</li>
+<li>
+<p>Physical/functional assessment questions (ADLs like dressing, bathing) are <strong>not required</strong> — if a patient is already Medicaid-qualified, those details aren't needed upfront.</p>
+</li>
+<li>
+<p>The insurance question needs to be restructured: show the <strong>5–10 most common managed Medicaid plans</strong> as clickable options so patients recognize their plan by name.</p>
+</li>
+</ul>
+<h3 id="phone-system-complexity">Phone System Complexity</h3>
+<ul>
+<li>
+<p>The main number (305-228-4800) routes through an IVR first to a receptionist (<strong>Melanie</strong>) before reaching extensions; this is slightly non-standard for AI warm-transfer setup.</p>
+</li>
+<li>
+<p>Dee mentioned the possibility of providing <strong>direct extension numbers</strong> (e.g., his own is 402); direct lines are preferred for callback reliability.</p>
+</li>
+<li>
+<p>Hillel indicated a future intent to <strong>route warm transfers to a sales team before intake</strong>, rather than directly to intake — this will be reconfigured internally before the next phase.</p>
+</li>
+</ul>
+<h3 id="crm-integration">CRM Integration</h3>
+<ul>
+<li>
+<p>Faith has their own <strong>API team</strong> and is ready to connect via <strong>webhooks</strong>; integration should be straightforward.</p>
+</li>
+<li>
+<p>Email notifications into the CRM may eventually replace direct email alerts to intake staff.</p>
+</li>
+<li>
+<p>The follow-up email feature (sending insurance card requests, additional info prompts post-conversation) will send <strong>from</strong> <strong><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#104;&#101;&#108;&#108;&#111;&#64;&#102;&#97;&#105;&#116;&#104;&#104;&#101;&#97;&#108;&#116;&#104;&#99;&#97;&#114;&#101;&#46;&#99;&#111;&#109;">&#104;&#101;&#108;&#108;&#111;&#64;&#102;&#97;&#105;&#116;&#104;&#104;&#101;&#97;&#108;&#116;&#104;&#99;&#97;&#114;&#101;&#46;&#99;&#111;&#109;</a></strong>; Hillel needs to grant OAuth access by clicking the link sent during the call.</p>
+</li>
+</ul>
+<hr>
+<h2 id="action-items">Action Items</h2>
+<ul>
+<li>
+<p>[ ] <strong>Hillel</strong> – Click the OAuth authorization link sent to <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#104;&#101;&#108;&#108;&#111;&#64;&#102;&#97;&#105;&#116;&#104;&#104;&#101;&#97;&#108;&#116;&#104;&#99;&#97;&#114;&#101;&#46;&#99;&#111;&#109;">&#104;&#101;&#108;&#108;&#111;&#64;&#102;&#97;&#105;&#116;&#104;&#104;&#101;&#97;&#108;&#116;&#104;&#99;&#97;&#114;&#101;&#46;&#99;&#111;&#109;</a> to enable automated follow-up emails. <em>(Assigned to: Hillel, Due: ASAP, Meeting: This call)</em></p>
+</li>
+<li>
+<p>[ ] <strong>Yoni (LeadTrap)</strong> – Send demo link to all three attendees (Hillel, Dee, Leah) for pressure-testing the bot flow. <em>(Assigned to: Yoni, Due: Within 24 hours)</em></p>
+</li>
+<li>
+<p>[ ] <strong>Yoni (LeadTrap)</strong> – Update bot insurance question to multi-choice format with top managed Medicaid plans (Molina, etc.) + private pay option. <em>(Assigned to: Yoni, Due: Before next call)</em></p>
+</li>
+<li>
+<p>[ ] <strong>Yoni (LeadTrap)</strong> – Adjust bot form layout to display fields <strong>row by row</strong> (name on one line, DOB on next, etc.). <em>(Assigned to: Yoni, Due: Before next call)</em></p>
+</li>
+<li>
+<p>[ ] <strong>Yoni (LeadTrap)</strong> – Build out <strong>Spanish-language bot flow</strong> and configure routing to Spanish intake line. <em>(Assigned to: Yoni, Due: Before next call)</em></p>
+</li>
+<li>
+<p>[ ] <strong>Yoni (LeadTrap)</strong> – Send demo/setup link within <strong>24 hours</strong> with implemented changes; full customization call to follow. <em>(Assigned to: Yoni, Due: Within 24 hours)</em></p>
+</li>
+<li>
+<p>[ ] <strong>Dee Jacomb</strong> – Send Yoni the <strong>full list of Palm Beach County cities/zip codes</strong> for geographic qualification. <em>(Assigned to: Dee, Due: During/after call — initiated on call)</em></p>
+</li>
+<li>
+<p>[ ] <strong>Faith team (Hillel/Dee)</strong> – Finalize AI bot name (<strong>"Ava"</strong> proposed, aligned with corporate umbrella "Evo"); confirm or adjust. <em>(Assigned to: Hillel/Dee)</em></p>
+</li>
+<li>
+<p>[ ] <strong>Faith team</strong> – Identify or provision a <strong>direct phone line</strong> for intake (bypassing main IVR) to improve warm-transfer reliability. <em>(Assigned to: Faith internal, Due: Before go-live)</em></p>
+</li>
+<li>
+<p>[ ] <strong>Faith team</strong> – Confirm which email address handles <strong>outbound follow-ups</strong> and ensure <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#104;&#101;&#108;&#108;&#111;&#64;&#102;&#97;&#105;&#116;&#104;&#104;&#101;&#97;&#108;&#116;&#104;&#99;&#97;&#114;&#101;&#46;&#99;&#111;&#109;">&#104;&#101;&#108;&#108;&#111;&#64;&#102;&#97;&#105;&#116;&#104;&#104;&#101;&#97;&#108;&#116;&#104;&#99;&#97;&#114;&#101;&#46;&#99;&#111;&#109;</a> is properly set up for that workflow. <em>(Assigned to: Hillel/Leah)</em></p>
+</li>
+<li>
+<p>[ ] <strong>Schedule follow-up call</strong> – Include Faith's <strong>CRM/API team</strong> + a LeadTrap engineer to complete the webhook/CRM integration. <em>(Assigned to: Both parties)</em></p>
+</li>
+</ul>
+<hr>
+<h2 id="open-questions-follow-ups">Open Questions / Follow-Ups</h2>
+<ul>
+<li>
+<p><strong>Exact northern service boundary</strong>: "Indian Point" / Indian River area confirmed as approximate northern limit; Vero Beach acceptable, Melbourne borderline — awaiting the Palm Beach County city list from Dee for definitive zip code mapping.</p>
+</li>
+<li>
+<p><strong>Sales team routing</strong>: Hillel intends to eventually route warm transfers to a <strong>sales team first, then intake</strong> — exact flow and timeline TBD internally.</p>
+</li>
+<li>
+<p><strong>Private pay funnel</strong>: A separate private-pay home care brand exists; potential future engagement not scoped in this meeting.</p>
+</li>
+<li>
+<p><strong>Family caregiver / consumer-directed model</strong>: Faith is exploring entering this market in Florida (analogous to New York's consumer-directed model) but it is not active yet — not in scope for current funnel.</p>
+</li>
+<li>
+<p><strong>Referral form on website</strong>: A referral page exists on the Faith site but is not part of the active funnel; potential to activate for doctor/hospital referrals was noted as an opportunity.</p>
+</li>
+<li>
+<p><strong>Bot name confirmation</strong>: "Ava" (A-V-A) is the working name, tied to the corporate "Evo" brand — final sign-off pending.</p>
+</li>
+<li>
+<p><strong>Resume collection</strong>: Optional upload for caregiver applicants — desired if available, but should not be a barrier to form submission.</p>
+</li>
+<li>
+<p><strong>Minimum age qualifier</strong>: Not currently a hard gate; may be revisited once live data reveals patterns.</p>
+</li>
+</ul></article></main>
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose" });
+  </script>
+</body>
+</html>

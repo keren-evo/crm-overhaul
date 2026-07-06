@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Phase Walkthrough (0–7)</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    :root {
+      --bg: #f4f6f9;
+      --card: #ffffff;
+      --text: #172033;
+      --muted: #5c6578;
+      --accent: #0f766e;
+      --accent-light: #e6f4f2;
+      --border: #d8dee9;
+      --code-bg: #f1f5f9;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.65 "Segoe UI", system-ui, -apple-system, sans-serif;
+    }
+    .topbar {
+      background: linear-gradient(135deg, #0f766e 0%, #134e4a 100%);
+      color: #fff;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.9rem;
+    }
+    .topbar a {
+      color: #fff;
+      text-decoration: none;
+      opacity: 0.95;
+    }
+    .topbar a:hover { text-decoration: underline; }
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+    article {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem 2.25rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    article h1 {
+      margin-top: 0;
+      font-size: 1.75rem;
+      color: #0d5c56;
+      line-height: 1.25;
+      border-bottom: 2px solid var(--accent-light);
+      padding-bottom: 0.5rem;
+    }
+    article h2 {
+      margin-top: 2rem;
+      font-size: 1.25rem;
+      color: #134e4a;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.35rem;
+    }
+    article h3 { margin-top: 1.5rem; color: #1e3a38; }
+    article h4 { margin-top: 1.25rem; }
+    a { color: var(--accent); }
+    a:hover { color: #0d5c56; }
+    p { margin: 0.85rem 0; }
+    ul, ol { padding-left: 1.5rem; }
+    li { margin: 0.35rem 0; }
+    li > ul { margin-top: 0.25rem; }
+    blockquote {
+      margin: 1.25rem 0;
+      padding: 0.75rem 1rem;
+      border-left: 4px solid var(--accent);
+      background: var(--accent-light);
+      border-radius: 0 8px 8px 0;
+    }
+    blockquote p { margin: 0.35rem 0; }
+    code {
+      font-family: Consolas, "SF Mono", monospace;
+      font-size: 0.9em;
+      background: var(--code-bg);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+    }
+    pre {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 1rem 1.15rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+    pre code {
+      background: transparent;
+      padding: 0;
+      color: inherit;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.25rem 0;
+      font-size: 0.95rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.6rem 0.75rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #f8fafc;
+      font-weight: 600;
+      color: #134e4a;
+    }
+    tr:nth-child(even) td { background: #fafbfc; }
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+    .mermaid {
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+    .toc {
+      background: var(--accent-light);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .toc ul { margin: 0.5rem 0 0; }
+    input[type="checkbox"] { margin-right: 0.35rem; }
+    @media print {
+      body { background: #fff; }
+      .topbar { display: none; }
+      article { box-shadow: none; border: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topbar"><a href="../index.html">← CRM Overhaul Hub</a></nav>
+  <main><article><h1 id="phase-walkthrough-07">Phase Walkthrough (0–7)</h1>
+<p>I've drafted this phased plan in Asana based on discovery. I'm still learning your processes — <strong>please edit phases, tasks, and dependencies freely.</strong> Phase 2+ stays blocked until Phase 0 is signed, but we're here to shape Phase 0 and validate the rest.</p>
+<hr>
+<h2 id="why-phases-exist">Why phases exist</h2>
+<table>
+<thead>
+<tr>
+<th>Principle</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Decide before build</strong></td>
+<td>Phase 0 locks business definitions so engineering doesn't encode wrong assumptions</td>
+</tr>
+<tr>
+<td><strong>Measure before fix</strong></td>
+<td>Phase 1 baselines the mess so we can prove remediation worked</td>
+</tr>
+<tr>
+<td><strong>Staging first</strong></td>
+<td>Phases 2–5 on staging; production only after UAT</td>
+</tr>
+<tr>
+<td><strong>One source of truth</strong></td>
+<td>Lifecycle computed from intake/auth data — not legacy tags</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Hard rule (proposed):</strong> No Phase 2+ until <strong>Status Framework v1</strong> is signed.</p>
+<hr>
+<h2 id="phase-0-stakeholder-sign-off">Phase 0 — Stakeholder Sign-Off</h2>
+<p><strong>Purpose:</strong> Lock business definitions before any schema or data changes.</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Workshop topics</strong></td>
+<td>dropped off vs discharged vs voided vs deferred vs authorized vs SOC dates</td>
+</tr>
+<tr>
+<td><strong>LOB checklists</strong></td>
+<td>LTC, NHTD, OPWDD, private pay</td>
+</tr>
+<tr>
+<td><strong>Short-term rule</strong></td>
+<td>Lead loss unless gold LOB open; hidden from sales dashboard</td>
+</tr>
+<tr>
+<td><strong>NIA fail (proposed)</strong></td>
+<td>6-month ON_HOLD, then re-engage</td>
+</tr>
+<tr>
+<td><strong>CDPAP</strong></td>
+<td>Remediation approach post-April 2025 sunset</td>
+</tr>
+<tr>
+<td><strong>Census</strong></td>
+<td>Billing vs EVV vs CRM service episodes — which is truth?</td>
+</tr>
+<tr>
+<td><strong>Deliverable</strong></td>
+<td>Signed Status Framework v1</td>
+</tr>
+<tr>
+<td><strong>Owners</strong></td>
+<td>Keren (framework), Joel (operational truth)</td>
+</tr>
+<tr>
+<td><strong>Gates</strong></td>
+<td>Everything in Phase 1+</td>
+</tr>
+</tbody>
+</table>
+<h3 id="pause-collect-edits-10-min">PAUSE — collect edits (10 min)</h3>
+<p>Ask: <em>"What's missing from Phase 0? What decisions belong here vs later?"</em></p>
+<p>Capture in <a href="03-decision-worksheet.html"><code>03-decision-worksheet.md</code></a> and Asana Phase 0 section.</p>
+<hr>
+<h2 id="phase-1-access-baseline-audit">Phase 1 — Access &amp; Baseline Audit</h2>
+<p><strong>Purpose:</strong> Read-only discovery + SQL audit to quantify data integrity problems.</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Activities</strong></td>
+<td>Schema Manager audit; map tables to <a href="../audit/data-integrity-audit.sql"><code>data-integrity-audit.sql</code></a>; run audit on staging/replica</td>
+</tr>
+<tr>
+<td><strong>Baselines</strong></td>
+<td>Orphan authorized, CDPAP queue, pre-intake/closed counts, multi-intake conflicts, census gap, stale anticipated SOC</td>
+</tr>
+<tr>
+<td><strong>Deliverable</strong></td>
+<td>All baseline counts in project doc</td>
+</tr>
+<tr>
+<td><strong>Owners</strong></td>
+<td>Keren (audit), Avi (SQL/DB access)</td>
+</tr>
+<tr>
+<td><strong>Gates</strong></td>
+<td>All Phase 2 tasks</td>
+</tr>
+<tr>
+<td><strong>CRM bot prompts</strong></td>
+<td><a href="../crm-bot-discovery.prompt.html"><code>crm-bot-discovery.prompt.md</code></a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="pause-collect-edits-5-min">PAUSE — collect edits (5 min)</h3>
+<p>Ask: <em>"Are we measuring the right things? Any baseline ops/sales care about that's missing?"</em></p>
+<hr>
+<h2 id="phase-2-schema-design-staging">Phase 2 — Schema Design (Staging)</h2>
+<p><strong>Purpose:</strong> New picklists, enums, field structure in staging — no production changes.</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Key work</strong></td>
+<td>Import <a href="../schema/enums.json"><code>enums.json</code></a>; add <code>lifecycle_stage</code>; hide legacy tags; normalize dates; <code>person_stage_history</code></td>
+</tr>
+<tr>
+<td><strong>Owners</strong></td>
+<td>Avi (build), Keren (review vs Framework v1)</td>
+</tr>
+<tr>
+<td><strong>Proposed stages</strong></td>
+<td><code>LEAD_NEW</code> → <code>LEAD_CONTACTING</code> → <code>REFERRAL_ACTIVE</code> → <code>INTAKE_IN_PROGRESS</code> → <code>ON_HOLD</code> → <code>AUTHORIZED_PENDING_SOC</code> → <code>PATIENT_ACTIVE</code> → <code>DROPPED_OFF</code> / <code>DISCHARGED</code></td>
+</tr>
+</tbody>
+</table>
+<p>Ask: <em>"Do stage names match how staff talk? Is ON_HOLD acceptable?"</em></p>
+<hr>
+<h2 id="phase-3-data-remediation-staging">Phase 3 — Data Remediation (Staging)</h2>
+<p><strong>Purpose:</strong> Batch-fix legacy data on staging using signed mapping.</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Key work</strong></td>
+<td>pre-intake → ON_HOLD; closed → DROPPED_OFF/DISCHARGED; CDPAP batch; orphan authorized downgrade</td>
+</tr>
+<tr>
+<td><strong>Deliverable</strong></td>
+<td>Staging remediation validated — ops sign-off on 50-record sample</td>
+</tr>
+<tr>
+<td><strong>Owners</strong></td>
+<td>Avi (scripts), Joel + ops (sign-off), Keren (validation)</td>
+</tr>
+<tr>
+<td><strong>Gates</strong></td>
+<td>All Phase 4 tasks</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="phase-4-validation-automation-staging">Phase 4 — Validation &amp; Automation (Staging)</h2>
+<p><strong>Purpose:</strong> Block bad data re-entry; automate lifecycle computation.</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Key work</strong></td>
+<td>Blocking rules from <a href="../schema/validation-rules.ts"><code>validation-rules.ts</code></a>; <code>computeLifecycleStage</code>; SLA timers</td>
+</tr>
+<tr>
+<td><strong>SLAs (proposed)</strong></td>
+<td>Lead 24h · follow-up 3d · referral→intake 7d · authorized→SOC 14d</td>
+</tr>
+<tr>
+<td><strong>Owner</strong></td>
+<td>Avi</td>
+</tr>
+<tr>
+<td><strong>Gates</strong></td>
+<td>Phase 5 (after SLA timers)</td>
+</tr>
+</tbody>
+</table>
+<p>Ask: <em>"Are SLAs realistic? Any rule that blocks legitimate workflows?"</em></p>
+<hr>
+<h2 id="phase-5-dashboard-rebuild-uat">Phase 5 — Dashboard Rebuild + UAT</h2>
+<p><strong>Purpose:</strong> One glance = lead, referral, or patient. <strong>UAT</strong> = sales and ops test on staging before go-live.</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Key work</strong></td>
+<td><a href="../audit/dashboard-queries.sql"><code>dashboard-queries.sql</code></a>; sales view (gold LOBs only); true census widget; funnel leakage</td>
+</tr>
+<tr>
+<td><strong>UAT</strong></td>
+<td>Angelo (sales) + ops leads — pass = no multi-click drill-down</td>
+</tr>
+<tr>
+<td><strong>Gates</strong></td>
+<td>All Phase 6 tasks</td>
+</tr>
+</tbody>
+</table>
+<p>Ask: <em>"What columns/filters does each role need on day one?"</em></p>
+<hr>
+<h2 id="phase-6-production-cutover">Phase 6 — Production Cutover</h2>
+<p><strong>Purpose:</strong> Go live with communicated migration window.</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Key work</strong></td>
+<td>Production remediation; enable rules + computed stage; switch dashboards; re-run audit §9</td>
+</tr>
+<tr>
+<td><strong>Owners</strong></td>
+<td>Avi (cutover), Leah (comms), Keren (post-cutover audit)</td>
+</tr>
+<tr>
+<td><strong>Gates</strong></td>
+<td>Phase 7</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="phase-7-cleanup-florida-handoff">Phase 7 — Cleanup &amp; Florida Handoff</h2>
+<p><strong>Purpose:</strong> Field deprecation; NY canonical playbook; FL delta later.</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Key work</strong></td>
+<td>Intake fields 121 → \~40; publish Status Framework v1 playbook; FL checklist</td>
+</tr>
+<tr>
+<td><strong>Owners</strong></td>
+<td>Avi + Keren (deprecation), Joel (playbook)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="ongoing-discovery-parallel">Ongoing — Discovery (parallel)</h2>
+<p>Runs alongside Phase 0–1. No production changes.</p>
+<ul>
+<li>
+<p>CRM bot / Schema Manager discovery (<a href="../crm-bot-discovery.prompt.html"><code>crm-bot-discovery.prompt.md</code></a>)</p>
+</li>
+<li>
+<p>Open questions log until Phase 0 closed</p>
+</li>
+<li>
+<p>Joel playbooks → feed Framework v1</p>
+</li>
+</ul>
+<p><strong>Confirm in meeting:</strong> Admin access, Teams rename, Angela playbook — done per discovery notes?</p>
+<hr>
+<h2 id="milestone-chain">Milestone chain</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Milestone</th>
+<th>Blocks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Status Framework v1 signed</td>
+<td>All Phase 1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Baseline audit complete</td>
+<td>All Phase 2</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Staging remediation validated</td>
+<td>All Phase 4</td>
+</tr>
+<tr>
+<td>4</td>
+<td>UAT passed</td>
+<td>All Phase 6</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Census gap closed (post-cutover)</td>
+<td>All Phase 7</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="proposed-roles-validate-now">Proposed roles (validate now)</h2>
+<table>
+<thead>
+<tr>
+<th>Person</th>
+<th>Scope</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Keren</strong></td>
+<td>Phase 0–1, framework sign-off, discovery, UAT</td>
+</tr>
+<tr>
+<td><strong>Avi</strong></td>
+<td>Phase 2–4, Phase 6 cutover</td>
+</tr>
+<tr>
+<td><strong>Joel</strong></td>
+<td>Phase 0 workshops, playbooks, ops sign-off</td>
+</tr>
+<tr>
+<td><strong>Leah</strong></td>
+<td>Migration comms, Teams</td>
+</tr>
+<tr>
+<td><strong>Angelo</strong></td>
+<td>Phase 5 sales UAT</td>
+</tr>
+</tbody>
+</table></article></main>
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose" });
+  </script>
+</body>
+</html>

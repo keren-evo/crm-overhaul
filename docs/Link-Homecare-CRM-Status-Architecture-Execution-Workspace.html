@@ -1,0 +1,2865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Link Homecare CRM Status Architecture & Execution Workspace</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    :root {
+      --bg: #f4f6f9;
+      --card: #ffffff;
+      --text: #172033;
+      --muted: #5c6578;
+      --accent: #0f766e;
+      --accent-light: #e6f4f2;
+      --border: #d8dee9;
+      --code-bg: #f1f5f9;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.65 "Segoe UI", system-ui, -apple-system, sans-serif;
+    }
+    .topbar {
+      background: linear-gradient(135deg, #0f766e 0%, #134e4a 100%);
+      color: #fff;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.9rem;
+    }
+    .topbar a {
+      color: #fff;
+      text-decoration: none;
+      opacity: 0.95;
+    }
+    .topbar a:hover { text-decoration: underline; }
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+    article {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem 2.25rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    article h1 {
+      margin-top: 0;
+      font-size: 1.75rem;
+      color: #0d5c56;
+      line-height: 1.25;
+      border-bottom: 2px solid var(--accent-light);
+      padding-bottom: 0.5rem;
+    }
+    article h2 {
+      margin-top: 2rem;
+      font-size: 1.25rem;
+      color: #134e4a;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.35rem;
+    }
+    article h3 { margin-top: 1.5rem; color: #1e3a38; }
+    article h4 { margin-top: 1.25rem; }
+    a { color: var(--accent); }
+    a:hover { color: #0d5c56; }
+    p { margin: 0.85rem 0; }
+    ul, ol { padding-left: 1.5rem; }
+    li { margin: 0.35rem 0; }
+    li > ul { margin-top: 0.25rem; }
+    blockquote {
+      margin: 1.25rem 0;
+      padding: 0.75rem 1rem;
+      border-left: 4px solid var(--accent);
+      background: var(--accent-light);
+      border-radius: 0 8px 8px 0;
+    }
+    blockquote p { margin: 0.35rem 0; }
+    code {
+      font-family: Consolas, "SF Mono", monospace;
+      font-size: 0.9em;
+      background: var(--code-bg);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+    }
+    pre {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 1rem 1.15rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+    pre code {
+      background: transparent;
+      padding: 0;
+      color: inherit;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.25rem 0;
+      font-size: 0.95rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.6rem 0.75rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #f8fafc;
+      font-weight: 600;
+      color: #134e4a;
+    }
+    tr:nth-child(even) td { background: #fafbfc; }
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+    .mermaid {
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+    .toc {
+      background: var(--accent-light);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .toc ul { margin: 0.5rem 0 0; }
+    input[type="checkbox"] { margin-right: 0.35rem; }
+    @media print {
+      body { background: #fff; }
+      .topbar { display: none; }
+      article { box-shadow: none; border: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topbar"><a href="index.html">← CRM Overhaul Hub</a></nav>
+  <main><article><h1 id="link-homecare-crm-status-architecture-execution-workspace">Link Homecare CRM Status Architecture &amp; Execution Workspace</h1>
+<p><strong>Project:</strong> EVO CRM Status Label Overhaul — NY Operations<br>
+<strong>Platform:</strong> Nexus CRM at <a href="https://crm.linkhomecare.com/">crm.linkhomecare.com</a><br>
+<strong>Owner (Framework):</strong> Keren<br>
+<strong>Operational truth:</strong> Joel<br>
+<strong>Implementation:</strong> Avi<br>
+<strong>Last updated:</strong> July 6, 2026<br>
+<strong>Status:</strong> Phase 0 — Workshop pipeline agreed; glossary draft; CRM build on hold until labels signed</p>
+<hr>
+<h2 id="1-executive-context">1. Executive Context</h2>
+<p>Link Homecare is rebuilding its CRM operating model so leadership, intake, operations, sales, and growth can answer ten business questions from one trusted data layer — not from conflicting Salesforce-era labels.</p>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Who is only a lead?</td>
+<td>Sales prioritization and SLA accountability</td>
+</tr>
+<tr>
+<td>Who is a referral being worked?</td>
+<td>Intake funnel visibility</td>
+</tr>
+<tr>
+<td>Who is truly an active patient?</td>
+<td>Census, staffing, revenue</td>
+</tr>
+<tr>
+<td>Who is authorized but not active?</td>
+<td>Pipeline vs census separation</td>
+</tr>
+<tr>
+<td>Who dropped before becoming active?</td>
+<td>Funnel leakage and source quality</td>
+</tr>
+<tr>
+<td>Who was active and then discharged?</td>
+<td>Retention and re-engagement</td>
+</tr>
+<tr>
+<td>Which line of business is involved?</td>
+<td>Capacity and qualification routing</td>
+</tr>
+<tr>
+<td>Which authorizations are valid, expired, stale, or irrelevant?</td>
+<td>Ops risk and billing exposure</td>
+</tr>
+<tr>
+<td>Which dashboards can be trusted?</td>
+<td>Leadership decision quality</td>
+</tr>
+<tr>
+<td>Where are referrals leaking?</td>
+<td>Growth ROI and process fixes</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Known:</strong> The CRM uses a unified person record (Episode in Nexus) that follows someone from first contact through referral, intake, authorization, active service, discharge, or drop-off. Discovery confirmed ~1,960 dashboard "authorized" vs ~1,200–1,300 true active census. CDPAP sunset (April 1, 2025) left a stale authorized cohort. Authorization does not equal active service.</p>
+<p><strong>Assumption:</strong> NY is canonical; Florida adapts after NY is stable.</p>
+<p><strong>Non-negotiable:</strong> Definitions drive dashboards — not the reverse. No Phase 2+ implementation until Status Framework v1 is signed.</p>
+<hr>
+<h2 id="2-core-problem">2. Core Problem</h2>
+<p>The CRM inherited Salesforce-era labels and workarounds that no longer reflect operational reality. One person can simultaneously appear as lead, referral, patient, authorized, dropped, closed, or discharged depending on which field or view is used.</p>
+<table>
+<thead>
+<tr>
+<th>Pain category</th>
+<th>Manifestation</th>
+<th>Business impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Status inflation</strong></td>
+<td>~1,960 "authorized" vs ~1,200–1,300 true census</td>
+<td>Leadership overstates pipeline and census</td>
+</tr>
+<tr>
+<td><strong>Layer collapse</strong></td>
+<td>Authorization treated as patient status</td>
+<td>Ops cannot distinguish approved vs actively serviced</td>
+</tr>
+<tr>
+<td><strong>Legacy labels</strong></td>
+<td>Pre-Intake, Closed, Converted still active</td>
+<td>Teams use different mental models</td>
+</tr>
+<tr>
+<td><strong>Multi-intake conflict</strong></td>
+<td>Dropped custodial + in-progress LTC on one record</td>
+<td>Multiple status boxes; manual investigation required</td>
+</tr>
+<tr>
+<td><strong>Orthogonal tracks</strong></td>
+<td>Medicaid tickets parallel to lifecycle</td>
+<td>Intake blocked but record looks "in progress"</td>
+</tr>
+<tr>
+<td><strong>Stale cohorts</strong></td>
+<td>CDPAP, Girling/third-party, expired auth</td>
+<td>Dashboards count non-patients as patients</td>
+</tr>
+<tr>
+<td><strong>Dashboard-first culture</strong></td>
+<td>Reports built on dirty picklists</td>
+<td>Decisions made on false positives</td>
+</tr>
+<tr>
+<td><strong>Production bug</strong></td>
+<td>Auth end date updated but LOB timeline stays expired (Ntelekos)</td>
+<td>Active patients show as expired</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Root cause:</strong> One field (or one label) is being asked to answer multiple business questions — lead capture, referral work, intake progress, authorization validity, service activity, and terminal outcomes.</p>
+<hr>
+<h2 id="3-working-goal">3. Working Goal</h2>
+<p>Produce an implementation-ready status architecture that:</p>
+<ol>
+<li>Separates lifecycle, referral funnel, intake process, authorization validity, LOB service lines, Medicaid tickets, and terminal reasons into distinct layers.</li>
+<li>Collapses the user-facing master lifecycle to <strong>Lead → Qualifying → Referral in Progress → Active → Discharged</strong>, with <strong>Dropped Off</strong> anytime before Active (workshop agreed Jul 2026). Short-term care runs parallel until authorized.</li>
+<li>Defines <strong>true active census</strong> as Active + valid authorization + confirmed start of care (SOC).</li>
+<li>Enables data remediation, validation rules, dashboard rebuild, and eventual growth-system integration (LeadTrap/Ava, Meta, SEO, referral campaigns).</li>
+<li>Protects operational continuity via phased rollout, manual review queues, and legacy field retention during migration.</li>
+</ol>
+<p><strong>Recommended decision (pending sign-off):</strong> Episode is the master lifecycle object. Patient LOB fields are service-line layer. Intake is subprocess only.</p>
+<hr>
+<h2 id="4-current-status-confusion">4. Current Status Confusion</h2>
+<h3 id="41-nexus-production-picklists-confirmed">4.1 Nexus production picklists (confirmed)</h3>
+<table>
+<thead>
+<tr>
+<th>Object</th>
+<th>Field</th>
+<th>Current values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Episode</td>
+<td><code>status</code> (EpisodeStatus)</td>
+<td>New · Lead · Active · Converted · On Hold · Dropped · Discharged</td>
+</tr>
+<tr>
+<td>Episode</td>
+<td><code>leadStage</code> (LeadStatus)</td>
+<td>— None — · New · In Progress · Dropped Off · Converted</td>
+</tr>
+<tr>
+<td>Episode</td>
+<td><code>outcome</code> (ReferralOutcome)</td>
+<td>Picklist exists — <strong>values not yet exported</strong></td>
+</tr>
+<tr>
+<td>Patient</td>
+<td>Legacy picklists</td>
+<td>pre-intake, closed, person-level authorized, in-progress</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td><code>baseStatus</code></td>
+<td><strong>Free-text STRING</strong> (data integrity risk)</td>
+</tr>
+<tr>
+<td>Intake</td>
+<td>130 fields, 24 picklists</td>
+<td>Subprocess — not master status</td>
+</tr>
+</tbody>
+</table>
+<h3 id="42-what-teams-see-today-vs-what-is-true">4.2 What teams see today vs what is true</h3>
+<table>
+<thead>
+<tr>
+<th>Screen signal</th>
+<th>Often means</th>
+<th>Actually may mean</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Authorized" on dashboard</td>
+<td>Active patient</td>
+<td>Approved auth, no SOC, dropped intake, or expired auth</td>
+</tr>
+<tr>
+<td>"Patient" tag + "Lead" tag</td>
+<td>Conflicting</td>
+<td>Same record at different layers</td>
+</tr>
+<tr>
+<td>Lead Status "In Progress" (all 56 leads)</td>
+<td>Working referral</td>
+<td>No funnel granularity</td>
+</tr>
+<tr>
+<td>"Pre-Intake"</td>
+<td>Waiting</td>
+<td>NIA fail, vacation, docs — no standard hold reason</td>
+</tr>
+<tr>
+<td>"Closed"</td>
+<td>Done</td>
+<td>Could be drop or discharge — undefined</td>
+</tr>
+<tr>
+<td>"Converted"</td>
+<td>Success</td>
+<td>Legacy Salesforce — should be In Progress Referral</td>
+</tr>
+<tr>
+<td>LOB timeline "Expired"</td>
+<td>Patient inactive</td>
+<td>Auth updated but UI not recalculated</td>
+</tr>
+</tbody>
+</table>
+<h3 id="43-phase-1-what-we-know-dont-know-must-decide">4.3 Phase 1 — What We Know / Don't Know / Must Decide</h3>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Items</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>What we know</strong></td>
+<td>Episode-centric model; <strong>workshop pipeline</strong> Lead→Qualifying→Referral in Progress→Active→Discharged; census gap; CDPAP; short-term parallel icon; NIA fail→drop; glossary draft in <code>crm/glossary/</code></td>
+</tr>
+<tr>
+<td><strong>What we don't know</strong></td>
+<td>ReferralOutcome picklist values; NIA reapply wait (180d vs 6mo); Active threshold (SOC vs cleared-to-start); LOB eligibility checklists final</td>
+</tr>
+<tr>
+<td><strong>What must be decided</strong></td>
+<td>Framework v1 sign-off; flowcharts; Avi tech review; ~10 drop reasons; CRM one-pass plan after labels final</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="5-proposed-lifecycle-model">5. Proposed Lifecycle Model</h2>
+<h3 id="51-master-lifecycle-episode-user-facing">5.1 Master lifecycle (Episode — user-facing)</h3>
+<p><strong>Workshop agreed (Jul 2026):</strong></p>
+<pre><code>Lead → Qualifying → Referral in Progress → Active → Discharged
+         │                    │
+         └──── Dropped Off ───┘ (anytime before Active)
+</code></pre>
+<p>Short-term care: parallel track with <strong>icon</strong> until authorized → then Active in main pipeline.</p>
+<p><strong>Nexus mapping:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Workshop stage</th>
+<th>Episode.status</th>
+<th>Episode.leadStage (proposed)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lead</td>
+<td>REFERRAL</td>
+<td>Lead</td>
+</tr>
+<tr>
+<td>Qualifying</td>
+<td>REFERRAL</td>
+<td>Qualifying</td>
+</tr>
+<tr>
+<td>Referral in Progress</td>
+<td>REFERRAL</td>
+<td>Referral in Progress</td>
+</tr>
+<tr>
+<td>Active</td>
+<td>ACTIVE</td>
+<td>(hidden / n/a)</td>
+</tr>
+<tr>
+<td>Discharged</td>
+<td>DISCHARGED</td>
+<td>(hidden / n/a)</td>
+</tr>
+<tr>
+<td>Dropped Off</td>
+<td>REFERRAL (terminal)</td>
+<td>Dropped Off + outcome</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Leadership rollup (optional):</strong> Pre-active stages → "Referral"; Active; Discharged.</p>
+<h3 id="51a-previous-3-stage-draft-superseded-for-enrollment-ui">5.1a Previous 3-stage draft (superseded for enrollment UI)</h3>
+<pre><code>Referral ──────────────────► Active ──────────────────► Discharged
+</code></pre>
+<p>Retain for census reporting rollup only. See <code>crm/glossary/status-terminology-v1.md</code>.</p>
+<h3 id="52-internal-pipeline-stages-computed-ops-detail">5.2 Internal pipeline stages (computed / ops detail)</h3>
+<p>For intake teams and automations, the person-centric computation model (<code>crm/schema/lifecycle.ts</code>) remains useful as a <strong>sub-layer</strong> beneath Episode Active:</p>
+<table>
+<thead>
+<tr>
+<th>Internal stage</th>
+<th>Maps to Episode</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>INTAKE_IN_PROGRESS</td>
+<td>Referral (In Progress) or Active (pre-SOC)</td>
+<td>Intake work open on gold LOB</td>
+</tr>
+<tr>
+<td>ON_HOLD</td>
+<td>Referral (In Progress) + hold badge</td>
+<td>Pipeline paused — replaces Pre-Intake</td>
+</tr>
+<tr>
+<td>AUTHORIZED_PENDING_SOC</td>
+<td>Active (Authorized)</td>
+<td>Valid auth, no confirmed SOC</td>
+</tr>
+<tr>
+<td>PATIENT_ACTIVE</td>
+<td>Active (Authorized or Non-Authorized)</td>
+<td>Confirmed SOC</td>
+</tr>
+</tbody>
+</table>
+<h3 id="53-terminology-anchors-joels-model-recommended">5.3 Terminology anchors (Joel's model — recommended)</h3>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Lead</strong></td>
+<td>Raw contact; no meaningful outreach or not yet qualified</td>
+</tr>
+<tr>
+<td><strong>Referral</strong></td>
+<td>Expressed interest; being worked toward care; not yet an active patient</td>
+</tr>
+<tr>
+<td><strong>Patient (Active)</strong></td>
+<td>Link is actively responsible for service</td>
+</tr>
+<tr>
+<td><strong>Dropped Off</strong></td>
+<td>Never became an active patient</td>
+</tr>
+<tr>
+<td><strong>Discharged</strong></td>
+<td>Was an active patient; service ended</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="6-glossary-draft">6. Glossary Draft</h2>
+<p><em>Legend: </em><em>Known</em><em> = from discovery; </em><em>Assumption</em><em> = recommended pending sign-off; </em><em>Needs confirmation</em><em> = Phase 0 workshop</em></p>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Plain-English meaning</th>
+<th>Who uses it</th>
+<th>CRM meaning</th>
+<th>Should NOT mean</th>
+<th>Required fields</th>
+<th>Related statuses</th>
+<th>Open questions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Lead</strong></td>
+<td>Someone captured but not yet a referral</td>
+<td>Sales, growth</td>
+<td>Pre-referral contact on Episode or Lead object</td>
+<td>Patient</td>
+<td>Source, created date, contact info, owner</td>
+<td>→ Referral</td>
+<td>Separate Lead object vs Episode? <strong>Needs confirmation</strong></td>
+</tr>
+<tr>
+<td><strong>New Lead</strong></td>
+<td>No outreach attempted</td>
+<td>Sales</td>
+<td>Lead — New / Referral — New Referral</td>
+<td>In progress</td>
+<td>Created date, source</td>
+<td>Lead Contacting, New Referral</td>
+<td>Same as New Referral in Nexus? <strong>Assumption:</strong> merge</td>
+</tr>
+<tr>
+<td><strong>In Progress Lead</strong></td>
+<td>Outreach started, not converted</td>
+<td>Sales</td>
+<td>Lead — Contacting</td>
+<td>Authorized, Active</td>
+<td>Last contact date, next follow-up</td>
+<td>Converted → Referral</td>
+<td>Retire "Converted" label <strong>Recommended</strong></td>
+</tr>
+<tr>
+<td><strong>Converted Lead</strong></td>
+<td>Legacy Salesforce</td>
+<td>—</td>
+<td><strong>Deprecated</strong> → In Progress Referral</td>
+<td>Success terminal</td>
+<td>—</td>
+<td>In Progress Referral</td>
+<td>Retire value <strong>Recommended decision</strong></td>
+</tr>
+<tr>
+<td><strong>Referral</strong></td>
+<td>Being worked toward care</td>
+<td>Intake, sales</td>
+<td>Episode.status = Referral</td>
+<td>Active patient</td>
+<td>LOB interest, owner, intake opened date</td>
+<td>New / In Progress / Dropped Off Referral</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>New Referral</strong></td>
+<td>Referral received, minimal work</td>
+<td>Sales, intake</td>
+<td>leadStage = New</td>
+<td>Active</td>
+<td>Source, created date, contact info</td>
+<td>In Progress Referral</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>In Progress Referral</strong></td>
+<td>Active intake/referral work</td>
+<td>Intake, sales</td>
+<td>leadStage = In Progress</td>
+<td>Patient Active</td>
+<td>Contact made date, LOB, next follow-up</td>
+<td>Dropped Off, Active</td>
+<td>Hold badge when ON_HOLD <strong>Assumption</strong></td>
+</tr>
+<tr>
+<td><strong>Dropped Off Referral</strong></td>
+<td>Never became active patient</td>
+<td>Sales, intake</td>
+<td>leadStage = Dropped Off + outcome</td>
+<td>Discharged</td>
+<td>Drop date, outcome, owner</td>
+<td>Terminal (referral)</td>
+<td>Reactivation rules <strong>Needs confirmation</strong></td>
+</tr>
+<tr>
+<td><strong>Patient</strong></td>
+<td>Link actively servicing</td>
+<td>Ops, leadership</td>
+<td>Episode.status = Active (with SOC)</td>
+<td>Authorized alone</td>
+<td>SOC date, LOB, coordinator</td>
+<td>Discharged</td>
+<td>Census = SOC + valid auth <strong>Recommended</strong></td>
+</tr>
+<tr>
+<td><strong>Active</strong></td>
+<td>Currently receiving Link service</td>
+<td>Ops, leadership</td>
+<td>Episode.status = Active</td>
+<td>Referral in progress</td>
+<td>SOC, active LOB, coordinator</td>
+<td>Discharged</td>
+<td>SOC vs cleared-to-start <strong>Needs confirmation</strong></td>
+</tr>
+<tr>
+<td><strong>Authorized</strong></td>
+<td>Payer approved specific service</td>
+<td>Intake, ops</td>
+<td><strong>Sub-status of Active</strong> OR pre-SOC pipeline state — never top-level Episode status</td>
+<td>Active patient</td>
+<td>Auth ID, payer, hours, dates, LOB</td>
+<td>Non-Authorized, Expired</td>
+<td><strong>Known:</strong> not census</td>
+</tr>
+<tr>
+<td><strong>Non-Authorized</strong></td>
+<td>Active but missing/expired auth</td>
+<td>Ops</td>
+<td>Active sub-status chip</td>
+<td>Dropped</td>
+<td>Risk flag, follow-up owner</td>
+<td>Authorized (after remediation)</td>
+<td>Grace period? <strong>Needs confirmation</strong></td>
+</tr>
+<tr>
+<td><strong>Expired Authorization</strong></td>
+<td>Auth end date passed</td>
+<td>Ops, billing</td>
+<td>authorization_status = AUTH_EXPIRED</td>
+<td>Automatic discharge</td>
+<td>End date, renewal status</td>
+<td>AUTH_APPROVED (renewed)</td>
+<td>Still receiving care edge case <strong>See §9</strong></td>
+</tr>
+<tr>
+<td><strong>Intake</strong></td>
+<td>LOB-specific enrollment process</td>
+<td>Intake</td>
+<td>Intake object subprocess</td>
+<td>Master lifecycle</td>
+<td>LOB, intake status, opened date</td>
+<td>Authorization, SOC</td>
+<td>130 fields — deprecate list TBD</td>
+</tr>
+<tr>
+<td><strong>Authorization</strong></td>
+<td>Payer approval record</td>
+<td>Intake, ops</td>
+<td>Authorization object</td>
+<td>Person status</td>
+<td>Status, payer, dates, hours, LOB</td>
+<td>Intake link</td>
+<td>baseStatus STRING → picklist <strong>Known risk</strong></td>
+</tr>
+<tr>
+<td><strong>Start of Care (SOC)</strong></td>
+<td>Confirmed first service visit</td>
+<td>Ops</td>
+<td><code>start_of_care_date</code> on intake/LOB</td>
+<td>Anticipated date</td>
+<td>Confirmed date, LOB</td>
+<td>Active patient</td>
+<td>Source: EVV vs manual <strong>Needs confirmation</strong></td>
+</tr>
+<tr>
+<td><strong>Anticipated SOC</strong></td>
+<td>Planned start before confirmation</td>
+<td>Intake</td>
+<td><code>anticipated_soc_date</code></td>
+<td>Actual SOC</td>
+<td>Date, LOB</td>
+<td>SOC confirmed</td>
+<td>Stale SLA: 7 days <strong>Assumption</strong></td>
+</tr>
+<tr>
+<td><strong>Discharged</strong></td>
+<td>Was active; service ended</td>
+<td>Ops, leadership</td>
+<td>Episode.status = Discharged</td>
+<td>Dropped Off</td>
+<td>Discharge date, outcome, final service date</td>
+<td>Terminal</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>Dropped Off</strong></td>
+<td>Never became active patient</td>
+<td>Sales, intake</td>
+<td>Referral terminal (Dropped Off Referral)</td>
+<td>Discharged</td>
+<td>Drop date, outcome</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>Closed</strong></td>
+<td>Legacy undefined</td>
+<td>—</td>
+<td><strong>Deprecated</strong> — split to Dropped Off or Discharged</td>
+<td>Any precise meaning</td>
+<td>—</td>
+<td>Manual review</td>
+<td>Eliminate <strong>Recommended decision</strong></td>
+</tr>
+<tr>
+<td><strong>Pre-Intake</strong></td>
+<td>Salesforce workaround</td>
+<td>Legacy users</td>
+<td><strong>Retire</strong> → ON_HOLD + hold_reason</td>
+<td>Normal status</td>
+<td>hold_reason, hold_until_date</td>
+<td>In Progress Referral</td>
+<td>Audit count Phase 1 <strong>Known</strong></td>
+</tr>
+<tr>
+<td><strong>Voided</strong></td>
+<td>Intake opened in error</td>
+<td>Intake</td>
+<td>intake_status = INTAKE_VOIDED</td>
+<td>Dropped Off (person)</td>
+<td>void_reason, voided_by, voided_at</td>
+<td>New intake</td>
+<td>vs dropped intake <strong>Needs confirmation</strong></td>
+</tr>
+<tr>
+<td><strong>Deferred</strong></td>
+<td>Paused eligibility/application</td>
+<td>Medicaid team</td>
+<td>Medicaid ticket status</td>
+<td>Dropped Off</td>
+<td>defer_reason, review date</td>
+<td>In Progress</td>
+<td>Joel to define <strong>Needs confirmation</strong></td>
+</tr>
+<tr>
+<td><strong>Medicaid Ticket</strong></td>
+<td>Medicaid application track</td>
+<td>Intake, Medicaid</td>
+<td>Orthogonal object</td>
+<td>Lifecycle stage</td>
+<td>Ticket status, dates</td>
+<td>—</td>
+<td>Does not block Episode display <strong>Assumption</strong></td>
+</tr>
+<tr>
+<td><strong>Line of Business (LOB)</strong></td>
+<td>Service type track</td>
+<td>All</td>
+<td>Per-intake / Patient LOB fields</td>
+<td>Master status alone</td>
+<td>LOB picklist</td>
+<td>Intake, Authorization</td>
+<td>Primary LOB rule <strong>Needs confirmation</strong></td>
+</tr>
+<tr>
+<td><strong>Long-Term Care</strong></td>
+<td>Gold LOB — MLTC path</td>
+<td>Intake, ops</td>
+<td>LONG_TERM_CARE</td>
+<td>Short-term</td>
+<td>NIA status, auth</td>
+<td>Active</td>
+<td>NIA required <strong>Known</strong></td>
+</tr>
+<tr>
+<td><strong>Short-Term Care</strong></td>
+<td>Temporary skilled/custodial</td>
+<td>Ops</td>
+<td>SHORT_TERM_CUSTODIAL</td>
+<td>Census (usually)</td>
+<td>Referral partner if outsourced</td>
+<td>Dropped / third-party</td>
+<td>Lead loss default <strong>Recommended</strong></td>
+</tr>
+<tr>
+<td><strong>Skilled Care</strong></td>
+<td>Clinical short-term</td>
+<td>Ops</td>
+<td>Often outsourced (Girling)</td>
+<td>Link active patient</td>
+<td>Servicing agency</td>
+<td>THIRD_PARTY_REFERRAL</td>
+<td>Not Link census <strong>Known</strong></td>
+</tr>
+<tr>
+<td><strong>Custodial Care</strong></td>
+<td>Gold LOB</td>
+<td>Intake</td>
+<td>CUSTODIAL_CARE</td>
+<td>—</td>
+<td>Auth, SOC</td>
+<td>Active</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>Private Pay</strong></td>
+<td>Gold LOB</td>
+<td>Intake</td>
+<td>PRIVATE_PAY</td>
+<td>—</td>
+<td>Payer, auth</td>
+<td>Active</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>NHTD</strong></td>
+<td>Nursing Home Transition/Diversion</td>
+<td>Intake</td>
+<td>NHTD gold LOB</td>
+<td>—</td>
+<td>Program-specific checklist</td>
+<td>Active</td>
+<td>Checklist TBD <strong>Phase 0</strong></td>
+</tr>
+<tr>
+<td><strong>OPWDD</strong></td>
+<td>Disability services</td>
+<td>Intake</td>
+<td>OPWDD gold LOB</td>
+<td>—</td>
+<td>Program-specific checklist</td>
+<td>Active</td>
+<td>Checklist TBD <strong>Phase 0</strong></td>
+</tr>
+<tr>
+<td><strong>CDPAP</strong></td>
+<td>Deprecated LOB</td>
+<td>Legacy</td>
+<td>CDPAP — sunset 2025-04-01</td>
+<td>Active after sunset</td>
+<td>Remediation batch</td>
+<td>Discharged or Dropped Off</td>
+<td>Discharge vs drop <strong>Decision 5</strong></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="7-status-architecture-draft">7. Status Architecture Draft</h2>
+<h3 id="71-layer-1-master-lifecycle-episodestatus">7.1 Layer 1 — Master lifecycle (Episode.status)</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Definition</th>
+<th>Entry condition</th>
+<th>Exit condition</th>
+<th>Required fields</th>
+<th>Allowed next</th>
+<th>Invalid transitions</th>
+<th>Dashboard impact</th>
+<th>Owner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>REFERRAL</strong></td>
+<td>Person being worked toward care; not active patient</td>
+<td>Lead converted or new referral captured</td>
+<td>SOC confirmed → ACTIVE; or Dropped Off Referral</td>
+<td>Patient link, owner, source</td>
+<td>ACTIVE, DISCHARGED (rare), DROPPED (sub)</td>
+<td>ACTIVE without SOC (if SOC required)</td>
+<td>Referral funnel, new/in-progress/dropped counts</td>
+<td>Sales + Intake</td>
+</tr>
+<tr>
+<td><strong>ACTIVE</strong></td>
+<td>Link responsible for service</td>
+<td>Confirmed SOC on at least one gold LOB</td>
+<td>All service ended → DISCHARGED</td>
+<td>SOC date, primary LOB, coordinator</td>
+<td>DISCHARGED</td>
+<td>→ REFERRAL without discharge workflow</td>
+<td><strong>True census</strong> (with auth filter)</td>
+<td>Operations</td>
+</tr>
+<tr>
+<td><strong>DISCHARGED</strong></td>
+<td>Was active; service ended</td>
+<td>Last active LOB discharged</td>
+<td>New Episode for return referral</td>
+<td>discharge_date, outcome, final_service_date</td>
+<td>New Episode (Referral)</td>
+<td>→ ACTIVE without new Episode</td>
+<td>Discharge reporting, churn</td>
+<td>Operations</td>
+</tr>
+</tbody>
+</table>
+<h3 id="72-layer-2-referral-sub-status-episodeleadstage">7.2 Layer 2 — Referral sub-status (Episode.leadStage)</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Sub-status</th>
+<th>Definition</th>
+<th>Entry</th>
+<th>Exit</th>
+<th>Required fields</th>
+<th>Next statuses</th>
+<th>Invalid</th>
+<th>Dashboard</th>
+<th>Owner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>New Referral</strong></td>
+<td>Received, not yet worked</td>
+<td>Referral created</td>
+<td>Contact made / intake opened</td>
+<td>Source, created date</td>
+<td>In Progress Referral, Dropped Off</td>
+<td>—</td>
+<td>New referrals</td>
+<td>Sales</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>In Progress Referral</strong></td>
+<td>Active referral/intake work</td>
+<td>Contact or intake opened</td>
+<td>SOC or drop</td>
+<td>LOB, next follow-up, intake date</td>
+<td>Dropped Off, (→ Active)</td>
+<td>—</td>
+<td>Pipeline, stuck referrals</td>
+<td>Intake</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Dropped Off Referral</strong></td>
+<td>Never became active</td>
+<td>Drop decision</td>
+<td>Reactivation = new Episode</td>
+<td>outcome, dropped_at, owner</td>
+<td>New Referral (new Episode)</td>
+<td>→ Active</td>
+<td>Drop reasons by source</td>
+<td>Sales + Intake</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><em>UI rule:</em> Show <code>leadStage</code> only when Episode.status = Referral.</p>
+<h3 id="73-layer-3-intake-status-intake-object">7.3 Layer 3 — Intake status (Intake object)</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Definition</th>
+<th>Entry</th>
+<th>Exit</th>
+<th>Required fields</th>
+<th>Next</th>
+<th>Invalid</th>
+<th>Dashboard</th>
+<th>Owner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>INTAKE_NEW</td>
+<td>Intake opened</td>
+<td>Referral qualified</td>
+<td>Work begins</td>
+<td>LOB, opened_at</td>
+<td>IN_PROGRESS</td>
+<td>ACTIVE without auth</td>
+<td>New intakes by LOB</td>
+<td>Intake</td>
+</tr>
+<tr>
+<td>INTAKE_IN_PROGRESS</td>
+<td>Docs, NIA, assessments</td>
+<td>Work started</td>
+<td>Auth or hold</td>
+<td>next_action_date</td>
+<td>ON_HOLD, AUTHORIZED, DROPPED</td>
+<td>—</td>
+<td>Pending NIA, docs</td>
+<td>Intake</td>
+</tr>
+<tr>
+<td>INTAKE_ON_HOLD</td>
+<td>Paused</td>
+<td>Hold triggered</td>
+<td>Hold lifted</td>
+<td>hold_reason, hold_until</td>
+<td>IN_PROGRESS, DROPPED</td>
+<td>—</td>
+<td>On-hold queue</td>
+<td>Intake</td>
+</tr>
+<tr>
+<td>INTAKE_AUTHORIZED</td>
+<td>Auth linked, pre-SOC</td>
+<td>AUTH_APPROVED</td>
+<td>SOC confirmed</td>
+<td>authorization_id</td>
+<td>ACTIVE, DROPPED</td>
+<td>Without valid auth</td>
+<td>Auth pending SOC</td>
+<td>Intake</td>
+</tr>
+<tr>
+<td>INTAKE_ACTIVE</td>
+<td>Service started</td>
+<td>SOC confirmed</td>
+<td>Discharge/drop LOB</td>
+<td>start_of_care_date</td>
+<td>DROPPED, VOIDED</td>
+<td>—</td>
+<td>Active by LOB</td>
+<td>Ops</td>
+</tr>
+<tr>
+<td>INTAKE_VOIDED</td>
+<td>Opened in error</td>
+<td>Void action</td>
+<td>—</td>
+<td>void_reason</td>
+<td>—</td>
+<td>—</td>
+<td>Exclude from funnel</td>
+<td>Intake</td>
+</tr>
+<tr>
+<td>INTAKE_DROPPED</td>
+<td>LOB attempt ended</td>
+<td>Drop at intake level</td>
+<td>—</td>
+<td>drop_reason</td>
+<td>—</td>
+<td>—</td>
+<td>LOB drop ≠ person drop</td>
+<td>Intake</td>
+</tr>
+</tbody>
+</table>
+<h3 id="74-layer-4-authorization-validity">7.4 Layer 4 — Authorization validity</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Definition</th>
+<th>Entry</th>
+<th>Exit</th>
+<th>Required fields</th>
+<th>Next</th>
+<th>Invalid</th>
+<th>Dashboard</th>
+<th>Owner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AUTH_PENDING</td>
+<td>Submitted, awaiting</td>
+<td>Request sent</td>
+<td>Approved/denied</td>
+<td>payer, LOB, request date</td>
+<td>APPROVED, DENIED</td>
+<td>—</td>
+<td>Pending auth queue</td>
+<td>Intake</td>
+</tr>
+<tr>
+<td>AUTH_APPROVED</td>
+<td>Valid approval</td>
+<td>Payer approval</td>
+<td>Expiry or void</td>
+<td>start/end dates, hours</td>
+<td>EXPIRED, VOIDED</td>
+<td>—</td>
+<td>Authorized pipeline</td>
+<td>Intake</td>
+</tr>
+<tr>
+<td>AUTH_DENIED</td>
+<td>Not approved</td>
+<td>Denial received</td>
+<td>—</td>
+<td>denial_reason</td>
+<td>—</td>
+<td>—</td>
+<td>Drop funnel</td>
+<td>Intake</td>
+</tr>
+<tr>
+<td>AUTH_EXPIRED</td>
+<td>Past end date</td>
+<td>end_date &lt; today</td>
+<td>Renewal</td>
+<td>end_date</td>
+<td>APPROVED (renewed)</td>
+<td>—</td>
+<td>Expiring auth risk</td>
+<td>Ops</td>
+</tr>
+<tr>
+<td>AUTH_VOIDED</td>
+<td>Cancelled</td>
+<td>Void action</td>
+<td>—</td>
+<td>void_reason</td>
+<td>—</td>
+<td>—</td>
+<td>Exclude</td>
+<td>Ops</td>
+</tr>
+</tbody>
+</table>
+<p><em>Automation:</em> On Authorization save → recalc Active sub-status + LOB timeline (Ntelekos fix).</p>
+<h3 id="75-layer-5-lob-service-line-status-patient-per-lob">7.5 Layer 5 — LOB / service-line status (Patient per-LOB)</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Definition</th>
+<th>Entry</th>
+<th>Exit</th>
+<th>Required fields</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LOB_PENDING</td>
+<td>LOB identified, not active</td>
+<td>Intake opened</td>
+<td>Auth/SOC</td>
+<td>LOB, intake_id</td>
+<td>Multiple LOBs per patient</td>
+</tr>
+<tr>
+<td>LOB_ACTIVE</td>
+<td>Service running on LOB</td>
+<td>SOC on LOB</td>
+<td>Discharge LOB</td>
+<td>SOC, coordinator</td>
+<td>Primary LOB drives Episode</td>
+</tr>
+<tr>
+<td>LOB_DROPPED</td>
+<td>LOB attempt failed</td>
+<td>Drop at LOB</td>
+<td>—</td>
+<td>drop_reason</td>
+<td>Does not discharge patient if other LOB active</td>
+</tr>
+<tr>
+<td>LOB_DISCHARGED</td>
+<td>LOB service ended</td>
+<td>Discharge</td>
+<td>—</td>
+<td>discharge_date</td>
+<td>Confirm if last active LOB → Episode DISCHARGED</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Gold LOBs:</strong> LTC, NHTD, OPWDD, Private Pay, Custodial Care.<br>
+<strong>Short-term only:</strong> Lead loss; cap at Referral unless gold LOB also open.</p>
+<h3 id="76-layer-6-medicaid-ticket-orthogonal">7.6 Layer 6 — Medicaid ticket (orthogonal)</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Definition</th>
+<th>Entry</th>
+<th>Exit</th>
+<th>Required fields</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MEDICAID_NEW</td>
+<td>Ticket opened</td>
+<td>App started</td>
+<td>—</td>
+<td>opened_at</td>
+<td>Does not change Episode</td>
+</tr>
+<tr>
+<td>MEDICAID_IN_PROGRESS</td>
+<td>Working application</td>
+<td>—</td>
+<td>—</td>
+<td>owner</td>
+<td>—</td>
+</tr>
+<tr>
+<td>MEDICAID_APPROVED</td>
+<td>Eligibility confirmed</td>
+<td>Approval</td>
+<td>CLOSED</td>
+<td>approval_date</td>
+<td>—</td>
+</tr>
+<tr>
+<td>MEDICAID_DEFERRED</td>
+<td>Paused</td>
+<td>Deferral</td>
+<td>Review</td>
+<td>defer_reason, review_date</td>
+<td>SLA 30 days <strong>Assumption</strong></td>
+</tr>
+<tr>
+<td>MEDICAID_CLOSED</td>
+<td>Ticket complete</td>
+<td>—</td>
+<td>—</td>
+<td>close_reason</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3 id="77-layer-7-drop-discharge-reason-episodeoutcome">7.7 Layer 7 — Drop / discharge reason (Episode.outcome)</h3>
+<p>Consolidate into <strong>ReferralOutcome</strong> picklist (export and sign off in Phase 0). Groupings:</p>
+<ul>
+<li><strong>Referral drop:</strong> NIA Failed, No Follow-Up, Competitor, Payer Denied, Short-Term Only, Third-Party Referral, Doc Incomplete, CDPAP Sunset, Other</li>
+<li><strong>Discharge:</strong> Goals Met, Moved to Facility, Deceased, Voluntary Exit, Payer Change, Service No Longer Needed, Other</li>
+</ul>
+<h3 id="78-layer-8-follow-up-recycle">7.8 Layer 8 — Follow-up / recycle</h3>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>Definition</th>
+<th>Required fields</th>
+<th>Trigger</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Follow-up due</td>
+<td>Next action scheduled</td>
+<td>next_follow_up_date, owner</td>
+<td>SLA breach</td>
+</tr>
+<tr>
+<td>Re-engage eligible</td>
+<td>Hold expired (e.g. NIA 6-month)</td>
+<td>hold_until_date passed</td>
+<td>Automation creates task</td>
+</tr>
+<tr>
+<td>Recycled referral</td>
+<td>Returning former patient</td>
+<td>new Episode, prior Episode link</td>
+<td>Manual or campaign</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="8-layer-separation-model">8. Layer Separation Model</h2>
+<div class="mermaid">
+flowchart TB
+  subgraph questions [Business Questions]
+    Q1[Who is a lead?]
+    Q2[Who is a referral?]
+    Q3[Who is active patient?]
+    Q4[What is authorized?]
+    Q5[What intake step?]
+    Q6[Which LOB?]
+    Q7[Medicaid status?]
+    Q8[Why dropped/discharged?]
+  end
+
+  subgraph layers [CRM Layers — Do Not Collapse]
+    L1[Episode.status — Referral / Active / Discharged]
+    L2[Episode.leadStage — Referral sub-status]
+    L3[Intake.status — LOB process]
+    L4[Authorization.status — Validity]
+    L5[Patient LOB — Service line]
+    L6[Medicaid Ticket — Orthogonal]
+    L7[Episode.outcome — Terminal reason]
+    L8[Follow-up dates — Recycle]
+  end
+
+  Q1 --> L1
+  Q1 --> L2
+  Q2 --> L1
+  Q2 --> L2
+  Q3 --> L1
+  Q3 --> L4
+  Q3 --> L5
+  Q4 --> L4
+  Q5 --> L3
+  Q6 --> L5
+  Q7 --> L6
+  Q8 --> L7
+</div>
+
+<p><strong>Rule:</strong> No single picklist answers more than one row in the questions box.</p>
+<hr>
+<h2 id="9-edge-case-decision-log">9. Edge Case Decision Log</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Scenario</th>
+<th>Current confusion</th>
+<th>Recommended handling</th>
+<th>Layer(s)</th>
+<th>Required fields</th>
+<th>Dashboard</th>
+<th>Decision owner</th>
+<th>Final decision</th>
+<th>Implementation note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Failed NIA / 6-month wait</td>
+<td>Pre-Intake workaround</td>
+<td>ON_HOLD + hold_reason=NIA_FAILED_WAIT, hold_until=+6mo; Episode stays Referral (In Progress) with hold badge</td>
+<td>Intake, Referral</td>
+<td>NIA status, hold_until</td>
+<td>Exclude from "stuck" or show hold queue</td>
+<td>Joel</td>
+<td><strong>Pending</strong></td>
+<td>Automation: NIA failed → hold</td>
+</tr>
+<tr>
+<td>2</td>
+<td>NIA scheduled not completed</td>
+<td>In Progress inconsistently</td>
+<td>intake NIA_SCHEDULED; Referral In Progress</td>
+<td>Intake, NIA</td>
+<td>scheduled_date</td>
+<td>Pending NIA queue</td>
+<td>Joel</td>
+<td><strong>Pending</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>3</td>
+<td>NIA passed, no authorization</td>
+<td>Shows authorized</td>
+<td>INTAKE_IN_PROGRESS; auth AUTH_PENDING</td>
+<td>Intake, Auth</td>
+<td>NIA passed date</td>
+<td>Pending auth</td>
+<td>Joel</td>
+<td><strong>Pending</strong></td>
+<td>Block INTAKE_AUTHORIZED without auth</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Authorization received, no care started</td>
+<td>Counted as active census</td>
+<td>Active (Authorized) sub-status OR Referral if SOC not required path rejected</td>
+<td>Episode, Auth</td>
+<td>auth dates, anticipated SOC</td>
+<td>Authorized pipeline ≠ census</td>
+<td>Joel + Avi</td>
+<td><strong>Pending</strong></td>
+<td>Census excludes until SOC</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Auth expired, still receiving care</td>
+<td>LOB shows expired (Ntelekos)</td>
+<td>Active (Non-Authorized) + renewal task; do not auto-discharge</td>
+<td>Auth, LOB, Episode</td>
+<td>renewal owner, risk flag</td>
+<td>Expired auth still active queue</td>
+<td>Joel</td>
+<td><strong>Pending</strong></td>
+<td>Auth save → recalc</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Anticipated SOC passed, no SOC</td>
+<td>Stale pipeline</td>
+<td>Warn queue; SLA 7 days</td>
+<td>Intake</td>
+<td>anticipated_soc, owner</td>
+<td>Stale SOC report</td>
+<td>Joel</td>
+<td><strong>Pending</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Patient goes to competitor</td>
+<td>Unclear terminal</td>
+<td>Dropped Off Referral + outcome=Competitor</td>
+<td>Episode.outcome</td>
+<td>drop date</td>
+<td>Drop by reason</td>
+<td>Joel</td>
+<td><strong>Recommended</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Cannot be contacted</td>
+<td>Stays "new"</td>
+<td>SLA → Dropped Off + NO_FOLLOW_UP</td>
+<td>Referral</td>
+<td>contact attempts</td>
+<td>Lead aging</td>
+<td>Angelo + Joel</td>
+<td><strong>Pending</strong></td>
+<td>7-day SLA <strong>Assumption</strong></td>
+</tr>
+<tr>
+<td>9</td>
+<td>Pause — vacation/family</td>
+<td>Pre-Intake</td>
+<td>ON_HOLD + PATIENT_VACATION</td>
+<td>Intake hold</td>
+<td>hold_until</td>
+<td>Hold queue</td>
+<td>Joel</td>
+<td><strong>Recommended</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Medicaid pending</td>
+<td>Confused with referral status</td>
+<td>Medicaid ticket only; Episode unchanged</td>
+<td>Medicaid</td>
+<td>ticket status</td>
+<td>Pending Medicaid dash</td>
+<td>Joel</td>
+<td><strong>Pending</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Medicaid deferred</td>
+<td>vs dropped unclear</td>
+<td>MEDICAID_DEFERRED + review_date</td>
+<td>Medicaid</td>
+<td>defer_reason</td>
+<td>Deferred &gt;30d report</td>
+<td>Joel</td>
+<td><strong>Pending</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Medicaid approved</td>
+<td>—</td>
+<td>MEDICAID_APPROVED; intake continues</td>
+<td>Medicaid</td>
+<td>approval date</td>
+<td>—</td>
+<td>Joel</td>
+<td><strong>Pending</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Intake voided</td>
+<td>vs dropped</td>
+<td>INTAKE_VOIDED; Episode unchanged unless last intake</td>
+<td>Intake</td>
+<td>void_reason</td>
+<td>Exclude from funnel</td>
+<td>Joel</td>
+<td><strong>Pending</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>14</td>
+<td>One LOB dropped, another active</td>
+<td>Multiple status boxes</td>
+<td>LOB_DROPPED on one; Episode stays Active</td>
+<td>LOB</td>
+<td>per-LOB status</td>
+<td>Active by LOB</td>
+<td>Joel</td>
+<td><strong>Recommended</strong></td>
+<td>Confirm dialog on LOB drop</td>
+</tr>
+<tr>
+<td>15</td>
+<td>Short-term active, long-term pending</td>
+<td>Conflicting master status</td>
+<td>Primary = gold LOB; short-term ops-only</td>
+<td>LOB priority</td>
+<td>primary_lob flag</td>
+<td>Sales sees gold LOB</td>
+<td>Joel</td>
+<td><strong>Pending</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>16</td>
+<td>Short-term sent to another agency</td>
+<td>Counted as Link patient</td>
+<td>Dropped Off + THIRD_PARTY_REFERRAL (Girling)</td>
+<td>Episode, LOB</td>
+<td>partner name</td>
+<td>Exclude from census</td>
+<td>Joel</td>
+<td><strong>Recommended</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>17</td>
+<td>CDPAP after 2025-04-01</td>
+<td>Still authorized</td>
+<td>Batch: DISCHARGED if was active; DROPPED if never active</td>
+<td>LOB, Episode</td>
+<td>CDPAP_SUNSET outcome</td>
+<td>Remove from active/authorized</td>
+<td>Joel + Avi</td>
+<td><strong>Pending</strong></td>
+<td>Phase 3 batch</td>
+</tr>
+<tr>
+<td>18</td>
+<td>Returning former patient</td>
+<td>New vs re-open</td>
+<td><strong>New Episode</strong> = Referral (New); link prior Episode</td>
+<td>Episode</td>
+<td>prior_episode_id</td>
+<td>Re-admit reporting</td>
+<td>Joel</td>
+<td><strong>Recommended</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>19</td>
+<td>Duplicate person records</td>
+<td>Split funnel</td>
+<td>Merge queue; survivor Episode</td>
+<td>Admin</td>
+<td>duplicate_of</td>
+<td>—</td>
+<td>Avi</td>
+<td><strong>Pending</strong></td>
+<td>Manual review</td>
+</tr>
+<tr>
+<td>20</td>
+<td>Conflicting statuses on one record</td>
+<td>Dashboard untrustworthy</td>
+<td>Recompute from layers; manual review batch</td>
+<td>All</td>
+<td>—</td>
+<td>QA violations view</td>
+<td>Avi</td>
+<td><strong>Recommended</strong></td>
+<td><code>computeLifecycleStage()</code> / Nexus recalc</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="10-old-to-new-status-mapping">10. Old-to-New Status Mapping</h2>
+<h3 id="101-episodestatus-migration">10.1 Episode.status migration</h3>
+<table>
+<thead>
+<tr>
+<th>Legacy value</th>
+<th>Target stage</th>
+<th>Sub-status / action</th>
+<th>Classification</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>New</td>
+<td>REFERRAL</td>
+<td>New Referral</td>
+<td>Safe automatic</td>
+<td>Set leadStage=New</td>
+</tr>
+<tr>
+<td>Lead</td>
+<td>REFERRAL</td>
+<td>In Progress Referral</td>
+<td>Conditional</td>
+<td>Medium manual review</td>
+</tr>
+<tr>
+<td>Active</td>
+<td>ACTIVE</td>
+<td>Computed from Auth</td>
+<td>Conditional</td>
+<td><strong>Manual review</strong> if no valid auth</td>
+</tr>
+<tr>
+<td>Converted</td>
+<td>REFERRAL</td>
+<td>In Progress Referral</td>
+<td>Conditional</td>
+<td>Retire Converted</td>
+</tr>
+<tr>
+<td>On Hold</td>
+<td>REFERRAL</td>
+<td>In Progress + hold badge</td>
+<td>Conditional</td>
+<td>Map hold_reason</td>
+</tr>
+<tr>
+<td>Dropped</td>
+<td>REFERRAL</td>
+<td>Dropped Off Referral</td>
+<td>Conditional</td>
+<td>Require outcome; review if ever Active</td>
+</tr>
+<tr>
+<td>Discharged</td>
+<td>DISCHARGED</td>
+<td>+ outcome</td>
+<td>Safe automatic (if was active)</td>
+<td>Review if never active</td>
+</tr>
+</tbody>
+</table>
+<h3 id="102-leadstatus-migration">10.2 LeadStatus migration</h3>
+<table>
+<thead>
+<tr>
+<th>Legacy</th>
+<th>Target</th>
+<th>Classification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>— None —</td>
+<td>Derive from Episode.status</td>
+<td>Manual review</td>
+</tr>
+<tr>
+<td>New</td>
+<td>New Referral</td>
+<td>Safe automatic</td>
+</tr>
+<tr>
+<td>In Progress</td>
+<td>In Progress Referral</td>
+<td>Safe automatic</td>
+</tr>
+<tr>
+<td>Dropped Off</td>
+<td>Dropped Off Referral</td>
+<td>Safe automatic</td>
+</tr>
+<tr>
+<td>Converted</td>
+<td>In Progress Referral</td>
+<td>Deprecate value; manual review</td>
+</tr>
+</tbody>
+</table>
+<h3 id="103-patient-legacy-picklists">10.3 Patient legacy picklists</h3>
+<table>
+<thead>
+<tr>
+<th>Legacy</th>
+<th>Target</th>
+<th>Classification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pre-intake</td>
+<td>REFERRAL + hold badge (ON_HOLD)</td>
+<td>Manual review</td>
+</tr>
+<tr>
+<td>in-progress</td>
+<td>REFERRAL In Progress</td>
+<td>Safe automatic</td>
+</tr>
+<tr>
+<td>authorized</td>
+<td><strong>Never top-level</strong> — compute from Auth</td>
+<td>Hide from dashboards</td>
+</tr>
+<tr>
+<td>closed</td>
+<td>Split: DISCHARGED vs Dropped Off</td>
+<td><strong>Manual review required</strong></td>
+</tr>
+<tr>
+<td>dropped-off</td>
+<td>Dropped Off Referral</td>
+<td>Safe automatic</td>
+</tr>
+</tbody>
+</table>
+<h3 id="104-special-cohorts">10.4 Special cohorts</h3>
+<table>
+<thead>
+<tr>
+<th>Cohort</th>
+<th>Target</th>
+<th>Classification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CDPAP post-2025-04-01</td>
+<td>DISCHARGED or Dropped Off + CDPAP_SUNSET</td>
+<td>Conditional batch</td>
+</tr>
+<tr>
+<td>Girling / third-party</td>
+<td>Dropped Off + THIRD_PARTY_REFERRAL</td>
+<td>Conditional</td>
+</tr>
+<tr>
+<td>Short-term/skilled only</td>
+<td>Referral (lead loss) or third-party drop</td>
+<td>Hide from sales census</td>
+</tr>
+<tr>
+<td>Multiple open intakes</td>
+<td>Recompute primary LOB</td>
+<td>Manual review queue</td>
+</tr>
+<tr>
+<td>Pending Authorization (legacy)</td>
+<td>AUTH_PENDING on Authorization object</td>
+<td>Retain on auth layer</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="11-data-integrity-audit-plan">11. Data Integrity Audit Plan</h2>
+<p><em>Retarget</em> <code>crm/audit/data-integrity-audit.sql</code> <em>from</em> <code>persons</code> <em>to Nexus objects (Episode, Patient, Intake, Authorization).</em></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Report name</th>
+<th>Purpose</th>
+<th>Fields needed</th>
+<th>Filter logic</th>
+<th>Risk</th>
+<th>Business decision</th>
+<th>Owner</th>
+<th>Notes for Avi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Baseline summary</td>
+<td>Starting counts</td>
+<td>All object counts</td>
+<td>—</td>
+<td>Low</td>
+<td>Record baselines</td>
+<td>Keren</td>
+<td>Query Console</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Orphan authorized</td>
+<td>Auth without valid AUTH_APPROVED</td>
+<td>Episode, Intake, Auth</td>
+<td>status shows authorized but no valid auth</td>
+<td><strong>Critical</strong></td>
+<td>Remediate or downgrade</td>
+<td>Keren</td>
+<td>§1 in SQL</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Authorized + dropped/voided intake</td>
+<td>Conflicting layers</td>
+<td>Intake status, Episode</td>
+<td>dropped/voided intake + authorized display</td>
+<td><strong>Critical</strong></td>
+<td>Clear authorized display</td>
+<td>Keren</td>
+<td>Target 0</td>
+</tr>
+<tr>
+<td>3</td>
+<td>CDPAP remediation queue</td>
+<td>Post-sunset stale</td>
+<td>LOB=CDPAP, dates</td>
+<td>service after 2025-04-01 or stale auth</td>
+<td><strong>High</strong></td>
+<td>Batch discharge/drop</td>
+<td>Joel</td>
+<td>Revenue context $125M</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Third-party as patient</td>
+<td>Girling etc.</td>
+<td>Referral partner fields</td>
+<td>outsourced but Active</td>
+<td><strong>High</strong></td>
+<td>Drop + THIRD_PARTY</td>
+<td>Joel</td>
+<td>—</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Pre-intake / closed counts</td>
+<td>Legacy retirement</td>
+<td>Patient picklists</td>
+<td>legacy values &gt; 0</td>
+<td>Medium</td>
+<td>Migration split rules</td>
+<td>Keren</td>
+<td>—</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Multi-intake conflicts</td>
+<td>Conflicting LOBs</td>
+<td>Multiple open intakes</td>
+<td>&gt;1 open gold intake</td>
+<td>Medium</td>
+<td>Primary LOB rule</td>
+<td>Joel</td>
+<td>—</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Short-term-only pipeline</td>
+<td>Sales pollution</td>
+<td>LOB filter</td>
+<td>short-term only, no gold</td>
+<td>Medium</td>
+<td>Hide from sales</td>
+<td>Angelo</td>
+<td>—</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Stale anticipated SOC</td>
+<td>Pipeline stuck</td>
+<td>anticipated_soc &lt; today - 7d</td>
+<td>no SOC</td>
+<td>Medium</td>
+<td>Follow-up queue</td>
+<td>Intake</td>
+<td>SLA</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Census gap</td>
+<td>1960 vs 1200-1300</td>
+<td>Episode Active, auth, SOC</td>
+<td>authorized count minus true census</td>
+<td><strong>Critical</strong></td>
+<td>Census definition sign-off</td>
+<td>Joel + Avi</td>
+<td>Phase 0 Decision 6</td>
+</tr>
+<tr>
+<td>10</td>
+<td>12+ mo no service still active</td>
+<td>Stale active</td>
+<td>Last service date</td>
+<td>active flag, no service</td>
+<td><strong>High</strong></td>
+<td>Discharge review</td>
+<td>Ops</td>
+<td>—</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Active without valid auth</td>
+<td>Ntelekos pattern</td>
+<td>Auth end_date</td>
+<td>Active + expired auth</td>
+<td><strong>High</strong></td>
+<td>Recalc + flag</td>
+<td>Avi</td>
+<td>Production bug</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Discharged without reason/date</td>
+<td>Incomplete terminals</td>
+<td>outcome, discharge_date</td>
+<td>nulls</td>
+<td>Medium</td>
+<td>Backfill</td>
+<td>Ops</td>
+<td>—</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Dropped but was active</td>
+<td>Wrong terminal</td>
+<td>Episode history</td>
+<td>Dropped + had Active</td>
+<td>Medium</td>
+<td>Manual split</td>
+<td>Keren</td>
+<td>—</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Medicaid deferred &gt;30d</td>
+<td>Stale tickets</td>
+<td>ticket status, dates</td>
+<td>deferred aging</td>
+<td>Medium</td>
+<td>Review or close</td>
+<td>Medicaid</td>
+<td>—</td>
+</tr>
+<tr>
+<td>15</td>
+<td>Follow-up overdue no movement</td>
+<td>SLA breach</td>
+<td>next_follow_up</td>
+<td>past due, no status change</td>
+<td>Medium</td>
+<td>Sales/intake action</td>
+<td>Angelo</td>
+<td>—</td>
+</tr>
+<tr>
+<td>16</td>
+<td>Duplicate persons</td>
+<td>Data quality</td>
+<td>matching keys</td>
+<td>duplicate candidates</td>
+<td>Medium</td>
+<td>Merge protocol</td>
+<td>Avi</td>
+<td>—</td>
+</tr>
+<tr>
+<td>17</td>
+<td>Converted Episode review</td>
+<td>Legacy</td>
+<td>status=Converted</td>
+<td>all Converted</td>
+<td>Low</td>
+<td>Map to Referral</td>
+<td>Avi</td>
+<td>Manual review query</td>
+</tr>
+<tr>
+<td>18</td>
+<td>leadStage=None on open referrals</td>
+<td>Missing sub-status</td>
+<td>leadStage empty</td>
+<td>Referral statuses</td>
+<td>Medium</td>
+<td>Derive + fix</td>
+<td>Avi</td>
+<td>Leads list fix</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="12-required-field-matrix">12. Required Field Matrix</h2>
+<p><em>Blocking rules align with</em> <code>crm/schema/validation-rules.ts</code><em>. Implement in Schema Manager / API.</em></p>
+<table>
+<thead>
+<tr>
+<th>Status / transition</th>
+<th>Required before save</th>
+<th>Severity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Referral / New Referral</td>
+<td>source, created_date, contact_info, assigned_owner</td>
+<td>Block</td>
+</tr>
+<tr>
+<td>Referral / In Progress</td>
+<td>contact_made_date, lob_interest, intake_opened_date (if intake started), next_follow_up_date</td>
+<td>Block</td>
+</tr>
+<tr>
+<td>Referral / Dropped Off</td>
+<td>dropped_at, outcome (ReferralOutcome), drop_owner</td>
+<td>Block</td>
+</tr>
+<tr>
+<td>Referral / On Hold (badge)</td>
+<td>hold_reason, hold_until_date</td>
+<td>Block</td>
+</tr>
+<tr>
+<td>Active (enter)</td>
+<td>start_of_care_date (≥1 LOB), primary_lob, coordinator</td>
+<td>Block — <strong>if SOC required</strong></td>
+</tr>
+<tr>
+<td>Active / Authorized (sub-status)</td>
+<td>valid authorization_id, payer, approved_hours, auth dates, LOB match</td>
+<td>Block</td>
+</tr>
+<tr>
+<td>Active / Non-Authorized</td>
+<td>non_auth_reason, risk_flag, follow_up_owner, next_action</td>
+<td>Warn → Block after grace</td>
+</tr>
+<tr>
+<td>Intake / Authorized</td>
+<td>authorization_id, AUTH_APPROVED, end_date ≥ today</td>
+<td>Block</td>
+</tr>
+<tr>
+<td>Intake / Active</td>
+<td>start_of_care_date</td>
+<td>Block</td>
+</tr>
+<tr>
+<td>Intake / Voided</td>
+<td>void_reason, voided_by, voided_at</td>
+<td>Block</td>
+</tr>
+<tr>
+<td>Intake / Dropped</td>
+<td>drop_reason, dropped_at</td>
+<td>Block</td>
+</tr>
+<tr>
+<td>Discharged</td>
+<td>discharge_date, outcome, final_service_date, responsible_owner</td>
+<td>Block</td>
+</tr>
+<tr>
+<td>Authorization / Approved</td>
+<td>payer, lob, start_date, end_date, approved_hours</td>
+<td>Block</td>
+</tr>
+<tr>
+<td>Medicaid / Deferred</td>
+<td>defer_reason, review_date</td>
+<td>Block</td>
+</tr>
+<tr>
+<td>LOB / Dropped (last active LOB)</td>
+<td>confirm_discharge_episode dialog</td>
+<td>UI warn</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="13-dashboard-logic-draft">13. Dashboard Logic Draft</h2>
+<p><strong>Gate:</strong> Do not publish rebuilt dashboards until Phase 3 remediation validated and Phase 0 census definition signed.</p>
+<h3 id="131-leadership-dashboard">13.1 Leadership dashboard</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Definition (filter)</th>
+<th>Excludes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>True active census</td>
+<td>Episode.status=ACTIVE AND valid AUTH_APPROVED AND SOC confirmed AND gold LOB</td>
+<td>CDPAP sunset, third-party, short-term-only</td>
+</tr>
+<tr>
+<td>Active authorized</td>
+<td>True census ∩ valid auth</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Active non-authorized</td>
+<td>ACTIVE with SOC but missing/expired auth</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Expired auth risk</td>
+<td>ACTIVE non-authorized + auth expired</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Referrals in progress</td>
+<td>REFERRAL + leadStage=In Progress</td>
+<td>Dropped Off</td>
+</tr>
+<tr>
+<td>New referrals</td>
+<td>REFERRAL + leadStage=New</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Dropped referrals (period)</td>
+<td>Dropped Off Referral + outcome</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Discharges by reason</td>
+<td>DISCHARGED group by outcome</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Active by LOB</td>
+<td>Patient LOB_ACTIVE</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Referral-to-active conversion</td>
+<td>New Referrals → ACTIVE (cohort)</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3 id="132-intake-dashboard">13.2 Intake dashboard</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Filter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>New referrals</td>
+<td>REFERRAL + New</td>
+</tr>
+<tr>
+<td>In-progress referrals</td>
+<td>REFERRAL + In Progress</td>
+</tr>
+<tr>
+<td>Pending NIA</td>
+<td>intake NIA_SCHEDULED / IN_PROGRESS</td>
+</tr>
+<tr>
+<td>Pending Medicaid</td>
+<td>Medicaid ticket IN_PROGRESS</td>
+</tr>
+<tr>
+<td>Pending documents</td>
+<td>intake tasks (TBD)</td>
+</tr>
+<tr>
+<td>Pending authorization</td>
+<td>AUTH_PENDING</td>
+</tr>
+<tr>
+<td>Overdue follow-ups</td>
+<td>next_follow_up &lt; today</td>
+</tr>
+<tr>
+<td>Stuck referrals by age</td>
+<td>Referral age &gt; SLA thresholds</td>
+</tr>
+</tbody>
+</table>
+<h3 id="133-operations-dashboard">13.3 Operations dashboard</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Filter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Active by coordinator</td>
+<td>ACTIVE by coordinator</td>
+</tr>
+<tr>
+<td>Expiring authorizations</td>
+<td>auth end_date within 30 days</td>
+</tr>
+<tr>
+<td>Expired auth still active</td>
+<td>ACTIVE + AUTH_EXPIRED</td>
+</tr>
+<tr>
+<td>Missing key fields</td>
+<td>QA validation violations</td>
+</tr>
+<tr>
+<td>SOC issues</td>
+<td>anticipated_soc stale</td>
+</tr>
+<tr>
+<td>Service-line conflicts</td>
+<td>multi-LOB review queue</td>
+</tr>
+</tbody>
+</table>
+<h3 id="134-growth-dashboard">13.4 Growth dashboard</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Filter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Referral source</td>
+<td>source field on Episode</td>
+</tr>
+<tr>
+<td>Campaign / UTM</td>
+<td>marketing attribution fields</td>
+</tr>
+<tr>
+<td>Event source</td>
+<td>event_id</td>
+</tr>
+<tr>
+<td>Doctor/partner source</td>
+<td>referral_partner</td>
+</tr>
+<tr>
+<td>Conversion by source</td>
+<td>cohort referral → active</td>
+</tr>
+<tr>
+<td>Drop reason by source</td>
+<td>outcome × source</td>
+</tr>
+<tr>
+<td>LOB demand by source</td>
+<td>LOB at intake open</td>
+</tr>
+<tr>
+<td>Geography trends</td>
+<td>region/zip on referral</td>
+</tr>
+</tbody>
+</table>
+<p><em>SQL templates:</em> <code>crm/audit/dashboard-queries.sql</code> (retarget to Nexus).</p>
+<hr>
+<h2 id="14-implementation-brief-outline-for-avi">14. Implementation Brief Outline for Avi</h2>
+<p><em>Full brief ships after Phase 0 sign-off. This is the build-ready outline.</em></p>
+<h3 id="141-deliverables">14.1 Deliverables</h3>
+<ol>
+<li>Final glossary (§6 signed)</li>
+<li>Final status architecture (§7 signed)</li>
+<li>Field definitions + picklist values (<code>crm/schema/enums.json</code>)</li>
+<li>Old-to-new mapping (<code>crm/schema/nexus-episode-status-map.json</code>)</li>
+<li>Required fields + validation rules (<code>crm/schema/validation-rules.ts</code>)</li>
+<li>Transition rules + invalid transitions (<code>crm/schema/lifecycle.ts</code>)</li>
+<li>Manual review queues (§10 manual_review_queries)</li>
+<li>Migration safety rules (below)</li>
+<li>Dashboard definitions (§13)</li>
+<li>UI recommendations</li>
+<li>Reporting requirements</li>
+<li>Rollback plan</li>
+</ol>
+<h3 id="142-picklist-changes-staging-first">14.2 Picklist changes (staging first)</h3>
+<table>
+<thead>
+<tr>
+<th>Picklist</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EpisodeStatus</td>
+<td>Collapse to REFERRAL</td>
+</tr>
+<tr>
+<td>LeadStatus</td>
+<td>Rename labels; retire Converted</td>
+</tr>
+<tr>
+<td>ReferralOutcome</td>
+<td>Export, finalize, require on terminals</td>
+</tr>
+<tr>
+<td>Authorization.baseStatus</td>
+<td>Migrate STRING → picklist</td>
+</tr>
+<tr>
+<td>Patient legacy status</td>
+<td>Hide from layout</td>
+</tr>
+</tbody>
+</table>
+<h3 id="143-ui-recommendations">14.3 UI recommendations</h3>
+<ul>
+<li>Progress bar: Referral → Active → Discharged</li>
+<li>Sub-status chip on Active: Authorized / Non-Authorized</li>
+<li>Show leadStage only when status = Referral</li>
+<li>Require outcome modal on Dropped Off Referral and Discharged</li>
+<li>LOB timeline widget recalcs on Authorization save</li>
+<li>Hide legacy Patient status fields (read-only during transition)</li>
+</ul>
+<h3 id="144-automations-phase-4">14.4 Automations (Phase 4)</h3>
+<table>
+<thead>
+<tr>
+<th>Trigger</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Contact logged</td>
+<td>leadStage → In Progress (if New)</td>
+</tr>
+<tr>
+<td>NIA scheduled</td>
+<td>intake IN_PROGRESS</td>
+</tr>
+<tr>
+<td>NIA failed</td>
+<td>ON_HOLD + 6-month hold + task</td>
+</tr>
+<tr>
+<td>Auth approved</td>
+<td>intake AUTHORIZED; recalc Episode</td>
+</tr>
+<tr>
+<td>SOC confirmed</td>
+<td>Episode → ACTIVE</td>
+</tr>
+<tr>
+<td>Auth save</td>
+<td>Recalc LOB timeline + Active sub-status</td>
+</tr>
+<tr>
+<td>Nightly</td>
+<td>Auth expiry → AUTH_EXPIRED + alert</td>
+</tr>
+</tbody>
+</table>
+<h3 id="145-migration-safety-rules">14.5 Migration safety rules</h3>
+<ol>
+<li>Do not delete old fields immediately</li>
+<li>Add new fields/picklists first</li>
+<li>Backfill in staging batches with manual review queues</li>
+<li>Keep legacy fields for comparison through Phase 6</li>
+<li>Validate census numbers before hiding old statuses</li>
+<li>Do not update production dashboards until data logic validated</li>
+<li>Phased rollout: staging → UAT (Angelo) → production cutover</li>
+</ol>
+<h3 id="146-open-technical-questions-for-avi">14.6 Open technical questions for Avi</h3>
+<ul>
+<li>Which 3 objects share LeadStatus picklist?</li>
+<li>Episode per patient vs per LOB — data model constraint?</li>
+<li>Query Console export format for baseline automation?</li>
+<li>Auth save recalc — existing hook or new automation?</li>
+<li>Service episode object for census — table name in Nexus?</li>
+</ul>
+<hr>
+<h2 id="15-asana-execution-plan">15. Asana Execution Plan</h2>
+<p><em>Full task list:</em> <code>crm/asana/evo-crm-sprint-tasks.csv</code> <em>(~98 tasks). Summary by phase:</em></p>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Name</th>
+<th>Purpose</th>
+<th>Key deliverables</th>
+<th>Owner</th>
+<th>Gate / dependency</th>
+<th>Effort</th>
+<th>Priority</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Discovery &amp; Sign-Off</td>
+<td>Framework v1</td>
+<td>Status Framework doc, workshop decisions</td>
+<td>Keren + Joel</td>
+<td><strong>Blocks Phase 2+</strong></td>
+<td>M</td>
+<td>P0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Access &amp; Baseline Audit</td>
+<td>Truth baseline</td>
+<td>Query Console counts, audit matrix filled</td>
+<td>Keren</td>
+<td>Phase 0 parallel OK for read-only</td>
+<td>M</td>
+<td>P0</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Glossary + Schema (Staging)</td>
+<td>Picklists, UI rules</td>
+<td>3-stage Episode, LeadStatus rename</td>
+<td>Avi</td>
+<td>Phase 0 signed</td>
+<td>L</td>
+<td>P1</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Status Architecture + Remediation</td>
+<td>Data migration</td>
+<td>Staging batches, manual review</td>
+<td>Avi</td>
+<td>Phase 2</td>
+<td>L</td>
+<td>P1</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Edge Case Review + Validation</td>
+<td>Rules + automations</td>
+<td>Validation rules, Ntelekos fix</td>
+<td>Avi + Joel</td>
+<td>Phase 3</td>
+<td>M</td>
+<td>P1</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Data Audit (validate)</td>
+<td>Compare to baseline</td>
+<td>Census gap closed on staging</td>
+<td>Keren</td>
+<td>Phase 3</td>
+<td>M</td>
+<td>P1</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Migration Mapping (final)</td>
+<td>Production cutover prep</td>
+<td>Signed mapping, rollback plan</td>
+<td>Avi</td>
+<td>Phase 5</td>
+<td>M</td>
+<td>P1</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Implementation Brief</td>
+<td>Build doc for IT</td>
+<td>Technical brief §14 complete</td>
+<td>Keren</td>
+<td>Phase 0–5</td>
+<td>S</td>
+<td>P1</td>
+</tr>
+<tr>
+<td>8</td>
+<td>IT Build</td>
+<td>Staging → prod</td>
+<td>Schema, remediation, automations</td>
+<td>Avi</td>
+<td>Phase 7</td>
+<td>L</td>
+<td>P1</td>
+</tr>
+<tr>
+<td>9</td>
+<td>QA / Validation</td>
+<td>UAT</td>
+<td>Angelo sales UAT, ops 50-record review</td>
+<td>Keren + Angelo</td>
+<td>Phase 8</td>
+<td>M</td>
+<td>P1</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Dashboard Rebuild</td>
+<td>Trustworthy reporting</td>
+<td>§13 dashboards live</td>
+<td>Avi</td>
+<td>Phase 9</td>
+<td>L</td>
+<td>P2</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Documentation &amp; Training</td>
+<td>Adoption</td>
+<td>Playbooks, training</td>
+<td>Joel + Keren</td>
+<td>Phase 10</td>
+<td>M</td>
+<td>P2</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Growth Enablement</td>
+<td>LeadTrap, Meta, SEO</td>
+<td>Attribution on clean CRM</td>
+<td>Keren + growth</td>
+<td>Phase 10 + clean data</td>
+<td>L</td>
+<td>P3</td>
+</tr>
+</tbody>
+</table>
+<h3 id="milestones-crmasanamilestonesjson">Milestones (<code>crm/asana/milestones.json</code>)</h3>
+<ol>
+<li>Status Framework v1 signed (Episode-centric)</li>
+<li>Baseline audit complete</li>
+<li>Staging remediation validated</li>
+<li>UAT passed</li>
+<li>Production cutover — census gap closed</li>
+</ol>
+<h3 id="immediate-setup-actions">Immediate setup actions</h3>
+<ol>
+<li>Paste <code>crm/asana/project-description.md</code> into Asana project</li>
+<li>Apply <code>crm/asana/asana-ai-apply.prompt.md</code> or import CSV</li>
+<li>Pin <code>crm/asana/nexus-discovery-asana-sync.md</code> comment</li>
+<li>Schedule Phase 0 workshop per <code>crm/alignment-meeting/05-phase0-workshop.md</code></li>
+</ol>
+<hr>
+<h2 id="16-open-questions-for-joel-leadership-avi">16. Open Questions for Joel / Leadership / Avi</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Question</th>
+<th>Ask</th>
+<th>Impact</th>
+<th>Recommended default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Active threshold: SOC required vs cleared-to-start?</td>
+<td>Joel</td>
+<td>Census definition</td>
+<td>SOC required</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Census source of truth: Billing, EVV, CRM, hybrid?</td>
+<td>Joel + Leadership</td>
+<td>Validation of 1200-1300</td>
+<td>Hybrid: CRM + EVV spot check</td>
+</tr>
+<tr>
+<td>3</td>
+<td>CDPAP cohort: discharge vs drop vs archive?</td>
+<td>Joel</td>
+<td>Phase 3 batch</td>
+<td>Discharge if was active; drop if never</td>
+</tr>
+<tr>
+<td>4</td>
+<td>ReferralOutcome picklist — final values?</td>
+<td>Joel + Avi</td>
+<td>Terminal validation</td>
+<td>Export + workshop</td>
+</tr>
+<tr>
+<td>5</td>
+<td>One Episode per patient vs per LOB?</td>
+<td>Avi + Joel</td>
+<td>Data model</td>
+<td>One per patient; LOB on Patient <strong>Assumption</strong></td>
+</tr>
+<tr>
+<td>6</td>
+<td>Voided vs dropped on intake?</td>
+<td>Joel</td>
+<td>Intake rules</td>
+<td>Voided = error; dropped = business decision</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Medicaid deferred vs dropped off?</td>
+<td>Joel</td>
+<td>Medicaid workflow</td>
+<td>Deferred = temporary; ticket closed on drop</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Primary LOB when multiple intakes open?</td>
+<td>Joel</td>
+<td>Master status compute</td>
+<td>Highest gold LOB stage wins</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Short-term on sales dashboard?</td>
+<td>Angelo + Joel</td>
+<td>Sales views</td>
+<td>Hidden unless gold LOB open</td>
+</tr>
+<tr>
+<td>10</td>
+<td>NIA fail → 6-month hold — confirm?</td>
+<td>Joel</td>
+<td>Automation</td>
+<td>ON_HOLD + NIA_FAILED_WAIT</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Reactivation of dropped referrals?</td>
+<td>Angelo</td>
+<td>New Episode vs reopen</td>
+<td>New Episode <strong>Assumption</strong></td>
+</tr>
+<tr>
+<td>12</td>
+<td>Grace period for expired auth while still active?</td>
+<td>Ops + Joel</td>
+<td>Non-authorized rules</td>
+<td>14-day warn then block</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Phase 1 parallel to Phase 0?</td>
+<td>Leadership</td>
+<td>Timeline</td>
+<td>Read-only audit parallel OK</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Florida delta timeline?</td>
+<td>Leadership</td>
+<td>Phase 7</td>
+<td>After NY cutover</td>
+</tr>
+<tr>
+<td>15</td>
+<td>Auth save recalc — sprint priority?</td>
+<td>Avi</td>
+<td>Ntelekos fix</td>
+<td>Phase 4 — high</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="17-immediate-next-actions">17. Immediate Next Actions</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Action</th>
+<th>Owner</th>
+<th>Due</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Schedule Phase 0 definitions workshop</strong> (90 min) — use <code>crm/alignment-meeting/05-phase0-workshop.md</code></td>
+<td>Keren + Joel</td>
+<td>This week</td>
+<td>Calendar invite + attendees</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Circulate this workspace doc</strong> for async review before workshop</td>
+<td>Keren</td>
+<td>Before workshop</td>
+<td>Comments in Teams</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Export ReferralOutcome picklist</strong> from Schema Manager</td>
+<td>Avi</td>
+<td>Before workshop</td>
+<td>Picklist CSV in project</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Run Query Console baselines</strong> (§11 reports 0–10 minimum)</td>
+<td>Keren + Avi</td>
+<td>Phase 1 week 1</td>
+<td>Baseline counts in this doc</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Identify 3 objects sharing LeadStatus</strong></td>
+<td>Avi</td>
+<td>Phase 1</td>
+<td>Schema note</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>Joel: LOB qualification checklists</strong> (LTC, NHTD, OPWDD, private pay)</td>
+<td>Joel</td>
+<td>Phase 0</td>
+<td>Checklist doc</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>Alignment meeting</strong> if full team not yet aligned — <code>crm/alignment-meeting/</code></td>
+<td>Keren</td>
+<td>Optional</td>
+<td>Decision worksheet completed</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>Do not change production CRM</strong> until Framework v1 signed</td>
+<td>All</td>
+<td>Ongoing</td>
+<td>—</td>
+</tr>
+<tr>
+<td>9</td>
+<td><strong>File Ntelekos recalc</strong> in Phase 4 automation scope</td>
+<td>Avi</td>
+<td>Phase 2 planning</td>
+<td>Ticket linked</td>
+</tr>
+<tr>
+<td>10</td>
+<td><strong>Rename chat / doc</strong> to "Status Framework v1" after workshop sign-off</td>
+<td>Keren</td>
+<td>Post-workshop</td>
+<td>Signed PDF in Teams</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="appendix-a-growth-readiness-phase-11-preview">Appendix A — Growth Readiness (Phase 11 Preview)</h2>
+<p><em>Execute only after CRM logic is reliable.</em></p>
+<table>
+<thead>
+<tr>
+<th>System</th>
+<th>Prerequisite</th>
+<th>Enablement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Website forms</td>
+<td>Source field standardized</td>
+<td>Map to Episode source</td>
+</tr>
+<tr>
+<td>LeadTrap / Ava</td>
+<td>Referral vs lead definitions</td>
+<td>Webhook → New Referral</td>
+</tr>
+<tr>
+<td>Meta ads / UTM</td>
+<td>Attribution fields clean</td>
+<td>Campaign ID on Episode</td>
+</tr>
+<tr>
+<td>SEO leads</td>
+<td>Source = organic</td>
+<td>Growth dashboard</td>
+</tr>
+<tr>
+<td>Referral campaigns</td>
+<td>Outcome tracking</td>
+<td>Drop reason by campaign</td>
+</tr>
+<tr>
+<td>Doctor / case manager referrals</td>
+<td>referral_partner field</td>
+<td>Partner conversion report</td>
+</tr>
+<tr>
+<td>Retargeting audiences</td>
+<td>Dropped Off with reason</td>
+<td>Exclude active patients</td>
+</tr>
+<tr>
+<td>Conversion reporting</td>
+<td>Cohort Episode history</td>
+<td>Referral → Active rate</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Growth goal:</strong> More qualified referrals becoming active patients — with visible conversion and drop-off reasons — not more unqualified leads on dirty dashboards.</p>
+<hr>
+<h2 id="appendix-b-repo-artifact-index">Appendix B — Repo Artifact Index</h2>
+<table>
+<thead>
+<tr>
+<th>Artifact</th>
+<th>Path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>This workspace</td>
+<td><code>crm/Link-Homecare-CRM-Status-Architecture-Execution-Workspace.md</code></td>
+</tr>
+<tr>
+<td>Nexus migration map</td>
+<td><code>crm/schema/nexus-episode-status-map.json</code></td>
+</tr>
+<tr>
+<td>Legacy migration map</td>
+<td><code>crm/schema/legacy-status-map.json</code></td>
+</tr>
+<tr>
+<td>Enums / picklists</td>
+<td><code>crm/schema/enums.json</code></td>
+</tr>
+<tr>
+<td>Lifecycle computation</td>
+<td><code>crm/schema/lifecycle.ts</code></td>
+</tr>
+<tr>
+<td>Validation rules</td>
+<td><code>crm/schema/validation-rules.ts</code></td>
+</tr>
+<tr>
+<td>Audit SQL</td>
+<td><code>crm/audit/data-integrity-audit.sql</code></td>
+</tr>
+<tr>
+<td>Dashboard SQL</td>
+<td><code>crm/audit/dashboard-queries.sql</code></td>
+</tr>
+<tr>
+<td>Asana sprint kit</td>
+<td><code>crm/asana/</code></td>
+</tr>
+<tr>
+<td>Alignment meeting</td>
+<td><code>crm/alignment-meeting/</code></td>
+</tr>
+<tr>
+<td>Discovery session notes</td>
+<td><code>1-1-CRM Status Label Overhaul — Lead-to-Patient Workflow Discovery Session.md</code></td>
+</tr>
+<tr>
+<td>CRM bot prompts</td>
+<td><code>crm/crm-bot-discovery.prompt.md</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p><em>Document status: </em><em>DRAFT for Phase 0 sign-off</em><em>. No live CRM changes authorized. Assumptions marked throughout; final decisions recorded in Status Framework v1 after stakeholder workshop.</em></p></article></main>
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose" });
+  </script>
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>1 1 CRM Discovery Session</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    :root {
+      --bg: #f4f6f9;
+      --card: #ffffff;
+      --text: #172033;
+      --muted: #5c6578;
+      --accent: #0f766e;
+      --accent-light: #e6f4f2;
+      --border: #d8dee9;
+      --code-bg: #f1f5f9;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.65 "Segoe UI", system-ui, -apple-system, sans-serif;
+    }
+    .topbar {
+      background: linear-gradient(135deg, #0f766e 0%, #134e4a 100%);
+      color: #fff;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.9rem;
+    }
+    .topbar a {
+      color: #fff;
+      text-decoration: none;
+      opacity: 0.95;
+    }
+    .topbar a:hover { text-decoration: underline; }
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+    article {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem 2.25rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    article h1 {
+      margin-top: 0;
+      font-size: 1.75rem;
+      color: #0d5c56;
+      line-height: 1.25;
+      border-bottom: 2px solid var(--accent-light);
+      padding-bottom: 0.5rem;
+    }
+    article h2 {
+      margin-top: 2rem;
+      font-size: 1.25rem;
+      color: #134e4a;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.35rem;
+    }
+    article h3 { margin-top: 1.5rem; color: #1e3a38; }
+    article h4 { margin-top: 1.25rem; }
+    a { color: var(--accent); }
+    a:hover { color: #0d5c56; }
+    p { margin: 0.85rem 0; }
+    ul, ol { padding-left: 1.5rem; }
+    li { margin: 0.35rem 0; }
+    li > ul { margin-top: 0.25rem; }
+    blockquote {
+      margin: 1.25rem 0;
+      padding: 0.75rem 1rem;
+      border-left: 4px solid var(--accent);
+      background: var(--accent-light);
+      border-radius: 0 8px 8px 0;
+    }
+    blockquote p { margin: 0.35rem 0; }
+    code {
+      font-family: Consolas, "SF Mono", monospace;
+      font-size: 0.9em;
+      background: var(--code-bg);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+    }
+    pre {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 1rem 1.15rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+    pre code {
+      background: transparent;
+      padding: 0;
+      color: inherit;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.25rem 0;
+      font-size: 0.95rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.6rem 0.75rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #f8fafc;
+      font-weight: 600;
+      color: #134e4a;
+    }
+    tr:nth-child(even) td { background: #fafbfc; }
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+    .mermaid {
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+    .toc {
+      background: var(--accent-light);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .toc ul { margin: 0.5rem 0 0; }
+    input[type="checkbox"] { margin-right: 0.35rem; }
+    @media print {
+      body { background: #fff; }
+      .topbar { display: none; }
+      article { box-shadow: none; border: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topbar"><a href="../index.html">← CRM Overhaul Hub</a></nav>
+  <main><article><h2 id="key-updates">Key Updates</h2>
+<ul>
+<li><strong>Core problem identified:</strong> The CRM system suffers from inconsistent, inherited labeling from Salesforce that creates confusion across dashboards — records are labeled "patient" even when they are still leads or referrals, making it impossible to assess true pipeline status at a glance. </li>
+<li><strong>Single-record architecture:</strong> The new CRM (built as a reverse-engineered replacement for Salesforce) uses <strong>one unified record</strong> that follows a person from first contact through end of life, eliminating the Salesforce limitation where converting a lead created a separate, disconnected object. </li>
+<li><strong>Legacy statuses still active:</strong> Several statuses carried over from Salesforce — most notably <strong>"pre-intake"</strong> — remain in use today despite being workarounds for Salesforce's technical limitations, not genuine business logic. </li>
+<li><strong>CDPAP revenue loss context:</strong> Approximately <strong>$125 million in top-line revenue</strong> was lost when New York's governor effectively eliminated CDPAP as a line of business on <strong>April 1, 2025</strong>, affecting a significant patient cohort still showing as "authorized" in the system. </li>
+<li><strong>Authorized patient count discrepancy:</strong> The dashboard shows <strong>1,960 authorized patients</strong>, but actual active census is estimated between <strong>1,200–1,300</strong>, indicating mass data integrity issues with the "authorized" status.</li>
+</ul>
+<hr>
+<h2 id="what-to-care-about">What to Care About</h2>
+<ul>
+<li><strong>Keren's mandate:</strong> Keren (Speaker 2) has been brought in with a <strong>fresh perspective</strong> to audit the CRM's labeling system, propose a standardized status/tagging framework, and identify where leads are dropping off in the funnel — without being anchored to existing terminology or assumptions. </li>
+<li><strong>Foundation first:</strong> The explicit instruction is to focus on <strong>getting the baseline status labels correct</strong> before addressing downstream outcomes (dashboards, sales reporting, Facebook/SEO, etc.). </li>
+<li><strong>Proposed terminology framework</strong> (Speaker 1's mental model, not yet finalized):</li>
+<li><strong>Lead</strong> = raw name/number/Medicaid ID; no contact made yet </li>
+<li><strong>Referral</strong> = lead that has expressed interest, provided more info, and been converted; still not a patient </li>
+<li><strong>Patient</strong> = someone the company is actively responsible to service</li>
+<li><strong>Lines of business (LOBs) that matter most</strong> ("gold" categories): Long-term care, NHTD (Nursing Home Transition and Diversion), OPWDD, private pay, custodial care </li>
+<li><strong>Short-term care</strong> is treated as a <strong>lead loss</strong> in most cases — only retained if the company is simultaneously working up the patient for long-term care services </li>
+<li><strong>Funnel leak identification</strong> is a primary goal: understanding whether drop-offs are due to failed NIA assessments, lack of follow-up, or patients going to competing agencies — currently impossible to determine with the existing labeling.</li>
+</ul>
+<hr>
+<h2 id="feedback-concerns">Feedback &amp; Concerns</h2>
+<h3 id="data-integrity-issues">Data Integrity Issues</h3>
+<ul>
+<li><strong>"Authorized" status is unreliable:</strong> Records show as "authorized" with no corresponding active intake, no valid authorization record, or intakes that were dropped/voided — making the status meaningless for operational decisions. </li>
+<li>Example: A patient authorized for <strong>short-term care in 2020</strong> (CDPAP) still shows as "authorized" with a dropped intake and no current service activity. </li>
+<li>Example: A patient processed for short-term care was sent to a company called <strong>Girling</strong> (never accepted as the agency's own patient) but still appears as an authorized patient on their dashboard.</li>
+<li><strong>121 fields on a single intake record</strong> — described as "insanity" — reflects accumulated technical debt from the Salesforce migration. </li>
+<li><strong>"Closed" status</strong> has no agreed-upon definition; Speaker 1 argues it should not exist — only <strong>"dropped off"</strong> (never became a patient) and <strong>"discharged"</strong> (was a patient, then left) are meaningful distinctions. </li>
+<li><strong>"Pre-intake" status</strong> was a Salesforce workaround for records that couldn't be reverted to lead status (e.g., failed NIA, patient went on vacation). It is still being used today with no clear rationale, and is suspected to have caused patient/revenue loss.</li>
+</ul>
+<h3 id="labeling-confusion-in-practice">Labeling Confusion in Practice</h3>
+<ul>
+<li>A single record can simultaneously carry the label "patient" with a tag of "lead" and a status of "new" — three conflicting signals on one record. </li>
+<li><strong>NIA (state assessment in New York)</strong> is the mandatory first step for long-term care approval; a patient with a scheduled NIA is moved to "in-progress," but this logic is not consistently applied or documented. </li>
+<li><strong>Multiple intakes per record</strong> (e.g., one dropped custodial + one in-progress long-term) generate multiple conflicting status boxes on the same record, making dashboard interpretation require deep manual investigation. </li>
+<li><strong>Medicaid tickets</strong> add another layer: a record can have an open Medicaid application (new/in-progress/approved/deferred) running concurrently with lead/referral/intake statuses, further complicating pipeline visibility. </li>
+<li><strong>No visible line-of-business filter</strong> on lead views by default, though it can be added; LOBs available include long-term care, NHTD, OPWDD, private pay, short-term custodial care.</li>
+</ul>
+<h3 id="operational-friction">Operational Friction</h3>
+<ul>
+<li>Sales reps (e.g., Angelo's dashboard) must click multiple levels deep into a record to determine whether something is a patient, referral, or lead — defeating the purpose of a dashboard. </li>
+<li><strong>No intake date visible</strong> on lead list views; follow-up dates exist but without intake date context, recency of leads cannot be assessed. </li>
+<li><strong>"Dropped intake" vs. "dropped patient"</strong> distinction is unclear; sales teams question why dropped intakes appear in their view at all. </li>
+<li>The system currently keeps a lead in <strong>"new" status</strong> until real contact is made, even if follow-up activity has occurred — but this decision is inconsistently applied.</li>
+</ul>
+<hr>
+<h2 id="action-items">Action Items</h2>
+<ul>
+<li>[x] <strong>Grant Keren admin access</strong> to the CRM's Schema Manager (read-only preferred, but full admin if read-only isn't configurable) so she can review all objects, field names, relationships, and picklists. (Assigned to: Avi/Speaker 3, Due: Immediately) </li>
+<li>[x] <strong>Rename the Teams group</strong> from "Florida Marketing Operations" to "New York Operations" to reflect the actual scope of this project. (Assigned to: Leah, Due: Immediately) </li>
+<li>[x] <strong>Add Joel to the Teams group</strong> (Speaker 1 + Leah + Keren + Avi + Joel) for real-time Q&amp;A on CRM/operational questions. (Assigned to: Leah, Due: Done/Confirmed) </li>
+<li>[x] <strong>Send Keren the Angela playbook</strong> (the intake/lead process document recently created for Angela) as a starting reference for the operational flow. (Assigned to: Joel/Speaker 4, Due: ASAP) </li>
+<li>[x] <strong>Joel to compile and share</strong> any existing department playbooks, process guides, or documentation relevant to the lead-to-patient workflow. (Assigned to: Joel, Due: ASAP) </li>
+<li>[x] <strong>Keren to conduct discovery</strong> by exploring the CRM system, identifying inconsistencies, and raising pointed questions via Teams (or email) — no changes to be made in the system. (Assigned to: Keren, Due: Ongoing) </li>
+<li>[x] <strong>Keren to produce a deliverable</strong> (PowerPoint/framework) that proposes: standardized status labels, parameters for LOB coexistence, use cases for each tag/status, and a lead-to-patient flow. (Assigned to: Keren, Due: TBD — next meeting milestone) </li>
+</ul>
+<hr>
+<h2 id="open-questions-follow-ups">Open Questions / Follow-Ups</h2>
+<ul>
+<li><strong>What is the definition of "closed" vs. "dropped off" vs. "discharged"?</strong> These three statuses are currently used inconsistently; a formal definition needs to be agreed upon and documented. </li>
+<li><strong>Why is "pre-intake" still being used today?</strong> The original technical reason (Salesforce limitation) no longer applies; current usage needs to be audited and likely eliminated. </li>
+<li><strong>What is the correct status for a patient who failed their NIA and must wait 6 months?</strong> The pre-intake workaround was used for this case; a proper solution is needed. </li>
+<li><strong>Can a record show as "authorized" without an active, valid authorization?</strong> Current data suggests yes — the authorization object and the intake/patient status are not properly linked or validated. </li>
+<li><strong>What does "anticipated start of care date" vs. "start of care date" mean operationally</strong>, and how should records be treated when an anticipated date passes without a confirmed start? </li>
+<li><strong>What is the rule for when a short-term intake should appear on a sales dashboard</strong> vs. being handled purely operationally? </li>
+<li><strong>How should LOB coexistence be handled on a single record?</strong> Specifically: when short-term is active but long-term is still in progress, what is the master status of the record? </li>
+<li><strong>What are the checklist/qualification criteria for each LOB</strong> to move from referral to authorized to active patient? No documented criteria currently exist in an accessible format. </li>
+<li><strong>What does "deferred" mean on a Medicaid ticket</strong>, and how does it differ from "dropped off"? </li>
+<li><strong>What does "voided" mean on an intake</strong>, and how does it differ from "dropped off"? </li>
+<li><strong>Keren to identify additional legacy/unused fields</strong> in Schema Manager that can be deprecated, using the Salesforce-era structure as a comparison baseline. </li>
+<li><strong>Florida CRM setup:</strong> Acknowledged as slightly different from New York; once New York is resolved, Florida adaptation is expected to be quick — but specifics are deferred.</li>
+</ul></article></main>
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose" });
+  </script>
+</body>
+</html>

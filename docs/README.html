@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CRM Status Framework — Implementation Artifacts</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    :root {
+      --bg: #f4f6f9;
+      --card: #ffffff;
+      --text: #172033;
+      --muted: #5c6578;
+      --accent: #0f766e;
+      --accent-light: #e6f4f2;
+      --border: #d8dee9;
+      --code-bg: #f1f5f9;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.65 "Segoe UI", system-ui, -apple-system, sans-serif;
+    }
+    .topbar {
+      background: linear-gradient(135deg, #0f766e 0%, #134e4a 100%);
+      color: #fff;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.9rem;
+    }
+    .topbar a {
+      color: #fff;
+      text-decoration: none;
+      opacity: 0.95;
+    }
+    .topbar a:hover { text-decoration: underline; }
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+    article {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem 2.25rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    article h1 {
+      margin-top: 0;
+      font-size: 1.75rem;
+      color: #0d5c56;
+      line-height: 1.25;
+      border-bottom: 2px solid var(--accent-light);
+      padding-bottom: 0.5rem;
+    }
+    article h2 {
+      margin-top: 2rem;
+      font-size: 1.25rem;
+      color: #134e4a;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.35rem;
+    }
+    article h3 { margin-top: 1.5rem; color: #1e3a38; }
+    article h4 { margin-top: 1.25rem; }
+    a { color: var(--accent); }
+    a:hover { color: #0d5c56; }
+    p { margin: 0.85rem 0; }
+    ul, ol { padding-left: 1.5rem; }
+    li { margin: 0.35rem 0; }
+    li > ul { margin-top: 0.25rem; }
+    blockquote {
+      margin: 1.25rem 0;
+      padding: 0.75rem 1rem;
+      border-left: 4px solid var(--accent);
+      background: var(--accent-light);
+      border-radius: 0 8px 8px 0;
+    }
+    blockquote p { margin: 0.35rem 0; }
+    code {
+      font-family: Consolas, "SF Mono", monospace;
+      font-size: 0.9em;
+      background: var(--code-bg);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+    }
+    pre {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 1rem 1.15rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+    pre code {
+      background: transparent;
+      padding: 0;
+      color: inherit;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.25rem 0;
+      font-size: 0.95rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.6rem 0.75rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #f8fafc;
+      font-weight: 600;
+      color: #134e4a;
+    }
+    tr:nth-child(even) td { background: #fafbfc; }
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+    .mermaid {
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+    .toc {
+      background: var(--accent-light);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .toc ul { margin: 0.5rem 0 0; }
+    input[type="checkbox"] { margin-right: 0.35rem; }
+    @media print {
+      body { background: #fff; }
+      .topbar { display: none; }
+      article { box-shadow: none; border: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topbar"><a href="index.html">← CRM Overhaul Hub</a></nav>
+  <main><article><h1 id="crm-status-framework-implementation-artifacts">CRM Status Framework — Implementation Artifacts</h1>
+<p>Executable specs for the Lead → Referral → Intake → Patient lifecycle overhaul (NY Operations).</p>
+<h2 id="sign-off-package-jul-2026-pending-joelleah">Sign-off package (Jul 2026 — pending Joel/Leah)</h2>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>glossary-pipeline-v2.md</code></strong></td>
+<td>Status terminology — <strong>send to Joel &amp; Leah for sign-off</strong></td>
+</tr>
+<tr>
+<td><strong><code>flowcharts/pipeline-flowcharts-v1.md</code></strong></td>
+<td>Main pipeline + short-term icon + multi-LOB Mermaid</td>
+</tr>
+<tr>
+<td><strong><code>glossary/drop-reasons-for-signoff.md</code></strong></td>
+<td>10 drop categories — Joel sign-off sheet</td>
+</tr>
+<tr>
+<td><code>meeting-notes/2026-07-pipeline-alignment.md</code></td>
+<td>Workshop capture</td>
+</tr>
+<tr>
+<td><code>Link-Homecare-CRM-Status-Architecture-Execution-Workspace.md</code></td>
+<td>Full execution workspace</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Gate:</strong> Sign glossary + flowcharts → Joel schedules Avi · Leah coordinates calendar.</p>
+<h2 id="github-canonical-all-files">GitHub (canonical — all files)</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CRM package root</strong></td>
+<td><a href="https://github.com/klacadin/evo-growth/tree/master/crm">github.com/klacadin/evo-growth/tree/master/crm</a></td>
+</tr>
+<tr>
+<td><strong>Sign-off glossary</strong></td>
+<td><a href="https://github.com/klacadin/evo-growth/blob/master/crm/glossary-pipeline-v2.md">glossary-pipeline-v2.md</a></td>
+</tr>
+<tr>
+<td><strong>Flowcharts</strong></td>
+<td><a href="https://github.com/klacadin/evo-growth/blob/master/crm/flowcharts/pipeline-flowcharts-v1.md">pipeline-flowcharts-v1.md</a></td>
+</tr>
+<tr>
+<td><strong>Execution workspace</strong></td>
+<td><a href="https://github.com/klacadin/evo-growth/blob/master/crm/Link-Homecare-CRM-Status-Architecture-Execution-Workspace.md">Link-Homecare-CRM-Status-Architecture-Execution-Workspace.md</a></td>
+</tr>
+<tr>
+<td><strong>Asana task CSV</strong></td>
+<td><a href="https://github.com/klacadin/evo-growth/blob/master/crm/asana/crm_asana_v3.csv">crm_asana_v3.csv</a> (Related Docs = GitHub links)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="onedrive-hub-clickable-share-with-team">OneDrive hub (clickable — share with team)</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Open in browser</strong></td>
+<td><code>O:\EVO\OneDrive - EVO Healthcare Group\Documents\Link Homecare - CRM Overhaul\index.html</code></td>
+</tr>
+<tr>
+<td><strong>Re-sync after repo edits</strong></td>
+<td><code>powershell -File crm/sync-to-onedrive.ps1</code></td>
+</tr>
+</tbody>
+</table>
+<p>Hub source in repo: <code>crm/onedrive-hub/index.html</code>. Share the OneDrive folder with Joel/Leah for clickable links (glossary, flowcharts HTML, drop reasons, workspace, Asana).</p>
+<p><strong>OneDrive web:</strong> Open <code>index.html</code> with <strong>Open in browser</strong> (not the side preview). All pages include a cloud navigation script so links open in a new tab with full SharePoint URLs.</p>
+<h2 id="contents">Contents</h2>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>schema/enums.ts</code></td>
+<td>TypeScript enums + metadata for app code</td>
+</tr>
+<tr>
+<td><code>schema/enums.json</code></td>
+<td>Schema Manager / picklist import</td>
+</tr>
+<tr>
+<td><code>schema/lifecycle.ts</code></td>
+<td>Master stage computation + transition gates</td>
+</tr>
+<tr>
+<td><code>schema/validation-rules.ts</code></td>
+<td>Blocking validation rule definitions</td>
+</tr>
+<tr>
+<td><code>schema/nexus-episode-status-map.json</code></td>
+<td>Episode-centric migration map (Nexus CRM)</td>
+</tr>
+<tr>
+<td><code>schema/legacy-status-map.json</code></td>
+<td>Legacy Salesforce-era → unified framework</td>
+</tr>
+<tr>
+<td><code>audit/data-integrity-audit.sql</code></td>
+<td>Run against live CRM DB before migration</td>
+</tr>
+<tr>
+<td><code>audit/dashboard-queries.sql</code></td>
+<td>Sales, ops, census, funnel leakage queries</td>
+</tr>
+<tr>
+<td><code>asana/</code></td>
+<td><strong>Asana sprint organization kit</strong> — CSV, sections, dependencies, AI prompt</td>
+</tr>
+<tr>
+<td><code>alignment-meeting/</code></td>
+<td><strong>Alignment meeting package</strong> — share-with-team, walkthrough, decisions, Asana sync, Phase 0 workshop</td>
+</tr>
+<tr>
+<td><code>crm-bot-discovery.prompt.md</code></td>
+<td>Copy-paste prompts for CRM bot discovery (Phase 0–1)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="asana-project-setup">Asana project setup</h2>
+<p>For <strong>EVO CRM Status Label Overhaul Sprint</strong>, use <a href="asana/README.html"><code>asana/README.md</code></a>:</p>
+<ol>
+<li>Paste <a href="asana/project-description.html"><code>asana/project-description.md</code></a> into the Asana project description</li>
+<li>Run <a href="asana/asana-ai-apply.prompt.html"><code>asana/asana-ai-apply.prompt.md</code></a> in Asana AI, or apply <a href="asana/evo-crm-sprint-tasks.csv"><code>asana/evo-crm-sprint-tasks.csv</code></a> manually</li>
+</ol>
+<h2 id="table-name-assumptions-sql">Table name assumptions (SQL)</h2>
+<p>Adjust aliases in SQL files to match your CRM:</p>
+<table>
+<thead>
+<tr>
+<th>Spec name</th>
+<th>Expected table</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>persons</code></td>
+<td>Person / Contact unified record</td>
+<td></td>
+</tr>
+<tr>
+<td><code>intakes</code></td>
+<td>Intake child records</td>
+<td>One row per LOB attempt</td>
+</tr>
+<tr>
+<td><code>authorizations</code></td>
+<td>Authorization object</td>
+<td>Linked from intake</td>
+</tr>
+<tr>
+<td><code>medicaid_tickets</code></td>
+<td>Medicaid application track</td>
+<td>Orthogonal to lifecycle</td>
+</tr>
+<tr>
+<td><code>service_episodes</code></td>
+<td>Active service post-SOC</td>
+<td>Required for census</td>
+</tr>
+</tbody>
+</table>
+<h2 id="usage">Usage</h2>
+<pre><code class="language-bash"># Type-check lifecycle logic (from repo root)
+npx tsc --noEmit crm/schema/*.ts
+
+# Run audit pack (PostgreSQL example)
+psql &quot;$CRM_DATABASE_URL&quot; -f crm/audit/data-integrity-audit.sql
+</code></pre>
+<h2 id="migration-order">Migration order</h2>
+<ol>
+<li>Run <code>audit/data-integrity-audit.sql</code> — baseline counts</li>
+<li>Import <code>schema/enums.json</code> picklists into Schema Manager</li>
+<li>Apply <code>legacy-status-map.json</code> in a staging batch job</li>
+<li>Deploy validation rules from <code>validation-rules.ts</code></li>
+<li>Enable computed <code>lifecycle_stage</code> + rebuild dashboards using <code>dashboard-queries.sql</code></li>
+</ol></article></main>
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose" });
+  </script>
+</body>
+</html>

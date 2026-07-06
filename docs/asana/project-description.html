@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Link Homecare — CRM Status Architecture Rebuild</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    :root {
+      --bg: #f4f6f9;
+      --card: #ffffff;
+      --text: #172033;
+      --muted: #5c6578;
+      --accent: #0f766e;
+      --accent-light: #e6f4f2;
+      --border: #d8dee9;
+      --code-bg: #f1f5f9;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.65 "Segoe UI", system-ui, -apple-system, sans-serif;
+    }
+    .topbar {
+      background: linear-gradient(135deg, #0f766e 0%, #134e4a 100%);
+      color: #fff;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.9rem;
+    }
+    .topbar a {
+      color: #fff;
+      text-decoration: none;
+      opacity: 0.95;
+    }
+    .topbar a:hover { text-decoration: underline; }
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+    article {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem 2.25rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    article h1 {
+      margin-top: 0;
+      font-size: 1.75rem;
+      color: #0d5c56;
+      line-height: 1.25;
+      border-bottom: 2px solid var(--accent-light);
+      padding-bottom: 0.5rem;
+    }
+    article h2 {
+      margin-top: 2rem;
+      font-size: 1.25rem;
+      color: #134e4a;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.35rem;
+    }
+    article h3 { margin-top: 1.5rem; color: #1e3a38; }
+    article h4 { margin-top: 1.25rem; }
+    a { color: var(--accent); }
+    a:hover { color: #0d5c56; }
+    p { margin: 0.85rem 0; }
+    ul, ol { padding-left: 1.5rem; }
+    li { margin: 0.35rem 0; }
+    li > ul { margin-top: 0.25rem; }
+    blockquote {
+      margin: 1.25rem 0;
+      padding: 0.75rem 1rem;
+      border-left: 4px solid var(--accent);
+      background: var(--accent-light);
+      border-radius: 0 8px 8px 0;
+    }
+    blockquote p { margin: 0.35rem 0; }
+    code {
+      font-family: Consolas, "SF Mono", monospace;
+      font-size: 0.9em;
+      background: var(--code-bg);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+    }
+    pre {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 1rem 1.15rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+    pre code {
+      background: transparent;
+      padding: 0;
+      color: inherit;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.25rem 0;
+      font-size: 0.95rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.6rem 0.75rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #f8fafc;
+      font-weight: 600;
+      color: #134e4a;
+    }
+    tr:nth-child(even) td { background: #fafbfc; }
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+    .mermaid {
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+    .toc {
+      background: var(--accent-light);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .toc ul { margin: 0.5rem 0 0; }
+    input[type="checkbox"] { margin-right: 0.35rem; }
+    @media print {
+      body { background: #fff; }
+      .topbar { display: none; }
+      article { box-shadow: none; border: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topbar"><a href="../index.html">← CRM Overhaul Hub</a></nav>
+  <main><article><h1 id="link-homecare-crm-status-architecture-rebuild">Link Homecare — CRM Status Architecture Rebuild</h1>
+<p><strong>Program:</strong> CRM Operating Model Rebuild (NY Operations)<br>
+<strong>CRM:</strong> Nexus at <a href="https://crm.linkhomecare.com/">crm.linkhomecare.com</a><br>
+<strong>Framework owner:</strong> Keren · <strong>Operational truth:</strong> Joel · <strong>Build:</strong> Avi · <strong>Comms/scheduling:</strong> Leah</p>
+<hr>
+<h2 id="why-this-project-exists">Why this project exists</h2>
+<p>The CRM inherited Salesforce-era labels that no longer match how Link Homecare operates. Dashboards show ~1,960 "authorized" patients while true active census is ~1,200–1,300. This project fixes <strong>business logic first</strong>, then data, then dashboards.</p>
+<h2 id="agreed-pipeline-jul-2026-operational-sign-off">Agreed pipeline (Jul 2026 — operational sign-off)</h2>
+<pre><code>Lead → Qualifying → Referral in Progress → Active → Discharged
+         Dropped Off (any time before Active)
+</code></pre>
+<ul>
+<li><strong>Qualifying</strong> = lead in progress (contact, insurance, diagnosis, LOB fit)</li>
+<li><strong>Referral in Progress</strong> = intake opened for a LOB (replaces ambiguous "in progress" / "intake")</li>
+<li><strong>Short-term care</strong> = parallel track with icon UI until authorized; then Active on main pipeline</li>
+<li><strong>Multi-LOB</strong> = simultaneous per-LOB statuses displayed alongside master pipeline</li>
+</ul>
+<p><strong>Gate:</strong> Finalize labels + flowcharts before Avi tech implementation. <strong>One-pass</strong> CRM update planned.</p>
+<h2 id="program-goals">Program goals</h2>
+<table>
+<thead>
+<tr>
+<th>Goal</th>
+<th>Success looks like</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Trustworthy census</strong></td>
+<td>~1,200–1,300 true active — not ~1,960 authorized inflation</td>
+</tr>
+<tr>
+<td><strong>Clear workflow</strong></td>
+<td>Enrollment can identify stage in ≤3 seconds</td>
+</tr>
+<tr>
+<td><strong>Growth-ready data</strong></td>
+<td>~10 drop reasons; source and conversion reporting reliable</td>
+</tr>
+</tbody>
+</table>
+<h2 id="how-work-is-organized">How work is organized</h2>
+<pre><code>Governance → Definitions (GATE) → Baseline ∥ Architecture → Build → Remediation → Dashboards → Go-Live → Training → Growth
+</code></pre>
+<p><strong>Next actions (from Jul 2026 meeting):</strong><br>
+- Keren — refine glossary (<code>crm/glossary-pipeline-v2.md</code>)<br>
+- Team — finalize labels + flowcharts<br>
+- Joel — schedule Avi tech review after flowcharts signed<br>
+- Leah — follow-up chat + coordinate meeting scheduling</p>
+<h2 id="team">Team</h2>
+<table>
+<thead>
+<tr>
+<th>Person</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Keren</td>
+<td>Glossary, flowcharts, audit, UAT</td>
+</tr>
+<tr>
+<td>Joel</td>
+<td>Pipeline definitions, LOB eligibility, ops sign-off, Avi meeting</td>
+</tr>
+<tr>
+<td>Avi</td>
+<td>CRM build, one-pass implementation, backfill</td>
+</tr>
+<tr>
+<td>Leah</td>
+<td>Follow-up comms, meeting scheduling</td>
+</tr>
+<tr>
+<td>Angelo</td>
+<td>Sales UAT</td>
+</tr>
+<tr>
+<td>Enrollment specialists</td>
+<td>Status updates; dashboard users when live</td>
+</tr>
+</tbody>
+</table>
+<h2 id="repo-artifacts">Repo artifacts</h2>
+<table>
+<thead>
+<tr>
+<th>Artifact</th>
+<th>Path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Meeting notes</td>
+<td><code>crm/meeting-notes/2026-07-pipeline-alignment.md</code></td>
+</tr>
+<tr>
+<td>Glossary v2</td>
+<td><code>crm/glossary-pipeline-v2.md</code></td>
+</tr>
+<tr>
+<td>Asana structure</td>
+<td><code>crm/asana/asana-structure.md</code></td>
+</tr>
+<tr>
+<td>Workspace</td>
+<td><code>crm/Link-Homecare-CRM-Status-Architecture-Execution-Workspace.md</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="rule">Rule</h2>
+<p><strong>No CRM field updates or backfill until status labels and flowcharts are finalized and signed.</strong></p></article></main>
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose" });
+  </script>
+</body>
+</html>

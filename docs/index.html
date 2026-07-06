@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Link Homecare — CRM Overhaul Hub</title>
+  <style>
+    :root {
+      --bg: #f4f6f9;
+      --card: #fff;
+      --text: #172033;
+      --muted: #5c6578;
+      --accent: #0f766e;
+      --accent-light: #e6f4f2;
+      --border: #d8dee9;
+      --gate: #b45309;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font: 16px/1.55 "Segoe UI", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    header {
+      background: linear-gradient(135deg, #0f766e 0%, #134e4a 100%);
+      color: #fff;
+      padding: 2rem 1.5rem 2.5rem;
+    }
+    header h1 { margin: 0 0 0.35rem; font-size: 1.65rem; font-weight: 600; }
+    header p { margin: 0; opacity: 0.92; max-width: 52rem; }
+    .gate {
+      margin-top: 1rem;
+      padding: 0.65rem 1rem;
+      background: rgba(255,255,255,0.15);
+      border-radius: 8px;
+      font-size: 0.95rem;
+    }
+    main { max-width: 960px; margin: -1.25rem auto 3rem; padding: 0 1rem; }
+    section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem 1.35rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    h2 {
+      margin: 0 0 0.85rem;
+      font-size: 1.05rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-weight: 700;
+    }
+    ul { list-style: none; margin: 0; padding: 0; }
+    li { margin: 0.35rem 0; }
+    a.doc {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      padding: 0.7rem 0.85rem;
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--text);
+      border: 1px solid transparent;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    a.doc:hover {
+      background: var(--accent-light);
+      border-color: #b8ddd8;
+    }
+    a.doc strong { display: block; color: #0d5c56; font-size: 1rem; }
+    a.doc span { font-size: 0.88rem; color: var(--muted); }
+    .badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      background: var(--accent-light);
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+    }
+    .badge.sign { background: #fef3c7; color: var(--gate); }
+    .badge.html { background: #dbeafe; color: #1d4ed8; }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+      padding: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Link Homecare — CRM Status Overhaul</h1>
+    <p>NY Operations · Nexus CRM · Keren (framework) · Joel (ops) · Leah (coordination) · Avi (build)</p>
+    <div class="gate">⏸ <strong>Gate:</strong> Sign glossary + flowcharts + drop reasons → Joel schedules Avi · Leah coordinates calendar · No CRM field work until then.</div>
+    <p style="margin:0.75rem 0 0;font-size:0.88rem;opacity:0.9">Browse online at <a href="https://keren-evo.github.io/crm-overhaul/" style="color:#fff">keren-evo.github.io/crm-overhaul</a> · OneDrive: use <strong>Open in browser</strong> if preview links fail.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Start here — sign-off package</h2>
+      <ul>
+        <li>
+          <a class="doc" href="glossary-pipeline-v2.html">
+            <span class="badge sign">Sign-off</span>
+            <div><strong>Status glossary v2.1</strong><span>Pipeline stages, referral substatuses, LOB, NIA, retired terms</span></div>
+          </a>
+        </li>
+        <li>
+          <a class="doc" href="flowcharts/pipeline-flowcharts-v1.html">
+            <span class="badge html">Interactive</span>
+            <div><strong>Pipeline flowcharts</strong><span>Main pipeline · short-term icon · multi-LOB · NIA branch (Mermaid)</span></div>
+          </a>
+        </li>
+        <li>
+          <a class="doc" href="glossary/drop-reasons-for-signoff.html">
+            <span class="badge sign">Joel</span>
+            <div><strong>Drop reasons — 10 categories</strong><span>Sign-off sheet for ReferralOutcome picklist</span></div>
+          </a>
+        </li>
+        <li>
+          <a class="doc" href="meeting-notes/2026-07-pipeline-alignment.html">
+            <span class="badge">Notes</span>
+            <div><strong>Jul 2026 pipeline alignment meeting</strong><span>Agreed flow, short-term rules, action items</span></div>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Full workspace &amp; discovery</h2>
+      <ul>
+        <li>
+          <a class="doc" href="Link-Homecare-CRM-Status-Architecture-Execution-Workspace.html">
+            <span class="badge html">HTML</span>
+            <div><strong>Execution workspace (full)</strong><span>17-section master document — audit, mapping, dashboards, Asana plan</span></div>
+          </a>
+        </li>
+        <li>
+          <a class="doc" href="discovery/1-1-CRM-Discovery-Session.html">
+            <span class="badge">Notes</span>
+            <div><strong>1:1 discovery session with Joel</strong><span>Original pain points and mandate</span></div>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Asana &amp; project execution</h2>
+      <ul>
+        <li>
+          <a class="doc" href="asana/asana-structure.html">
+            <span class="badge">Plan</span>
+            <div><strong>Asana structure (full tree)</strong><span>10 workstreams · 71 tasks · 6 milestones</span></div>
+          </a>
+        </li>
+        <li>
+          <a class="doc" href="asana/project-description.html">
+            <span class="badge">Paste</span>
+            <div><strong>Asana project description</strong><span>For CRM Status Architecture Rebuild project</span></div>
+          </a>
+        </li>
+        <li>
+          <a class="doc" href="asana/evo-crm-sprint-tasks.csv">
+            <span class="badge">CSV</span>
+            <div><strong>Task import CSV</strong><span>Tasks + subtasks for Asana</span></div>
+          </a>
+        </li>
+        <li>
+          <a class="doc" href="asana/workshop-jul2026-asana-sync.html">
+            <span class="badge">Sync</span>
+            <div><strong>Workshop → Asana sync notes</strong></div>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Technical (Avi — after sign-off)</h2>
+      <ul>
+        <li>
+          <a class="doc" href="schema/nexus-episode-status-map.json">
+            <span class="badge">JSON</span>
+            <div><strong>Nexus Episode status migration map</strong></div>
+          </a>
+        </li>
+        <li>
+          <a class="doc" href="schema/enums.json">
+            <span class="badge">JSON</span>
+            <div><strong>Picklist enums</strong></div>
+          </a>
+        </li>
+        <li>
+          <a class="doc" href="audit/data-integrity-audit.sql">
+            <span class="badge">SQL</span>
+            <div><strong>Data integrity audit pack</strong></div>
+          </a>
+        </li>
+        <li>
+          <a class="doc" href="asana/nexus-discovery-asana-sync.html">
+            <span class="badge">Notes</span>
+            <div><strong>Nexus Schema Manager discovery</strong></div>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Alignment meetings</h2>
+      <ul>
+        <li><a class="doc" href="alignment-meeting/01-share-with-team.html"><div><strong>Share with team (pre-read)</strong></div></a></li>
+        <li><a class="doc" href="alignment-meeting/03-decision-worksheet.html"><div><strong>Decision worksheet</strong></div></a></li>
+        <li><a class="doc" href="alignment-meeting/05-phase0-workshop.html"><div><strong>Definitions workshop agenda</strong></div></a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+  <a href="https://github.com/keren-evo/crm-overhaul" target="_blank" rel="noopener">GitHub — crm-overhaul</a>
+  · Re-run <code>crm/build-pages.ps1</code> or push to <code>main</code> to update Pages
+  </footer>
+</body>
+</html>

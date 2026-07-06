@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pipeline Flowcharts — Link Homecare CRM</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    body { font-family: "Segoe UI", system-ui, sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem; color: #172033; line-height: 1.55; }
+    h1 { color: #0f766e; font-size: 1.5rem; }
+    h2 { color: #134e4a; margin-top: 2rem; border-bottom: 1px solid #d8dee9; padding-bottom: 0.35rem; }
+    .back { margin-bottom: 1.5rem; }
+    .back a { color: #0f766e; }
+    pre.wire { background: #f4f6f9; padding: 1rem; border-radius: 8px; font-size: 0.8rem; overflow-x: auto; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #d8dee9; padding: 0.5rem 0.65rem; text-align: left; }
+    th { background: #f8fafc; }
+    .mermaid { margin: 1.5rem 0; }
+  </style>
+</head>
+<body>
+  <p class="back"><a href="../index.html">← Back to CRM Overhaul Hub</a></p>
+  <h1>Pipeline Flowcharts — Sign-Off Draft v1</h1>
+  <p><strong>Review:</strong> Joel, Leah · <strong>Pairs with:</strong>
+    <a href="../glossary-pipeline-v2.html">glossary v2.1</a> ·
+    <a href="../glossary/drop-reasons-for-signoff.html">drop reasons</a></p>
+
+  <h2>1. Main patient pipeline</h2>
+  <div class="mermaid">
+flowchart LR
+  subgraph main["Main status bar"]
+    L[Lead]
+    Q[Qualifying]
+    RIP[Referral in Progress]
+    A[Active]
+    D[Discharged]
+  end
+  L --> Q --> RIP --> A --> D
+  L -.-> DO[Dropped Off]
+  Q -.-> DO
+  RIP -.-> DO
+  </div>
+
+  <div class="mermaid">
+flowchart TD
+  Start([New contact]) --> Lead[Lead]
+  Lead -->|Outreach begins| Qual[Qualifying]
+  Lead -->|Drop| Drop[Dropped Off]
+  Qual -->|Intake opened| RIP[Referral in Progress]
+  Qual -->|Drop| Drop
+  RIP -->|SOC confirmed| Active[Active]
+  RIP -->|Drop| Drop
+  Active -->|Last LOB ended| Disc[Discharged]
+  </div>
+
+  <h2>2. Referral substatuses (leadStage)</h2>
+  <table>
+    <tr><th>Substatus</th><th>When</th></tr>
+    <tr><td>Lead</td><td>New inquiry; no qualification yet</td></tr>
+    <tr><td>Qualifying</td><td>Contact, insurance, LOB fit — intake not open</td></tr>
+    <tr><td>Referral in Progress</td><td>Intake opened for a LOB</td></tr>
+    <tr><td>Dropped Off</td><td>Terminal before Active</td></tr>
+  </table>
+
+  <h2>3. Short-term care — parallel icon</h2>
+  <div class="mermaid">
+flowchart TB
+  subgraph st["Short-term track - icon until Authorized"]
+    ST1[In Progress]
+    ST2[Accepted]
+    ST3[Startup]
+    ST4[Authorized]
+  end
+  ST1 --> ST2 --> ST3 --> ST4
+  ST4 -->|promote| ActiveMain[Main bar Active]
+  </div>
+  <p>Main bar unchanged until Short-Term <strong>Authorized</strong>.</p>
+
+  <h2>4. Multi-LOB</h2>
+  <div class="mermaid">
+flowchart TB
+  Patient[Patient]
+  Patient --> Master[Master bar - highest LOB stage]
+  Patient --> LOB1[LTC: Referral in Progress]
+  Patient --> LOB2[Short-term: Active]
+  Master --> LOB2
+  </div>
+
+  <h2>5. NIA branch (LTC / MLTC)</h2>
+  <div class="mermaid">
+flowchart TD
+  RIP[Referral in Progress - LTC]
+  RIP --> NIA[NIA Scheduled]
+  NIA --> Pass{Outcome}
+  Pass -->|Pass| Auth[Authorization path]
+  Auth --> Active[Active]
+  Pass -->|Fail| Drop[NIA Failed - Dropped Off]
+  Drop --> Wait[~180 day wait]
+  Wait --> Reapply[Re-engage]
+  </div>
+
+  <h2>Sign-off</h2>
+  <table>
+    <tr><th>Section</th><th>Joel</th><th>Date</th></tr>
+    <tr><td>Main pipeline</td><td>☐</td><td></td></tr>
+    <tr><td>Short-term icon</td><td>☐</td><td></td></tr>
+    <tr><td>Multi-LOB</td><td>☐</td><td></td></tr>
+    <tr><td>NIA branch</td><td>☐</td><td></td></tr>
+    <tr><td>Leah — coordination gate</td><td>☐</td><td></td></tr>
+  </table>
+
+  <script>mermaid.initialize({ startOnLoad: true, theme: "neutral" });</script>
+</body>
+</html>

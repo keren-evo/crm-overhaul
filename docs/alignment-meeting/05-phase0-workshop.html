@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Phase 0 — Definitions Workshop</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    :root {
+      --bg: #f4f6f9;
+      --card: #ffffff;
+      --text: #172033;
+      --muted: #5c6578;
+      --accent: #0f766e;
+      --accent-light: #e6f4f2;
+      --border: #d8dee9;
+      --code-bg: #f1f5f9;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.65 "Segoe UI", system-ui, -apple-system, sans-serif;
+    }
+    .topbar {
+      background: linear-gradient(135deg, #0f766e 0%, #134e4a 100%);
+      color: #fff;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.9rem;
+    }
+    .topbar a {
+      color: #fff;
+      text-decoration: none;
+      opacity: 0.95;
+    }
+    .topbar a:hover { text-decoration: underline; }
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+    article {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem 2.25rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    article h1 {
+      margin-top: 0;
+      font-size: 1.75rem;
+      color: #0d5c56;
+      line-height: 1.25;
+      border-bottom: 2px solid var(--accent-light);
+      padding-bottom: 0.5rem;
+    }
+    article h2 {
+      margin-top: 2rem;
+      font-size: 1.25rem;
+      color: #134e4a;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.35rem;
+    }
+    article h3 { margin-top: 1.5rem; color: #1e3a38; }
+    article h4 { margin-top: 1.25rem; }
+    a { color: var(--accent); }
+    a:hover { color: #0d5c56; }
+    p { margin: 0.85rem 0; }
+    ul, ol { padding-left: 1.5rem; }
+    li { margin: 0.35rem 0; }
+    li > ul { margin-top: 0.25rem; }
+    blockquote {
+      margin: 1.25rem 0;
+      padding: 0.75rem 1rem;
+      border-left: 4px solid var(--accent);
+      background: var(--accent-light);
+      border-radius: 0 8px 8px 0;
+    }
+    blockquote p { margin: 0.35rem 0; }
+    code {
+      font-family: Consolas, "SF Mono", monospace;
+      font-size: 0.9em;
+      background: var(--code-bg);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+    }
+    pre {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 1rem 1.15rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+    pre code {
+      background: transparent;
+      padding: 0;
+      color: inherit;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.25rem 0;
+      font-size: 0.95rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.6rem 0.75rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #f8fafc;
+      font-weight: 600;
+      color: #134e4a;
+    }
+    tr:nth-child(even) td { background: #fafbfc; }
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+    .mermaid {
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+    .toc {
+      background: var(--accent-light);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .toc ul { margin: 0.5rem 0 0; }
+    input[type="checkbox"] { margin-right: 0.35rem; }
+    @media print {
+      body { background: #fff; }
+      .topbar { display: none; }
+      article { box-shadow: none; border: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topbar"><a href="../index.html">← CRM Overhaul Hub</a></nav>
+  <main><article><h1 id="phase-0-definitions-workshop">Phase 0 — Definitions Workshop</h1>
+<p><strong>Purpose:</strong> Lock business definitions before Phase 1 baseline audit and any Phase 2+ implementation.<br>
+<strong>Output:</strong> Status Framework v1 (signed document → Phase 0 milestone)</p>
+<hr>
+<h2 id="schedule-fill-after-alignment-meeting">Schedule (fill after alignment meeting)</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Proposed duration</strong></td>
+<td>90 minutes</td>
+</tr>
+<tr>
+<td><strong>Date</strong></td>
+<td><strong><em>_</em></strong><strong><em>_</em></strong>_</td>
+</tr>
+<tr>
+<td><strong>Time</strong></td>
+<td><strong><em>_</em></strong><strong><em>_</em></strong>_</td>
+</tr>
+<tr>
+<td><strong>Location / link</strong></td>
+<td><strong><em>_</em></strong><strong><em>_</em></strong>_</td>
+</tr>
+<tr>
+<td><strong>Scheduled by</strong></td>
+<td>Keren</td>
+</tr>
+<tr>
+<td><strong>Calendar sent</strong></td>
+<td>☐</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="calendar-invite-copy-paste">Calendar invite — copy-paste</h2>
+<p><strong>Title:</strong> CRM Status Overhaul — Phase 0 Definitions Workshop</p>
+<p><strong>Description:</strong></p>
+<pre><code>We're locking business definitions for the CRM Status Label Overhaul before any schema or data changes.
+
+Agenda:
+1. Terminal states: dropped off vs discharged vs voided vs deferred
+2. Authorization vs lifecycle stage (authorized is NOT a person status)
+3. SOC dates: anticipated vs confirmed start of care
+4. LOB rules: gold LOBs, short-term-only, multi-intake master status
+5. NIA fail / on-hold approach
+6. CDPAP post-sunset remediation
+7. Census definition (billing vs EVV vs CRM)
+8. LOB qualification checklists (LTC, NHTD, OPWDD, private pay)
+
+Pre-read:
+- Discovery notes (Teams / repo)
+- Decision worksheet from alignment meeting
+
+Deliverable: Status Framework v1 draft for sign-off
+
+Facilitator: Joel (operational truth) + Keren (framework)
+</code></pre>
+<p><strong>Required attendees:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Role</th>
+<th>RSVP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Joel</td>
+<td>Operational definitions, facilitator</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Keren</td>
+<td>Framework author, facilitator</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Avi</td>
+<td>CRM feasibility / Schema Manager</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Ops lead(s)</td>
+<td>Intake / authorization reality check</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Leah</td>
+<td>Optional — comms awareness</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Angelo</td>
+<td>Optional — sales dashboard needs</td>
+<td>☐</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="workshop-agenda-90-min">Workshop agenda (90 min)</h2>
+<table>
+<thead>
+<tr>
+<th>Time</th>
+<th>Topic</th>
+<th>Lead</th>
+<th>Decision output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0:00–0:10</td>
+<td>Goals + rules (one status per episode; CRM = source of truth)</td>
+<td>Keren</td>
+<td>Ground rules agreed</td>
+</tr>
+<tr>
+<td>0:10–0:25</td>
+<td>Terminal states: DROPPED_OFF vs DISCHARGED vs voided vs deferred</td>
+<td>Joel</td>
+<td>Written definitions</td>
+</tr>
+<tr>
+<td>0:25–0:35</td>
+<td>Authorization object vs lifecycle stage</td>
+<td>Joel + Avi</td>
+<td>Auth never = person status</td>
+</tr>
+<tr>
+<td>0:35–0:45</td>
+<td>Anticipated SOC vs start of care</td>
+<td>Joel</td>
+<td>Date field rules</td>
+</tr>
+<tr>
+<td>0:45–0:55</td>
+<td>LOB coexistence + short-term-only rule</td>
+<td>Joel</td>
+<td>Primary LOB + sales dash rule</td>
+</tr>
+<tr>
+<td>0:55–1:05</td>
+<td>NIA fail → ON_HOLD (or alternative)</td>
+<td>Joel</td>
+<td>Hold reason + duration</td>
+</tr>
+<tr>
+<td>1:05–1:15</td>
+<td>CDPAP remediation</td>
+<td>Joel + Avi</td>
+<td>Batch rule for Phase 3</td>
+</tr>
+<tr>
+<td>1:15–1:25</td>
+<td>Census definition</td>
+<td>Joel + ops</td>
+<td>Reconciliation target</td>
+</tr>
+<tr>
+<td>1:25–1:30</td>
+<td>Next steps: Framework v1 owners + due date</td>
+<td>Keren</td>
+<td>Sign-off schedule</td>
+</tr>
+</tbody>
+</table>
+<p>Use <a href="../discovery/CRM-DECISION-WORKSPACE.html"><code>discovery/CRM-DECISION-WORKSPACE.md</code></a> sections: move agreed items to <strong>FINAL DECISIONS (LOCKED)</strong>.</p>
+<hr>
+<h2 id="status-framework-v1-owners">Status Framework v1 — owners</h2>
+<table>
+<thead>
+<tr>
+<th>Deliverable</th>
+<th>Primary owner</th>
+<th>Reviewer</th>
+<th>Approver</th>
+<th>Due</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Status definitions (lifecycle stages)</td>
+<td>Keren</td>
+<td>Joel</td>
+<td>Joel + Avi</td>
+<td><strong><em>_</em></strong>___</td>
+</tr>
+<tr>
+<td>LOB qualification checklists</td>
+<td>Joel</td>
+<td>Ops leads</td>
+<td>Joel</td>
+<td><strong><em>_</em></strong>___</td>
+</tr>
+<tr>
+<td>Edge case decisions (NIA, short-term, CDPAP)</td>
+<td>Keren</td>
+<td>Joel</td>
+<td>Stakeholders</td>
+<td><strong><em>_</em></strong>___</td>
+</tr>
+<tr>
+<td>Legacy term mapping (pre-intake, closed, authorized)</td>
+<td>Keren</td>
+<td>Avi</td>
+<td>Avi</td>
+<td><strong><em>_</em></strong>___</td>
+</tr>
+<tr>
+<td><strong>Signed Status Framework v1</strong></td>
+<td>Keren</td>
+<td>All above</td>
+<td>Joel (ops) + Avi (CRM)</td>
+<td><strong><em>_</em></strong>___</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Format:</strong> PowerPoint or doc — team preference from alignment meeting: <strong><em>_</em></strong><strong><em>_</em></strong>_</p>
+<p><strong>Sign-off method:</strong> ☐ Email ☐ Asana milestone ☐ Teams thread ☐ Other: <strong><em>_</em></strong></p>
+<hr>
+<h2 id="framework-v1-minimum-contents">Framework v1 minimum contents</h2>
+<ol>
+<li><strong>Lifecycle diagram</strong> — Lead → Referral → Intake → Patient → terminal states</li>
+<li><strong>Status definitions</strong> — one sentence each; maps to <a href="../schema/enums.json"><code>enums.json</code></a> values</li>
+<li><strong>Entry triggers</strong> — what moves a record between stages</li>
+<li><strong>Explicit rules</strong> — one status per person; auth is not a stage; short-term rule</li>
+<li><strong>LOB matrix</strong> — gold LOBs; primary LOB when multiple intakes open</li>
+<li><strong>Edge case table</strong> — scenario → status → drop/hold reason</li>
+<li><strong>Deprecated terms</strong> — pre-intake, closed, person-level authorized → replacement</li>
+<li><strong>Census definition</strong> — how "active patient" is counted</li>
+<li><strong>Approval block</strong> — names, dates</li>
+</ol>
+<hr>
+<h2 id="unblocks-when-complete">Unblocks when complete</h2>
+<table>
+<thead>
+<tr>
+<th>Milestone</th>
+<th>Asana task name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Phase 0 sign-off</td>
+<td>Document signed decisions — Status Framework v1 (PowerPoint / doc)</td>
+</tr>
+</tbody>
+</table>
+<p>This milestone <strong>blocks all Phase 1 tasks</strong> per <a href="../asana/dependencies.json"><code>dependencies.json</code></a> (unless Decision 7 changed that in alignment meeting).</p>
+<hr>
+<h2 id="after-workshop">After workshop</h2>
+<ul>
+<li>[ ] Keren publishes Framework v1 draft within _____ business days</li>
+<li>[ ] Review cycle: _____ days</li>
+<li>[ ] Mark Phase 0 milestone complete in Asana</li>
+<li>[ ] Notify team in Teams — Phase 1 baseline audit may begin</li>
+<li>[ ] Update <a href="03-decision-worksheet.html"><code>03-decision-worksheet.md</code></a> with any deferred alignment decisions</li>
+</ul></article></main>
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose" });
+  </script>
+</body>
+</html>

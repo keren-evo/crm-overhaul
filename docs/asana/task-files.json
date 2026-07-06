@@ -1,0 +1,318 @@
+{
+  "version": "1.0.0",
+  "updated": "2026-07-06",
+  "github": {
+    "repo": "klacadin/evo-growth",
+    "branch": "master",
+    "crm_tree": "https://github.com/klacadin/evo-growth/tree/master/crm"
+  },
+  "description": "Repo artifact paths per Asana parent task. CSV export uses GitHub blob URLs.",
+  "tasks": {
+    "Confirm project charter and success criteria": [
+      "crm/Link-Homecare-CRM-Status-Architecture-Execution-Workspace.md",
+      "crm/asana/project-description.md",
+      "crm/asana/structure.json"
+    ],
+    "Confirm team roles and RACI": [
+      "crm/asana/asana-structure.md",
+      "crm/asana/project-description.md",
+      "crm/asana/custom-fields.json"
+    ],
+    "Schedule definitions workshop (90 min)": [
+      "crm/alignment-meeting/01-share-with-team.md",
+      "crm/alignment-meeting/05-phase0-workshop.md",
+      "crm/alignment-meeting/03-decision-worksheet.md",
+      "crm/alignment-meeting/README.md"
+    ],
+    "Establish change control rules": [
+      "crm/asana/project-description.md",
+      "crm/meeting-notes/2026-07-pipeline-alignment.md",
+      "crm/asana/dependencies.json"
+    ],
+    "Joel: Schedule CRM implementation review with Avi's team": [
+      "crm/meeting-notes/2026-07-pipeline-alignment.md",
+      "crm/glossary-pipeline-v2.md",
+      "crm/flowcharts/pipeline-flowcharts-v1.md",
+      "crm/glossary/drop-reasons-for-signoff.md"
+    ],
+    "Leah: Follow-up and coordinate Avi meeting scheduling": [
+      "crm/meeting-notes/2026-07-pipeline-alignment.md",
+      "crm/asana/workshop-jul2026-asana-sync.md"
+    ],
+    "Refine CRM glossary and terminology (living doc)": [
+      "crm/glossary-pipeline-v2.md",
+      "crm/glossary/status-terminology-v1.md"
+    ],
+    "Finalize patient status labels and lifecycle flowcharts": [
+      "crm/flowcharts/pipeline-flowcharts-v1.md",
+      "crm/onedrive-hub/flowcharts/pipeline-flowcharts-v1.html",
+      "crm/glossary-pipeline-v2.md"
+    ],
+    "Confirm master lifecycle model (Jul 2026 alignment)": [
+      "crm/meeting-notes/2026-07-pipeline-alignment.md",
+      "crm/glossary-pipeline-v2.md"
+    ],
+    "Confirm layer separation model": [
+      "crm/glossary-pipeline-v2.md",
+      "crm/Link-Homecare-CRM-Status-Architecture-Execution-Workspace.md",
+      "crm/schema/lifecycle.ts"
+    ],
+    "Resolve edge case decision log (20 scenarios)": [
+      "crm/Link-Homecare-CRM-Status-Architecture-Execution-Workspace.md",
+      "crm/glossary-pipeline-v2.md",
+      "crm/alignment-meeting/03-decision-worksheet.md"
+    ],
+    "Confirm census definition": [
+      "crm/audit/data-integrity-audit.sql",
+      "crm/audit/dashboard-queries.sql",
+      "crm/Link-Homecare-CRM-Status-Architecture-Execution-Workspace.md"
+    ],
+    "Export and sign off ReferralOutcome picklist": [
+      "crm/glossary/drop-reasons-for-signoff.md",
+      "crm/schema/enums.json",
+      "crm/asana/nexus-discovery-asana-sync.md"
+    ],
+    "Document LOB eligibility criteria matrix": [
+      "crm/glossary-pipeline-v2.md",
+      "crm/Link-Homecare-CRM-Status-Architecture-Execution-Workspace.md"
+    ],
+    "Simplify drop reasons to ~10 categories": [
+      "crm/glossary/drop-reasons-for-signoff.md",
+      "crm/glossary-pipeline-v2.md"
+    ],
+    "Joel: Confirm NIA re-application waiting period": [
+      "crm/glossary-pipeline-v2.md",
+      "crm/meeting-notes/2026-07-pipeline-alignment.md"
+    ],
+    "Document short-term care integration rules": [
+      "crm/glossary-pipeline-v2.md",
+      "crm/flowcharts/pipeline-flowcharts-v1.md",
+      "crm/meeting-notes/2026-07-pipeline-alignment.md"
+    ],
+    "Sign Status Framework v1": [
+      "crm/glossary-pipeline-v2.md",
+      "crm/flowcharts/pipeline-flowcharts-v1.md",
+      "crm/glossary/drop-reasons-for-signoff.md",
+      "crm/meeting-notes/2026-07-pipeline-alignment.md",
+      "crm/alignment-meeting/03-decision-worksheet.md"
+    ],
+    "Schema Manager object inventory": [
+      "crm/crm-bot-discovery.prompt.md",
+      "crm/asana/nexus-discovery-asana-sync.md",
+      "crm/schema/enums.json"
+    ],
+    "Map Nexus objects to audit queries": [
+      "crm/audit/data-integrity-audit.sql",
+      "crm/schema/nexus-episode-status-map.json",
+      "crm/crm-bot-discovery.prompt.md"
+    ],
+    "Run distribution baselines": [
+      "crm/audit/data-integrity-audit.sql",
+      "crm/schema/nexus-episode-status-map.json"
+    ],
+    "Run integrity baselines — critical cohorts": [
+      "crm/audit/data-integrity-audit.sql",
+      "crm/Link-Homecare-CRM-Status-Architecture-Execution-Workspace.md"
+    ],
+    "Record census gap baseline": [
+      "crm/audit/dashboard-queries.sql",
+      "crm/audit/data-integrity-audit.sql",
+      "crm/Link-Homecare-CRM-Status-Architecture-Execution-Workspace.md"
+    ],
+    "Export manual review batch IDs": [
+      "crm/schema/nexus-episode-status-map.json"
+    ],
+    "Baseline audit complete — all counts recorded": [
+      "crm/audit/data-integrity-audit.sql",
+      "crm/Link-Homecare-CRM-Status-Architecture-Execution-Workspace.md"
+    ],
+    "Finalize status architecture tables": [
+      "crm/glossary-pipeline-v2.md",
+      "crm/schema/lifecycle.ts",
+      "crm/schema/enums.json"
+    ],
+    "Complete old-to-new status mapping": [
+      "crm/schema/nexus-episode-status-map.json",
+      "crm/schema/legacy-status-map.json"
+    ],
+    "Define required field matrix": [
+      "crm/schema/validation-rules.ts",
+      "crm/schema/enums.json"
+    ],
+    "Draft dashboard logic spec": [
+      "crm/audit/dashboard-queries.sql",
+      "crm/Link-Homecare-CRM-Status-Architecture-Execution-Workspace.md"
+    ],
+    "Publish Implementation Brief for Avi": [
+      "crm/schema/enums.json",
+      "crm/schema/nexus-episode-status-map.json",
+      "crm/schema/validation-rules.ts",
+      "crm/schema/lifecycle.ts",
+      "crm/glossary-pipeline-v2.md"
+    ],
+    "Episode picklist rebuild": [
+      "crm/schema/enums.json",
+      "crm/schema/nexus-episode-status-map.json",
+      "crm/glossary-pipeline-v2.md"
+    ],
+    "Authorization picklist migration": [
+      "crm/schema/enums.json",
+      "crm/schema/validation-rules.ts",
+      "crm/asana/nexus-discovery-asana-sync.md"
+    ],
+    "Episode UI updates": [
+      "crm/flowcharts/pipeline-flowcharts-v1.md",
+      "crm/glossary-pipeline-v2.md",
+      "crm/onedrive-hub/flowcharts/pipeline-flowcharts-v1.html"
+    ],
+    "Validation rules — blocking saves": [
+      "crm/schema/validation-rules.ts",
+      "crm/schema/lifecycle.ts"
+    ],
+    "Automations": [
+      "crm/schema/validation-rules.ts",
+      "crm/schema/lifecycle.ts",
+      "crm/asana/nexus-discovery-asana-sync.md"
+    ],
+    "Staging build complete": [
+      "crm/schema/enums.json",
+      "crm/schema/validation-rules.ts",
+      "crm/schema/nexus-episode-status-map.json"
+    ],
+    "Build staging migration script": [
+      "crm/schema/nexus-episode-status-map.json",
+      "crm/schema/legacy-status-map.json"
+    ],
+    "Migrate Episode statuses": [
+      "crm/schema/nexus-episode-status-map.json"
+    ],
+    "Remediate legacy Patient picklists": [
+      "crm/schema/legacy-status-map.json",
+      "crm/schema/nexus-episode-status-map.json"
+    ],
+    "Run specialty remediation batches": [
+      "crm/schema/nexus-episode-status-map.json",
+      "crm/audit/data-integrity-audit.sql"
+    ],
+    "Re-run baselines on staging": [
+      "crm/audit/data-integrity-audit.sql",
+      "crm/audit/dashboard-queries.sql"
+    ],
+    "Ops review — 50 remediated records": [
+      "crm/glossary-pipeline-v2.md",
+      "crm/alignment-meeting/03-decision-worksheet.md"
+    ],
+    "Remediation validated — census gap acceptable on staging": [
+      "crm/audit/data-integrity-audit.sql",
+      "crm/audit/dashboard-queries.sql"
+    ],
+    "Rebuild Leads / Referral list view": [
+      "crm/glossary-pipeline-v2.md",
+      "crm/audit/dashboard-queries.sql"
+    ],
+    "Rebuild leadership widgets": [
+      "crm/audit/dashboard-queries.sql",
+      "crm/audit/data-integrity-audit.sql"
+    ],
+    "Rebuild ops queues": [
+      "crm/audit/dashboard-queries.sql"
+    ],
+    "Rebuild growth / funnel reporting": [
+      "crm/audit/dashboard-queries.sql"
+    ],
+    "QA — zero orphan authorized on census widget": [
+      "crm/audit/dashboard-queries.sql",
+      "crm/audit/data-integrity-audit.sql"
+    ],
+    "Sales UAT — Angelo": [
+      "crm/alignment-meeting/03-decision-worksheet.md",
+      "crm/glossary-pipeline-v2.md"
+    ],
+    "Ops UAT — Joel + intake leads": [
+      "crm/alignment-meeting/03-decision-worksheet.md",
+      "crm/glossary-pipeline-v2.md"
+    ],
+    "UAT passed — sales and ops sign-off": [
+      "crm/alignment-meeting/03-decision-worksheet.md",
+      "crm/asana/milestones.json"
+    ],
+    "Final go/no-go review": [
+      "crm/asana/milestones.json",
+      "crm/asana/dependencies.json",
+      "crm/asana/project-description.md"
+    ],
+    "Schedule and communicate migration window": [
+      "crm/asana/project-description.md",
+      "crm/alignment-meeting/01-share-with-team.md"
+    ],
+    "Execute production remediation batch": [
+      "crm/schema/nexus-episode-status-map.json"
+    ],
+    "Enable production rules and automations": [
+      "crm/schema/validation-rules.ts",
+      "crm/schema/lifecycle.ts"
+    ],
+    "Switch production dashboards and list views": [
+      "crm/audit/dashboard-queries.sql"
+    ],
+    "Post-cutover census validation": [
+      "crm/audit/data-integrity-audit.sql",
+      "crm/audit/dashboard-queries.sql"
+    ],
+    "Production live — census gap closed": [
+      "crm/asana/milestones.json",
+      "crm/audit/dashboard-queries.sql"
+    ],
+    "Hypercare monitoring (2 weeks)": [
+      "crm/asana/project-description.md"
+    ],
+    "Publish NY Status Framework v1 (canonical)": [
+      "crm/glossary-pipeline-v2.md",
+      "crm/flowcharts/pipeline-flowcharts-v1.md",
+      "crm/onedrive-hub/index.html"
+    ],
+    "Update department playbooks": [
+      "crm/glossary-pipeline-v2.md",
+      "crm/alignment-meeting/05-phase0-workshop.md"
+    ],
+    "Conduct team training sessions": [
+      "crm/glossary-pipeline-v2.md",
+      "crm/flowcharts/pipeline-flowcharts-v1.md",
+      "crm/onedrive-hub/index.html"
+    ],
+    "Deprecate legacy fields (write-block only)": [
+      "crm/schema/nexus-episode-status-map.json",
+      "crm/schema/enums.json",
+      "crm/schema/legacy-status-map.json"
+    ],
+    "Florida delta checklist": [
+      "crm/leadtrap/leadtrap.md",
+      "crm/README.md"
+    ],
+    "Confirm growth readiness prerequisites": [
+      "crm/audit/dashboard-queries.sql",
+      "crm/asana/milestones.json"
+    ],
+    "UTM and campaign attribution standards": [
+      "crm/leadtrap/leadtrap.md"
+    ],
+    "Website forms → CRM integration audit": [
+      "crm/leadtrap/leadtrap.md",
+      "src/app/api/webhooks/crm/route.ts"
+    ],
+    "LeadTrap / Ava integration": [
+      "crm/leadtrap/leadtrap.md"
+    ],
+    "Meta / paid social attribution": [
+      "crm/leadtrap/leadtrap.md"
+    ],
+    "Referral partner tracking (doctors, case managers)": [
+      "crm/audit/dashboard-queries.sql",
+      "crm/glossary-pipeline-v2.md"
+    ],
+    "Growth dashboard — qualified referral → active patient": [
+      "crm/audit/dashboard-queries.sql",
+      "crm/leadtrap/leadtrap.md"
+    ]
+  }
+}

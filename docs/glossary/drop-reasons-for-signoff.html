@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Drop Reasons — Sign-Off Sheet for Joel</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    :root {
+      --bg: #f4f6f9;
+      --card: #ffffff;
+      --text: #172033;
+      --muted: #5c6578;
+      --accent: #0f766e;
+      --accent-light: #e6f4f2;
+      --border: #d8dee9;
+      --code-bg: #f1f5f9;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.65 "Segoe UI", system-ui, -apple-system, sans-serif;
+    }
+    .topbar {
+      background: linear-gradient(135deg, #0f766e 0%, #134e4a 100%);
+      color: #fff;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.9rem;
+    }
+    .topbar a {
+      color: #fff;
+      text-decoration: none;
+      opacity: 0.95;
+    }
+    .topbar a:hover { text-decoration: underline; }
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+    article {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem 2.25rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    article h1 {
+      margin-top: 0;
+      font-size: 1.75rem;
+      color: #0d5c56;
+      line-height: 1.25;
+      border-bottom: 2px solid var(--accent-light);
+      padding-bottom: 0.5rem;
+    }
+    article h2 {
+      margin-top: 2rem;
+      font-size: 1.25rem;
+      color: #134e4a;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.35rem;
+    }
+    article h3 { margin-top: 1.5rem; color: #1e3a38; }
+    article h4 { margin-top: 1.25rem; }
+    a { color: var(--accent); }
+    a:hover { color: #0d5c56; }
+    p { margin: 0.85rem 0; }
+    ul, ol { padding-left: 1.5rem; }
+    li { margin: 0.35rem 0; }
+    li > ul { margin-top: 0.25rem; }
+    blockquote {
+      margin: 1.25rem 0;
+      padding: 0.75rem 1rem;
+      border-left: 4px solid var(--accent);
+      background: var(--accent-light);
+      border-radius: 0 8px 8px 0;
+    }
+    blockquote p { margin: 0.35rem 0; }
+    code {
+      font-family: Consolas, "SF Mono", monospace;
+      font-size: 0.9em;
+      background: var(--code-bg);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+    }
+    pre {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 1rem 1.15rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+    pre code {
+      background: transparent;
+      padding: 0;
+      color: inherit;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.25rem 0;
+      font-size: 0.95rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.6rem 0.75rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #f8fafc;
+      font-weight: 600;
+      color: #134e4a;
+    }
+    tr:nth-child(even) td { background: #fafbfc; }
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+    .mermaid {
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+    .toc {
+      background: var(--accent-light);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .toc ul { margin: 0.5rem 0 0; }
+    input[type="checkbox"] { margin-right: 0.35rem; }
+    @media print {
+      body { background: #fff; }
+      .topbar { display: none; }
+      article { box-shadow: none; border: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topbar"><a href="../index.html">← CRM Overhaul Hub</a></nav>
+  <main><article><h1 id="drop-reasons-sign-off-sheet-for-joel">Drop Reasons — Sign-Off Sheet for Joel</h1>
+<p><strong>Purpose:</strong> Replace long, confusing drop-reason picklists with <strong>10 clear categories</strong> for CRM filtering, reporting, and enrollment specialist workflow.<br>
+<strong>Maps to:</strong> Nexus <code>Episode.outcome</code> / ReferralOutcome picklist<br>
+<strong>Owner:</strong> Keren · <strong>Sign-off:</strong> Joel Schlanger<br>
+<strong>Status:</strong> <strong>Pending Joel sign-off</strong> — required before ReferralOutcome export and backfill</p>
+<p><strong>Use when:</strong> Master pipeline moves to <strong>Dropped Off</strong> (anytime before Active).<br>
+<strong>Not for:</strong> Discharge reasons — see discharge list at bottom.</p>
+<hr>
+<h2 id="proposed-drop-reasons-10">Proposed drop reasons (10)</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Category</th>
+<th>Definition</th>
+<th>When enrollment uses it</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>NIA Failed</strong></td>
+<td>Patient did not pass NY Independent Assessor for MLTC/LTC</td>
+<td>NIA outcome = fail; no alternate LOB</td>
+<td>Failed both NIA appointments</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Not Eligible — Insurance or Diagnosis</strong></td>
+<td>Does not meet LOB eligibility (payer or clinical)</td>
+<td>Qualifying or Referral in Progress</td>
+<td>Medicare-only for MLTC path</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Payer Denied</strong></td>
+<td>Authorization or payer explicitly denied</td>
+<td>Referral in Progress after auth denial</td>
+<td>MLTC denial letter</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Patient / Family Declined</strong></td>
+<td>Patient or family chose not to proceed</td>
+<td>Any pre-Active stage</td>
+<td>"Changed mind about home care"</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>No Follow-Up / Unresponsive</strong></td>
+<td>Could not reach after defined outreach attempts</td>
+<td>Qualifying — SLA exceeded</td>
+<td>3+ calls, no response</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>Chose Competitor</strong></td>
+<td>Patient went to another agency</td>
+<td>Qualifying or Referral in Progress</td>
+<td>Signed with competing CHHA</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>Documentation Incomplete</strong></td>
+<td>Required docs not obtained in reasonable time</td>
+<td>Referral in Progress</td>
+<td>Missing POA after 30 days</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>Short-Term Only / Not Continuing</strong></td>
+<td>Accepted short-term path only; not pursuing long-term</td>
+<td>Short-term complete or declined LTC upsell</td>
+<td>NH discharge only; no LTC interest</td>
+</tr>
+<tr>
+<td>9</td>
+<td><strong>Referred to Third Party</strong></td>
+<td>Link routed patient elsewhere (not Link patient)</td>
+<td>Qualifying or Referral in Progress</td>
+<td>Sent to Girling or partner agency</td>
+</tr>
+<tr>
+<td>10</td>
+<td><strong>Other</strong></td>
+<td>None of above</td>
+<td>Last resort</td>
+<td><strong>Free-text note required</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="special-cohort-mappings-backfill">Special cohort mappings (backfill)</h3>
+<table>
+<thead>
+<tr>
+<th>Legacy / special case</th>
+<th>Map to category</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CDPAP post–Apr 2025 sunset</td>
+<td><strong>Not Eligible</strong> or <strong>Other</strong> + note "CDPAP sunset"</td>
+</tr>
+<tr>
+<td>Pre-Intake NIA wait</td>
+<td>Do <strong>not</strong> drop — use follow-up date; if terminal drop → <strong>NIA Failed</strong></td>
+</tr>
+<tr>
+<td>Voided intake (error)</td>
+<td>Not a drop reason — intake subprocess only</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="validation-rules-proposed-for-avi">Validation rules (proposed for Avi)</h2>
+<table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Required on Dropped Off</td>
+<td>Drop reason required before save</td>
+</tr>
+<tr>
+<td>Other</td>
+<td>Requires <code>outcome_notes</code> (free text)</td>
+</tr>
+<tr>
+<td>NIA Failed</td>
+<td>Suggest auto-set follow-up date = today + 180 days <em>(Joel confirming)</em></td>
+</tr>
+<tr>
+<td>Discharged</td>
+<td>May <strong>not</strong> use drop reasons — use discharge reasons</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="discharge-reasons-separate-was-active">Discharge reasons (separate — was Active)</h2>
+<p>Use when master pipeline = <strong>Discharged</strong>. Joel to confirm final list; suggested starter set:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Discharge reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Goals met / care plan complete</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Admitted to nursing home / facility</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Deceased</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Transferred to another agency</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Lost Medicaid / MLTC eligibility</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Patient / family voluntary exit</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Moved out of service area</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Other <em>(note required)</em></td>
+</tr>
+</tbody>
+</table>
+<p><em>Keep discharge list separate from drop list in CRM picklists or use typed outcome field.</em></p>
+<hr>
+<h2 id="joel-sign-off">Joel sign-off</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Agree?</th>
+<th>Changes requested</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10 drop categories above</td>
+<td>☐ Yes ☐ Revise</td>
+<td></td>
+</tr>
+<tr>
+<td>NIA Failed → 180-day follow-up queue</td>
+<td>☐ Yes ☐ No ☐ Different: ___ days</td>
+<td></td>
+</tr>
+<tr>
+<td>Discharge starter set (8)</td>
+<td>☐ Yes ☐ Revise</td>
+<td></td>
+</tr>
+<tr>
+<td>"Short-Term Only" vs merge with "Referred to Third Party"</td>
+<td>☐ Keep separate ☐ Merge</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Signature:</strong> <strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_</em></strong><strong><em>_ <strong>Date:</strong> </em></strong><strong><em>_</em></strong></p>
+<hr>
+<h2 id="after-sign-off">After sign-off</h2>
+<ol>
+<li>Keren updates <code>glossary-pipeline-v2.md</code> and flowcharts if needed  </li>
+<li>Avi exports current ReferralOutcome values and maps old → new for backfill  </li>
+<li>Leah may coordinate Avi meeting per project gate  </li>
+</ol></article></main>
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose" });
+  </script>
+</body>
+</html>

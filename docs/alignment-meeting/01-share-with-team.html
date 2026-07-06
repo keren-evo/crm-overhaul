@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pre-Meeting — Share With Team</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    :root {
+      --bg: #f4f6f9;
+      --card: #ffffff;
+      --text: #172033;
+      --muted: #5c6578;
+      --accent: #0f766e;
+      --accent-light: #e6f4f2;
+      --border: #d8dee9;
+      --code-bg: #f1f5f9;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.65 "Segoe UI", system-ui, -apple-system, sans-serif;
+    }
+    .topbar {
+      background: linear-gradient(135deg, #0f766e 0%, #134e4a 100%);
+      color: #fff;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.9rem;
+    }
+    .topbar a {
+      color: #fff;
+      text-decoration: none;
+      opacity: 0.95;
+    }
+    .topbar a:hover { text-decoration: underline; }
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+    article {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem 2.25rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    article h1 {
+      margin-top: 0;
+      font-size: 1.75rem;
+      color: #0d5c56;
+      line-height: 1.25;
+      border-bottom: 2px solid var(--accent-light);
+      padding-bottom: 0.5rem;
+    }
+    article h2 {
+      margin-top: 2rem;
+      font-size: 1.25rem;
+      color: #134e4a;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.35rem;
+    }
+    article h3 { margin-top: 1.5rem; color: #1e3a38; }
+    article h4 { margin-top: 1.25rem; }
+    a { color: var(--accent); }
+    a:hover { color: #0d5c56; }
+    p { margin: 0.85rem 0; }
+    ul, ol { padding-left: 1.5rem; }
+    li { margin: 0.35rem 0; }
+    li > ul { margin-top: 0.25rem; }
+    blockquote {
+      margin: 1.25rem 0;
+      padding: 0.75rem 1rem;
+      border-left: 4px solid var(--accent);
+      background: var(--accent-light);
+      border-radius: 0 8px 8px 0;
+    }
+    blockquote p { margin: 0.35rem 0; }
+    code {
+      font-family: Consolas, "SF Mono", monospace;
+      font-size: 0.9em;
+      background: var(--code-bg);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+    }
+    pre {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 1rem 1.15rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+    pre code {
+      background: transparent;
+      padding: 0;
+      color: inherit;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.25rem 0;
+      font-size: 0.95rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.6rem 0.75rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #f8fafc;
+      font-weight: 600;
+      color: #134e4a;
+    }
+    tr:nth-child(even) td { background: #fafbfc; }
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+    .mermaid {
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+    .toc {
+      background: var(--accent-light);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .toc ul { margin: 0.5rem 0 0; }
+    input[type="checkbox"] { margin-right: 0.35rem; }
+    @media print {
+      body { background: #fff; }
+      .topbar { display: none; }
+      article { box-shadow: none; border: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topbar"><a href="../index.html">← CRM Overhaul Hub</a></nav>
+  <main><article><h1 id="pre-meeting-share-with-team">Pre-Meeting — Share With Team</h1>
+<p><strong>Send this before the alignment meeting</strong> (Teams, email, or Asana project description).<br>
+<strong>From:</strong> Keren · <strong>Re:</strong> EVO CRM Status Label Overhaul — alignment session</p>
+<hr>
+<h2 id="subject-line-copy">Subject line (copy)</h2>
+<pre><code>CRM Status Overhaul — alignment on phased plan (your input needed)
+</code></pre>
+<hr>
+<h2 id="message-body-copy-paste">Message body (copy-paste)</h2>
+<p>Hi team,</p>
+<p>We're scheduling an alignment session on the <strong>CRM Status Label Overhaul Sprint</strong> — standardizing lifecycle labels, fixing the authorized/census gap (~1,960 on the dashboard vs ~1,200–1,300 true active census), and rebuilding dashboards so sales and ops can trust pipeline data at a glance.</p>
+<h3 id="why-were-meeting">Why we're meeting</h3>
+<p>The CRM still carries Salesforce-era labels (<code>pre-intake</code>, <code>closed</code>, person-level <code>authorized</code>) that don't match how we operate today. A single record can show conflicting signals (e.g. "patient" + "lead" + "new"). That makes funnel reporting and drop-off analysis unreliable.</p>
+<h3 id="how-this-plan-was-built">How this plan was built</h3>
+<p>I've drafted a <strong>phased approach</strong> in Asana (source files in <a href="../asana/"><code>crm/asana/</code></a>) based on discovery notes and repo artifacts. I'm still learning your operational processes and CRM history — <strong>this is a proposal, not a final plan.</strong></p>
+<h3 id="what-i-need-from-you-in-the-meeting">What I need from you in the meeting</h3>
+<ul>
+<li>Does each phase reflect how work actually happens?</li>
+<li>Are tasks missing, redundant, or in the wrong order?</li>
+<li>Are dependencies too strict or too loose?</li>
+<li>Who should own what?</li>
+</ul>
+<p><strong>Please edit freely</strong> in Asana (or flag in the meeting). Nothing in Phase 2+ should start until we agree Phase 0 is locked — but the shape of Phase 0 itself is what we're here to finalize.</p>
+<h3 id="please-review-before-we-meet-15-min">Please review before we meet (15 min)</h3>
+<table>
+<thead>
+<tr>
+<th>Artifact</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Asana project</td>
+<td>[EVO CRM Status Label Overhaul Sprint]</td>
+</tr>
+<tr>
+<td>Discovery session notes</td>
+<td><a href="../discovery/1-1-CRM-Discovery-Session.html"><code>discovery/1-1-CRM-Discovery-Session.md</code></a></td>
+</tr>
+<tr>
+<td>Decision workspace template</td>
+<td><a href="../discovery/CRM-DECISION-WORKSPACE.html"><code>discovery/CRM-DECISION-WORKSPACE.md</code></a></td>
+</tr>
+<tr>
+<td>CRM package overview</td>
+<td><a href="../README.html"><code>README.md</code></a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="proposed-attendees">Proposed attendees</h3>
+<p>Keren, Joel, Avi, Leah, Angelo (+ ops leads for Phase 0 definitions if available)</p>
+<p>Thanks — looking forward to aligning.</p>
+<p>Keren</p>
+<hr>
+<h2 id="problem-recap-for-meeting-opener-5-min">Problem recap (for meeting opener — 5 min)</h2>
+<p>Use these bullets if you need a spoken recap:</p>
+<ol>
+<li><strong>Dashboard inflation:</strong> ~1,960 "authorized" patients on the dashboard vs ~1,200–1,300 true active census.</li>
+<li><strong>Legacy labels:</strong> <code>pre-intake</code>, <code>closed</code>, and person-level <code>authorized</code> are Salesforce workarounds, not business logic.</li>
+<li><strong>Conflicting signals:</strong> One record can be tagged patient + lead + new at the same time.</li>
+<li><strong>Funnel blindness:</strong> Cannot reliably tell if drop-offs are NIA failures, no follow-up, or competitor loss.</li>
+<li><strong>Foundation first:</strong> Keren's mandate is to fix baseline status labels before dashboards, sales reporting, or marketing analytics.</li>
+<li><strong>Single-record architecture:</strong> The new CRM follows one person from first contact through end of life — we need one computed lifecycle stage, not overlapping tags.</li>
+</ol>
+<hr>
+<h2 id="success-criteria-remind-team-what-done-looks-like">Success criteria (remind team what "done" looks like)</h2>
+<ul>
+<li>Single computed <code>lifecycle_stage</code> per person — no conflicting patient/lead/new tags</li>
+<li><code>Authorized</code> only on intakes with a valid linked Authorization object</li>
+<li>True active census matches operational estimate (~1,200–1,300)</li>
+<li>Sales dashboard: gold LOBs only; short-term-only hidden</li>
+<li><code>pre-intake</code> and <code>closed</code> eliminated → ON_HOLD, DROPPED_OFF, DISCHARGED</li>
+<li>CDPAP cohort remediated (post 2025-04-01)</li>
+<li>Funnel leakage reportable by <code>drop_reason_category</code></li>
+</ul></article></main>
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose" });
+  </script>
+</body>
+</html>

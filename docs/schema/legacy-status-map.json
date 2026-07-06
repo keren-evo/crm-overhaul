@@ -1,0 +1,66 @@
+{
+  "version": "1.0.0",
+  "description": "Batch migration map from legacy Salesforce-era values to unified framework. Run in staging first.",
+  "person_lifecycle_stage": {
+    "pre-intake": {
+      "target": "ON_HOLD",
+      "notes": "Map hold_reason from audit; default NIA_FAILED_WAIT if NIA-related"
+    },
+    "closed": {
+      "target": "REQUIRES_MANUAL_SPLIT",
+      "split_rules": {
+        "was_ever_active_patient": "DISCHARGED",
+        "never_active_patient": "DROPPED_OFF"
+      }
+    },
+    "authorized": {
+      "target": "COMPUTED",
+      "compute_from": "intakes",
+      "fallback": "AUTHORIZED_PENDING_SOC"
+    },
+    "patient": {
+      "target": "COMPUTED",
+      "compute_from": "intakes",
+      "fallback": "PATIENT_ACTIVE"
+    },
+    "lead": {
+      "target": "LEAD_NEW",
+      "if_contact_attempts_gt_0": "LEAD_CONTACTING"
+    },
+    "new": {
+      "target": "LEAD_NEW",
+      "if_has_open_intake": "INTAKE_IN_PROGRESS",
+      "if_converted": "REFERRAL_ACTIVE"
+    },
+    "in-progress": {
+      "target": "INTAKE_IN_PROGRESS"
+    }
+  },
+  "person_tags_to_remove": ["patient", "lead", "authorized"],
+  "intake_status": {
+    "new": "INTAKE_NEW",
+    "in-progress": "INTAKE_IN_PROGRESS",
+    "authorized": "INTAKE_AUTHORIZED",
+    "active": "INTAKE_ACTIVE",
+    "dropped": "INTAKE_DROPPED",
+    "dropped intake": "INTAKE_DROPPED",
+    "voided": "INTAKE_VOIDED",
+    "pre-intake": "INTAKE_ON_HOLD"
+  },
+  "lob_remediation": {
+    "CDPAP": {
+      "deprecated_after": "2025-04-01",
+      "default_action": "DISCHARGED_OR_DROPPED",
+      "drop_reason_category": "CDPAP_SUNSET",
+      "if_never_active": "DROPPED_OFF",
+      "if_was_active_no_service_12mo": "DISCHARGED"
+    }
+  },
+  "third_party_referrals": {
+    "Girling": {
+      "is_agency_patient": false,
+      "target_person_stage": "DROPPED_OFF",
+      "drop_reason_category": "THIRD_PARTY_REFERRAL"
+    }
+  }
+}

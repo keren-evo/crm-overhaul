@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Asana saved views — CRM Status Architecture Rebuild</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    :root {
+      --bg: #f4f6f9;
+      --card: #ffffff;
+      --text: #172033;
+      --muted: #5c6578;
+      --accent: #0f766e;
+      --accent-light: #e6f4f2;
+      --border: #d8dee9;
+      --code-bg: #f1f5f9;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.65 "Segoe UI", system-ui, -apple-system, sans-serif;
+    }
+    .topbar {
+      background: linear-gradient(135deg, #0f766e 0%, #134e4a 100%);
+      color: #fff;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.9rem;
+    }
+    .topbar a {
+      color: #fff;
+      text-decoration: none;
+      opacity: 0.95;
+    }
+    .topbar a:hover { text-decoration: underline; }
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+    article {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem 2.25rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    article h1 {
+      margin-top: 0;
+      font-size: 1.75rem;
+      color: #0d5c56;
+      line-height: 1.25;
+      border-bottom: 2px solid var(--accent-light);
+      padding-bottom: 0.5rem;
+    }
+    article h2 {
+      margin-top: 2rem;
+      font-size: 1.25rem;
+      color: #134e4a;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.35rem;
+    }
+    article h3 { margin-top: 1.5rem; color: #1e3a38; }
+    article h4 { margin-top: 1.25rem; }
+    a { color: var(--accent); }
+    a:hover { color: #0d5c56; }
+    p { margin: 0.85rem 0; }
+    ul, ol { padding-left: 1.5rem; }
+    li { margin: 0.35rem 0; }
+    li > ul { margin-top: 0.25rem; }
+    blockquote {
+      margin: 1.25rem 0;
+      padding: 0.75rem 1rem;
+      border-left: 4px solid var(--accent);
+      background: var(--accent-light);
+      border-radius: 0 8px 8px 0;
+    }
+    blockquote p { margin: 0.35rem 0; }
+    code {
+      font-family: Consolas, "SF Mono", monospace;
+      font-size: 0.9em;
+      background: var(--code-bg);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+    }
+    pre {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 1rem 1.15rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+    pre code {
+      background: transparent;
+      padding: 0;
+      color: inherit;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.25rem 0;
+      font-size: 0.95rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.6rem 0.75rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #f8fafc;
+      font-weight: 600;
+      color: #134e4a;
+    }
+    tr:nth-child(even) td { background: #fafbfc; }
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+    .mermaid {
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+    .toc {
+      background: var(--accent-light);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .toc ul { margin: 0.5rem 0 0; }
+    input[type="checkbox"] { margin-right: 0.35rem; }
+    @media print {
+      body { background: #fff; }
+      .topbar { display: none; }
+      article { box-shadow: none; border: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topbar"><a href="../index.html">← CRM Overhaul Hub</a></nav>
+  <main><article><h1 id="asana-saved-views-crm-status-architecture-rebuild">Asana saved views — CRM Status Architecture Rebuild</h1>
+<p>Create in the project: <strong>Add view</strong> → configure filters → <strong>Save view</strong>.</p>
+<hr>
+<h2 id="1-this-week">1. This week</h2>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Layout</td>
+<td>List</td>
+</tr>
+<tr>
+<td>Filter</td>
+<td>Due date = This week</td>
+</tr>
+<tr>
+<td>Filter</td>
+<td>Incomplete</td>
+</tr>
+<tr>
+<td>Sort</td>
+<td>Due date ascending</td>
+</tr>
+<tr>
+<td>Group</td>
+<td>Section</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Use for:</strong> Weekly standup.</p>
+<hr>
+<h2 id="2-decision-gates">2. Decision gates</h2>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Layout</td>
+<td>List</td>
+</tr>
+<tr>
+<td>Filter</td>
+<td>Decision Gate = Yes <strong>OR</strong> Requires Stakeholder Decision = Yes</td>
+</tr>
+<tr>
+<td>Filter</td>
+<td>Incomplete</td>
+</tr>
+<tr>
+<td>Sort</td>
+<td>Priority ascending</td>
+</tr>
+<tr>
+<td>Group</td>
+<td>Section</td>
+</tr>
+<tr>
+<td>Columns</td>
+<td>Task, Assignee, Workstream, Baseline / Target Metric</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Use for:</strong> Joel workshop prep and sign-off sessions.</p>
+<p><strong>Key tasks:</strong> All §2 Definitions decisions · Ops 50-record review · Sales/Ops UAT · Go/no-go · Florida delta</p>
+<hr>
+<h2 id="3-blocked">3. Blocked</h2>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Layout</td>
+<td>List</td>
+</tr>
+<tr>
+<td>Filter</td>
+<td>Blocker = Yes</td>
+</tr>
+<tr>
+<td>Filter</td>
+<td>Incomplete</td>
+</tr>
+<tr>
+<td>Group</td>
+<td>Section</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Use for:</strong> Milestone tracking — 6 gates total.</p>
+<hr>
+<h2 id="4-baseline-audit">4. Baseline audit</h2>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Layout</td>
+<td>List</td>
+</tr>
+<tr>
+<td>Filter</td>
+<td>Workstream = Baseline</td>
+</tr>
+<tr>
+<td>Sort</td>
+<td>Priority</td>
+</tr>
+<tr>
+<td>Columns</td>
+<td>Task, Assignee, Baseline / Target Metric, Subtasks</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Use for:</strong> Filling census gap and cohort counts during §3.</p>
+<hr>
+<h2 id="5-avi-implementation">5. Avi — implementation</h2>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Layout</td>
+<td>Board</td>
+</tr>
+<tr>
+<td>Filter</td>
+<td>Assignee = Avi</td>
+</tr>
+<tr>
+<td>Group</td>
+<td>Section</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Use for:</strong> Build, remediation, dashboards, go-live workload.</p>
+<hr>
+<h2 id="6-go-live-day">6. Go-live day</h2>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Layout</td>
+<td>List</td>
+</tr>
+<tr>
+<td>Filter</td>
+<td>Section = Production Go-Live</td>
+</tr>
+<tr>
+<td>Filter</td>
+<td>Incomplete</td>
+</tr>
+<tr>
+<td>Sort</td>
+<td>Dependencies / manual order</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Critical order:</strong> Go/no-go → Leah comms → Prod remediation → Enable rules → Switch dashboards → Census validation → Hypercare</p>
+<hr>
+<h2 id="7-growth-post-launch">7. Growth (post-launch)</h2>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Layout</td>
+<td>List</td>
+</tr>
+<tr>
+<td>Filter</td>
+<td>Workstream = Growth</td>
+</tr>
+<tr>
+<td>Filter</td>
+<td>Incomplete</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Use for:</strong> After Production live milestone — do not start early.</p>
+<hr>
+<h2 id="pin-recommended">Pin recommended</h2>
+<p><strong>Decision gates</strong> · <strong>Blocked</strong> · <strong>This week</strong></p></article></main>
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose" });
+  </script>
+</body>
+</html>

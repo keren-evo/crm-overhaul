@@ -1,0 +1,52 @@
+{
+  "project": "CRM Status Architecture Rebuild",
+  "version": "2.0.0",
+  "updated": "2026-07-02",
+  "approach": "Workstream-based milestones — not phase-numbered",
+  "instructions": "In Asana: open task → ... → Mark as milestone.",
+  "milestones": [
+    {
+      "order": 1,
+      "task_name": "Sign Status Framework v1",
+      "label": "Framework signed",
+      "owners": ["Keren", "Joel", "Avi"],
+      "blocks": "CRM Build — Staging (all §5 tasks)"
+    },
+    {
+      "order": 2,
+      "task_name": "Baseline audit complete — all counts recorded",
+      "label": "Baseline complete",
+      "owners": ["Keren", "Avi"],
+      "blocks": "Data Remediation batches (§6 migration tasks)"
+    },
+    {
+      "order": 3,
+      "task_name": "Staging build complete",
+      "label": "Staging build complete",
+      "owners": ["Avi", "Keren"],
+      "blocks": "Remediation execution on staging data"
+    },
+    {
+      "order": 4,
+      "task_name": "Remediation validated — census gap acceptable on staging",
+      "label": "Remediation validated",
+      "owners": ["Avi", "Keren", "Joel"],
+      "blocks": "Dashboards & User Acceptance (all §7 tasks)"
+    },
+    {
+      "order": 5,
+      "task_name": "UAT passed — sales and ops sign-off",
+      "label": "UAT passed",
+      "owners": ["Keren", "Angelo", "Joel"],
+      "blocks": "Production Go-Live (all §8 tasks)"
+    },
+    {
+      "order": 6,
+      "task_name": "Production live — census gap closed",
+      "label": "Production live",
+      "owners": ["Avi", "Keren"],
+      "blocks": "Growth Enablement (§10) and Training publish (§9 canonical doc)"
+    }
+  ],
+  "chain": "Framework signed → Baseline complete → Staging build → Remediation validated → UAT passed → Production live"
+}

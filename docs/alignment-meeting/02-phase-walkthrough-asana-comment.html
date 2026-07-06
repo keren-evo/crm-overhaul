@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Asana comment — Phase walkthrough + CTA</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    :root {
+      --bg: #f4f6f9;
+      --card: #ffffff;
+      --text: #172033;
+      --muted: #5c6578;
+      --accent: #0f766e;
+      --accent-light: #e6f4f2;
+      --border: #d8dee9;
+      --code-bg: #f1f5f9;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.65 "Segoe UI", system-ui, -apple-system, sans-serif;
+    }
+    .topbar {
+      background: linear-gradient(135deg, #0f766e 0%, #134e4a 100%);
+      color: #fff;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.9rem;
+    }
+    .topbar a {
+      color: #fff;
+      text-decoration: none;
+      opacity: 0.95;
+    }
+    .topbar a:hover { text-decoration: underline; }
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+    article {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem 2.25rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    article h1 {
+      margin-top: 0;
+      font-size: 1.75rem;
+      color: #0d5c56;
+      line-height: 1.25;
+      border-bottom: 2px solid var(--accent-light);
+      padding-bottom: 0.5rem;
+    }
+    article h2 {
+      margin-top: 2rem;
+      font-size: 1.25rem;
+      color: #134e4a;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.35rem;
+    }
+    article h3 { margin-top: 1.5rem; color: #1e3a38; }
+    article h4 { margin-top: 1.25rem; }
+    a { color: var(--accent); }
+    a:hover { color: #0d5c56; }
+    p { margin: 0.85rem 0; }
+    ul, ol { padding-left: 1.5rem; }
+    li { margin: 0.35rem 0; }
+    li > ul { margin-top: 0.25rem; }
+    blockquote {
+      margin: 1.25rem 0;
+      padding: 0.75rem 1rem;
+      border-left: 4px solid var(--accent);
+      background: var(--accent-light);
+      border-radius: 0 8px 8px 0;
+    }
+    blockquote p { margin: 0.35rem 0; }
+    code {
+      font-family: Consolas, "SF Mono", monospace;
+      font-size: 0.9em;
+      background: var(--code-bg);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+    }
+    pre {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 1rem 1.15rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+    pre code {
+      background: transparent;
+      padding: 0;
+      color: inherit;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.25rem 0;
+      font-size: 0.95rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.6rem 0.75rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #f8fafc;
+      font-weight: 600;
+      color: #134e4a;
+    }
+    tr:nth-child(even) td { background: #fafbfc; }
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+    .mermaid {
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+    .toc {
+      background: var(--accent-light);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .toc ul { margin: 0.5rem 0 0; }
+    input[type="checkbox"] { margin-right: 0.35rem; }
+    @media print {
+      body { background: #fff; }
+      .topbar { display: none; }
+      article { box-shadow: none; border: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topbar"><a href="../index.html">← CRM Overhaul Hub</a></nav>
+  <main><article><h1 id="asana-comment-phase-walkthrough-cta">Asana comment — Phase walkthrough + CTA</h1>
+<p>Copy-paste into the <strong>EVO CRM Status Label Overhaul Sprint</strong> project (or pin as project description update).</p>
+<hr>
+<h2 id="comment-text">Comment text</h2>
+<p>Hi team — quick walkthrough of the phased plan and what I need from you.</p>
+<p>I've drafted this in Asana based on discovery. I'm still learning your processes, so <strong>please treat this as a proposal, not a final plan.</strong> Edit tasks, dependencies, and owners directly in Asana, or reply here with changes.</p>
+<p><strong>Proposed rule:</strong> Nothing in Phase 2+ starts until <strong>Status Framework v1</strong> is signed (Phase 0). We're here especially to shape Phase 0 and sanity-check the rest.</p>
+<hr>
+<p><strong>Why we're doing it in phases</strong><br>
+• <strong>Decide before build</strong> — Phase 0 locks definitions so we don't encode wrong assumptions<br>
+• <strong>Measure before fix</strong> — Phase 1 baselines the data mess so we can prove remediation worked<br>
+• <strong>Staging first</strong> — Phases 2–5 on staging; production only after UAT<br>
+• <strong>One source of truth</strong> — Lifecycle comes from intake/auth data, not legacy tags like pre-intake or person-level authorized</p>
+<hr>
+<p><strong>Phase 0 — Stakeholder sign-off</strong><br>
+Lock business definitions before any CRM changes.<br>
+Topics: dropped off vs discharged vs voided vs deferred vs authorized vs SOC dates · LOB checklists (LTC, NHTD, OPWDD, private pay) · short-term rule · NIA fail · CDPAP · census definition<br>
+Deliverable: Signed Status Framework v1 · Owners: @Keren (framework), @Joel (ops truth) · Gates everything in Phase 1+</p>
+<p>👉 <strong>CTA:</strong> Reply on Phase 0 tasks — what's missing? What belongs here vs later?</p>
+<hr>
+<p><strong>Phase 1 — Baseline audit</strong><br>
+Read-only discovery + SQL audit to quantify problems (orphan authorized, CDPAP queue, pre-intake/closed counts, census gap, etc.)<br>
+Deliverable: All baseline counts recorded · Owners: @Keren, @Avi · Gates Phase 2</p>
+<p>👉 <strong>CTA:</strong> Are we measuring the right things? Any baseline sales/ops need that's missing?</p>
+<hr>
+<p><strong>Phase 2 — Schema (staging)</strong><br>
+New picklists + lifecycle_stage; hide legacy tags. No production changes.<br>
+Proposed flow: Lead New → Lead Contacting → Referral Active → Intake In Progress → On Hold → Authorized Pending SOC → Patient Active → Dropped Off / Discharged<br>
+Owners: @Avi (build), @Keren (review)</p>
+<p>👉 <strong>CTA:</strong> Do these stage names match how staff talk? Is "On Hold" OK?</p>
+<hr>
+<p><strong>Phase 3 — Data remediation (staging)</strong><br>
+Batch-fix legacy data (pre-intake → On Hold, closed → dropped/discharged, CDPAP, orphan authorized, etc.)<br>
+Ops sign-off on 50-record sample · Gates Phase 4</p>
+<hr>
+<p><strong>Phase 4 — Validation &amp; automation (staging)</strong><br>
+Blocking rules + computed lifecycle + SLAs (lead 24h, follow-up 3d, referral→intake 7d, authorized→SOC 14d) · Owner: @Avi · Gates Phase 5</p>
+<p>👉 <strong>CTA:</strong> Are those SLAs realistic? Any rule that would block real workflows?</p>
+<hr>
+<p><strong>Phase 5 — Dashboards + UAT</strong><br>
+Rebuild views so one glance = lead, referral, or patient. UAT = @Angelo (sales) + ops test on staging before go-live. Gates Phase 6.</p>
+<p>👉 <strong>CTA:</strong> What columns/filters does each role need on day one?</p>
+<hr>
+<p><strong>Phase 6 — Production cutover</strong> · <strong>Phase 7 — Cleanup &amp; FL handoff</strong><br>
+Go-live with comms (@Leah), post-cutover audit, field cleanup, NY playbook.</p>
+<p><strong>Ongoing — Discovery</strong> runs in parallel (no prod changes): CRM bot prompts, open questions, playbooks → feed Framework v1.</p>
+<hr>
+<p><strong>Milestones (phase gates)</strong><br>
+1. Framework v1 signed → blocks Phase 1<br>
+2. Baseline audit complete → blocks Phase 2<br>
+3. Staging remediation validated → blocks Phase 4<br>
+4. UAT passed → blocks Phase 6<br>
+5. Census gap closed → blocks Phase 7</p>
+<p><strong>Proposed owners:</strong> @Keren 0–1 + framework · @Avi 2–4 + cutover · @Joel Phase 0 + ops sign-off · @Leah comms · @Angelo sales UAT</p>
+<hr>
+<p><strong>Main ask — please do one of these by [DATE]:</strong><br>
+1. <strong>Comment</strong> on this thread with phase/task/dependency/owner changes, or<br>
+2. <strong>Edit tasks directly</strong> in Asana and tag me on what you changed, or<br>
+3. <strong>Flag blockers</strong> — especially Phase 0 decisions (NIA fail, short-term rule, CDPAP, census definition)</p>
+<p>If you're aligned on the structure, we'll schedule the Phase 0 definitions workshop next.</p>
+<p>Thanks — @Joel @Avi @Leah @Angelo</p></article></main>
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose" });
+  </script>
+</body>
+</html>

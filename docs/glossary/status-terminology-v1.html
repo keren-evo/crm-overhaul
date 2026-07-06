@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Link Homecare CRM — Status Terminology Glossary v1 (Draft)</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    :root {
+      --bg: #f4f6f9;
+      --card: #ffffff;
+      --text: #172033;
+      --muted: #5c6578;
+      --accent: #0f766e;
+      --accent-light: #e6f4f2;
+      --border: #d8dee9;
+      --code-bg: #f1f5f9;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.65 "Segoe UI", system-ui, -apple-system, sans-serif;
+    }
+    .topbar {
+      background: linear-gradient(135deg, #0f766e 0%, #134e4a 100%);
+      color: #fff;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.9rem;
+    }
+    .topbar a {
+      color: #fff;
+      text-decoration: none;
+      opacity: 0.95;
+    }
+    .topbar a:hover { text-decoration: underline; }
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+    article {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem 2.25rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    article h1 {
+      margin-top: 0;
+      font-size: 1.75rem;
+      color: #0d5c56;
+      line-height: 1.25;
+      border-bottom: 2px solid var(--accent-light);
+      padding-bottom: 0.5rem;
+    }
+    article h2 {
+      margin-top: 2rem;
+      font-size: 1.25rem;
+      color: #134e4a;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.35rem;
+    }
+    article h3 { margin-top: 1.5rem; color: #1e3a38; }
+    article h4 { margin-top: 1.25rem; }
+    a { color: var(--accent); }
+    a:hover { color: #0d5c56; }
+    p { margin: 0.85rem 0; }
+    ul, ol { padding-left: 1.5rem; }
+    li { margin: 0.35rem 0; }
+    li > ul { margin-top: 0.25rem; }
+    blockquote {
+      margin: 1.25rem 0;
+      padding: 0.75rem 1rem;
+      border-left: 4px solid var(--accent);
+      background: var(--accent-light);
+      border-radius: 0 8px 8px 0;
+    }
+    blockquote p { margin: 0.35rem 0; }
+    code {
+      font-family: Consolas, "SF Mono", monospace;
+      font-size: 0.9em;
+      background: var(--code-bg);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+    }
+    pre {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 1rem 1.15rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+    pre code {
+      background: transparent;
+      padding: 0;
+      color: inherit;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.25rem 0;
+      font-size: 0.95rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.6rem 0.75rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #f8fafc;
+      font-weight: 600;
+      color: #134e4a;
+    }
+    tr:nth-child(even) td { background: #fafbfc; }
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+    .mermaid {
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+    .toc {
+      background: var(--accent-light);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .toc ul { margin: 0.5rem 0 0; }
+    input[type="checkbox"] { margin-right: 0.35rem; }
+    @media print {
+      body { background: #fff; }
+      .topbar { display: none; }
+      article { box-shadow: none; border: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topbar"><a href="../index.html">← CRM Overhaul Hub</a></nav>
+  <main><article><h1 id="link-homecare-crm-status-terminology-glossary-v1-draft">Link Homecare CRM — Status Terminology Glossary v1 (Draft)</h1>
+<blockquote>
+<p><strong>Superseded by:</strong> <a href="../glossary-pipeline-v2.html"><code>../glossary-pipeline-v2.md</code></a> (sign-off draft v2.1)<br>
+Retained for history. Use v2 + <a href="../flowcharts/pipeline-flowcharts-v1.html"><code>../flowcharts/pipeline-flowcharts-v1.md</code></a> for Joel/Leah review.</p>
+</blockquote>
+<p><strong>Owner:</strong> Keren Hapuch Lacadin<br>
+<strong>Operational review:</strong> Joel Schlanger, Leah Adelman<br>
+<strong>Technical review:</strong> Avi (pending implementation review meeting)<br>
+<strong>Status:</strong> Draft — <strong>do not implement in CRM until Framework v1 signed</strong><br>
+<strong>Last updated:</strong> July 6, 2026 (workshop notes incorporated)</p>
+<hr>
+<h2 id="how-to-use-this-document">How to use this document</h2>
+<ul>
+<li><strong>Known</strong> — confirmed in Nexus Schema Manager or workshop discussion  </li>
+<li><strong>Agreed</strong> — team consensus from July 2026 workshop; pending final sign-off  </li>
+<li><strong>Assumption</strong> — recommended; needs Joel/ops confirmation  </li>
+<li><strong>Retired</strong> — do not use for new records after cutover  </li>
+</ul>
+<hr>
+<h2 id="master-patient-pipeline-agreed">Master patient pipeline (Agreed)</h2>
+<p>Logical flow for enrollment specialists and dashboards:</p>
+<pre><code>Lead → Qualifying → Referral in Progress → Active → Discharged
+                              │
+                              └── Dropped Off (anytime before Active)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Definition</th>
+<th>Who updates</th>
+<th>Nexus home (proposed)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Lead</strong></td>
+<td>Raw inquiry; minimal or no outreach yet</td>
+<td>Sales, growth</td>
+<td><code>Episode.leadStage</code> = New (or pre-Episode lead capture)</td>
+</tr>
+<tr>
+<td><strong>Qualifying</strong></td>
+<td>Lead in progress — contact, insurance, eligibility screening</td>
+<td>Enrollment specialists</td>
+<td><code>Episode.leadStage</code> = <strong>Qualifying</strong> (new value)</td>
+</tr>
+<tr>
+<td><strong>Referral in Progress</strong></td>
+<td>Intake opened; patient processed for a specific LOB</td>
+<td>Enrollment specialists, intake</td>
+<td><code>Episode.leadStage</code> = <strong>Referral in Progress</strong> (replaces "In Progress")</td>
+</tr>
+<tr>
+<td><strong>Active</strong></td>
+<td>Receiving service under at least one LOB</td>
+<td>Operations</td>
+<td><code>Episode.status</code> = Active</td>
+</tr>
+<tr>
+<td><strong>Discharged</strong></td>
+<td>No active LOBs remain; left agency entirely</td>
+<td>Operations</td>
+<td><code>Episode.status</code> = Discharged + <code>outcome</code></td>
+</tr>
+<tr>
+<td><strong>Dropped Off</strong></td>
+<td>Opted out or failed qualification before Active</td>
+<td>Enrollment specialists, intake</td>
+<td><code>Episode.leadStage</code> = Dropped Off + <code>outcome</code> (before Active only)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Agreed:</strong> "Referral in Progress" replaces ambiguous labels <strong>In Progress</strong>, <strong>Intake</strong> (as a patient status), and legacy <strong>Converted</strong>.</p>
+<p><strong>Agreed:</strong> Dropped Off is <strong>not</strong> Discharged — patient never became Active.</p>
+<hr>
+<h2 id="sub-statuses-and-chips">Sub-statuses and chips</h2>
+<h3 id="active-when-episodestatus-active">Active (when <code>Episode.status</code> = Active)</h3>
+<table>
+<thead>
+<tr>
+<th>Chip</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Authorized</strong></td>
+<td>Valid payer authorization on at least one active LOB</td>
+</tr>
+<tr>
+<td><strong>Non-Authorized / Expired</strong></td>
+<td>Active but missing or expired authorization — ops follow-up required</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Agreed:</strong> Authorized is never a top-level patient pipeline stage.</p>
+<h3 id="multi-lob-view-agreed">Multi-LOB view (Agreed)</h3>
+<p>A patient may have <strong>multiple simultaneous</strong> referral or active states across LOBs. The UI shows per-LOB cards so staff can see which services are active, in progress, dropped, or pending — without collapsing to one misleading master label.</p>
+<hr>
+<h2 id="short-term-care-parallel-dimension-agreed">Short-term care (parallel dimension — Agreed)</h2>
+<p>Short-term care runs <strong>parallel</strong> to the main pipeline until authorized.</p>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Source</strong></td>
+<td>Primarily nursing home discharge planners</td>
+</tr>
+<tr>
+<td><strong>Main pipeline</strong></td>
+<td>Short-term status does <strong>not</strong> change main patient stage until <strong>authorized</strong> for service</td>
+</tr>
+<tr>
+<td><strong>UI</strong></td>
+<td>Separate <strong>icon</strong> (not main progress bar) until authorized</td>
+</tr>
+<tr>
+<td><strong>Once authorized</strong></td>
+<td>Patient becomes <strong>Active</strong> in main pipeline</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Short-term LOB stages (Agreed):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>In Progress</td>
+<td>Referral received; CHHA evaluating</td>
+</tr>
+<tr>
+<td>Accepted</td>
+<td>CHHA agrees to take patient; hours may be limited</td>
+</tr>
+<tr>
+<td>Startup</td>
+<td>Pre-service setup</td>
+</tr>
+<tr>
+<td>Authorized</td>
+<td>Actively receiving short-term services → <strong>main status = Active</strong></td>
+</tr>
+</tbody>
+</table>
+<p>If not authorized: main status may remain Dropped Off or appropriate referral terminal state.</p>
+<hr>
+<h2 id="line-of-business-lob-eligibility-agreed-framework">Line of business (LOB) eligibility (Agreed framework)</h2>
+<p>Patients are assigned to LOBs only when eligibility criteria are met. Enrollment specialists confirm at <strong>Qualifying</strong> and <strong>Referral in Progress</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>LOB</th>
+<th>Eligibility (summary — Joel to finalize checklists)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>MLTC / Long-Term Care</strong></td>
+<td>Medicaid + qualifying diagnosis (e.g. dementia, brain injury)</td>
+</tr>
+<tr>
+<td><strong>Custodial</strong></td>
+<td>Medicaid + developmental delay diagnosis</td>
+</tr>
+<tr>
+<td><strong>Short-Term / Skilled</strong></td>
+<td>Skilled nursing need + Medicare/Medicaid</td>
+</tr>
+<tr>
+<td><strong>NHTD, OPWDD, Private Pay</strong></td>
+<td>Program-specific — see Joel's LOB checklists</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Planned (Assumption):</strong> System will "light up" eligible LOB options as insurance and diagnosis are entered — Joel confirmed as future improvement.</p>
+<hr>
+<h2 id="nia-new-york-independent-assessor-agreed">NIA — New York Independent Assessor (Agreed)</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Purpose</strong></td>
+<td>Mandatory assessment for MLTC / long-term care eligibility</td>
+</tr>
+<tr>
+<td><strong>Process</strong></td>
+<td>Two appointments (in person or Zoom)</td>
+</tr>
+<tr>
+<td><strong>Pass</strong></td>
+<td>→ MLTC enrollment path; continue Referral in Progress → Active</td>
+</tr>
+<tr>
+<td><strong>Fail</strong></td>
+<td>→ typically <strong>Dropped Off</strong> unless alternate service applies</td>
+</tr>
+<tr>
+<td><strong>Reapply</strong></td>
+<td>Appeals allowed; <strong>minimum wait before reapply</strong> — Joel estimated <strong>180 days</strong> (<strong>Needs confirmation</strong>; prior spec said 6 months)</td>
+</tr>
+<tr>
+<td><strong>Dashboards</strong></td>
+<td>Track pass/fail, upcoming NIAs, failed bucket for follow-up after wait period</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Assumption:</strong> NIA fail hold may use follow-up/recycle date rather than legacy "Pre-Intake."</p>
+<hr>
+<h2 id="drop-reasons-agreed-direction">Drop reasons (Agreed direction)</h2>
+<p>Simplify to <strong>~10 clear categories</strong> for filtering and reporting. Current lists are too long.</p>
+<p><strong>Draft categories (Joel to finalize):</strong></p>
+<ol>
+<li>No follow-up / unresponsive  </li>
+<li>Chose competitor  </li>
+<li>Payer denied  </li>
+<li>NIA failed  </li>
+<li>Patient/family declined services  </li>
+<li>Not eligible (insurance/diagnosis)  </li>
+<li>Short-term only / third-party referral  </li>
+<li>Documentation incomplete  </li>
+<li>Moved out of service area  </li>
+<li>Other (free text required)</li>
+</ol>
+<p>Map to <code>Episode.outcome</code> / ReferralOutcome picklist in Nexus.</p>
+<hr>
+<h2 id="discharge-reasons-agreed-direction">Discharge reasons (Agreed direction)</h2>
+<p>Use when <code>Episode.status</code> = Discharged (was Active). Align with ReferralOutcome picklist — Joel to sign final list.</p>
+<p>Suggested: nursing home placement, deceased, transferred to another agency, lost Medicaid/MLTC, goals met, moved out of area, patient/family declined, other.</p>
+<hr>
+<h2 id="retired-terms-do-not-use-for-new-decisions">Retired terms (do not use for new decisions)</h2>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Replace with</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Pre-Intake</strong></td>
+<td>Qualifying hold / Referral in Progress + hold reason + follow-up date</td>
+</tr>
+<tr>
+<td><strong>Closed</strong></td>
+<td>Dropped Off (never Active) or Discharged (was Active) — manual split for legacy</td>
+</tr>
+<tr>
+<td><strong>Converted</strong> (top-level)</td>
+<td>Qualifying or Referral in Progress</td>
+</tr>
+<tr>
+<td><strong>Authorized</strong> (top-level patient status)</td>
+<td>Active sub-status chip only</td>
+</tr>
+<tr>
+<td><strong>In Progress</strong> (alone)</td>
+<td><strong>Referral in Progress</strong> (when intake opened) or <strong>Qualifying</strong> (when still qualifying)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="layer-model-nexus-technical">Layer model (Nexus — technical)</h2>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Object.field</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>Episode.status</code></td>
+<td>Master: Referral bucket / Active / Discharged</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>Episode.leadStage</code></td>
+<td>Pipeline: Lead → Qualifying → Referral in Progress → Dropped Off</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>Episode.outcome</code></td>
+<td>Terminal reason (drop or discharge)</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>Intake.status</code></td>
+<td>LOB intake subprocess</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>Authorization</code></td>
+<td>Validity, dates, hours — not census alone</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Patient LOB fields</td>
+<td>Per-line service status</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Short-term icon/track</td>
+<td>Parallel until ST authorized</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Medicaid ticket</td>
+<td>Orthogonal eligibility track</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="open-items-for-framework-v1-sign-off">Open items for Framework v1 sign-off</h2>
+<ul>
+<li>[ ] Joel: Confirm NIA reapply wait (180 days vs 6 months)  </li>
+<li>[ ] Joel: Finalize LOB eligibility checklists per line  </li>
+<li>[ ] Joel + team: Sign final ~10 drop reason categories  </li>
+<li>[ ] Export ReferralOutcome picklist from Schema Manager  </li>
+<li>[ ] Active threshold: SOC required vs cleared-to-start  </li>
+<li>[ ] Avi: Technical feasibility review meeting (Joel to schedule)  </li>
+</ul>
+<hr>
+<h2 id="workshop-action-items-july-2026">Workshop action items (July 2026)</h2>
+<table>
+<thead>
+<tr>
+<th>Owner</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Joel</strong></td>
+<td>Coordinate with Avi; schedule CRM implementation review with tech team</td>
+</tr>
+<tr>
+<td><strong>Leah</strong></td>
+<td>Follow-up via chat; coordinate scheduling after status labels finalized</td>
+</tr>
+<tr>
+<td><strong>Keren</strong></td>
+<td>Continue this glossary; incorporate feedback and meeting notes</td>
+</tr>
+<tr>
+<td><strong>Team</strong></td>
+<td>Finalize patient status labels and flowcharts before CRM build</td>
+</tr>
+<tr>
+<td><strong>Enrollment specialists</strong></td>
+<td>Use updated dashboards/filters when implemented (training TBD)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Agreed:</strong> CRM field organization and backfill <strong>on hold</strong> until labels and glossary are finalized — then <strong>one-pass</strong> implementation with Avi's team.</p></article></main>
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose" });
+  </script>
+</body>
+</html>

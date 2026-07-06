@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Post-Meeting — Asana Sync Checklist</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    :root {
+      --bg: #f4f6f9;
+      --card: #ffffff;
+      --text: #172033;
+      --muted: #5c6578;
+      --accent: #0f766e;
+      --accent-light: #e6f4f2;
+      --border: #d8dee9;
+      --code-bg: #f1f5f9;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.65 "Segoe UI", system-ui, -apple-system, sans-serif;
+    }
+    .topbar {
+      background: linear-gradient(135deg, #0f766e 0%, #134e4a 100%);
+      color: #fff;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.9rem;
+    }
+    .topbar a {
+      color: #fff;
+      text-decoration: none;
+      opacity: 0.95;
+    }
+    .topbar a:hover { text-decoration: underline; }
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+    article {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem 2.25rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    article h1 {
+      margin-top: 0;
+      font-size: 1.75rem;
+      color: #0d5c56;
+      line-height: 1.25;
+      border-bottom: 2px solid var(--accent-light);
+      padding-bottom: 0.5rem;
+    }
+    article h2 {
+      margin-top: 2rem;
+      font-size: 1.25rem;
+      color: #134e4a;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.35rem;
+    }
+    article h3 { margin-top: 1.5rem; color: #1e3a38; }
+    article h4 { margin-top: 1.25rem; }
+    a { color: var(--accent); }
+    a:hover { color: #0d5c56; }
+    p { margin: 0.85rem 0; }
+    ul, ol { padding-left: 1.5rem; }
+    li { margin: 0.35rem 0; }
+    li > ul { margin-top: 0.25rem; }
+    blockquote {
+      margin: 1.25rem 0;
+      padding: 0.75rem 1rem;
+      border-left: 4px solid var(--accent);
+      background: var(--accent-light);
+      border-radius: 0 8px 8px 0;
+    }
+    blockquote p { margin: 0.35rem 0; }
+    code {
+      font-family: Consolas, "SF Mono", monospace;
+      font-size: 0.9em;
+      background: var(--code-bg);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+    }
+    pre {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 1rem 1.15rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+    pre code {
+      background: transparent;
+      padding: 0;
+      color: inherit;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.25rem 0;
+      font-size: 0.95rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.6rem 0.75rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #f8fafc;
+      font-weight: 600;
+      color: #134e4a;
+    }
+    tr:nth-child(even) td { background: #fafbfc; }
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+    .mermaid {
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+    .toc {
+      background: var(--accent-light);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .toc ul { margin: 0.5rem 0 0; }
+    input[type="checkbox"] { margin-right: 0.35rem; }
+    @media print {
+      body { background: #fff; }
+      .topbar { display: none; }
+      article { box-shadow: none; border: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topbar"><a href="../index.html">← CRM Overhaul Hub</a></nav>
+  <main><article><h1 id="post-meeting-asana-sync-checklist">Post-Meeting — Asana Sync Checklist</h1>
+<p><strong>Do same day as alignment meeting.</strong><br>
+<strong>Owner:</strong> Keren (or assignee from <a href="03-decision-worksheet.html"><code>03-decision-worksheet.md</code></a> sign-off block)</p>
+<p>Repo source of truth for structure: <a href="../asana/"><code>crm/asana/</code></a>. Asana must be updated manually or via Asana AI.</p>
+<hr>
+<h2 id="step-1-capture-meeting-outcomes-15-min">Step 1 — Capture meeting outcomes (15 min)</h2>
+<ul>
+<li>[ ] Fill all rows in <a href="03-decision-worksheet.html"><code>03-decision-worksheet.md</code></a></li>
+<li>[ ] Screenshot or export decision outcomes to Asana project description / wiki</li>
+<li>[ ] List any new tasks, removed tasks, or reordered phases</li>
+</ul>
+<hr>
+<h2 id="step-2-update-asana-project-30-min">Step 2 — Update Asana project (30 min)</h2>
+<h3 id="option-a-asana-ai-recommended">Option A — Asana AI (recommended)</h3>
+<ol>
+<li>Open project <strong>EVO CRM Status Label Overhaul Sprint</strong></li>
+<li>Paste <a href="../asana/asana-ai-apply.prompt.html"><code>../asana/asana-ai-apply.prompt.md</code></a></li>
+<li>Append a <strong>Meeting deltas</strong> block (template below) with today's decisions</li>
+<li>Run AI; verify no duplicate tasks</li>
+</ol>
+<h3 id="option-b-manual">Option B — Manual</h3>
+<p>Follow <a href="../asana/README.html"><code>../asana/README.md</code></a> quick start (sections, CSV, dependencies, milestones).</p>
+<hr>
+<h2 id="meeting-deltas-block-paste-into-asana-ai-after-base-prompt">Meeting deltas block (paste into Asana AI after base prompt)</h2>
+<pre><code class="language-text">## Meeting deltas — [DATE]
+
+Apply these changes on top of the base spec:
+
+### Phase / section changes
+- [e.g. Added task to Phase 0: &quot;Define voided vs dropped on intake&quot;]
+- [e.g. Moved task X from Phase 1 to Ongoing]
+
+### Dependency changes
+- [e.g. Phase 1 no longer blocked by Framework v1 — only Phase 2 blocked]
+- [Reference: crm/asana/dependencies.json cross_phase section]
+
+### Owner changes
+- [e.g. Angelo → collaborator on Phase 5 funnel leakage task]
+
+### Milestone changes
+- [e.g. No change / renamed milestone]
+
+### Custom field updates
+- Requires Stakeholder Decision = Yes on: [task names]
+</code></pre>
+<hr>
+<h2 id="step-3-verify-asana-structure">Step 3 — Verify Asana structure</h2>
+<table>
+<thead>
+<tr>
+<th>Check</th>
+<th>Source file</th>
+<th>Done</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9 sections in order</td>
+<td><a href="../asana/sections.json"><code>sections.json</code></a></td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Custom fields exist</td>
+<td><a href="../asana/custom-fields.json"><code>custom-fields.json</code></a></td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Task fields match CSV</td>
+<td><a href="../asana/evo-crm-sprint-tasks.csv"><code>evo-crm-sprint-tasks.csv</code></a></td>
+<td>☐</td>
+</tr>
+<tr>
+<td>5 milestones marked</td>
+<td><a href="../asana/milestones.json"><code>milestones.json</code></a></td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Cross-phase dependencies wired</td>
+<td><a href="../asana/dependencies.json"><code>dependencies.json</code></a></td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Assignees not all Keren</td>
+<td>CSV <code>Assignee Primary</code> column</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>5 saved views</td>
+<td><a href="../asana/saved-views.html"><code>saved-views.md</code></a></td>
+<td>☐</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="step-4-sync-repo-if-structure-changed-10-min">Step 4 — Sync repo if structure changed (10 min)</h2>
+<p>If the team changed phases, tasks, or dependencies in Asana, update these files to match:</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Update when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../asana/sections.json"><code>sections.json</code></a></td>
+<td>Tasks added/removed/moved between phases</td>
+</tr>
+<tr>
+<td><a href="../asana/dependencies.json"><code>dependencies.json</code></a></td>
+<td>Blocked-by relationships changed</td>
+</tr>
+<tr>
+<td><a href="../asana/milestones.json"><code>milestones.json</code></a></td>
+<td>Milestone tasks renamed or reordered</td>
+</tr>
+<tr>
+<td><a href="../asana/evo-crm-sprint-tasks.csv"><code>evo-crm-sprint-tasks.csv</code></a></td>
+<td>Assignees, phases, depends-on, custom fields</td>
+</tr>
+<tr>
+<td><a href="../asana/project-description.html"><code>project-description.md</code></a></td>
+<td>Success criteria or team roles changed</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Do not edit migration SQL files</strong> unless audit sections changed — create new artifacts instead.</p>
+<hr>
+<h2 id="step-5-communicate-back-to-team-5-min">Step 5 — Communicate back to team (5 min)</h2>
+<ul>
+<li>[ ] Post in Teams: "Asana updated per alignment — [link]. Phase 0 workshop: [date]."</li>
+<li>[ ] Tag owners for new/changed tasks</li>
+<li>[ ] Attach <a href="05-phase0-workshop.html"><code>05-phase0-workshop.md</code></a> invite or summary</li>
+</ul>
+<hr>
+<h2 id="dependency-reference-default-change-only-if-decision-7-differs">Dependency reference (default — change only if Decision 7 differs)</h2>
+<pre><code>Phase 0 milestone (Framework v1)     → blocks all Phase 1
+Phase 1 milestone (Baseline audit)   → blocks all Phase 2
+Phase 2 mapping doc                  → blocks all Phase 3
+Phase 3 milestone (Remediation)      → blocks all Phase 4
+Phase 4 SLA timers                   → blocks all Phase 5
+Phase 5 milestone (UAT passed)       → blocks all Phase 6
+Phase 6 milestone (Census gap closed)→ blocks all Phase 7
+</code></pre>
+<p>Full within-phase chains: <a href="../asana/dependencies.json"><code>dependencies.json</code></a> → <code>within_phase</code>.</p></article></main>
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose" });
+  </script>
+</body>
+</html>

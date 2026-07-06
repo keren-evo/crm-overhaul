@@ -1,0 +1,180 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CRM Status Enums",
+  "version": "1.0.0",
+  "description": "Authoritative picklists for Lead → Patient lifecycle. Import into Schema Manager.",
+  "picklists": {
+    "lifecycle_stage": {
+      "object": "person",
+      "mutually_exclusive": true,
+      "computed": true,
+      "deprecated_values": ["pre-intake", "closed", "authorized", "patient", "lead", "new", "in-progress"],
+      "values": [
+        {
+          "value": "LEAD_NEW",
+          "label": "Lead — New",
+          "stage": "lead",
+          "sort_order": 10,
+          "definition": "Raw contact; no outbound contact attempted."
+        },
+        {
+          "value": "LEAD_CONTACTING",
+          "label": "Lead — Contacting",
+          "stage": "lead",
+          "sort_order": 20,
+          "definition": "Outreach in progress; not yet qualified as referral."
+        },
+        {
+          "value": "REFERRAL_ACTIVE",
+          "label": "Referral — Active",
+          "stage": "referral",
+          "sort_order": 30,
+          "definition": "Expressed interest; intake not yet opened."
+        },
+        {
+          "value": "INTAKE_IN_PROGRESS",
+          "label": "Intake — In Progress",
+          "stage": "intake",
+          "sort_order": 40,
+          "definition": "Active intake work on at least one gold LOB."
+        },
+        {
+          "value": "AUTHORIZED_PENDING_SOC",
+          "label": "Authorized — Pending Start of Care",
+          "stage": "intake",
+          "sort_order": 50,
+          "definition": "Valid authorization linked; services not yet started."
+        },
+        {
+          "value": "PATIENT_ACTIVE",
+          "label": "Patient — Active",
+          "stage": "patient",
+          "sort_order": 60,
+          "definition": "Agency actively servicing; confirmed start of care."
+        },
+        {
+          "value": "ON_HOLD",
+          "label": "On Hold",
+          "stage": "intake",
+          "sort_order": 45,
+          "definition": "Pipeline paused (NIA fail wait, vacation, missing docs). Replaces pre-intake."
+        },
+        {
+          "value": "DROPPED_OFF",
+          "label": "Dropped Off",
+          "stage": "terminal",
+          "sort_order": 90,
+          "definition": "Never became an active patient."
+        },
+        {
+          "value": "DISCHARGED",
+          "label": "Discharged",
+          "stage": "terminal",
+          "sort_order": 95,
+          "definition": "Was an active patient; services ended."
+        }
+      ]
+    },
+    "intake_status": {
+      "object": "intake",
+      "mutually_exclusive": true,
+      "per_record": true,
+      "values": [
+        { "value": "INTAKE_NEW", "label": "Intake — New", "stage": "intake", "sort_order": 10 },
+        { "value": "INTAKE_IN_PROGRESS", "label": "Intake — In Progress", "stage": "intake", "sort_order": 20 },
+        { "value": "INTAKE_ON_HOLD", "label": "Intake — On Hold", "stage": "intake", "sort_order": 25 },
+        { "value": "INTAKE_AUTHORIZED", "label": "Intake — Authorized", "stage": "intake", "sort_order": 30 },
+        { "value": "INTAKE_ACTIVE", "label": "Intake — Active", "stage": "patient", "sort_order": 40 },
+        { "value": "INTAKE_VOIDED", "label": "Intake — Voided", "stage": "terminal", "sort_order": 90 },
+        { "value": "INTAKE_DROPPED", "label": "Intake — Dropped", "stage": "terminal", "sort_order": 95 }
+      ]
+    },
+    "nia_status": {
+      "object": "intake",
+      "field": "nia_status",
+      "values": [
+        { "value": "NIA_NOT_REQUIRED", "label": "NIA Not Required" },
+        { "value": "NIA_NOT_SCHEDULED", "label": "NIA Not Scheduled" },
+        { "value": "NIA_SCHEDULED", "label": "NIA Scheduled" },
+        { "value": "NIA_IN_PROGRESS", "label": "NIA In Progress" },
+        { "value": "NIA_PASSED", "label": "NIA Passed" },
+        { "value": "NIA_FAILED", "label": "NIA Failed" },
+        { "value": "NIA_DEFERRED", "label": "NIA Deferred" }
+      ]
+    },
+    "authorization_status": {
+      "object": "authorization",
+      "values": [
+        { "value": "AUTH_PENDING", "label": "Authorization Pending" },
+        { "value": "AUTH_APPROVED", "label": "Authorization Approved" },
+        { "value": "AUTH_DENIED", "label": "Authorization Denied" },
+        { "value": "AUTH_EXPIRED", "label": "Authorization Expired" },
+        { "value": "AUTH_VOIDED", "label": "Authorization Voided" }
+      ]
+    },
+    "medicaid_ticket_status": {
+      "object": "medicaid_ticket",
+      "orthogonal": true,
+      "values": [
+        { "value": "MEDICAID_NEW", "label": "Medicaid — New" },
+        { "value": "MEDICAID_IN_PROGRESS", "label": "Medicaid — In Progress" },
+        { "value": "MEDICAID_APPROVED", "label": "Medicaid — Approved" },
+        { "value": "MEDICAID_DEFERRED", "label": "Medicaid — Deferred" },
+        { "value": "MEDICAID_CLOSED", "label": "Medicaid — Closed" }
+      ]
+    },
+    "line_of_business": {
+      "object": "intake",
+      "field": "lob",
+      "gold_lobs": ["LONG_TERM_CARE", "NHTD", "OPWDD", "PRIVATE_PAY", "CUSTODIAL_CARE"],
+      "values": [
+        { "value": "LONG_TERM_CARE", "label": "Long-Term Care", "is_gold": true },
+        { "value": "NHTD", "label": "NHTD", "is_gold": true },
+        { "value": "OPWDD", "label": "OPWDD", "is_gold": true },
+        { "value": "PRIVATE_PAY", "label": "Private Pay", "is_gold": true },
+        { "value": "CUSTODIAL_CARE", "label": "Custodial Care", "is_gold": true },
+        { "value": "SHORT_TERM_CUSTODIAL", "label": "Short-Term Custodial", "is_gold": false, "lead_loss_default": true },
+        { "value": "CDPAP", "label": "CDPAP", "is_gold": false, "deprecated_after": "2025-04-01" }
+      ]
+    },
+    "drop_reason_category": {
+      "object": "person",
+      "field": "drop_reason_category",
+      "required_when": { "lifecycle_stage": "DROPPED_OFF" },
+      "values": [
+        { "value": "NIA_FAILED", "label": "NIA Failed" },
+        { "value": "NO_FOLLOW_UP", "label": "No Follow-Up / Unresponsive" },
+        { "value": "COMPETITOR", "label": "Chose Competitor" },
+        { "value": "PAYER_DENIED", "label": "Payer Denied" },
+        { "value": "SHORT_TERM_ONLY", "label": "Short-Term Only" },
+        { "value": "THIRD_PARTY_REFERRAL", "label": "Referred to Third Party" },
+        { "value": "DOC_INCOMPLETE", "label": "Documentation Incomplete" },
+        { "value": "CDPAP_SUNSET", "label": "CDPAP Line Sunset" },
+        { "value": "OTHER", "label": "Other" }
+      ]
+    },
+    "hold_reason": {
+      "object": "person",
+      "field": "hold_reason",
+      "required_when": { "lifecycle_stage": "ON_HOLD" },
+      "values": [
+        { "value": "NIA_FAILED_WAIT", "label": "NIA Failed — 6 Month Wait" },
+        { "value": "PATIENT_VACATION", "label": "Patient Vacation" },
+        { "value": "MISSING_DOCUMENTATION", "label": "Missing Documentation" },
+        { "value": "PAYER_DELAY", "label": "Payer Delay" },
+        { "value": "OTHER", "label": "Other" }
+      ]
+    },
+    "void_reason": {
+      "object": "intake",
+      "field": "void_reason",
+      "required_when": { "intake_status": "INTAKE_VOIDED" },
+      "values": [
+        { "value": "DUPLICATE_INTAKE", "label": "Duplicate Intake" },
+        { "value": "WRONG_LOB", "label": "Wrong LOB" },
+        { "value": "DATA_ENTRY_ERROR", "label": "Data Entry Error" },
+        { "value": "OTHER", "label": "Other" }
+      ]
+    }
+  }
+}

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Asana sync — July 2026 workshop (patient status pipeline)</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    :root {
+      --bg: #f4f6f9;
+      --card: #ffffff;
+      --text: #172033;
+      --muted: #5c6578;
+      --accent: #0f766e;
+      --accent-light: #e6f4f2;
+      --border: #d8dee9;
+      --code-bg: #f1f5f9;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.65 "Segoe UI", system-ui, -apple-system, sans-serif;
+    }
+    .topbar {
+      background: linear-gradient(135deg, #0f766e 0%, #134e4a 100%);
+      color: #fff;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.9rem;
+    }
+    .topbar a {
+      color: #fff;
+      text-decoration: none;
+      opacity: 0.95;
+    }
+    .topbar a:hover { text-decoration: underline; }
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+    article {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem 2.25rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    article h1 {
+      margin-top: 0;
+      font-size: 1.75rem;
+      color: #0d5c56;
+      line-height: 1.25;
+      border-bottom: 2px solid var(--accent-light);
+      padding-bottom: 0.5rem;
+    }
+    article h2 {
+      margin-top: 2rem;
+      font-size: 1.25rem;
+      color: #134e4a;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.35rem;
+    }
+    article h3 { margin-top: 1.5rem; color: #1e3a38; }
+    article h4 { margin-top: 1.25rem; }
+    a { color: var(--accent); }
+    a:hover { color: #0d5c56; }
+    p { margin: 0.85rem 0; }
+    ul, ol { padding-left: 1.5rem; }
+    li { margin: 0.35rem 0; }
+    li > ul { margin-top: 0.25rem; }
+    blockquote {
+      margin: 1.25rem 0;
+      padding: 0.75rem 1rem;
+      border-left: 4px solid var(--accent);
+      background: var(--accent-light);
+      border-radius: 0 8px 8px 0;
+    }
+    blockquote p { margin: 0.35rem 0; }
+    code {
+      font-family: Consolas, "SF Mono", monospace;
+      font-size: 0.9em;
+      background: var(--code-bg);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+    }
+    pre {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 1rem 1.15rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+    pre code {
+      background: transparent;
+      padding: 0;
+      color: inherit;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.25rem 0;
+      font-size: 0.95rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.6rem 0.75rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #f8fafc;
+      font-weight: 600;
+      color: #134e4a;
+    }
+    tr:nth-child(even) td { background: #fafbfc; }
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+    .mermaid {
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+    .toc {
+      background: var(--accent-light);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .toc ul { margin: 0.5rem 0 0; }
+    input[type="checkbox"] { margin-right: 0.35rem; }
+    @media print {
+      body { background: #fff; }
+      .topbar { display: none; }
+      article { box-shadow: none; border: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topbar"><a href="../index.html">← CRM Overhaul Hub</a></nav>
+  <main><article><h1 id="asana-sync-july-2026-workshop-patient-status-pipeline">Asana sync — July 2026 workshop (patient status pipeline)</h1>
+<p>Paste into <strong>EVO CRM Status Label Overhaul Sprint</strong> after the team workshop. Updates glossary, pipeline stages, and action items.</p>
+<hr>
+<h2 id="pin-this-comment">Pin this comment</h2>
+<p><strong>Workshop outcome — Patient Status Pipeline (Jul 2026)</strong></p>
+<p>The team agreed on a <strong>5-stage main pipeline</strong> plus Dropped Off:</p>
+<p><strong>Lead → Qualifying → Referral in Progress → Active → Discharged</strong><br>
+(Dropped Off anytime before Active)</p>
+<h3 id="key-agreements">Key agreements</h3>
+<ul>
+<li><strong>Qualifying</strong> = lead in progress (contact, insurance, eligibility)  </li>
+<li><strong>Referral in Progress</strong> = intake opened for a LOB — <strong>replaces</strong> "In Progress" / "Intake" as patient status labels  </li>
+<li><strong>Active</strong> = receiving service under ≥1 LOB  </li>
+<li><strong>Authorized</strong> = sub-status of Active only — never top-level  </li>
+<li><strong>Short-term care</strong> = parallel track with <strong>icon</strong> until authorized; then Active in main pipeline  </li>
+<li><strong>NIA fail</strong> → typically Dropped Off; reapply wait ~180 days (Joel to confirm)  </li>
+<li><strong>Drop reasons</strong> → simplify to ~10 categories  </li>
+<li><strong>CRM implementation on hold</strong> until labels + glossary + flowcharts finalized → <strong>one-pass</strong> build with Avi  </li>
+</ul>
+<h3 id="action-items-createupdate-in-asana">Action items (create/update in Asana)</h3>
+<table>
+<thead>
+<tr>
+<th>Owner</th>
+<th>Task</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Joel</strong></td>
+<td>Coordinate with Avi — schedule CRM implementation review meeting with tech team</td>
+</tr>
+<tr>
+<td><strong>Leah</strong></td>
+<td>Send follow-up via chat; coordinate scheduling after labels finalized</td>
+</tr>
+<tr>
+<td><strong>Keren</strong></td>
+<td>Continue glossary (<code>crm/glossary/status-terminology-v1.md</code>) — incorporate workshop notes</td>
+</tr>
+<tr>
+<td><strong>Team</strong></td>
+<td>Finalize patient status labels and flowcharts (blocks CRM build)</td>
+</tr>
+<tr>
+<td><strong>Enrollment specialists</strong></td>
+<td>Training placeholder: use new dashboards/filters when live</td>
+</tr>
+</tbody>
+</table>
+<h3 id="blocks-phase-2-until-done">Blocks Phase 2 until done</h3>
+<ul>
+<li>[ ] Glossary v1 signed (Keren + Joel)  </li>
+<li>[ ] Flowcharts published (Lead → … → Discharged + ST icon + multi-LOB)  </li>
+<li>[ ] Joel schedules Avi technical review  </li>
+<li>[ ] Drop reason list (~10) signed  </li>
+<li>[ ] NIA reapply wait confirmed  </li>
+</ul>
+<h3 id="repo-artifacts-updated">Repo artifacts updated</h3>
+<ul>
+<li><code>crm/glossary/status-terminology-v1.md</code>  </li>
+<li><code>crm/schema/nexus-episode-status-map.json</code> (v1.1 workshop pipeline)  </li>
+<li><code>crm/asana/evo-crm-sprint-tasks.csv</code> (workshop tasks appended)  </li>
+</ul>
+<hr>
+<h2 id="csv-rows-added">CSV rows added</h2>
+<p>Import or merge from CSV — section <strong>Workshop Follow-Up (Jul 2026)</strong>:</p>
+<ul>
+<li>Joel: Schedule Avi CRM implementation review meeting  </li>
+<li>Leah: Post-workshop follow-up and scheduling coordination  </li>
+<li>Keren: Publish glossary v1 draft for Joel/Leah review  </li>
+<li>Team: Finalize status labels and flowcharts  </li>
+<li>Joel: Confirm NIA reapply wait period (180d vs 6mo)  </li>
+<li>Joel: Sign final drop reason categories (~10)  </li>
+<li>Avi: Attend implementation review — feasibility + one-pass plan  </li>
+<li>Enrollment: Dashboard/filter training plan (after Phase 5)  </li>
+</ul>
+<hr>
+<h2 id="progress-bar-change-stakeholder-decision">Progress bar change (stakeholder decision)</h2>
+<p><strong>Previous draft:</strong> Referral → Active → Discharged (3 steps)<br>
+<strong>Workshop agreed:</strong> Lead → Qualifying → Referral in Progress → Active → Discharged (5 steps)</p>
+<p><strong>Recommendation for UI:</strong> 5-step bar for enrollment specialists; leadership census views still roll up to <strong>Active</strong> vs <strong>not Active</strong>.</p>
+<p>Update task <strong>Confirm 3-stage UI</strong> → <strong>Confirm 5-stage pipeline UI</strong> in Business Definitions section.</p></article></main>
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose" });
+  </script>
+</body>
+</html>

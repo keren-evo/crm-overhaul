@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Decision Worksheet — Alignment Meeting</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    :root {
+      --bg: #f4f6f9;
+      --card: #ffffff;
+      --text: #172033;
+      --muted: #5c6578;
+      --accent: #0f766e;
+      --accent-light: #e6f4f2;
+      --border: #d8dee9;
+      --code-bg: #f1f5f9;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.65 "Segoe UI", system-ui, -apple-system, sans-serif;
+    }
+    .topbar {
+      background: linear-gradient(135deg, #0f766e 0%, #134e4a 100%);
+      color: #fff;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.9rem;
+    }
+    .topbar a {
+      color: #fff;
+      text-decoration: none;
+      opacity: 0.95;
+    }
+    .topbar a:hover { text-decoration: underline; }
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+    article {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem 2.25rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    article h1 {
+      margin-top: 0;
+      font-size: 1.75rem;
+      color: #0d5c56;
+      line-height: 1.25;
+      border-bottom: 2px solid var(--accent-light);
+      padding-bottom: 0.5rem;
+    }
+    article h2 {
+      margin-top: 2rem;
+      font-size: 1.25rem;
+      color: #134e4a;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.35rem;
+    }
+    article h3 { margin-top: 1.5rem; color: #1e3a38; }
+    article h4 { margin-top: 1.25rem; }
+    a { color: var(--accent); }
+    a:hover { color: #0d5c56; }
+    p { margin: 0.85rem 0; }
+    ul, ol { padding-left: 1.5rem; }
+    li { margin: 0.35rem 0; }
+    li > ul { margin-top: 0.25rem; }
+    blockquote {
+      margin: 1.25rem 0;
+      padding: 0.75rem 1rem;
+      border-left: 4px solid var(--accent);
+      background: var(--accent-light);
+      border-radius: 0 8px 8px 0;
+    }
+    blockquote p { margin: 0.35rem 0; }
+    code {
+      font-family: Consolas, "SF Mono", monospace;
+      font-size: 0.9em;
+      background: var(--code-bg);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+    }
+    pre {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 1rem 1.15rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+    pre code {
+      background: transparent;
+      padding: 0;
+      color: inherit;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.25rem 0;
+      font-size: 0.95rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.6rem 0.75rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #f8fafc;
+      font-weight: 600;
+      color: #134e4a;
+    }
+    tr:nth-child(even) td { background: #fafbfc; }
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+    .mermaid {
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+    .toc {
+      background: var(--accent-light);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .toc ul { margin: 0.5rem 0 0; }
+    input[type="checkbox"] { margin-right: 0.35rem; }
+    @media print {
+      body { background: #fff; }
+      .topbar { display: none; }
+      article { box-shadow: none; border: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topbar"><a href="../index.html">← CRM Overhaul Hub</a></nav>
+  <main><article><h1 id="decision-worksheet-alignment-meeting">Decision Worksheet — Alignment Meeting</h1>
+<p><strong>Facilitator:</strong> Keren · <strong>Fill during meeting</strong> · <strong>Owner for capture:</strong> Keren (sync to Asana same day per <a href="04-post-meeting-asana-sync.html"><code>04-post-meeting-asana-sync.md</code></a>)</p>
+<p>Mark each decision <strong>Agreed</strong> / <strong>Deferred</strong> / <strong>Rejected</strong> and note the outcome.</p>
+<hr>
+<h2 id="decision-1-phased-structure">Decision 1 — Phased structure</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Question</strong></td>
+<td>Approve Phases 0–7 + Ongoing as proposed, or restructure?</td>
+</tr>
+<tr>
+<td><strong>Proposal</strong></td>
+<td>0 Sign-off → 1 Baseline → 2 Schema → 3 Remediation → 4 Validation → 5 Dashboards/UAT → 6 Cutover → 7 Cleanup</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>☐ Agreed ☐ Deferred ☐ Rejected</td>
+</tr>
+<tr>
+<td><strong>Outcome</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Changes requested</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Decided by</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Date</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="decision-2-phase-0-workshop">Decision 2 — Phase 0 workshop</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Question</strong></td>
+<td>When is the definitions workshop, and who attends?</td>
+</tr>
+<tr>
+<td><strong>Proposal</strong></td>
+<td>See <a href="05-phase0-workshop.html"><code>05-phase0-workshop.md</code></a> — Joel + ops leads + Keren + Avi</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>☐ Agreed ☐ Deferred ☐ Rejected</td>
+</tr>
+<tr>
+<td><strong>Workshop date/time</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Attendees</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Out of scope for workshop</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="decision-3-nia-fail-rule">Decision 3 — NIA fail rule</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Question</strong></td>
+<td>Patient fails NIA and must wait ~6 months — what status?</td>
+</tr>
+<tr>
+<td><strong>Proposal</strong></td>
+<td><code>ON_HOLD</code> with <code>hold_reason=NIA_FAILED</code>, <code>hold_until_date</code> = 6 months; then re-engage</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>☐ Agreed ☐ Deferred ☐ Rejected</td>
+</tr>
+<tr>
+<td><strong>Outcome</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Alternative (if rejected)</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Maps to</strong></td>
+<td>Phase 0 task: Confirm NIA fail rule</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="decision-4-short-term-only-rule">Decision 4 — Short-term-only rule</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Question</strong></td>
+<td>How do we treat short-term custodial when no gold LOB is open?</td>
+</tr>
+<tr>
+<td><strong>Proposal</strong></td>
+<td>Lead loss; person stage capped at <code>REFERRAL_ACTIVE</code>; hidden from sales dashboard</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>☐ Agreed ☐ Deferred ☐ Rejected</td>
+</tr>
+<tr>
+<td><strong>Outcome</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Exception cases</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Maps to</strong></td>
+<td>Phase 0 task: Confirm short-term rule</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="decision-5-cdpap-cohort">Decision 5 — CDPAP cohort</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Question</strong></td>
+<td>Post–April 1, 2025 CDPAP sunset — discharge, drop, or archive?</td>
+</tr>
+<tr>
+<td><strong>Context</strong></td>
+<td>~$125M revenue line eliminated; cohort may still show authorized</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>☐ Agreed ☐ Deferred ☐ Rejected</td>
+</tr>
+<tr>
+<td><strong>Outcome</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Remediation approach</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Maps to</strong></td>
+<td>Phase 0 task + Phase 3 CDPAP batch</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="decision-6-census-definition">Decision 6 — Census definition</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Question</strong></td>
+<td>What is the source of truth for "active patient" / true census?</td>
+</tr>
+<tr>
+<td><strong>Options</strong></td>
+<td>☐ Billing ☐ EVV ☐ CRM service episodes ☐ Hybrid (specify)</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>☐ Agreed ☐ Deferred ☐ Rejected</td>
+</tr>
+<tr>
+<td><strong>Outcome</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Target number to reconcile to</strong></td>
+<td>~1,200–1,300</td>
+</tr>
+<tr>
+<td><strong>Maps to</strong></td>
+<td>Phase 0 task: Confirm census definition; audit §9</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="decision-7-dependencies">Decision 7 — Dependencies</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Question</strong></td>
+<td>Is Phase 1 blocked until Framework v1 signed, or can discovery/audit run in parallel?</td>
+</tr>
+<tr>
+<td><strong>Proposal</strong></td>
+<td>Phase 1 <strong>blocked</strong> until Phase 0 milestone; Ongoing discovery runs in parallel</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>☐ Agreed ☐ Deferred ☐ Rejected</td>
+</tr>
+<tr>
+<td><strong>Outcome</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Dependency changes</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Maps to</strong></td>
+<td><a href="../asana/dependencies.json"><code>dependencies.json</code></a></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="additional-decisions-captured-open-floor">Additional decisions captured (open floor)</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Topic</th>
+<th>Outcome</th>
+<th>Owner</th>
+<th>Phase</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>9</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>10</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="open-questions-phase-0-backlog">Open questions → Phase 0 backlog</h2>
+<p>Carry unresolved items from <a href="../discovery/1-1-CRM-Discovery-Session.html">discovery notes</a>:</p>
+<table>
+<thead>
+<tr>
+<th>Open question</th>
+<th>Assigned to</th>
+<th>Target resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>closed vs dropped off vs discharged</td>
+<td>Joel</td>
+<td>Phase 0 workshop</td>
+</tr>
+<tr>
+<td>pre-intake audit — eliminate?</td>
+<td>Keren + Avi</td>
+<td>Phase 0 + Phase 3</td>
+</tr>
+<tr>
+<td>authorized without valid auth object</td>
+<td>Avi</td>
+<td>Phase 1 baseline + Phase 4 rules</td>
+</tr>
+<tr>
+<td>anticipated SOC vs SOC date</td>
+<td>Joel</td>
+<td>Phase 0 workshop</td>
+</tr>
+<tr>
+<td>LOB coexistence master status</td>
+<td>Joel</td>
+<td>Phase 0 workshop</td>
+</tr>
+<tr>
+<td>voided vs dropped on intake</td>
+<td>Joel</td>
+<td>Phase 0 workshop</td>
+</tr>
+<tr>
+<td>deferred on Medicaid ticket</td>
+<td>Joel</td>
+<td>Phase 0 workshop</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="sign-off-block-end-of-meeting">Sign-off block (end of meeting)</h2>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Name</th>
+<th>Aligned on phased plan?</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Framework</td>
+<td>Keren</td>
+<td>☐</td>
+<td></td>
+</tr>
+<tr>
+<td>Operations</td>
+<td>Joel</td>
+<td>☐</td>
+<td></td>
+</tr>
+<tr>
+<td>CRM implementation</td>
+<td>Avi</td>
+<td>☐</td>
+<td></td>
+</tr>
+<tr>
+<td>Comms</td>
+<td>Leah</td>
+<td>☐</td>
+<td></td>
+</tr>
+<tr>
+<td>Sales UAT</td>
+<td>Angelo</td>
+<td>☐</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Next action owner for Asana sync:</strong> <strong><em>_</em></strong><strong><em>_</em></strong>_<br>
+<strong>Due:</strong> Same day as alignment meeting</p></article></main>
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose" });
+  </script>
+</body>
+</html>

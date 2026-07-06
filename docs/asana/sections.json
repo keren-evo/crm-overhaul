@@ -1,0 +1,71 @@
+{
+  "project": "CRM Status Architecture Rebuild",
+  "version": "2.1.0",
+  "updated": "2026-07-06",
+  "source": "Workstream-based structure — see asana-structure.md",
+  "sections": [
+    {
+      "name": "Governance & Project Setup",
+      "order": 1,
+      "workstream": "Governance",
+      "purpose": "Charter, roles, workshop, change control"
+    },
+    {
+      "name": "Business Definitions & Sign-Off",
+      "order": 2,
+      "workstream": "Definitions",
+      "purpose": "Glossary, lifecycle, layers, edge cases — GATE blocks build"
+    },
+    {
+      "name": "Current State & Data Baseline",
+      "order": 3,
+      "workstream": "Baseline",
+      "purpose": "Schema inventory, audit queries, census gap measurement"
+    },
+    {
+      "name": "Target Architecture & Migration Design",
+      "order": 4,
+      "workstream": "Architecture",
+      "purpose": "Status tables, mapping, required fields, implementation brief"
+    },
+    {
+      "name": "CRM Build — Staging",
+      "order": 5,
+      "workstream": "Build",
+      "purpose": "Picklists, UI, validation, automations in staging"
+    },
+    {
+      "name": "Data Remediation & QA",
+      "order": 6,
+      "workstream": "Remediation",
+      "purpose": "Migration batches, specialty cohorts, ops review"
+    },
+    {
+      "name": "Dashboards & User Acceptance",
+      "order": 7,
+      "workstream": "Dashboards",
+      "purpose": "Rebuild views on clean data; sales + ops UAT"
+    },
+    {
+      "name": "Production Go-Live",
+      "order": 8,
+      "workstream": "Go-Live",
+      "purpose": "Cutover, validation, hypercare"
+    },
+    {
+      "name": "Documentation, Training & NY Playbook",
+      "order": 9,
+      "workstream": "Training",
+      "purpose": "Playbooks, training, field deprecation, FL delta"
+    },
+    {
+      "name": "Growth Enablement",
+      "order": 10,
+      "workstream": "Growth",
+      "purpose": "LeadTrap, Meta, attribution — after data is trustworthy"
+    }
+  ],
+  "task_count": 71,
+  "milestone_count": 6,
+  "tasks_file": "structure.json"
+}

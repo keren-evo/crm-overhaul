@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Asana AI apply prompt — CRM Status Architecture Rebuild</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    :root {
+      --bg: #f4f6f9;
+      --card: #ffffff;
+      --text: #172033;
+      --muted: #5c6578;
+      --accent: #0f766e;
+      --accent-light: #e6f4f2;
+      --border: #d8dee9;
+      --code-bg: #f1f5f9;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.65 "Segoe UI", system-ui, -apple-system, sans-serif;
+    }
+    .topbar {
+      background: linear-gradient(135deg, #0f766e 0%, #134e4a 100%);
+      color: #fff;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.9rem;
+    }
+    .topbar a {
+      color: #fff;
+      text-decoration: none;
+      opacity: 0.95;
+    }
+    .topbar a:hover { text-decoration: underline; }
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+    article {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem 2.25rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    article h1 {
+      margin-top: 0;
+      font-size: 1.75rem;
+      color: #0d5c56;
+      line-height: 1.25;
+      border-bottom: 2px solid var(--accent-light);
+      padding-bottom: 0.5rem;
+    }
+    article h2 {
+      margin-top: 2rem;
+      font-size: 1.25rem;
+      color: #134e4a;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.35rem;
+    }
+    article h3 { margin-top: 1.5rem; color: #1e3a38; }
+    article h4 { margin-top: 1.25rem; }
+    a { color: var(--accent); }
+    a:hover { color: #0d5c56; }
+    p { margin: 0.85rem 0; }
+    ul, ol { padding-left: 1.5rem; }
+    li { margin: 0.35rem 0; }
+    li > ul { margin-top: 0.25rem; }
+    blockquote {
+      margin: 1.25rem 0;
+      padding: 0.75rem 1rem;
+      border-left: 4px solid var(--accent);
+      background: var(--accent-light);
+      border-radius: 0 8px 8px 0;
+    }
+    blockquote p { margin: 0.35rem 0; }
+    code {
+      font-family: Consolas, "SF Mono", monospace;
+      font-size: 0.9em;
+      background: var(--code-bg);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+    }
+    pre {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 1rem 1.15rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+    pre code {
+      background: transparent;
+      padding: 0;
+      color: inherit;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.25rem 0;
+      font-size: 0.95rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.6rem 0.75rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #f8fafc;
+      font-weight: 600;
+      color: #134e4a;
+    }
+    tr:nth-child(even) td { background: #fafbfc; }
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+    .mermaid {
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+    .toc {
+      background: var(--accent-light);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .toc ul { margin: 0.5rem 0 0; }
+    input[type="checkbox"] { margin-right: 0.35rem; }
+    @media print {
+      body { background: #fff; }
+      .topbar { display: none; }
+      article { box-shadow: none; border: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topbar"><a href="../index.html">← CRM Overhaul Hub</a></nav>
+  <main><article><h1 id="asana-ai-apply-prompt-crm-status-architecture-rebuild">Asana AI apply prompt — CRM Status Architecture Rebuild</h1>
+<p>Copy everything below the line into <strong>Asana AI</strong> chat for the project <strong>CRM Status Architecture Rebuild</strong>.</p>
+<hr>
+<p>You are setting up the Link Homecare CRM transformation project in Asana. Use workstream-based sections — <strong>not phase numbers</strong>.</p>
+<h2 id="project">Project</h2>
+<ul>
+<li><strong>Name:</strong> CRM Status Architecture Rebuild</li>
+<li><strong>Description:</strong> Paste from <code>crm/asana/project-description.md</code> in the repo</li>
+<li><strong>Goals (link to project):</strong></li>
+<li>Trustworthy census and pipeline reporting (~1,200–1,300 true census, not ~1,960 authorized)</li>
+<li>Clear lead-to-patient workflow (identify status in ≤3 seconds)</li>
+<li>Clean data foundation for scalable growth</li>
+</ul>
+<h2 id="custom-fields-create-exactly-these-8">Custom fields (create exactly these 8)</h2>
+<p>Workstream (Governance, Definitions, Baseline, Architecture, Build, Remediation, Dashboards, Go-Live, Training, Growth) · Decision Gate (Yes/No) · Blocker (Yes/No) · Requires Stakeholder Decision (Yes/No) · CRM Environment (Discovery, Staging, Production) · Effort (S, M, L) · Priority (P0–P3) · Baseline / Target Metric (text)</p>
+<h2 id="sections-create-in-this-order">Sections (create in this order)</h2>
+<ol>
+<li>Governance &amp; Project Setup</li>
+<li>Business Definitions &amp; Sign-Off</li>
+<li>Current State &amp; Data Baseline</li>
+<li>Target Architecture &amp; Migration Design</li>
+<li>CRM Build — Staging</li>
+<li>Data Remediation &amp; QA</li>
+<li>Dashboards &amp; User Acceptance</li>
+<li>Production Go-Live</li>
+<li>Documentation, Training &amp; NY Playbook</li>
+<li>Growth Enablement</li>
+</ol>
+<h2 id="tasks">Tasks</h2>
+<p>Create <strong>65 parent tasks</strong> from <code>crm/asana/structure.json</code> (one per task object). For each task, create <strong>subtasks</strong> from the <code>subtasks</code> array in that JSON file.</p>
+<p>Assignees:<br>
+- <strong>Keren</strong> — Governance, Definitions, Baseline, Architecture, UAT coordination, Training, Growth<br>
+- <strong>Joel</strong> — Definitions decisions, edge cases, LOB checklists, ops review, ops UAT, playbooks<br>
+- <strong>Avi</strong> — Build, Remediation, Automations, Dashboards, Go-Live<br>
+- <strong>Angelo</strong> — Sales UAT<br>
+- <strong>Leah</strong> — Cutover communications</p>
+<h2 id="milestones-mark-exactly-6-tasks">Milestones (mark exactly 6 tasks)</h2>
+<ol>
+<li>Sign Status Framework v1</li>
+<li>Baseline audit complete — all counts recorded</li>
+<li>Staging build complete — picklists, UI, rules live</li>
+<li>Remediation validated — census gap acceptable on staging</li>
+<li>UAT passed — sales and ops sign-off</li>
+<li>Production live — census gap closed</li>
+</ol>
+<h2 id="dependencies">Dependencies</h2>
+<p>Wire per <code>crm/asana/dependencies.json</code>:<br>
+- §4 and §5 blocked by <strong>Sign Status Framework v1</strong><br>
+- §6 migration blocked by <strong>Baseline complete</strong> AND <strong>Staging build complete</strong><br>
+- §7 blocked by <strong>Remediation validated</strong><br>
+- §8 blocked by <strong>UAT passed</strong><br>
+- §10 blocked by <strong>Production live</strong></p>
+<h2 id="field-defaults">Field defaults</h2>
+<ul>
+<li>§2 Definitions: Requires Stakeholder Decision = Yes for decision tasks</li>
+<li>Milestones: Blocker = Yes, Decision Gate = Yes where applicable</li>
+<li>§5–§7: CRM Environment = Staging</li>
+<li>§8: CRM Environment = Production</li>
+<li>§10 Growth: Priority = P2 or P3</li>
+</ul>
+<h2 id="saved-views-to-create">Saved views to create</h2>
+<ol>
+<li><strong>This week</strong> — due this week, incomplete, group by section</li>
+<li><strong>Decision gates</strong> — Decision Gate = Yes OR Requires Stakeholder Decision = Yes</li>
+<li><strong>Blocked</strong> — Blocker = Yes, incomplete</li>
+<li><strong>Go-live day</strong> — Section = Production Go-Live</li>
+</ol>
+<p>Pin: Decision gates, Blocked, This week.</p>
+<h2 id="do-not">Do not</h2>
+<ul>
+<li>Use Phase 0–7 numbering in section names</li>
+<li>Start CRM build tasks before Framework v1 milestone is complete</li>
+<li>Switch dashboard tasks before Remediation validated milestone</li>
+</ul>
+<p>Source of truth: <code>crm/asana/asana-structure.md</code> and <code>crm/asana/structure.json</code>.</p></article></main>
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose" });
+  </script>
+</body>
+</html>

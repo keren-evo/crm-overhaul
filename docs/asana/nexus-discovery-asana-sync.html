@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Asana sync — Nexus CRM discovery (paste into project)</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    :root {
+      --bg: #f4f6f9;
+      --card: #ffffff;
+      --text: #172033;
+      --muted: #5c6578;
+      --accent: #0f766e;
+      --accent-light: #e6f4f2;
+      --border: #d8dee9;
+      --code-bg: #f1f5f9;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.65 "Segoe UI", system-ui, -apple-system, sans-serif;
+    }
+    .topbar {
+      background: linear-gradient(135deg, #0f766e 0%, #134e4a 100%);
+      color: #fff;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.9rem;
+    }
+    .topbar a {
+      color: #fff;
+      text-decoration: none;
+      opacity: 0.95;
+    }
+    .topbar a:hover { text-decoration: underline; }
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+    article {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem 2.25rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    article h1 {
+      margin-top: 0;
+      font-size: 1.75rem;
+      color: #0d5c56;
+      line-height: 1.25;
+      border-bottom: 2px solid var(--accent-light);
+      padding-bottom: 0.5rem;
+    }
+    article h2 {
+      margin-top: 2rem;
+      font-size: 1.25rem;
+      color: #134e4a;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.35rem;
+    }
+    article h3 { margin-top: 1.5rem; color: #1e3a38; }
+    article h4 { margin-top: 1.25rem; }
+    a { color: var(--accent); }
+    a:hover { color: #0d5c56; }
+    p { margin: 0.85rem 0; }
+    ul, ol { padding-left: 1.5rem; }
+    li { margin: 0.35rem 0; }
+    li > ul { margin-top: 0.25rem; }
+    blockquote {
+      margin: 1.25rem 0;
+      padding: 0.75rem 1rem;
+      border-left: 4px solid var(--accent);
+      background: var(--accent-light);
+      border-radius: 0 8px 8px 0;
+    }
+    blockquote p { margin: 0.35rem 0; }
+    code {
+      font-family: Consolas, "SF Mono", monospace;
+      font-size: 0.9em;
+      background: var(--code-bg);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+    }
+    pre {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 1rem 1.15rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+    pre code {
+      background: transparent;
+      padding: 0;
+      color: inherit;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.25rem 0;
+      font-size: 0.95rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.6rem 0.75rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #f8fafc;
+      font-weight: 600;
+      color: #134e4a;
+    }
+    tr:nth-child(even) td { background: #fafbfc; }
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+    .mermaid {
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+    .toc {
+      background: var(--accent-light);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .toc ul { margin: 0.5rem 0 0; }
+    input[type="checkbox"] { margin-right: 0.35rem; }
+    @media print {
+      body { background: #fff; }
+      .topbar { display: none; }
+      article { box-shadow: none; border: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topbar"><a href="../index.html">← CRM Overhaul Hub</a></nav>
+  <main><article><h1 id="asana-sync-nexus-crm-discovery-paste-into-project">Asana sync — Nexus CRM discovery (paste into project)</h1>
+<p>Use this after the original sprint kit. Updates <strong>EVO CRM Status Label Overhaul Sprint</strong> with findings from <a href="https://crm.linkhomecare.com/">crm.linkhomecare.com</a> Schema Manager and operational screens.</p>
+<hr>
+<h2 id="project-description-update-paste-into-asana-project-description">Project description update (paste into Asana project description)</h2>
+<h3 id="architecture-locked-by-discovery">Architecture (locked by discovery)</h3>
+<p><strong>Nexus CRM</strong> at <code>https://crm.linkhomecare.com/</code> — not a generic <code>persons</code> table.</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Object</th>
+<th>Master fields</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lifecycle</td>
+<td><strong>Episode</strong></td>
+<td><code>status</code> (EpisodeStatus), <code>leadStage</code> (LeadStatus), <code>outcome</code> (ReferralOutcome)</td>
+</tr>
+<tr>
+<td>Service line</td>
+<td><strong>Patient</strong></td>
+<td>Per-LOB fields (<code>lobLTC</code>, <code>lobSkilled</code>, …) + LOB timeline widget</td>
+</tr>
+<tr>
+<td>Intake process</td>
+<td><strong>Intake</strong></td>
+<td>130 fields, 24 picklists (subprocess only)</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td><strong>Authorization</strong></td>
+<td><code>baseStatus</code> (STRING today — migrate to picklist), <code>endDate</code></td>
+</tr>
+</tbody>
+</table>
+<p>Episode description in Schema Manager: <em>"Tracks a single lifecycle from lead to discharge or drop. A patient can have many episodes."</em></p>
+<h3 id="current-episode-picklists-confirmed">Current Episode picklists (confirmed)</h3>
+<p><strong>EpisodeStatus (required):</strong> New · Lead · Active · Converted · On Hold · Dropped · Discharged</p>
+<p><strong>LeadStatus:</strong> — None — · New · In Progress · Dropped Off · Converted</p>
+<h3 id="target-model-phase-0-sign-off">Target model (Phase 0 sign-off)</h3>
+<table>
+<thead>
+<tr>
+<th>Top stage</th>
+<th>Sub-status chip</th>
+<th>Nexus home</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Referral</td>
+<td>New Referral</td>
+<td><code>leadStage</code> = New</td>
+</tr>
+<tr>
+<td>Referral</td>
+<td>In Progress Referral</td>
+<td><code>leadStage</code> = In Progress</td>
+</tr>
+<tr>
+<td>Referral</td>
+<td>Dropped Off Referral</td>
+<td><code>leadStage</code> = Dropped Off + <code>outcome</code></td>
+</tr>
+<tr>
+<td>Active</td>
+<td>Authorized</td>
+<td><code>status</code> = Active + valid Authorization</td>
+</tr>
+<tr>
+<td>Active</td>
+<td>Non-Authorized / Expired</td>
+<td><code>status</code> = Active + missing/expired auth</td>
+</tr>
+<tr>
+<td>Discharged</td>
+<td>(reason)</td>
+<td><code>status</code> = Discharged + <code>outcome</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Retire from EpisodeStatus after migration:</strong> New, Lead, Converted, On Hold (fold into Referral + leadStage). <strong>Retire from LeadStatus:</strong> Converted.</p>
+<h3 id="known-production-bug">Known production bug</h3>
+<p>Ticket <em>Episode Status</em> (Joel → Avi): auth end date updated but <strong>top-line LOB status stays expired</strong> (patient Ntelekos, Evdokia). Phase 4 must ship <strong>auth save → recalc</strong> automation.</p>
+<h3 id="success-criteria-updated">Success criteria (updated)</h3>
+<ul>
+<li>Episode.status collapsed to <strong>Referral / Active / Discharged</strong> (3 values)</li>
+<li>Authorized <strong>never</strong> a top-level Episode status; only Active sub-status</li>
+<li>Leads list (56 today) shows granular Referral sub-status, not all "In Progress"</li>
+<li>True census = Episode Active + valid auth + SOC — not ~1,960 authorized</li>
+<li><code>baseStatus</code> on Authorization migrated from free-text STRING to picklist</li>
+<li>Auth update recalculates display status immediately</li>
+</ul>
+<h3 id="repo-artifacts">Repo artifacts</h3>
+<table>
+<thead>
+<tr>
+<th>Artifact</th>
+<th>Path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nexus migration map</td>
+<td><code>crm/schema/nexus-episode-status-map.json</code></td>
+</tr>
+<tr>
+<td>Legacy map (superseded for Episode)</td>
+<td><code>crm/schema/legacy-status-map.json</code></td>
+</tr>
+<tr>
+<td>Asana task CSV</td>
+<td><code>crm/asana/evo-crm-sprint-tasks.csv</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="comment-to-pin-on-project-copy-paste">Comment to pin on project (copy-paste)</h2>
+<p>Hi team — <strong>Nexus discovery update</strong> from Schema Manager + live CRM review. Please adjust tasks in Asana; do not start Phase 2 until Phase 0 signs the <strong>Episode-centric</strong> model below.</p>
+<h3 id="what-we-learned">What we learned</h3>
+<ol>
+<li><strong>Episode is the master lifecycle</strong> — not a Patient-level status field. Fields: <code>status</code> (EpisodeStatus), <code>leadStage</code> (LeadStatus), <code>outcome</code> (ReferralOutcome).</li>
+<li><strong>Patient</strong> has 278 fields / 53 picklists — LOB timeline is separate from Episode.</li>
+<li><strong>Intake</strong> = subprocess (130 fields). <strong>Authorization</strong> <code>baseStatus</code> is a STRING (data integrity risk).</li>
+<li><strong>Leads list</strong> (56 records) — all show Lead Status "In Progress" → no funnel granularity today.</li>
+<li><strong>Production bug</strong> — updating auth end date does not refresh top-line expired status (ticket resolved; fix needed in automations).</li>
+</ol>
+<h3 id="current-target-episodestatus">Current → target (Episode.status)</h3>
+<table>
+<thead>
+<tr>
+<th>Today</th>
+<th>Target stage</th>
+<th>Sub-status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>New, Lead, Converted, On Hold</td>
+<td><strong>Referral</strong></td>
+<td>New / In Progress / Dropped Off Referral via <code>leadStage</code></td>
+</tr>
+<tr>
+<td>Active</td>
+<td><strong>Active</strong></td>
+<td>Authorized or Non-Authorized (computed from auth)</td>
+</tr>
+<tr>
+<td>Dropped</td>
+<td><strong>Referral</strong></td>
+<td>Dropped Off Referral + outcome</td>
+</tr>
+<tr>
+<td>Discharged</td>
+<td><strong>Discharged</strong></td>
+<td>outcome required</td>
+</tr>
+</tbody>
+</table>
+<h3 id="phase-0-decisions-still-needed">Phase 0 decisions still needed</h3>
+<ul>
+<li>[ ] Active threshold: <strong>SOC required</strong> vs cleared-to-start?</li>
+<li>[ ] Export <strong>ReferralOutcome</strong> picklist values (drop + discharge reasons)</li>
+<li>[ ] One open Episode per patient vs multiple per LOB?</li>
+<li>[ ] Sign Framework v1 with Episode-centric model</li>
+</ul>
+<h3 id="owners-unchanged">Owners (unchanged)</h3>
+<p>@Keren framework + audit · @Avi build + cutover · @Joel ops truth · @Angelo sales UAT · @Leah comms</p>
+<p><strong>Next:</strong> Phase 1 baselines via <strong>Query Console</strong> on Episode/Patient/Authorization — not legacy <code>persons</code> SQL.</p>
+<hr>
+<h2 id="new-updated-tasks-by-phase">New / updated tasks by phase</h2>
+<h3 id="phase-0-add-to-sign-off">Phase 0 — add to sign-off</h3>
+<ul>
+<li>[ ] Confirm <strong>Episode</strong> as master lifecycle (not Patient-level status)</li>
+<li>[ ] Confirm <strong>Active threshold</strong> (SOC vs cleared-to-start)</li>
+<li>[ ] Export and sign off <strong>ReferralOutcome</strong> picklist values</li>
+<li>[ ] Confirm <strong>3-stage UI</strong>: Referral → Active → Discharged + one sub-status chip</li>
+<li>[ ] Confirm <strong>Leads list</strong> shows computed Referral sub-status (not raw In Progress for all)</li>
+</ul>
+<h3 id="phase-1-discovery-complete-remaining">Phase 1 — discovery complete / remaining</h3>
+<ul>
+<li>[x] Document EpisodeStatus picklist values (7 values confirmed)</li>
+<li>[x] Document LeadStatus picklist values (5 values confirmed)</li>
+<li>[ ] Export ReferralOutcome picklist values</li>
+<li>[ ] Document which 3 objects share LeadStatus picklist</li>
+<li>[ ] Baseline: Episode.status distribution (Query Console)</li>
+<li>[ ] Baseline: leadStage = In Progress count (expect ~56+ on Leads view)</li>
+<li>[ ] Baseline: Episode.status = Converted (manual review queue)</li>
+<li>[ ] Baseline: Episode Active without valid Authorization</li>
+<li>[ ] Baseline: Authorization baseStatus value distribution (STRING audit)</li>
+<li>[ ] Map Nexus objects to audit SQL (Episode, Patient, Intake, Authorization — not <code>persons</code>)</li>
+</ul>
+<h3 id="phase-2-schema-staging-replace-personlifecycle_stage-tasks">Phase 2 — schema (staging) — replace person.lifecycle_stage tasks</h3>
+<ul>
+<li>[ ] Collapse <strong>EpisodeStatus</strong> → REFERRAL | ACTIVE | DISCHARGED</li>
+<li>[ ] Rename <strong>LeadStatus</strong> labels (New Referral, In Progress Referral, Dropped Off Referral)</li>
+<li>[ ] Retire <strong>LeadStatus</strong> value Converted</li>
+<li>[ ] Retire <strong>EpisodeStatus</strong> values New, Lead, Converted, On Hold (after backfill)</li>
+<li>[ ] Add <strong>Authorization status picklist</strong>; migrate off <code>baseStatus</code> STRING</li>
+<li>[ ] UI: show <strong>leadStage</strong> only when Episode.status = Referral</li>
+<li>[ ] UI: <strong>Episode progress bar</strong> Referral → Active → Discharged</li>
+<li>[ ] Publish <code>crm/schema/nexus-episode-status-map.json</code> in Schema Manager docs</li>
+</ul>
+<h3 id="phase-3-remediation-batches-episode-centric">Phase 3 — remediation batches (Episode-centric)</h3>
+<ul>
+<li>[ ] Migrate Episode.status New/Lead/Converted/On Hold → REFERRAL + leadStage</li>
+<li>[ ] Migrate Episode.status Dropped → REFERRAL + Dropped Off + outcome</li>
+<li>[ ] Split legacy Patient <strong>closed</strong> → Discharged vs Dropped Off Referral</li>
+<li>[ ] Remediate Episode Active without valid auth → flag Non-Authorized</li>
+<li>[ ] Remediate leadStage = None with open pipeline status</li>
+<li>[ ] Remediate leadStage = Converted (retire value)</li>
+<li>[ ] CDPAP / Girling / orphan authorized batches (unchanged intent)</li>
+</ul>
+<h3 id="phase-4-automations-add">Phase 4 — automations (add)</h3>
+<ul>
+<li>[ ] <strong>Auth save → recalc</strong> Episode sub-status + LOB timeline (Ntelekos fix)</li>
+<li>[ ] Nightly auth expiry → Active Non-Authorized alert</li>
+<li>[ ] Block Discharged unless Episode was Active historically</li>
+<li>[ ] Require <strong>outcome</strong> on Dropped Off Referral and Discharged</li>
+<li>[ ] Service-line drop ≠ patient discharge unless last active LOB + confirm</li>
+</ul>
+<h3 id="phase-5-dashboards-add">Phase 5 — dashboards (add)</h3>
+<ul>
+<li>[ ] <strong>Patients → Leads</strong> list: computed status column (Referral / sub-status)</li>
+<li>[ ] <strong>Episode Status</strong> header widget aligned to 3-stage model</li>
+<li>[ ] True census widget: Episode ACTIVE + valid auth + SOC (not authorized count)</li>
+<li>[ ] Funnel: drop by <strong>outcome</strong> + referral source</li>
+<li>[ ] Ops queue: Active Non-Authorized / expired auth on active episodes</li>
+</ul></article></main>
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose" });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Asana Structure — Link Homecare CRM Status Architecture Rebuild</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    :root {
+      --bg: #f4f6f9;
+      --card: #ffffff;
+      --text: #172033;
+      --muted: #5c6578;
+      --accent: #0f766e;
+      --accent-light: #e6f4f2;
+      --border: #d8dee9;
+      --code-bg: #f1f5f9;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.65 "Segoe UI", system-ui, -apple-system, sans-serif;
+    }
+    .topbar {
+      background: linear-gradient(135deg, #0f766e 0%, #134e4a 100%);
+      color: #fff;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.9rem;
+    }
+    .topbar a {
+      color: #fff;
+      text-decoration: none;
+      opacity: 0.95;
+    }
+    .topbar a:hover { text-decoration: underline; }
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+    article {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem 2.25rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    article h1 {
+      margin-top: 0;
+      font-size: 1.75rem;
+      color: #0d5c56;
+      line-height: 1.25;
+      border-bottom: 2px solid var(--accent-light);
+      padding-bottom: 0.5rem;
+    }
+    article h2 {
+      margin-top: 2rem;
+      font-size: 1.25rem;
+      color: #134e4a;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.35rem;
+    }
+    article h3 { margin-top: 1.5rem; color: #1e3a38; }
+    article h4 { margin-top: 1.25rem; }
+    a { color: var(--accent); }
+    a:hover { color: #0d5c56; }
+    p { margin: 0.85rem 0; }
+    ul, ol { padding-left: 1.5rem; }
+    li { margin: 0.35rem 0; }
+    li > ul { margin-top: 0.25rem; }
+    blockquote {
+      margin: 1.25rem 0;
+      padding: 0.75rem 1rem;
+      border-left: 4px solid var(--accent);
+      background: var(--accent-light);
+      border-radius: 0 8px 8px 0;
+    }
+    blockquote p { margin: 0.35rem 0; }
+    code {
+      font-family: Consolas, "SF Mono", monospace;
+      font-size: 0.9em;
+      background: var(--code-bg);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+    }
+    pre {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 1rem 1.15rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+    pre code {
+      background: transparent;
+      padding: 0;
+      color: inherit;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.25rem 0;
+      font-size: 0.95rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.6rem 0.75rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #f8fafc;
+      font-weight: 600;
+      color: #134e4a;
+    }
+    tr:nth-child(even) td { background: #fafbfc; }
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+    .mermaid {
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+    .toc {
+      background: var(--accent-light);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .toc ul { margin: 0.5rem 0 0; }
+    input[type="checkbox"] { margin-right: 0.35rem; }
+    @media print {
+      body { background: #fff; }
+      .topbar { display: none; }
+      article { box-shadow: none; border: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topbar"><a href="../index.html">← CRM Overhaul Hub</a></nav>
+  <main><article><h1 id="asana-structure-link-homecare-crm-status-architecture-rebuild">Asana Structure — Link Homecare CRM Status Architecture Rebuild</h1>
+<p><strong>Version:</strong> 2.1 · <strong>Updated:</strong> July 6, 2026<br>
+<strong>Logic:</strong> Workstream-based dependency chain. <strong>Jul 2026 meeting:</strong> 5-stage pipeline agreed — finalize labels + flowcharts before Avi tech work.</p>
+<p><strong>Meeting notes:</strong> <a href="../meeting-notes/2026-07-pipeline-alignment.html"><code>meeting-notes/2026-07-pipeline-alignment.md</code></a> · <strong>Glossary v2:</strong> <a href="../glossary-pipeline-v2.html"><code>glossary-pipeline-v2.md</code></a></p>
+<p>Use this document to create the Asana project manually, or apply via <a href="asana-ai-apply.prompt.html"><code>asana-ai-apply.prompt.md</code></a> / import <a href="evo-crm-sprint-tasks.csv"><code>evo-crm-sprint-tasks.csv</code></a>.</p>
+<p>Machine-readable source: <a href="structure.json"><code>structure.json</code></a></p>
+<hr>
+<h2 id="hierarchy-overview">Hierarchy overview</h2>
+<pre><code>PROGRAM: Link Homecare — CRM Operating Model Rebuild
+│
+├── GOAL G1: Trustworthy census and pipeline reporting
+├── GOAL G2: Clear lead-to-patient workflow for every team
+├── GOAL G3: Clean data foundation for scalable growth
+│
+└── PROJECT: CRM Status Architecture Rebuild
+    │
+    ├── §1  Governance &amp; Project Setup
+    ├── §2  Business Definitions &amp; Sign-Off          ← GATE: blocks build
+    ├── §3  Current State &amp; Data Baseline            ← can start after §1; full value after §2
+    ├── §4  Target Architecture &amp; Migration Design   ← after §2 signed
+    ├── §5  CRM Build — Staging                      ← after §2 signed
+    ├── §6  Data Remediation &amp; QA                    ← after §5 + §3 baseline
+    ├── §7  Dashboards &amp; User Acceptance             ← after §6 validated
+    ├── §8  Production Go-Live                       ← after §7 UAT
+    ├── §9  Documentation, Training &amp; NY Playbook     ← after §8
+    └── §10 Growth Enablement                        ← after §8 + data trusted
+</code></pre>
+<h3 id="dependency-chain-milestones">Dependency chain (milestones)</h3>
+<pre><code>Sign Framework v1
+    → Baseline complete
+        → Staging build complete
+            → Remediation validated
+                → UAT passed
+                    → Production live
+                        → Growth enablement
+</code></pre>
+<hr>
+<h2 id="program-goals-asana-goals-link-to-project">Program goals (Asana Goals — link to project)</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Goal</th>
+<th>Owner</th>
+<th>Success metric</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>G1</td>
+<td>Trustworthy census and pipeline reporting</td>
+<td>Joel + Keren</td>
+<td>True census ~1,200–1,300; ~1,960 authorized inflation removed from leadership views</td>
+</tr>
+<tr>
+<td>G2</td>
+<td>Clear lead-to-patient workflow for every team</td>
+<td>Angelo + Joel</td>
+<td>Lead vs referral vs active patient identifiable in ≤3 seconds</td>
+</tr>
+<tr>
+<td>G3</td>
+<td>Clean data foundation for scalable growth</td>
+<td>Keren</td>
+<td>Source, drop reason, conversion reporting reliable for campaigns</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="project-setup">Project setup</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Project name</strong></td>
+<td>CRM Status Architecture Rebuild</td>
+</tr>
+<tr>
+<td><strong>Description</strong></td>
+<td>Paste from <a href="project-description.html"><code>project-description.md</code></a></td>
+</tr>
+<tr>
+<td><strong>Default view</strong></td>
+<td>Board by Section, or Timeline for milestones</td>
+</tr>
+<tr>
+<td><strong>Team members</strong></td>
+<td>Keren, Joel, Avi, Angelo, Leah</td>
+</tr>
+</tbody>
+</table>
+<h3 id="custom-fields-create-in-asana">Custom fields (create in Asana)</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Options</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Workstream</td>
+<td>Single-select</td>
+<td>Governance, Definitions, Baseline, Architecture, Build, Remediation, Dashboards, Go-Live, Training, Growth</td>
+</tr>
+<tr>
+<td>Decision Gate</td>
+<td>Single-select</td>
+<td>Yes, No</td>
+</tr>
+<tr>
+<td>Blocker</td>
+<td>Single-select</td>
+<td>Yes, No</td>
+</tr>
+<tr>
+<td>Requires Stakeholder Decision</td>
+<td>Single-select</td>
+<td>Yes, No</td>
+</tr>
+<tr>
+<td>CRM Environment</td>
+<td>Single-select</td>
+<td>Discovery, Staging, Production</td>
+</tr>
+<tr>
+<td>Effort</td>
+<td>Single-select</td>
+<td>S, M, L</td>
+</tr>
+<tr>
+<td>Priority</td>
+<td>Single-select</td>
+<td>P0, P1, P2, P3</td>
+</tr>
+<tr>
+<td>Baseline / Target Metric</td>
+<td>Text</td>
+<td>e.g. ~1960 → 1200-1300</td>
+</tr>
+</tbody>
+</table>
+<h3 id="milestones-mark-these-6-tasks-as-milestones">Milestones (mark these 6 tasks as milestones)</h3>
+<ol>
+<li>Sign Status Framework v1</li>
+<li>Baseline audit complete — all counts recorded</li>
+<li>Staging build complete — picklists, UI, rules live</li>
+<li>Remediation validated — census gap acceptable on staging</li>
+<li>UAT passed — sales and ops sign-off</li>
+<li>Production live — census gap closed</li>
+</ol>
+<hr>
+<h2 id="1-governance-project-setup">§1 — Governance &amp; Project Setup</h2>
+<p><em>Purpose: Charter the program, assign roles, schedule decisions.</em></p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Owner</th>
+<th>Effort</th>
+<th>P</th>
+<th>Subtasks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Confirm project charter and success criteria</td>
+<td>Keren</td>
+<td>S</td>
+<td>P0</td>
+<td>Align on 3 program goals · Document non-negotiables · Link workspace doc</td>
+</tr>
+<tr>
+<td>Confirm team roles and RACI</td>
+<td>Keren</td>
+<td>S</td>
+<td>P0</td>
+<td>Keren / Joel / Avi / Angelo / Leah role definitions</td>
+</tr>
+<tr>
+<td>Schedule definitions workshop (90 min)</td>
+<td>Keren</td>
+<td>S</td>
+<td>P0</td>
+<td>Send pre-read · Confirm attendees · Facilitator guide · Decision worksheet</td>
+</tr>
+<tr>
+<td>Establish change control rules</td>
+<td>Keren</td>
+<td>S</td>
+<td>P0</td>
+<td>No prod changes pre-sign-off · Retain old fields · No dashboard switch until data validated · Manual review queues</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="agreed-pipeline-jul-2026">Agreed pipeline (Jul 2026)</h2>
+<pre><code>Lead → Qualifying → Referral in Progress → Active → Discharged
+              Dropped Off (any time before Active)
+
+Short-term care: parallel track (icon) → Active when authorized
+Multi-LOB: per-LOB status chips alongside master pipeline
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lead</td>
+<td>New contact</td>
+</tr>
+<tr>
+<td>Qualifying</td>
+<td>Lead in progress — eligibility being confirmed</td>
+</tr>
+<tr>
+<td>Referral in Progress</td>
+<td>Intake opened for a LOB</td>
+</tr>
+<tr>
+<td>Active</td>
+<td>Receiving service on ≥1 LOB</td>
+</tr>
+<tr>
+<td>Discharged</td>
+<td>No active LOBs; left agency</td>
+</tr>
+<tr>
+<td>Dropped Off</td>
+<td>Before Active — opt-out or failed qualification</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="2-business-definitions-sign-off">§2 — Business Definitions &amp; Sign-Off</h2>
+<p><em>Purpose: Lock language, lifecycle, flowcharts. </em><em>Blocks Avi meeting and all CRM build.</em>**</p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Owner</th>
+<th>P</th>
+<th>Decision?</th>
+<th>Subtasks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Refine CRM glossary (living doc)</td>
+<td>Keren</td>
+<td>P0</td>
+<td></td>
+<td>Pipeline v2 terms · short-term track · retire Pre-Intake/Closed/Converted</td>
+</tr>
+<tr>
+<td><strong>Finalize patient status labels and lifecycle flowcharts</strong></td>
+<td>Keren</td>
+<td>P0</td>
+<td><strong>Yes</strong></td>
+<td>Main + short-term + multi-LOB wireframes · <strong>Joel + Leah sign-off</strong></td>
+</tr>
+<tr>
+<td>Confirm master lifecycle model (Jul 2026 alignment)</td>
+<td>Joel</td>
+<td>P0</td>
+<td><strong>Yes</strong></td>
+<td>5-stage pipeline agreed · map to Nexus at Avi meeting</td>
+</tr>
+<tr>
+<td>Confirm layer separation model</td>
+<td>Keren</td>
+<td>P0</td>
+<td><strong>Yes</strong></td>
+<td>Master pipeline + LOB + intake + auth + Medicaid + outcome</td>
+</tr>
+<tr>
+<td>Resolve edge case decision log</td>
+<td>Joel</td>
+<td>L</td>
+<td>P0</td>
+<td><strong>Yes</strong></td>
+</tr>
+<tr>
+<td>Confirm census definition</td>
+<td>Joel</td>
+<td>S</td>
+<td>P0</td>
+<td><strong>Yes</strong></td>
+</tr>
+<tr>
+<td>Simplify drop reasons to ~10 categories</td>
+<td>Keren</td>
+<td>S</td>
+<td>P0</td>
+<td><strong>Yes</strong></td>
+</tr>
+<tr>
+<td>Joel: Confirm NIA re-application waiting period</td>
+<td>Joel</td>
+<td>S</td>
+<td>P0</td>
+<td></td>
+</tr>
+<tr>
+<td>Document short-term care integration rules</td>
+<td>Keren</td>
+<td>M</td>
+<td>P0</td>
+<td></td>
+</tr>
+<tr>
+<td>Document LOB eligibility criteria matrix</td>
+<td>Joel</td>
+<td>M</td>
+<td>P0</td>
+<td></td>
+</tr>
+<tr>
+<td>Export and sign off ReferralOutcome picklist</td>
+<td>Avi</td>
+<td>S</td>
+<td>P0</td>
+<td><strong>Yes</strong></td>
+</tr>
+<tr>
+<td><strong>🏁 Sign Status Framework v1</strong></td>
+<td>Keren</td>
+<td>S</td>
+<td>P0</td>
+<td><strong>Yes</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="1-additions-from-meeting">§1 additions (from meeting)</h3>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Owner</th>
+<th>P</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Joel: Schedule CRM implementation review with Avi's team</td>
+<td>Joel</td>
+<td>P0</td>
+</tr>
+<tr>
+<td>Leah: Follow-up and coordinate Avi meeting scheduling</td>
+<td>Leah</td>
+<td>P0</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="3-current-state-data-baseline">§3 — Current State &amp; Data Baseline</h2>
+<p><em>Purpose: Measure how much the CRM is lying today.</em></p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Owner</th>
+<th>Effort</th>
+<th>P</th>
+<th>Subtasks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Schema Manager object inventory</td>
+<td>Keren</td>
+<td>M</td>
+<td>P0</td>
+<td>Episode · Patient · Intake · Authorization · Shared LeadStatus objects</td>
+</tr>
+<tr>
+<td>Map Nexus objects to audit queries</td>
+<td>Avi</td>
+<td>M</td>
+<td>P0</td>
+<td>Retarget audit SQL · Query Console equivalents · Baseline template</td>
+</tr>
+<tr>
+<td>Run distribution baselines</td>
+<td>Avi</td>
+<td>M</td>
+<td>P0</td>
+<td>Episode.status · leadStage · Converted review · baseStatus STRING</td>
+</tr>
+<tr>
+<td>Run integrity baselines — critical cohorts</td>
+<td>Keren</td>
+<td>L</td>
+<td>P0</td>
+<td>Orphan authorized · Auth+dropped intake · Active no auth · CDPAP · Girling · Pre-intake/closed · Multi-intake · Short-term-only · Stale SOC · 12mo stale · Medicaid deferred</td>
+</tr>
+<tr>
+<td>Record census gap baseline</td>
+<td>Keren</td>
+<td>S</td>
+<td>P0</td>
+<td>~1960 vs ~1200-1300 · Gap ~760 · Top 3 drivers</td>
+</tr>
+<tr>
+<td>Export manual review batch IDs</td>
+<td>Avi</td>
+<td>S</td>
+<td>P1</td>
+<td>Converted · Active no auth · Discharged never active · Dropped was active</td>
+</tr>
+<tr>
+<td><strong>🏁 Baseline audit complete</strong></td>
+<td>Keren</td>
+<td>S</td>
+<td>P0</td>
+<td>Fill audit matrix · Review with Joel · <strong>Unlock Remediation</strong></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="4-target-architecture-migration-design">§4 — Target Architecture &amp; Migration Design</h2>
+<p><em>Purpose: Build-ready specs for Avi — after Framework v1 signed.</em></p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Owner</th>
+<th>Effort</th>
+<th>P</th>
+<th>Subtasks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Finalize status architecture tables</td>
+<td>Keren</td>
+<td>M</td>
+<td>P0</td>
+<td>Lifecycle transitions · Referral rules · Intake per LOB · Auth validity · Invalid transitions</td>
+</tr>
+<tr>
+<td>Complete old-to-new status mapping</td>
+<td>Keren</td>
+<td>M</td>
+<td>P0</td>
+<td>Episode migration · LeadStatus · Patient legacy · Safe/conditional/manual/deprecate · Update nexus-episode-status-map.json</td>
+</tr>
+<tr>
+<td>Define required field matrix</td>
+<td>Keren</td>
+<td>M</td>
+<td>P0</td>
+<td>Per-status required fields · Map to validation-rules.ts</td>
+</tr>
+<tr>
+<td>Draft dashboard logic spec</td>
+<td>Keren</td>
+<td>M</td>
+<td>P1</td>
+<td>Leadership · Intake · Ops · Growth views</td>
+</tr>
+<tr>
+<td>Publish Implementation Brief for Avi</td>
+<td>Keren</td>
+<td>M</td>
+<td>P0</td>
+<td>Picklists · UI · Validation · Migration safety · Rollback · Open tech questions</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="5-crm-build-staging">§5 — CRM Build — Staging</h2>
+<p><em>Purpose: Picklists, UI, rules, automations in staging only.</em></p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Owner</th>
+<th>Effort</th>
+<th>P</th>
+<th>Subtasks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Episode picklist rebuild</td>
+<td>Avi</td>
+<td>M</td>
+<td>P0</td>
+<td>3-value EpisodeStatus · Deprecate legacy · Rename LeadStatus · Retire Converted</td>
+</tr>
+<tr>
+<td>Authorization picklist migration</td>
+<td>Avi</td>
+<td>M</td>
+<td>P0</td>
+<td>Replace baseStatus STRING · Map values · Link to LOB timeline</td>
+</tr>
+<tr>
+<td>Episode UI updates</td>
+<td>Avi</td>
+<td>L</td>
+<td>P0</td>
+<td>Progress bar · Sub-status chip · Conditional leadStage · Outcome modal · Hide legacy Patient fields</td>
+</tr>
+<tr>
+<td>Validation rules — blocking saves</td>
+<td>Avi</td>
+<td>M</td>
+<td>P0</td>
+<td>Outcome required · Discharge rules · leadStage cleared · LOB drop confirm</td>
+</tr>
+<tr>
+<td>Automations</td>
+<td>Avi</td>
+<td>L</td>
+<td>P0</td>
+<td>Auth save recalc (Ntelekos) · Nightly expiry · NIA fail hold · SOC → Active · SLA timers</td>
+</tr>
+<tr>
+<td><strong>🏁 Staging build complete</strong></td>
+<td>Avi</td>
+<td>S</td>
+<td>P0</td>
+<td>Demo to Keren + Joel · <strong>Unlock Remediation execution</strong></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="6-data-remediation-qa">§6 — Data Remediation &amp; QA</h2>
+<p><em>Purpose: Clean staging data; validate before dashboards.</em></p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Owner</th>
+<th>Effort</th>
+<th>P</th>
+<th>Subtasks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Build staging migration script</td>
+<td>Avi</td>
+<td>L</td>
+<td>P0</td>
+<td>nexus-episode-status-map.json · Safe → conditional → manual review</td>
+</tr>
+<tr>
+<td>Migrate Episode statuses</td>
+<td>Avi</td>
+<td>M</td>
+<td>P0</td>
+<td>New/Lead/Converted/On Hold → Referral · Dropped → Dropped Off · Active sub-status · Discharged backfill</td>
+</tr>
+<tr>
+<td>Remediate legacy Patient picklists</td>
+<td>Avi</td>
+<td>M</td>
+<td>P0</td>
+<td>pre-intake → hold · closed split · remove person-level authorized</td>
+</tr>
+<tr>
+<td>Run specialty remediation batches</td>
+<td>Avi</td>
+<td>L</td>
+<td>P0</td>
+<td>CDPAP · Girling · Orphan authorized · Voided/dropped intakes · leadStage None/Converted</td>
+</tr>
+<tr>
+<td>Re-run baselines on staging</td>
+<td>Keren</td>
+<td>M</td>
+<td>P0</td>
+<td>Compare to baseline · Document exceptions · Orphan authorized → 0</td>
+</tr>
+<tr>
+<td>Ops review — 50 remediated records</td>
+<td>Joel</td>
+<td>M</td>
+<td>P0</td>
+<td>Sample LOBs and edge cases · Confirm operational truth</td>
+</tr>
+<tr>
+<td><strong>🏁 Remediation validated</strong></td>
+<td>Avi</td>
+<td>S</td>
+<td>P0</td>
+<td>Joel ops acceptance · <strong>Unlock Dashboards</strong></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="7-dashboards-user-acceptance">§7 — Dashboards &amp; User Acceptance</h2>
+<p><em>Purpose: Rebuild reporting on clean data; validate with users.</em></p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Owner</th>
+<th>Effort</th>
+<th>P</th>
+<th>Subtasks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rebuild Leads / Referral list view</td>
+<td>Avi</td>
+<td>M</td>
+<td>P0</td>
+<td>Granular leadStage · Intake date · LOB filter · Hide irrelevant drops</td>
+</tr>
+<tr>
+<td>Rebuild leadership widgets</td>
+<td>Avi</td>
+<td>M</td>
+<td>P0</td>
+<td>True census · Authorized pipeline · Non-authorized risk · Referral funnel</td>
+</tr>
+<tr>
+<td>Rebuild ops queues</td>
+<td>Avi</td>
+<td>M</td>
+<td>P1</td>
+<td>Expiring auth · Stale SOC · Missing fields · Multi-LOB conflicts</td>
+</tr>
+<tr>
+<td>Rebuild growth / funnel reporting</td>
+<td>Avi</td>
+<td>M</td>
+<td>P2</td>
+<td>Outcome by source · Conversion · Geography</td>
+</tr>
+<tr>
+<td>QA — zero orphan authorized on census widget</td>
+<td>Avi</td>
+<td>S</td>
+<td>P0</td>
+<td>Run query · 0 violations · Document exceptions</td>
+</tr>
+<tr>
+<td>Sales UAT — Angelo</td>
+<td>Angelo</td>
+<td>M</td>
+<td>P0</td>
+<td>≤3 second identification · Funnel granularity · Drop reasons visible</td>
+</tr>
+<tr>
+<td>Ops UAT — Joel + intake</td>
+<td>Joel</td>
+<td>M</td>
+<td>P0</td>
+<td>NIA hold · Auth recalc · LOB drop vs discharge</td>
+</tr>
+<tr>
+<td><strong>🏁 UAT passed</strong></td>
+<td>Keren</td>
+<td>S</td>
+<td>P0</td>
+<td>Written sign-off · <strong>Unlock Go-Live</strong></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="8-production-go-live">§8 — Production Go-Live</h2>
+<p><em>Purpose: Cut over with safety controls and monitoring.</em></p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Owner</th>
+<th>Effort</th>
+<th>P</th>
+<th>Subtasks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Final go/no-go review</td>
+<td>Keren</td>
+<td>S</td>
+<td>P0</td>
+<td>Staging gap OK · Rollback plan · Comms sent · Decision recorded</td>
+</tr>
+<tr>
+<td>Schedule and communicate migration window</td>
+<td>Leah</td>
+<td>S</td>
+<td>P0</td>
+<td>Announce · Day-1 changes · Support channel</td>
+</tr>
+<tr>
+<td>Execute production remediation batch</td>
+<td>Avi</td>
+<td>L</td>
+<td>P0</td>
+<td>Run script · Manual review queue · Sample verification</td>
+</tr>
+<tr>
+<td>Enable production rules and automations</td>
+<td>Avi</td>
+<td>M</td>
+<td>P0</td>
+<td>Validation · Auth recalc · Expiry alerts · SLAs</td>
+</tr>
+<tr>
+<td>Switch production dashboards and list views</td>
+<td>Avi</td>
+<td>M</td>
+<td>P0</td>
+<td>New census · New Leads list · Hide legacy authorized · Archive old dashboards</td>
+</tr>
+<tr>
+<td>Post-cutover census validation</td>
+<td>Keren</td>
+<td>S</td>
+<td>P0</td>
+<td>Re-run gap audit · Compare to baseline</td>
+</tr>
+<tr>
+<td><strong>🏁 Production live</strong></td>
+<td>Avi</td>
+<td>S</td>
+<td>P0</td>
+<td>Leadership briefed · Begin hypercare</td>
+</tr>
+<tr>
+<td>Hypercare monitoring (2 weeks)</td>
+<td>Avi</td>
+<td>M</td>
+<td>P1</td>
+<td>Auth recalc · SLA false positives · Daily check-ins · Defect triage</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="9-documentation-training-ny-playbook">§9 — Documentation, Training &amp; NY Playbook</h2>
+<p><em>Purpose: Make the new model stick.</em></p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Owner</th>
+<th>Effort</th>
+<th>P</th>
+<th>Subtasks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Publish NY Status Framework v1 (canonical)</td>
+<td>Keren</td>
+<td>M</td>
+<td>P1</td>
+<td>Glossary · Per-team quick refs · Edge cases · Teams + repo</td>
+</tr>
+<tr>
+<td>Update department playbooks</td>
+<td>Joel</td>
+<td>L</td>
+<td>P1</td>
+<td>Intake · Sales · Ops · Angela playbook</td>
+</tr>
+<tr>
+<td>Conduct team training sessions</td>
+<td>Keren</td>
+<td>M</td>
+<td>P1</td>
+<td>Sales 30m · Intake 45m · Ops 30m · Record sessions</td>
+</tr>
+<tr>
+<td>Deprecate legacy fields (write-block only)</td>
+<td>Avi</td>
+<td>M</td>
+<td>P2</td>
+<td>Write-block legacy values · Hide Patient picklists · Plan intake field reduction</td>
+</tr>
+<tr>
+<td>Florida delta checklist</td>
+<td>Keren</td>
+<td>M</td>
+<td>P3</td>
+<td>NY vs FL differences · LeadTrap note · FL effort estimate</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="10-growth-enablement">§10 — Growth Enablement</h2>
+<p><em>Purpose: Connect growth systems only after CRM logic is trustworthy.</em></p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Owner</th>
+<th>Effort</th>
+<th>P</th>
+<th>Subtasks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Confirm growth readiness prerequisites</td>
+<td>Keren</td>
+<td>S</td>
+<td>P2</td>
+<td>Source standardized · Outcomes populated · Conversion validated</td>
+</tr>
+<tr>
+<td>UTM and campaign attribution standards</td>
+<td>Keren</td>
+<td>M</td>
+<td>P2</td>
+<td>UTM params · Map to Episode source · Naming convention</td>
+</tr>
+<tr>
+<td>Website forms → CRM integration audit</td>
+<td>Avi</td>
+<td>M</td>
+<td>P2</td>
+<td>New Referral landing · Source preserved · E2E test</td>
+</tr>
+<tr>
+<td>LeadTrap / Ava integration</td>
+<td>Keren</td>
+<td>L</td>
+<td>P3</td>
+<td>Bot → sub-status · Drop reasons · Conversion reporting</td>
+</tr>
+<tr>
+<td>Meta / paid social attribution</td>
+<td>Keren</td>
+<td>M</td>
+<td>P3</td>
+<td>Campaign IDs · Drop by campaign · Retargeting rules</td>
+</tr>
+<tr>
+<td>Referral partner tracking</td>
+<td>Keren</td>
+<td>M</td>
+<td>P2</td>
+<td>referral_partner field · Partner conversion · Geography</td>
+</tr>
+<tr>
+<td>Growth dashboard — qualified referral → active</td>
+<td>Avi</td>
+<td>M</td>
+<td>P2</td>
+<td>Cohort conversion · Drop by source/LOB · Monthly review template</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="saved-views-recommended">Saved views (recommended)</h2>
+<table>
+<thead>
+<tr>
+<th>View</th>
+<th>Filter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>This week</strong></td>
+<td>Due this week · Incomplete · Group by Section</td>
+</tr>
+<tr>
+<td><strong>Decision gates</strong></td>
+<td>Decision Gate = Yes OR Requires Stakeholder Decision = Yes</td>
+</tr>
+<tr>
+<td><strong>Blocked</strong></td>
+<td>Blocker = Yes · Incomplete</td>
+</tr>
+<tr>
+<td><strong>Keren</strong></td>
+<td>Assignee = Keren</td>
+</tr>
+<tr>
+<td><strong>Avi — build</strong></td>
+<td>Assignee = Avi · Workstream in Build, Remediation, Dashboards, Go-Live</td>
+</tr>
+<tr>
+<td><strong>Joel — ops</strong></td>
+<td>Assignee = Joel · Requires Stakeholder Decision = Yes</td>
+</tr>
+<tr>
+<td><strong>Go-live day</strong></td>
+<td>Section = Production Go-Live · Incomplete · Sort by dependency</td>
+</tr>
+<tr>
+<td><strong>Growth (later)</strong></td>
+<td>Workstream = Growth</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="task-count-summary">Task count summary</h2>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Tasks</th>
+<th>Milestones</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>§1 Governance</td>
+<td>6</td>
+<td>—</td>
+</tr>
+<tr>
+<td>§2 Definitions</td>
+<td>12</td>
+<td>Sign Framework v1</td>
+</tr>
+<tr>
+<td>§3 Baseline</td>
+<td>7</td>
+<td>Baseline complete</td>
+</tr>
+<tr>
+<td>§4 Architecture</td>
+<td>5</td>
+<td>—</td>
+</tr>
+<tr>
+<td>§5 Build</td>
+<td>6</td>
+<td>Staging build complete</td>
+</tr>
+<tr>
+<td>§6 Remediation</td>
+<td>7</td>
+<td>Remediation validated</td>
+</tr>
+<tr>
+<td>§7 Dashboards &amp; UAT</td>
+<td>8</td>
+<td>UAT passed</td>
+</tr>
+<tr>
+<td>§8 Go-Live</td>
+<td>8</td>
+<td>Production live</td>
+</tr>
+<tr>
+<td>§9 Training</td>
+<td>5</td>
+<td>—</td>
+</tr>
+<tr>
+<td>§10 Growth</td>
+<td>7</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>71 tasks</strong></td>
+<td><strong>6 milestones</strong></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="how-to-apply-in-asana">How to apply in Asana</h2>
+<ol>
+<li>Create project <strong>CRM Status Architecture Rebuild</strong></li>
+<li>Paste <a href="project-description.html"><code>project-description.md</code></a> into project description</li>
+<li>Link 3 program goals to the project</li>
+<li>Create 10 sections (§1–§10 names above)</li>
+<li>Create 6 custom fields</li>
+<li>Import <a href="evo-crm-sprint-tasks.csv"><code>evo-crm-sprint-tasks.csv</code></a> <strong>or</strong> run <a href="asana-ai-apply.prompt.html"><code>asana-ai-apply.prompt.md</code></a></li>
+<li>Mark 6 milestone tasks</li>
+<li>Wire dependencies per chain above</li>
+<li>Pin saved views: Decision gates, Blocked, This week</li>
+</ol></article></main>
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose" });
+  </script>
+</body>
+</html>

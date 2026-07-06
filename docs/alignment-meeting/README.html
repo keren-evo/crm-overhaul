@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CRM Status Overhaul — Alignment Meeting Package</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    :root {
+      --bg: #f4f6f9;
+      --card: #ffffff;
+      --text: #172033;
+      --muted: #5c6578;
+      --accent: #0f766e;
+      --accent-light: #e6f4f2;
+      --border: #d8dee9;
+      --code-bg: #f1f5f9;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.65 "Segoe UI", system-ui, -apple-system, sans-serif;
+    }
+    .topbar {
+      background: linear-gradient(135deg, #0f766e 0%, #134e4a 100%);
+      color: #fff;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.9rem;
+    }
+    .topbar a {
+      color: #fff;
+      text-decoration: none;
+      opacity: 0.95;
+    }
+    .topbar a:hover { text-decoration: underline; }
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+    article {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem 2.25rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    article h1 {
+      margin-top: 0;
+      font-size: 1.75rem;
+      color: #0d5c56;
+      line-height: 1.25;
+      border-bottom: 2px solid var(--accent-light);
+      padding-bottom: 0.5rem;
+    }
+    article h2 {
+      margin-top: 2rem;
+      font-size: 1.25rem;
+      color: #134e4a;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.35rem;
+    }
+    article h3 { margin-top: 1.5rem; color: #1e3a38; }
+    article h4 { margin-top: 1.25rem; }
+    a { color: var(--accent); }
+    a:hover { color: #0d5c56; }
+    p { margin: 0.85rem 0; }
+    ul, ol { padding-left: 1.5rem; }
+    li { margin: 0.35rem 0; }
+    li > ul { margin-top: 0.25rem; }
+    blockquote {
+      margin: 1.25rem 0;
+      padding: 0.75rem 1rem;
+      border-left: 4px solid var(--accent);
+      background: var(--accent-light);
+      border-radius: 0 8px 8px 0;
+    }
+    blockquote p { margin: 0.35rem 0; }
+    code {
+      font-family: Consolas, "SF Mono", monospace;
+      font-size: 0.9em;
+      background: var(--code-bg);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+    }
+    pre {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 1rem 1.15rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+    pre code {
+      background: transparent;
+      padding: 0;
+      color: inherit;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.25rem 0;
+      font-size: 0.95rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.6rem 0.75rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #f8fafc;
+      font-weight: 600;
+      color: #134e4a;
+    }
+    tr:nth-child(even) td { background: #fafbfc; }
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+    .mermaid {
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+    .toc {
+      background: var(--accent-light);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .toc ul { margin: 0.5rem 0 0; }
+    input[type="checkbox"] { margin-right: 0.35rem; }
+    @media print {
+      body { background: #fff; }
+      .topbar { display: none; }
+      article { box-shadow: none; border: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topbar"><a href="../index.html">← CRM Overhaul Hub</a></nav>
+  <main><article><h1 id="crm-status-overhaul-alignment-meeting-package">CRM Status Overhaul — Alignment Meeting Package</h1>
+<p>Executable prep for the team alignment session. <strong>Do not edit the Cursor plan file</strong> — use these artifacts instead.</p>
+<h2 id="quick-start">Quick start</h2>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>When</th>
+<th>File</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Before meeting</strong> — send to team</td>
+<td><a href="01-share-with-team.html"><code>01-share-with-team.md</code></a></td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>During meeting</strong> — facilitator guide</td>
+<td><a href="02-phase-walkthrough.html"><code>02-phase-walkthrough.md</code></a></td>
+</tr>
+<tr>
+<td>2b</td>
+<td><strong>Asana</strong> — phase walkthrough comment + CTA</td>
+<td><a href="02-phase-walkthrough-asana-comment.html"><code>02-phase-walkthrough-asana-comment.md</code></a></td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>During meeting</strong> — capture decisions</td>
+<td><a href="03-decision-worksheet.html"><code>03-decision-worksheet.md</code></a></td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Same day</strong> — sync Asana + repo</td>
+<td><a href="04-post-meeting-asana-sync.html"><code>04-post-meeting-asana-sync.md</code></a></td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>After meeting</strong> — schedule Phase 0</td>
+<td><a href="05-phase0-workshop.html"><code>05-phase0-workshop.md</code></a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="related-artifacts">Related artifacts</h2>
+<table>
+<thead>
+<tr>
+<th>Artifact</th>
+<th>Path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Asana execution kit</td>
+<td><a href="../asana/README.html"><code>../asana/README.md</code></a></td>
+</tr>
+<tr>
+<td>CRM bot discovery prompts</td>
+<td><a href="../crm-bot-discovery.prompt.html"><code>../crm-bot-discovery.prompt.md</code></a></td>
+</tr>
+<tr>
+<td>Discovery session notes</td>
+<td><a href="../discovery/1-1-CRM-Discovery-Session.html"><code>discovery/1-1-CRM-Discovery-Session.md</code></a></td>
+</tr>
+<tr>
+<td>Decision workspace (Asana template)</td>
+<td><a href="../discovery/CRM-DECISION-WORKSPACE.html"><code>discovery/CRM-DECISION-WORKSPACE.md</code></a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="meeting-length">Meeting length</h2>
+<p>60–90 minutes. See timing in <a href="02-phase-walkthrough.html"><code>02-phase-walkthrough.md</code></a>.</p>
+<h2 id="collaborative-framing">Collaborative framing</h2>
+<p>Keren is still learning operational processes — the phased plan is a <strong>proposal</strong>. The team should edit phases, tasks, dependencies, and ownership freely in Asana or during the meeting.</p>
+<p><strong>Hard rule (default):</strong> Phase 2+ does not start until Status Framework v1 is signed (Phase 0 milestone).</p></article></main>
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose" });
+  </script>
+</body>
+</html>

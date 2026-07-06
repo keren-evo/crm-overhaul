@@ -1,0 +1,80 @@
+{
+  "project": "CRM Status Architecture Rebuild",
+  "version": "2.0.0",
+  "updated": "2026-07-02",
+  "instructions": "In Asana: task → Dependencies → add 'Blocked by'.",
+  "cross_section": [
+    {
+      "blocked": "Joel: Schedule CRM implementation review with Avi's team",
+      "blocked_by": "Finalize patient status labels and lifecycle flowcharts"
+    },
+    {
+      "blocked": "Leah: Follow-up and coordinate Avi meeting scheduling",
+      "blocked_by": "Finalize patient status labels and lifecycle flowcharts"
+    },
+    {
+      "blocked": "Sign Status Framework v1",
+      "blocked_by": "Finalize patient status labels and lifecycle flowcharts"
+    },
+    {
+      "blocked": "All §4 Target Architecture tasks",
+      "blocked_by": "Sign Status Framework v1"
+    },
+    {
+      "blocked": "All §5 CRM Build — Staging tasks",
+      "blocked_by": "Sign Status Framework v1"
+    },
+    {
+      "blocked": "All §6 Data Remediation migration tasks",
+      "blocked_by": "Baseline audit complete — all counts recorded"
+    },
+    {
+      "blocked": "All §6 Data Remediation migration tasks",
+      "blocked_by": "Staging build complete"
+    },
+    {
+      "blocked": "All §7 Dashboards tasks",
+      "blocked_by": "Remediation validated — census gap acceptable on staging"
+    },
+    {
+      "blocked": "All §8 Production Go-Live tasks",
+      "blocked_by": "UAT passed — sales and ops sign-off"
+    },
+    {
+      "blocked": "All §10 Growth Enablement tasks",
+      "blocked_by": "Production live — census gap closed"
+    },
+    {
+      "blocked": "Publish NY Status Framework v1 (canonical)",
+      "blocked_by": "Production live — census gap closed"
+    }
+  ],
+  "within_section": [
+    { "task": "Map Nexus objects to audit queries", "blocked_by": "Sign Status Framework v1" },
+    { "task": "Run distribution baselines", "blocked_by": "Map Nexus objects to audit queries" },
+    { "task": "Run integrity baselines — critical cohorts", "blocked_by": "Run distribution baselines" },
+    { "task": "Baseline audit complete — all counts recorded", "blocked_by": "Record census gap baseline" },
+    { "task": "Episode picklist rebuild", "blocked_by": "Sign Status Framework v1" },
+    { "task": "Staging build complete", "blocked_by": "Automations" },
+    { "task": "Build staging migration script", "blocked_by": "Baseline audit complete — all counts recorded" },
+    { "task": "Build staging migration script", "blocked_by": "Staging build complete" },
+    { "task": "Migrate Episode statuses", "blocked_by": "Build staging migration script" },
+    { "task": "Re-run baselines on staging", "blocked_by": "Run specialty remediation batches" },
+    { "task": "Ops review — 50 remediated records", "blocked_by": "Re-run baselines on staging" },
+    { "task": "Remediation validated — census gap acceptable on staging", "blocked_by": "Ops review — 50 remediated records" },
+    { "task": "Rebuild Leads / Referral list view", "blocked_by": "Remediation validated — census gap acceptable on staging" },
+    { "task": "QA — zero orphan authorized on census widget", "blocked_by": "Rebuild leadership widgets" },
+    { "task": "Sales UAT — Angelo", "blocked_by": "QA — zero orphan authorized on census widget" },
+    { "task": "Ops UAT — Joel + intake leads", "blocked_by": "QA — zero orphan authorized on census widget" },
+    { "task": "UAT passed — sales and ops sign-off", "blocked_by": "Sales UAT — Angelo" },
+    { "task": "UAT passed — sales and ops sign-off", "blocked_by": "Ops UAT — Joel + intake leads" },
+    { "task": "Execute production remediation batch", "blocked_by": "Final go/no-go review" },
+    { "task": "Switch production dashboards and list views", "blocked_by": "Enable production rules and automations" },
+    { "task": "Production live — census gap closed", "blocked_by": "Post-cutover census validation" }
+  ],
+  "parallel_allowed": [
+    "§3 Baseline can run in parallel with §2 Definitions drafting (read-only discovery)",
+    "§4 Architecture can draft in parallel with §3 Baseline after Framework v1 signed",
+    "§5 Build and §4 Architecture finalization can overlap once Framework signed"
+  ]
+}
