@@ -14,15 +14,16 @@ Executable specs for the Lead → Referral → Intake → Patient lifecycle over
 
 **Gate:** Sign glossary + flowcharts → Joel schedules Avi · Leah coordinates calendar.
 
-## GitHub (canonical — all files)
+## GitHub & web hub
 
 | Item | Link |
 |------|------|
-| **CRM package root** | [github.com/klacadin/evo-growth/tree/master/crm](https://github.com/klacadin/evo-growth/tree/master/crm) |
-| **Sign-off glossary** | [glossary-pipeline-v2.md](https://github.com/klacadin/evo-growth/blob/master/crm/glossary-pipeline-v2.md) |
-| **Flowcharts** | [pipeline-flowcharts-v1.md](https://github.com/klacadin/evo-growth/blob/master/crm/flowcharts/pipeline-flowcharts-v1.md) |
-| **Execution workspace** | [Link-Homecare-CRM-Status-Architecture-Execution-Workspace.md](https://github.com/klacadin/evo-growth/blob/master/crm/Link-Homecare-CRM-Status-Architecture-Execution-Workspace.md) |
-| **Asana task CSV** | [crm_asana_v3.csv](https://github.com/klacadin/evo-growth/blob/master/crm/asana/crm_asana_v3.csv) (Related Docs = GitHub links) |
+| **CRM hub (browse)** | [keren-evo.github.io/crm-overhaul](https://keren-evo.github.io/crm-overhaul/) |
+| **Repo** | [github.com/keren-evo/crm-overhaul](https://github.com/keren-evo/crm-overhaul) |
+| **Sign-off glossary** | [glossary-pipeline-v2.html](https://keren-evo.github.io/crm-overhaul/glossary-pipeline-v2.html) |
+| **Flowcharts** | [pipeline-flowcharts-v1.html](https://keren-evo.github.io/crm-overhaul/flowcharts/pipeline-flowcharts-v1.html) |
+| **Execution workspace** | [execution workspace](https://keren-evo.github.io/crm-overhaul/Link-Homecare-CRM-Status-Architecture-Execution-Workspace.html) |
+| **Asana task CSV** | [crm_asana_v3.csv](https://keren-evo.github.io/crm-overhaul/asana/crm_asana_v3.csv) (Related Docs = hub links) |
 
 ## OneDrive hub (clickable — share with team)
 

@@ -2,11 +2,12 @@
   "version": "1.0.0",
   "updated": "2026-07-06",
   "github": {
-    "repo": "klacadin/evo-growth",
-    "branch": "master",
-    "crm_tree": "https://github.com/klacadin/evo-growth/tree/master/crm"
+    "repo": "keren-evo/crm-overhaul",
+    "branch": "main",
+    "crm_tree": "https://github.com/keren-evo/crm-overhaul/tree/main/crm",
+    "pages_base": "https://keren-evo.github.io/crm-overhaul"
   },
-  "description": "Repo artifact paths per Asana parent task. CSV export uses GitHub blob URLs.",
+  "description": "Repo artifact paths per Asana parent task. CSV export uses GitHub Pages URLs for docs and blob URLs for src/.",
   "tasks": {
     "Confirm project charter and success criteria": [
       "crm/Link-Homecare-CRM-Status-Architecture-Execution-Workspace.md",

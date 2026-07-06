@@ -55,22 +55,37 @@ def extract_files_from_subtasks(subtasks: list[str]) -> list[str]:
     return found
 
 
-GITHUB_REPO = files_data.get("github", {}).get("repo", "klacadin/evo-growth")
-GITHUB_BRANCH = files_data.get("github", {}).get("branch", "master")
+GITHUB_REPO = files_data.get("github", {}).get("repo", "keren-evo/crm-overhaul")
+GITHUB_BRANCH = files_data.get("github", {}).get("branch", "main")
+PAGES_BASE = files_data.get("github", {}).get(
+    "pages_base", "https://keren-evo.github.io/crm-overhaul"
+).rstrip("/")
 GITHUB_BLOB = f"https://github.com/{GITHUB_REPO}/blob/{GITHUB_BRANCH}"
 
 
-def to_github_url(repo_path: str) -> str:
-    """Map repo artifact to a GitHub blob URL (markdown sources for HTML doc aliases)."""
+def repo_path_to_pages_rel(repo_path: str) -> str | None:
+    """Map a crm/ repo path to its GitHub Pages URL path (None if not on the hub site)."""
     path = normalize_path(repo_path)
-    if path.startswith("crm/onedrive-hub/flowcharts/"):
-        path = path.replace("crm/onedrive-hub/flowcharts/", "crm/flowcharts/").replace(
-            ".html", ".md"
-        )
-    elif path.endswith(".prompt.html"):
-        path = path.replace(".prompt.html", ".prompt.md")
-    elif path.endswith(".html"):
-        path = path[:-5] + ".md"
+    if not path.startswith("crm/"):
+        return None
+    if path == "crm/onedrive-hub/index.html":
+        return ""
+    rel = path[len("crm/") :]
+    if rel.startswith("onedrive-hub/flowcharts/"):
+        rel = rel.replace("onedrive-hub/flowcharts/", "flowcharts/")
+    if rel.endswith(".prompt.md"):
+        return rel[: -len(".prompt.md")] + ".prompt.html"
+    if rel.endswith(".md"):
+        return rel[:-3] + ".html"
+    return rel
+
+
+def to_github_url(repo_path: str) -> str:
+    """Map repo artifact to a clickable URL (Pages for hub docs, blob for src/)."""
+    path = normalize_path(repo_path)
+    pages_rel = repo_path_to_pages_rel(path)
+    if pages_rel is not None:
+        return f"{PAGES_BASE}/{pages_rel}" if pages_rel else f"{PAGES_BASE}/"
     return f"{GITHUB_BLOB}/{path}"
 
 
