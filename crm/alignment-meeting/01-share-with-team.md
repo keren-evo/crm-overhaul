@@ -41,9 +41,9 @@ I've drafted a **phased approach** in Asana (source files in [`crm/asana/`](../a
 | Artifact | Link |
 |----------|------|
 | Asana project | [EVO CRM Status Label Overhaul Sprint] |
-| Discovery session notes | [`1-1-CRM Status Label Overhaul — Lead-to-Patient Workflow Discovery Session.md`](../../1-1-CRM%20Status%20Label%20Overhaul%20—%20Lead-to-Patient%20Workflow%20Discovery%20Session.md) |
-| Decision workspace template | [`CRM DECISION WORKSPACE.md`](../../CRM%20DECISION%20WORKSPACE.md) |
-| CRM repo overview | [`crm/README.md`](../README.md) |
+| Discovery session notes | [`discovery/1-1-CRM-Discovery-Session.md`](../discovery/1-1-CRM-Discovery-Session.md) |
+| Decision workspace template | [`discovery/CRM-DECISION-WORKSPACE.md`](../discovery/CRM-DECISION-WORKSPACE.md) |
+| CRM package overview | [`README.md`](../README.md) |
 
 ### Proposed attendees
 

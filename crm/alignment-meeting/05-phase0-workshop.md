@@ -73,7 +73,7 @@ Facilitator: Joel (operational truth) + Keren (framework)
 | 1:15–1:25 | Census definition | Joel + ops | Reconciliation target |
 | 1:25–1:30 | Next steps: Framework v1 owners + due date | Keren | Sign-off schedule |
 
-Use [`CRM DECISION WORKSPACE.md`](../../CRM%20DECISION%20WORKSPACE.md) sections: move agreed items to **FINAL DECISIONS (LOCKED)**.
+Use [`discovery/CRM-DECISION-WORKSPACE.md`](../discovery/CRM-DECISION-WORKSPACE.md) sections: move agreed items to **FINAL DECISIONS (LOCKED)**.
 
 ---
 

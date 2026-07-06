@@ -110,7 +110,7 @@ Mark each decision **Agreed** / **Deferred** / **Rejected** and note the outcome
 
 ## Open questions → Phase 0 backlog
 
-Carry unresolved items from [discovery notes](../../1-1-CRM%20Status%20Label%20Overhaul%20—%20Lead-to-Patient%20Workflow%20Discovery%20Session.md):
+Carry unresolved items from [discovery notes](../discovery/1-1-CRM-Discovery-Session.md):
 
 | Open question | Assigned to | Target resolution |
 |---------------|-------------|-------------------|

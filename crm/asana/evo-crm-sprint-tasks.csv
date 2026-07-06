@@ -1,85 +1,306 @@
-Section,Task Name,Phase,Blocker,Requires Stakeholder Decision,CRM Environment,Audit Section,Baseline / Target Metric,Assignee Primary,Assignee Secondary,Milestone,Depends On
-Phase 0 — Stakeholder Sign-Off,"Schedule definitions workshop: dropped off vs discharged vs voided vs deferred vs authorized vs SOC dates",0,Yes,Yes,Discovery,,Definitions doc signed,Joel,Keren,No,
-Phase 0 — Stakeholder Sign-Off,"Confirm LOB qualification checklists (LTC, NHTD, OPWDD, private pay)",0,Yes,Yes,Discovery,,Checklist per LOB documented,Joel,,No,
-Phase 0 — Stakeholder Sign-Off,"Confirm short-term rule: lead loss unless gold LOB open; hidden from sales dash",0,Yes,Yes,Discovery,,Rule documented,Joel,Keren,No,
-Phase 0 — Stakeholder Sign-Off,"Confirm NIA fail rule: 6-month ON_HOLD then re-engage approach",0,Yes,Yes,Discovery,,Rule documented,Joel,,No,
-Phase 0 — Stakeholder Sign-Off,"Confirm CDPAP remediation approach (discharge vs drop vs archive)",0,Yes,Yes,Discovery,,CDPAP cohort action agreed,Joel,Avi,No,
-Phase 0 — Stakeholder Sign-Off,"Confirm census definition (billing vs EVV vs CRM service episodes)",0,Yes,Yes,Discovery,,Census source of truth named,Joel,Avi,No,
-Phase 0 — Stakeholder Sign-Off,"Document signed decisions — Status Framework v1 (PowerPoint / doc)",0,Yes,Yes,Discovery,,Signed Framework v1,Keren,,Yes,
-Phase 1 — Access & Baseline Audit,"Grant Keren Schema Manager access (read-only preferred)",1,No,No,Discovery,,Access granted,Avi,,No,Document signed decisions — Status Framework v1 (PowerPoint / doc)
-Phase 1 — Access & Baseline Audit,"Keren completes Schema Manager audit (objects, fields, picklists, relationships)",1,No,No,Discovery,,Audit notes doc complete,Keren,,No,Grant Keren Schema Manager access (read-only preferred)
-Phase 1 — Access & Baseline Audit,"Map CRM table/column names to audit SQL placeholders",1,No,No,Discovery,,Mapping doc complete,Avi,Keren,No,Grant Keren Schema Manager access (read-only preferred)
-Phase 1 — Access & Baseline Audit,"Run crm/audit/data-integrity-audit.sql against staging or read replica",1,No,No,Discovery,0,Full audit exported,Avi,,No,Map CRM table/column names to audit SQL placeholders
-Phase 1 — Access & Baseline Audit,"Record baseline — orphan authorized count",1,No,No,Discovery,1,TBD → target 0,Keren,,No,Run crm/audit/data-integrity-audit.sql against staging or read replica
-Phase 1 — Access & Baseline Audit,"Record baseline — authorized + dropped/voided intake",1,No,No,Discovery,2,TBD → target 0,Keren,,No,Run crm/audit/data-integrity-audit.sql against staging or read replica
-Phase 1 — Access & Baseline Audit,"Record baseline — CDPAP remediation queue size",1,No,No,Discovery,3,TBD → target 0,Keren,,No,Run crm/audit/data-integrity-audit.sql against staging or read replica
-Phase 1 — Access & Baseline Audit,"Record baseline — third-party referrals (e.g. Girling) counted as patients",1,No,No,Discovery,4,TBD → target 0,Keren,,No,Run crm/audit/data-integrity-audit.sql against staging or read replica
-Phase 1 — Access & Baseline Audit,"Record baseline — pre-intake and closed counts",1,No,No,Discovery,5,pre-intake TBD → 0; closed split,Keren,,No,Run crm/audit/data-integrity-audit.sql against staging or read replica
-Phase 1 — Access & Baseline Audit,"Record baseline — multi-intake open conflicts",1,No,No,Discovery,6,TBD → resolved via computed stage,Keren,,No,Run crm/audit/data-integrity-audit.sql against staging or read replica
-Phase 1 — Access & Baseline Audit,"Record baseline — short-term-only pipeline",1,No,No,Discovery,7,TBD (informational),Keren,,No,Run crm/audit/data-integrity-audit.sql against staging or read replica
-Phase 1 — Access & Baseline Audit,"Record baseline — stale anticipated SOC",1,No,No,Discovery,8,TBD → target 0 stale,Keren,,No,Run crm/audit/data-integrity-audit.sql against staging or read replica
-Phase 1 — Access & Baseline Audit,"Record baseline — census gap (legacy authorized vs true census)",1,No,No,Discovery,9,~1960 authorized → 1200-1300 census,Keren,,No,Run crm/audit/data-integrity-audit.sql against staging or read replica
-Phase 1 — Access & Baseline Audit,"Record baseline — 12+ mo no service but still authorized/active",1,No,No,Discovery,10,TBD → target 0,Keren,,No,Run crm/audit/data-integrity-audit.sql against staging or read replica
-Phase 1 — Access & Baseline Audit,"Record baseline — Medicaid deferred > 30 days",1,No,No,Discovery,11,TBD (informational),Keren,,No,Run crm/audit/data-integrity-audit.sql against staging or read replica
-Phase 1 — Access & Baseline Audit,"Record baseline — duplicate person candidates",1,No,No,Discovery,12,TBD dup sets → merged,Keren,,No,Run crm/audit/data-integrity-audit.sql against staging or read replica
-Phase 1 — Access & Baseline Audit,"Record baseline — intake column count (121 fields)",1,No,No,Discovery,13,121 cols → target ~40,Keren,,No,Run crm/audit/data-integrity-audit.sql against staging or read replica
-Phase 1 — Access & Baseline Audit,"Export remediation batch IDs — orphan authorized (Section 14)",1,No,No,Discovery,14,Batch ID list exported,Avi,,No,Run crm/audit/data-integrity-audit.sql against staging or read replica
-Phase 1 — Access & Baseline Audit,"Keren identifies top unused intake fields for deprecation",1,No,No,Discovery,13,Deprecation candidate list,Keren,,No,Keren completes Schema Manager audit (objects, fields, picklists, relationships)
-Phase 1 — Access & Baseline Audit,"Milestone: Baseline audit complete — all counts recorded in project doc",1,Yes,No,Discovery,0-14,All sections filled,Avi,Keren,Yes,Record baseline — census gap (legacy authorized vs true census)
-Phase 2 — Schema Design (Staging),"PHASE 2 — Schema Design (section header)",2,No,No,Staging,,,Avi,,No,Milestone: Baseline audit complete — all counts recorded in project doc
-Phase 2 — Schema Design (Staging),"Import picklists from crm/schema/enums.json into Schema Manager",2,No,No,Staging,,All enums live in staging,Avi,,No,Milestone: Baseline audit complete — all counts recorded in project doc
-Phase 2 — Schema Design (Staging),"Add person.lifecycle_stage enum (computed; admin override only)",2,No,No,Staging,,Field live,Avi,,No,Import picklists from crm/schema/enums.json into Schema Manager
-Phase 2 — Schema Design (Staging),"Add intake.status, intake.nia_status, authorization.status, medicaid_ticket.status enums",2,No,No,Staging,,All child enums live,Avi,,No,Import picklists from crm/schema/enums.json into Schema Manager
-Phase 2 — Schema Design (Staging),"Add picklists: drop_reason_category, hold_reason, void_reason, line_of_business",2,No,No,Staging,,All picklists live,Avi,,No,Import picklists from crm/schema/enums.json into Schema Manager
-Phase 2 — Schema Design (Staging),"Remove/hide deprecated person fields: patient, lead, authorized, pre-intake, closed tags",2,No,No,Staging,,Legacy tags hidden,Avi,,No,Import picklists from crm/schema/enums.json into Schema Manager
-Phase 2 — Schema Design (Staging),"Normalize date fields: intake_opened_at, anticipated_soc_date, start_of_care_date, stage_entered_at",2,No,No,Staging,,Single canonical field per date,Avi,,No,Import picklists from crm/schema/enums.json into Schema Manager
-Phase 2 — Schema Design (Staging),"Add person_stage_history table for funnel reporting",2,No,No,Staging,,Table + triggers live,Avi,,No,Import picklists from crm/schema/enums.json into Schema Manager
-Phase 2 — Schema Design (Staging),"Document field mapping legacy → new (legacy-status-map.json)",2,No,No,Staging,,Mapping doc published,Avi,Keren,No,Import picklists from crm/schema/enums.json into Schema Manager
-Phase 3 — Data Remediation (Staging),"PHASE 3 — Data Remediation (section header)",3,No,No,Staging,,,Avi,,No,Document field mapping legacy → new (legacy-status-map.json)
-Phase 3 — Data Remediation (Staging),"Build staging migration script from legacy-status-map.json",3,No,No,Staging,,Script in staging repo,Avi,,No,Document field mapping legacy → new (legacy-status-map.json)
-Phase 3 — Data Remediation (Staging),"Remediate pre-intake → ON_HOLD + hold_reason",3,No,No,Staging,5,pre-intake → 0,Avi,,No,Build staging migration script from legacy-status-map.json
-Phase 3 — Data Remediation (Staging),"Split closed → DROPPED_OFF or DISCHARGED",3,No,No,Staging,5,closed → 0,Avi,,No,Build staging migration script from legacy-status-map.json
-Phase 3 — Data Remediation (Staging),"Remediate person-level authorized → compute from intakes + auth",3,No,No,Staging,1,orphan authorized ↓,Avi,,No,Build staging migration script from legacy-status-map.json
-Phase 3 — Data Remediation (Staging),"CDPAP batch — apply sunset rules",3,No,No,Staging,3,CDPAP stale → remediated,Avi,,No,Build staging migration script from legacy-status-map.json
-Phase 3 — Data Remediation (Staging),"Third-party referral batch (Girling; is_agency_patient=false)",3,No,No,Staging,4,third-party on census → 0,Avi,,No,Build staging migration script from legacy-status-map.json
-Phase 3 — Data Remediation (Staging),"Orphan authorized batch — downgrade intakes without AUTH_APPROVED",3,No,No,Staging,14,orphan authorized → 0,Avi,,No,Build staging migration script from legacy-status-map.json
-Phase 3 — Data Remediation (Staging),"Voided/dropped intakes — clear authorized display",3,No,No,Staging,2,auth+dropped pairs → 0,Avi,,No,Build staging migration script from legacy-status-map.json
-Phase 3 — Data Remediation (Staging),"Re-run data-integrity-audit.sql on staging; compare to Phase 1 baseline",3,No,No,Staging,9,census gap closed vs baseline,Avi,Keren,No,Voided/dropped intakes — clear authorized display
-Phase 3 — Data Remediation (Staging),"Ops sign-off on sample of 50 remediated records",3,No,Yes,Staging,,50 records approved,Joel,Keren,No,Re-run data-integrity-audit.sql on staging; compare to Phase 1 baseline
-Phase 3 — Data Remediation (Staging),"Milestone: Staging remediation validated — gap acceptable",3,Yes,No,Staging,9,Gap within agreed threshold,Avi,Keren,Yes,Ops sign-off on sample of 50 remediated records
-Phase 4 — Validation & Automation (Staging),"PHASE 4 — Validation & Automation (section header)",4,No,No,Staging,,,Avi,,No,Milestone: Staging remediation validated — gap acceptable
-Phase 4 — Validation & Automation (Staging),"Implement blocking rule: AUTHORIZED_PENDING_SOC requires AUTH_APPROVED auth",4,No,No,Staging,,Rule blocks bad saves,Avi,,No,Milestone: Staging remediation validated — gap acceptable
-Phase 4 — Validation & Automation (Staging),"Implement blocking rule: PATIENT_ACTIVE requires start_of_care_date",4,No,No,Staging,,Rule blocks bad saves,Avi,,No,Milestone: Staging remediation validated — gap acceptable
-Phase 4 — Validation & Automation (Staging),"Implement blocking rule: DROPPED_OFF requires drop_reason + category",4,No,No,Staging,,Rule blocks bad saves,Avi,,No,Milestone: Staging remediation validated — gap acceptable
-Phase 4 — Validation & Automation (Staging),"Implement blocking rule: ON_HOLD requires hold_reason + hold_until_date",4,No,No,Staging,,Rule blocks bad saves,Avi,,No,Milestone: Staging remediation validated — gap acceptable
-Phase 4 — Validation & Automation (Staging),"Implement blocking rule: short-term-only cannot set person above REFERRAL_ACTIVE",4,No,No,Staging,7,Rule blocks bad saves,Avi,,No,Milestone: Staging remediation validated — gap acceptable
-Phase 4 — Validation & Automation (Staging),"Implement automation triggers (all 7)",4,No,No,Staging,,All triggers firing in staging,Avi,,No,Implement blocking rule: short-term-only cannot set person above REFERRAL_ACTIVE
-Phase 4 — Validation & Automation (Staging),"Implement computeLifecycleStage from crm/schema/lifecycle.ts (server-side computed field)",4,No,No,Staging,6,Multi-intake conflicts resolved,Avi,,No,Milestone: Staging remediation validated — gap acceptable
-Phase 4 — Validation & Automation (Staging),"Implement SLA timers: lead 24h, follow-up 3d, referral→intake 7d, authorized→SOC 14d",4,No,No,Staging,,SLA alerts firing in staging,Avi,,No,Implement automation triggers (all 7)
-Phase 5 — Dashboard Rebuild,"PHASE 5 — Dashboard Rebuild (section header)",5,No,No,Staging,,,Avi,,No,Implement SLA timers: lead 24h, follow-up 3d, referral→intake 7d, authorized→SOC 14d
-Phase 5 — Dashboard Rebuild,"Deploy views from crm/audit/dashboard-queries.sql (adjust table names)",5,No,No,Staging,,All views live in staging,Avi,,No,Implement computeLifecycleStage from crm/schema/lifecycle.ts (server-side computed field)
-Phase 5 — Dashboard Rebuild,"Sales dashboard: v_sales_dashboard — gold LOBs only, no terminal, no short-term-only",5,No,No,Staging,7,Sales list matches rules,Avi,Angelo,No,Deploy views from crm/audit/dashboard-queries.sql (adjust table names)
-Phase 5 — Dashboard Rebuild,"Add list columns: lifecycle_stage, primary_lob, intake_opened_at, next_action_date, nia_status, days_in_stage",5,No,No,Staging,,No drill-down needed for basic status,Avi,,No,Deploy views from crm/audit/dashboard-queries.sql (adjust table names)
-Phase 5 — Dashboard Rebuild,"Ops dashboard: v_ops_dashboard + stale anticipated SOC + CDPAP remediation queues",5,No,No,Staging,8,Ops queues visible,Avi,,No,Deploy views from crm/audit/dashboard-queries.sql (adjust table names)
-Phase 5 — Dashboard Rebuild,"True census widget: COUNT from v_active_census",5,No,No,Staging,9,Widget shows ~1200-1300 not 1960,Avi,,No,Deploy views from crm/audit/dashboard-queries.sql (adjust table names)
-Phase 5 — Dashboard Rebuild,"Funnel leakage report: v_funnel_leakage by drop_reason_category",5,No,No,Staging,,Leakage by reason visible,Avi,Keren,No,Deploy views from crm/audit/dashboard-queries.sql (adjust table names)
-Phase 5 — Dashboard Rebuild,"QA query: zero rows on ""never show on dashboard"" violations",5,No,No,Staging,,0 violation rows,Avi,,No,Deploy views from crm/audit/dashboard-queries.sql (adjust table names)
-Phase 5 — Dashboard Rebuild,"UAT with Angelo (sales) and ops leads — no multi-click drill-down needed",5,No,Yes,Staging,,UAT sign-off recorded,Angelo,Keren,Yes,QA query: zero rows on ""never show on dashboard"" violations
-Phase 6 — Production Cutover,"PHASE 6 — Production Cutover (section header)",6,No,No,Production,,,Avi,,No,UAT with Angelo (sales) and ops leads — no multi-click drill-down needed
-Phase 6 — Production Cutover,"Final stakeholder sign-off on staging UAT results",6,Yes,Yes,Production,,Written sign-off,Keren,Joel,No,UAT with Angelo (sales) and ops leads — no multi-click drill-down needed
-Phase 6 — Production Cutover,"Production migration window scheduled (communicate to sales + ops)",6,No,No,Production,,Comms sent,Leah,,No,Final stakeholder sign-off on staging UAT results
-Phase 6 — Production Cutover,"Run remediation batch in production",6,No,No,Production,14,Prod data remediated,Avi,,No,Final stakeholder sign-off on staging UAT results
-Phase 6 — Production Cutover,"Enable validation rules in production",6,No,No,Production,,Rules live,Avi,,No,Run remediation batch in production
-Phase 6 — Production Cutover,"Enable computed lifecycle_stage in production",6,No,No,Production,,Computed field live,Avi,,No,Run remediation batch in production
-Phase 6 — Production Cutover,"Switch dashboards to new views",6,No,No,Production,,Dashboards live,Avi,,No,Enable computed lifecycle_stage in production
-Phase 6 — Production Cutover,"Post-cutover: re-run audit Section 9 — confirm census gap closed",6,Yes,No,Production,9,~1960 → 1200-1300 confirmed,Avi,Keren,Yes,Switch dashboards to new views
-Phase 6 — Production Cutover,"Monitor SLA alerts for 2 weeks post-cutover",6,No,No,Production,,No critical SLA misses,Avi,,No,Post-cutover: re-run audit Section 9 — confirm census gap closed
-Phase 7 — Cleanup & Florida Handoff,"Deprecate unused intake fields (121 → ~40 target)",7,No,No,Staging,13,Field count ≤ 40,Avi,Keren,No,Post-cutover: re-run audit Section 9 — confirm census gap closed
-Phase 7 — Cleanup & Florida Handoff,"Document NY Status Framework v1 as canonical",7,No,No,Discovery,,Doc published,Keren,,No,Post-cutover: re-run audit Section 9 — confirm census gap closed
-Phase 7 — Cleanup & Florida Handoff,"Create Florida delta checklist (NY vs FL differences)",7,No,Yes,Discovery,,FL checklist draft,Keren,Joel,No,Document NY Status Framework v1 as canonical
-Phase 7 — Cleanup & Florida Handoff,"Rename Teams group to New York Operations (if not done)",7,No,No,Discovery,,Group renamed,Leah,,No,
-Ongoing — Discovery (Keren),"Raise pointed questions via Teams as inconsistencies found — no prod changes",Ongoing,No,No,Discovery,,Questions log maintained,Keren,,No,
-Ongoing — Discovery (Keren),"Produce PowerPoint deliverable: labels, LOB rules, use cases, lead-to-patient flow",Ongoing,No,No,Discovery,,Deck complete,Keren,,No,
-Ongoing — Discovery (Keren),"Maintain open questions log until Phase 0 closed",Ongoing,No,No,Discovery,,Log empty at Phase 0 sign-off,Keren,,No,
-Ongoing — Discovery (Keren),"Joel: compile and share department playbooks (Angela playbook + others)",Ongoing,No,No,Discovery,,Playbooks linked in project,Joel,,No,
-Ongoing — Discovery (Keren),"Send Keren the Angela playbook",Ongoing,No,No,Discovery,,Playbook received,Joel,,No,
+Section,Task,Subtask,Workstream,Decision Gate,Blocker,Requires Stakeholder Decision,CRM Environment,Effort,Priority,Baseline / Target Metric,Assignee Primary,Assignee Secondary,Milestone,Depends On,Related Docs
+Governance & Project Setup,Confirm project charter and success criteria,"Align on 3 program goals (census truth, workflow clarity, growth readiness)",Governance,No,No,No,Discovery,S,P0,,Keren,Joel,No,,https://github.com/klacadin/evo-growth/blob/master/crm/Link-Homecare-CRM-Status-Architecture-Execution-Workspace.md; https://github.com/klacadin/evo-growth/blob/master/crm/asana/project-description.md; https://github.com/klacadin/evo-growth/blob/master/crm/asana/structure.json
+Governance & Project Setup,,Document non-negotiables: definitions before dashboards; no prod changes pre-sign-off,Governance,No,No,No,Discovery,S,P0,,Keren,Joel,No,,
+Governance & Project Setup,,Link workspace doc: crm/Link-Homecare-CRM-Status-Architecture-Execution-Workspace.md,Governance,No,No,No,Discovery,S,P0,,Keren,Joel,No,,
+Governance & Project Setup,Confirm team roles and RACI,"Keren — framework, audit, UAT coordination",Governance,No,No,No,Discovery,S,P0,,Keren,"Joel, Avi, Leah, Angelo",No,,https://github.com/klacadin/evo-growth/blob/master/crm/asana/asana-structure.md; https://github.com/klacadin/evo-growth/blob/master/crm/asana/project-description.md; https://github.com/klacadin/evo-growth/blob/master/crm/asana/custom-fields.json
+Governance & Project Setup,,"Joel — operational definitions, ops sign-off, playbooks",Governance,No,No,No,Discovery,S,P0,,Keren,"Joel, Avi, Leah, Angelo",No,,
+Governance & Project Setup,,"Avi — CRM implementation, remediation, automations",Governance,No,No,No,Discovery,S,P0,,Keren,"Joel, Avi, Leah, Angelo",No,,
+Governance & Project Setup,,Angelo — sales UAT,Governance,No,No,No,Discovery,S,P0,,Keren,"Joel, Avi, Leah, Angelo",No,,
+Governance & Project Setup,,Leah — cutover communications,Governance,No,No,No,Discovery,S,P0,,Keren,"Joel, Avi, Leah, Angelo",No,,
+Governance & Project Setup,Schedule definitions workshop (90 min),Send pre-read: alignment-meeting/01-share-with-team.md,Governance,No,No,Yes,Discovery,S,P0,,Keren,Joel,No,,https://github.com/klacadin/evo-growth/blob/master/crm/alignment-meeting/01-share-with-team.md; https://github.com/klacadin/evo-growth/blob/master/crm/alignment-meeting/05-phase0-workshop.md; https://github.com/klacadin/evo-growth/blob/master/crm/alignment-meeting/03-decision-worksheet.md; https://github.com/klacadin/evo-growth/blob/master/crm/alignment-meeting/README.md
+Governance & Project Setup,,"Confirm attendees: Joel, ops leads, Keren, Avi, Angelo",Governance,No,No,Yes,Discovery,S,P0,,Keren,Joel,No,,
+Governance & Project Setup,,Use facilitator guide: alignment-meeting/05-phase0-workshop.md,Governance,No,No,Yes,Discovery,S,P0,,Keren,Joel,No,,
+Governance & Project Setup,,Capture decisions in alignment-meeting/03-decision-worksheet.md,Governance,No,No,Yes,Discovery,S,P0,,Keren,Joel,No,,
+Governance & Project Setup,Establish change control rules,No production CRM changes until Framework v1 signed,Governance,No,No,No,Discovery,S,P0,,Keren,Avi,No,,https://github.com/klacadin/evo-growth/blob/master/crm/asana/project-description.md; https://github.com/klacadin/evo-growth/blob/master/crm/meeting-notes/2026-07-pipeline-alignment.md; https://github.com/klacadin/evo-growth/blob/master/crm/asana/dependencies.json
+Governance & Project Setup,,CRM field work on hold until status labels + flowcharts finalized (Leah confirmed),Governance,No,No,No,Discovery,S,P0,,Keren,Avi,No,,
+Governance & Project Setup,,Old fields retained during migration; no immediate deletion,Governance,No,No,No,Discovery,S,P0,,Keren,Avi,No,,
+Governance & Project Setup,,Dashboards not switched until staging data validated,Governance,No,No,No,Discovery,S,P0,,Keren,Avi,No,,
+Governance & Project Setup,,Manual review queues for ambiguous legacy records,Governance,No,No,No,Discovery,S,P0,,Keren,Avi,No,,
+Governance & Project Setup,,Plan one-pass CRM update: labels + filtering + backfill together,Governance,No,No,No,Discovery,S,P0,,Keren,Avi,No,,
+Governance & Project Setup,Joel: Schedule CRM implementation review with Avi's team,Coordinate with Avi on tech team availability,Governance,No,No,Yes,Discovery,S,P0,,Joel,"Avi, Keren",No,Finalize patient status labels and lifecycle flowcharts,https://github.com/klacadin/evo-growth/blob/master/crm/meeting-notes/2026-07-pipeline-alignment.md; https://github.com/klacadin/evo-growth/blob/master/crm/glossary-pipeline-v2.md; https://github.com/klacadin/evo-growth/blob/master/crm/flowcharts/pipeline-flowcharts-v1.md; https://github.com/klacadin/evo-growth/blob/master/crm/glossary/drop-reasons-for-signoff.md
+Governance & Project Setup,,"Agenda: agreed pipeline, short-term parallel track, multi-LOB UI, NIA tracking, one-pass plan",Governance,No,No,Yes,Discovery,S,P0,,Joel,"Avi, Keren",No,Finalize patient status labels and lifecycle flowcharts,
+Governance & Project Setup,,Pre-read: crm/meeting-notes/2026-07-pipeline-alignment.md + crm/glossary-pipeline-v2.md,Governance,No,No,Yes,Discovery,S,P0,,Joel,"Avi, Keren",No,Finalize patient status labels and lifecycle flowcharts,
+Governance & Project Setup,,Capture technical mapping questions for Nexus Episode fields,Governance,No,No,Yes,Discovery,S,P0,,Joel,"Avi, Keren",No,Finalize patient status labels and lifecycle flowcharts,
+Governance & Project Setup,Leah: Follow-up and coordinate Avi meeting scheduling,Send follow-up messages via team chat with meeting outcomes,Governance,No,No,No,Discovery,S,P0,,Leah,"Joel, Keren",No,Finalize patient status labels and lifecycle flowcharts,https://github.com/klacadin/evo-growth/blob/master/crm/meeting-notes/2026-07-pipeline-alignment.md; https://github.com/klacadin/evo-growth/blob/master/crm/asana/workshop-jul2026-asana-sync.md
+Governance & Project Setup,,Coordinate calendar once labels and flowcharts are finalized,Governance,No,No,No,Discovery,S,P0,,Leah,"Joel, Keren",No,Finalize patient status labels and lifecycle flowcharts,
+Governance & Project Setup,,Confirm enrollment specialist representation if needed,Governance,No,No,No,Discovery,S,P0,,Leah,"Joel, Keren",No,Finalize patient status labels and lifecycle flowcharts,
+Business Definitions & Sign-Off,Refine CRM glossary and terminology (living doc),Maintain crm/glossary-pipeline-v2.md with meeting feedback,Definitions,No,No,No,Discovery,M,P0,,Keren,"Joel, Leah",No,,https://github.com/klacadin/evo-growth/blob/master/crm/glossary-pipeline-v2.md; https://github.com/klacadin/evo-growth/blob/master/crm/glossary/status-terminology-v1.md
+Business Definitions & Sign-Off,,"Define: Lead, Qualifying, Referral in Progress, Active, Discharged, Dropped Off",Definitions,No,No,No,Discovery,M,P0,,Keren,"Joel, Leah",No,,
+Business Definitions & Sign-Off,,"Retire ambiguous labels: Pre-Intake, Closed, Converted, generic In Progress / Intake as master status",Definitions,No,No,No,Discovery,M,P0,,Keren,"Joel, Leah",No,,
+Business Definitions & Sign-Off,,"Document short-term parallel track terms: In Progress, Accepted, Startup, Authorized",Definitions,No,No,No,Discovery,M,P0,,Keren,"Joel, Leah",No,,
+Business Definitions & Sign-Off,,Mark each term: Known / Assumption / Needs confirmation,Definitions,No,No,No,Discovery,M,P0,,Keren,"Joel, Leah",No,,
+Business Definitions & Sign-Off,Finalize patient status labels and lifecycle flowcharts,Main pipeline flowchart: Lead → Qualifying → Referral in Progress → Active → Discharged,Definitions,Yes,Yes,Yes,Discovery,M,P0,,Keren,"Joel, Leah",No,,https://github.com/klacadin/evo-growth/blob/master/crm/flowcharts/pipeline-flowcharts-v1.md; https://github.com/klacadin/evo-growth/blob/master/crm/glossary-pipeline-v2.md
+Business Definitions & Sign-Off,,Show Dropped Off as terminal before Active from any prior stage,Definitions,Yes,Yes,Yes,Discovery,M,P0,,Keren,"Joel, Leah",No,,
+Business Definitions & Sign-Off,,Short-term care parallel track + icon UI spec (does not affect main bar until authorized),Definitions,Yes,Yes,Yes,Discovery,M,P0,,Keren,"Joel, Leah",No,,
+Business Definitions & Sign-Off,,Multi-LOB simultaneous status display wireframe,Definitions,Yes,Yes,Yes,Discovery,M,P0,,Keren,"Joel, Leah",No,,
+Business Definitions & Sign-Off,,Joel + Leah sign-off — unlocks Avi tech meeting and CRM build,Definitions,Yes,Yes,Yes,Discovery,M,P0,,Keren,"Joel, Leah",No,,
+Business Definitions & Sign-Off,Confirm master lifecycle model (Jul 2026 alignment),AGREED: Lead → Qualifying → Referral in Progress → Active → Discharged,Definitions,Yes,No,Yes,Discovery,M,P0,,Joel,"Keren, Avi",No,,https://github.com/klacadin/evo-growth/blob/master/crm/meeting-notes/2026-07-pipeline-alignment.md; https://github.com/klacadin/evo-growth/blob/master/crm/glossary-pipeline-v2.md
+Business Definitions & Sign-Off,,AGREED: Dropped Off anytime before Active,Definitions,Yes,No,Yes,Discovery,M,P0,,Joel,"Keren, Avi",No,,
+Business Definitions & Sign-Off,,AGREED: Referral in Progress replaces in progress / intake as master label,Definitions,Yes,No,Yes,Discovery,M,P0,,Joel,"Keren, Avi",No,,
+Business Definitions & Sign-Off,,Confirm Episode as master object; map 5 stages to Nexus fields at Avi meeting,Definitions,Yes,No,Yes,Discovery,M,P0,,Joel,"Keren, Avi",No,,
+Business Definitions & Sign-Off,,Confirm Authorized is not top-level status — validity layer under Active,Definitions,Yes,No,Yes,Discovery,M,P0,,Joel,"Keren, Avi",No,,
+Business Definitions & Sign-Off,,Enrollment specialists assign and update statuses,Definitions,Yes,No,Yes,Discovery,M,P0,,Joel,"Keren, Avi",No,,
+Business Definitions & Sign-Off,Confirm layer separation model,Layer 1: Episode.status — master lifecycle,Definitions,No,No,Yes,Discovery,M,P0,,Keren,"Joel, Avi",No,,https://github.com/klacadin/evo-growth/blob/master/crm/glossary-pipeline-v2.md; https://github.com/klacadin/evo-growth/blob/master/crm/Link-Homecare-CRM-Status-Architecture-Execution-Workspace.md; https://github.com/klacadin/evo-growth/blob/master/crm/schema/lifecycle.ts
+Business Definitions & Sign-Off,,Layer 2: Episode.leadStage — referral funnel,Definitions,No,No,Yes,Discovery,M,P0,,Keren,"Joel, Avi",No,,
+Business Definitions & Sign-Off,,Layer 3: Intake.status — LOB process (not master status),Definitions,No,No,Yes,Discovery,M,P0,,Keren,"Joel, Avi",No,,
+Business Definitions & Sign-Off,,Layer 4: Authorization.status — validity (not census),Definitions,No,No,Yes,Discovery,M,P0,,Keren,"Joel, Avi",No,,
+Business Definitions & Sign-Off,,Layer 5: Patient LOB — service-line status,Definitions,No,No,Yes,Discovery,M,P0,,Keren,"Joel, Avi",No,,
+Business Definitions & Sign-Off,,Layer 6: Medicaid ticket — orthogonal track,Definitions,No,No,Yes,Discovery,M,P0,,Keren,"Joel, Avi",No,,
+Business Definitions & Sign-Off,,Layer 7: Episode.outcome — terminal reason,Definitions,No,No,Yes,Discovery,M,P0,,Keren,"Joel, Avi",No,,
+Business Definitions & Sign-Off,,Layer 8: Follow-up / hold / recycle dates,Definitions,No,No,Yes,Discovery,M,P0,,Keren,"Joel, Avi",No,,
+Business Definitions & Sign-Off,Resolve edge case decision log (20 scenarios),NIA failed → Dropped Off; re-apply after ~180-day wait (Joel confirming exact period),Definitions,No,No,Yes,Discovery,L,P0,,Joel,Keren,No,,https://github.com/klacadin/evo-growth/blob/master/crm/Link-Homecare-CRM-Status-Architecture-Execution-Workspace.md; https://github.com/klacadin/evo-growth/blob/master/crm/glossary-pipeline-v2.md; https://github.com/klacadin/evo-growth/blob/master/crm/alignment-meeting/03-decision-worksheet.md
+Business Definitions & Sign-Off,,Authorization received but no SOC started,Definitions,No,No,Yes,Discovery,L,P0,,Joel,Keren,No,,
+Business Definitions & Sign-Off,,Auth expired but patient still receiving care,Definitions,No,No,Yes,Discovery,L,P0,,Joel,Keren,No,,
+Business Definitions & Sign-Off,,"One LOB dropped, another active",Definitions,No,No,Yes,Discovery,L,P0,,Joel,Keren,No,,
+Business Definitions & Sign-Off,,Short-term sent to third party (Girling),Definitions,No,No,Yes,Discovery,L,P0,,Joel,Keren,No,,
+Business Definitions & Sign-Off,,"CDPAP post–April 1, 2025 cohort",Definitions,No,No,Yes,Discovery,L,P0,,Joel,Keren,No,,
+Business Definitions & Sign-Off,,Returning former patient — new Episode vs reopen,Definitions,No,No,Yes,Discovery,L,P0,,Joel,Keren,No,,
+Business Definitions & Sign-Off,,Voided vs dropped intake,Definitions,No,No,Yes,Discovery,L,P0,,Joel,Keren,No,,
+Business Definitions & Sign-Off,,Medicaid deferred vs dropped off,Definitions,No,No,Yes,Discovery,L,P0,,Joel,Keren,No,,
+Business Definitions & Sign-Off,,Primary LOB when multiple intakes open,Definitions,No,No,Yes,Discovery,L,P0,,Joel,Keren,No,,
+Business Definitions & Sign-Off,Confirm census definition,Define: Episode Active + valid AUTH_APPROVED + confirmed SOC on gold LOB,Definitions,Yes,No,Yes,Discovery,S,P0,"~1,960 authorized → ~1,200–1,300 true census",Joel,Avi,No,,https://github.com/klacadin/evo-growth/blob/master/crm/audit/data-integrity-audit.sql; https://github.com/klacadin/evo-growth/blob/master/crm/audit/dashboard-queries.sql; https://github.com/klacadin/evo-growth/blob/master/crm/Link-Homecare-CRM-Status-Architecture-Execution-Workspace.md
+Business Definitions & Sign-Off,,Choose source of truth: Billing vs EVV vs CRM vs hybrid,Definitions,Yes,No,Yes,Discovery,S,P0,"~1,960 authorized → ~1,200–1,300 true census",Joel,Avi,No,,
+Business Definitions & Sign-Off,,Confirm Active threshold: SOC required vs cleared-to-start,Definitions,Yes,No,Yes,Discovery,S,P0,"~1,960 authorized → ~1,200–1,300 true census",Joel,Avi,No,,
+Business Definitions & Sign-Off,,"Exclude: CDPAP sunset, third-party referrals, short-term-only lead loss",Definitions,Yes,No,Yes,Discovery,S,P0,"~1,960 authorized → ~1,200–1,300 true census",Joel,Avi,No,,
+Business Definitions & Sign-Off,Export and sign off ReferralOutcome picklist,Export current ReferralOutcome values from Schema Manager,Definitions,No,No,Yes,Discovery,S,P0,,Avi,"Joel, Keren",No,,https://github.com/klacadin/evo-growth/blob/master/crm/glossary/drop-reasons-for-signoff.md; https://github.com/klacadin/evo-growth/blob/master/crm/schema/enums.json; https://github.com/klacadin/evo-growth/blob/master/crm/asana/nexus-discovery-asana-sync.md
+Business Definitions & Sign-Off,,Group into referral-drop reasons vs discharge reasons,Definitions,No,No,Yes,Discovery,S,P0,,Avi,"Joel, Keren",No,,
+Business Definitions & Sign-Off,,Require outcome on Dropped Off Referral and Discharged,Definitions,No,No,Yes,Discovery,S,P0,,Avi,"Joel, Keren",No,,
+Business Definitions & Sign-Off,,Joel signs final picklist values,Definitions,No,No,Yes,Discovery,S,P0,,Avi,"Joel, Keren",No,,
+Business Definitions & Sign-Off,Document LOB eligibility criteria matrix,"MLTC: Medicaid + qualifying diagnosis (dementia, brain injury, etc.)",Definitions,No,No,No,Discovery,M,P0,,Joel,Keren,No,,https://github.com/klacadin/evo-growth/blob/master/crm/glossary-pipeline-v2.md; https://github.com/klacadin/evo-growth/blob/master/crm/Link-Homecare-CRM-Status-Architecture-Execution-Workspace.md
+Business Definitions & Sign-Off,,Custodial: Medicaid + developmental delay,Definitions,No,No,No,Discovery,M,P0,,Joel,Keren,No,,
+Business Definitions & Sign-Off,,Short-term: skilled need + Medicare/Medicaid,Definitions,No,No,No,Discovery,M,P0,,Joel,Keren,No,,
+Business Definitions & Sign-Off,,"NHTD, OPWDD, Private Pay checklists",Definitions,No,No,No,Discovery,M,P0,,Joel,Keren,No,,
+Business Definitions & Sign-Off,,Note: dynamic LOB light-up UI as planned Phase 2 enhancement,Definitions,No,No,No,Discovery,M,P0,,Joel,Keren,No,,
+Business Definitions & Sign-Off,Simplify drop reasons to ~10 categories,Draft list in crm/glossary-pipeline-v2.md,Definitions,No,No,Yes,Discovery,S,P0,,Keren,Joel,No,,https://github.com/klacadin/evo-growth/blob/master/crm/glossary/drop-reasons-for-signoff.md; https://github.com/klacadin/evo-growth/blob/master/crm/glossary-pipeline-v2.md
+Business Definitions & Sign-Off,,Replace overly long current picklist,Definitions,No,No,Yes,Discovery,S,P0,,Keren,Joel,No,,
+Business Definitions & Sign-Off,,Joel signs final ~10 values before ReferralOutcome export,Definitions,No,No,Yes,Discovery,S,P0,,Keren,Joel,No,,
+Business Definitions & Sign-Off,,Map old drop reasons to new categories for backfill,Definitions,No,No,Yes,Discovery,S,P0,,Keren,Joel,No,,
+Business Definitions & Sign-Off,Joel: Confirm NIA re-application waiting period,Confirm 180-day estimate from meeting,Definitions,No,No,No,Discovery,S,P0,,Joel,,No,,https://github.com/klacadin/evo-growth/blob/master/crm/glossary-pipeline-v2.md; https://github.com/klacadin/evo-growth/blob/master/crm/meeting-notes/2026-07-pipeline-alignment.md
+Business Definitions & Sign-Off,,Document appeal process (unlimited appeals noted),Definitions,No,No,No,Discovery,S,P0,,Joel,,No,,
+Business Definitions & Sign-Off,,Define CRM follow-up bucket for failed NIA after wait period,Definitions,No,No,No,Discovery,S,P0,,Joel,,No,,
+Business Definitions & Sign-Off,Document short-term care integration rules,NH discharge planner as primary referral source,Definitions,No,No,No,Discovery,M,P0,,Keren,Joel,No,,https://github.com/klacadin/evo-growth/blob/master/crm/glossary-pipeline-v2.md; https://github.com/klacadin/evo-growth/blob/master/crm/flowcharts/pipeline-flowcharts-v1.md; https://github.com/klacadin/evo-growth/blob/master/crm/meeting-notes/2026-07-pipeline-alignment.md
+Business Definitions & Sign-Off,,"Parallel statuses: In Progress, Accepted, Startup, Authorized",Definitions,No,No,No,Discovery,M,P0,,Keren,Joel,No,,
+Business Definitions & Sign-Off,,Icon-only UI until authorized — does not affect main pipeline metrics,Definitions,No,No,No,Discovery,M,P0,,Keren,Joel,No,,
+Business Definitions & Sign-Off,,On authorized: promote to Active on main pipeline,Definitions,No,No,No,Discovery,M,P0,,Keren,Joel,No,,
+Business Definitions & Sign-Off,,If not authorized: main status may stay Dropped Off or Discharged,Definitions,No,No,No,Discovery,M,P0,,Keren,Joel,No,,
+Business Definitions & Sign-Off,Sign Status Framework v1,"Compile signed glossary (pipeline v2), flowcharts, LOB matrix, drop reasons, NIA rules",Definitions,Yes,Yes,No,Discovery,S,P0,,Keren,"Joel, Avi, Leah",Yes,Finalize patient status labels and lifecycle flowcharts,https://github.com/klacadin/evo-growth/blob/master/crm/glossary-pipeline-v2.md; https://github.com/klacadin/evo-growth/blob/master/crm/flowcharts/pipeline-flowcharts-v1.md; https://github.com/klacadin/evo-growth/blob/master/crm/glossary/drop-reasons-for-signoff.md; https://github.com/klacadin/evo-growth/blob/master/crm/meeting-notes/2026-07-pipeline-alignment.md; https://github.com/klacadin/evo-growth/blob/master/crm/alignment-meeting/03-decision-worksheet.md
+Business Definitions & Sign-Off,,Publish to Teams + repo,Definitions,Yes,Yes,No,Discovery,S,P0,,Keren,"Joel, Avi, Leah",Yes,Finalize patient status labels and lifecycle flowcharts,
+Business Definitions & Sign-Off,,Joel ops sign-off + Leah comms alignment + Avi technical feasibility,Definitions,Yes,Yes,No,Discovery,S,P0,,Keren,"Joel, Avi, Leah",Yes,Finalize patient status labels and lifecycle flowcharts,
+Business Definitions & Sign-Off,,Unlock Joel → Avi implementation review meeting and CRM Build workstream,Definitions,Yes,Yes,No,Discovery,S,P0,,Keren,"Joel, Avi, Leah",Yes,Finalize patient status labels and lifecycle flowcharts,
+Current State & Data Baseline,Schema Manager object inventory,"Episode — 92 fields; document EpisodeStatus, leadStage, outcome",Baseline,No,No,No,Discovery,M,P0,,Keren,Avi,No,,https://github.com/klacadin/evo-growth/blob/master/crm/crm-bot-discovery.prompt.md; https://github.com/klacadin/evo-growth/blob/master/crm/asana/nexus-discovery-asana-sync.md; https://github.com/klacadin/evo-growth/blob/master/crm/schema/enums.json
+Current State & Data Baseline,,"Patient — 278 fields, 53 picklists; document legacy status fields",Baseline,No,No,No,Discovery,M,P0,,Keren,Avi,No,,
+Current State & Data Baseline,,"Intake — 130 fields, 24 picklists",Baseline,No,No,No,Discovery,M,P0,,Keren,Avi,No,,
+Current State & Data Baseline,,Authorization — 66 fields; document baseStatus STRING risk,Baseline,No,No,No,Discovery,M,P0,,Keren,Avi,No,,
+Current State & Data Baseline,,Identify which objects share LeadStatus picklist,Baseline,No,No,No,Discovery,M,P0,,Keren,Avi,No,,
+Current State & Data Baseline,Map Nexus objects to audit queries,Retarget crm/audit/data-integrity-audit.sql from persons → Episode/Patient/Intake/Authorization,Baseline,No,No,No,Discovery,M,P0,,Avi,Keren,No,Sign Status Framework v1,https://github.com/klacadin/evo-growth/blob/master/crm/audit/data-integrity-audit.sql; https://github.com/klacadin/evo-growth/blob/master/crm/schema/nexus-episode-status-map.json; https://github.com/klacadin/evo-growth/blob/master/crm/crm-bot-discovery.prompt.md
+Current State & Data Baseline,,Document Query Console equivalents,Baseline,No,No,No,Discovery,M,P0,,Avi,Keren,No,Sign Status Framework v1,
+Current State & Data Baseline,,Create baseline recording template in workspace doc,Baseline,No,No,No,Discovery,M,P0,,Avi,Keren,No,Sign Status Framework v1,
+Current State & Data Baseline,Run distribution baselines,"Episode.status distribution (New, Lead, Active, Converted, On Hold, Dropped, Discharged)",Baseline,No,No,No,Discovery,M,P0,,Avi,,No,,https://github.com/klacadin/evo-growth/blob/master/crm/audit/data-integrity-audit.sql; https://github.com/klacadin/evo-growth/blob/master/crm/schema/nexus-episode-status-map.json
+Current State & Data Baseline,,leadStage distribution — especially all-In-Progress on Leads list (~56),Baseline,No,No,No,Discovery,M,P0,,Avi,,No,,
+Current State & Data Baseline,,Episode.status = Converted — export for manual review,Baseline,No,No,No,Discovery,M,P0,,Avi,,No,,
+Current State & Data Baseline,,Authorization baseStatus STRING value distribution,Baseline,No,No,No,Discovery,M,P0,,Avi,,No,,
+Current State & Data Baseline,Run integrity baselines — critical cohorts,Orphan authorized — no valid AUTH_APPROVED (census inflation driver),Baseline,No,No,No,Discovery,L,P0,,Keren,Avi,No,,https://github.com/klacadin/evo-growth/blob/master/crm/audit/data-integrity-audit.sql; https://github.com/klacadin/evo-growth/blob/master/crm/Link-Homecare-CRM-Status-Architecture-Execution-Workspace.md
+Current State & Data Baseline,,Authorized + dropped/voided intake pairs,Baseline,No,No,No,Discovery,L,P0,,Keren,Avi,No,,
+Current State & Data Baseline,,Episode Active without valid authorization (Ntelekos pattern),Baseline,No,No,No,Discovery,L,P0,,Keren,Avi,No,,
+Current State & Data Baseline,,CDPAP remediation queue (post 2025-04-01),Baseline,No,No,No,Discovery,L,P0,,Keren,Avi,No,,
+Current State & Data Baseline,,Third-party referrals counted as patients (Girling),Baseline,No,No,No,Discovery,L,P0,,Keren,Avi,No,,
+Current State & Data Baseline,,Pre-intake and closed legacy counts on Patient picklists,Baseline,No,No,No,Discovery,L,P0,,Keren,Avi,No,,
+Current State & Data Baseline,,Multi-intake open conflicts on single record,Baseline,No,No,No,Discovery,L,P0,,Keren,Avi,No,,
+Current State & Data Baseline,,Short-term-only pipeline on sales views,Baseline,No,No,No,Discovery,L,P0,,Keren,Avi,No,,
+Current State & Data Baseline,,"Stale anticipated SOC (passed date, no confirmed SOC)",Baseline,No,No,No,Discovery,L,P0,,Keren,Avi,No,,
+Current State & Data Baseline,,12+ months no service but still authorized/active,Baseline,No,No,No,Discovery,L,P0,,Keren,Avi,No,,
+Current State & Data Baseline,,Medicaid deferred > 30 days,Baseline,No,No,No,Discovery,L,P0,,Keren,Avi,No,,
+Current State & Data Baseline,Record census gap baseline,Document dashboard authorized count,Baseline,No,No,No,Discovery,S,P0,"~1,960 authorized → target ~1,200–1,300 true census",Keren,,No,,https://github.com/klacadin/evo-growth/blob/master/crm/audit/dashboard-queries.sql; https://github.com/klacadin/evo-growth/blob/master/crm/audit/data-integrity-audit.sql; https://github.com/klacadin/evo-growth/blob/master/crm/Link-Homecare-CRM-Status-Architecture-Execution-Workspace.md
+Current State & Data Baseline,,Document estimated true census,Baseline,No,No,No,Discovery,S,P0,"~1,960 authorized → target ~1,200–1,300 true census",Keren,,No,,
+Current State & Data Baseline,,Calculate and record gap (~760 records),Baseline,No,No,No,Discovery,S,P0,"~1,960 authorized → target ~1,200–1,300 true census",Keren,,No,,
+Current State & Data Baseline,,Identify top 3 drivers of gap from audit cohorts,Baseline,No,No,No,Discovery,S,P0,"~1,960 authorized → target ~1,200–1,300 true census",Keren,,No,,
+Current State & Data Baseline,Export manual review batch IDs,Converted Episode IDs,Baseline,No,No,No,Discovery,S,P1,,Avi,,No,,https://github.com/klacadin/evo-growth/blob/master/crm/schema/nexus-episode-status-map.json
+Current State & Data Baseline,,Active without valid auth IDs,Baseline,No,No,No,Discovery,S,P1,,Avi,,No,,
+Current State & Data Baseline,,Discharged but never was Active IDs,Baseline,No,No,No,Discovery,S,P1,,Avi,,No,,
+Current State & Data Baseline,,Dropped but had Active history IDs,Baseline,No,No,No,Discovery,S,P1,,Avi,,No,,
+Current State & Data Baseline,,Per nexus-episode-status-map.json manual_review_queries,Baseline,No,No,No,Discovery,S,P1,,Avi,,No,,
+Current State & Data Baseline,Baseline audit complete — all counts recorded,Fill Data Integrity Audit Matrix in workspace doc,Baseline,No,Yes,No,Discovery,S,P0,,Keren,Avi,Yes,,https://github.com/klacadin/evo-growth/blob/master/crm/audit/data-integrity-audit.sql; https://github.com/klacadin/evo-growth/blob/master/crm/Link-Homecare-CRM-Status-Architecture-Execution-Workspace.md
+Current State & Data Baseline,,Review counts with Joel — confirm remediation priority order,Baseline,No,Yes,No,Discovery,S,P0,,Keren,Avi,Yes,,
+Current State & Data Baseline,,Unlock Data Remediation workstream,Baseline,No,Yes,No,Discovery,S,P0,,Keren,Avi,Yes,,
+Target Architecture & Migration Design,Finalize status architecture tables,"Master lifecycle: entry/exit conditions, allowed transitions",Architecture,No,No,No,Discovery,M,P0,,Keren,"Joel, Avi",No,Sign Status Framework v1,https://github.com/klacadin/evo-growth/blob/master/crm/glossary-pipeline-v2.md; https://github.com/klacadin/evo-growth/blob/master/crm/schema/lifecycle.ts; https://github.com/klacadin/evo-growth/blob/master/crm/schema/enums.json
+Target Architecture & Migration Design,,Referral sub-status rules,Architecture,No,No,No,Discovery,M,P0,,Keren,"Joel, Avi",No,Sign Status Framework v1,
+Target Architecture & Migration Design,,Intake status per LOB,Architecture,No,No,No,Discovery,M,P0,,Keren,"Joel, Avi",No,Sign Status Framework v1,
+Target Architecture & Migration Design,,Authorization validity rules,Architecture,No,No,No,Discovery,M,P0,,Keren,"Joel, Avi",No,Sign Status Framework v1,
+Target Architecture & Migration Design,,LOB/service-line status rules,Architecture,No,No,No,Discovery,M,P0,,Keren,"Joel, Avi",No,Sign Status Framework v1,
+Target Architecture & Migration Design,,Invalid transitions list,Architecture,No,No,No,Discovery,M,P0,,Keren,"Joel, Avi",No,Sign Status Framework v1,
+Target Architecture & Migration Design,Complete old-to-new status mapping,Episode.status migration (New/Lead/Converted/On Hold → Referral),Architecture,No,No,No,Discovery,M,P0,,Keren,Avi,No,,https://github.com/klacadin/evo-growth/blob/master/crm/schema/nexus-episode-status-map.json; https://github.com/klacadin/evo-growth/blob/master/crm/schema/legacy-status-map.json
+Target Architecture & Migration Design,,LeadStatus migration (retire Converted),Architecture,No,No,No,Discovery,M,P0,,Keren,Avi,No,,
+Target Architecture & Migration Design,,"Patient legacy: pre-intake, closed, authorized",Architecture,No,No,No,Discovery,M,P0,,Keren,Avi,No,,
+Target Architecture & Migration Design,,Classify each: safe auto / conditional / manual review / deprecate,Architecture,No,No,No,Discovery,M,P0,,Keren,Avi,No,,
+Target Architecture & Migration Design,,Update crm/schema/nexus-episode-status-map.json,Architecture,No,No,No,Discovery,M,P0,,Keren,Avi,No,,
+Target Architecture & Migration Design,Define required field matrix,Referral / New and In Progress required fields,Architecture,No,No,No,Discovery,M,P0,,Keren,Joel,No,,https://github.com/klacadin/evo-growth/blob/master/crm/schema/validation-rules.ts; https://github.com/klacadin/evo-growth/blob/master/crm/schema/enums.json
+Target Architecture & Migration Design,,Dropped Off Referral required fields,Architecture,No,No,No,Discovery,M,P0,,Keren,Joel,No,,
+Target Architecture & Migration Design,,"Active entry required fields (SOC, LOB, coordinator)",Architecture,No,No,No,Discovery,M,P0,,Keren,Joel,No,,
+Target Architecture & Migration Design,,Discharged required fields,Architecture,No,No,No,Discovery,M,P0,,Keren,Joel,No,,
+Target Architecture & Migration Design,,On Hold required fields (replaces Pre-Intake),Architecture,No,No,No,Discovery,M,P0,,Keren,Joel,No,,
+Target Architecture & Migration Design,,Map to crm/schema/validation-rules.ts,Architecture,No,No,No,Discovery,M,P0,,Keren,Joel,No,,
+Target Architecture & Migration Design,Draft dashboard logic spec,"Leadership: true census, authorized pipeline, drop/discharge by reason",Architecture,No,No,No,Discovery,M,P1,,Keren,"Angelo, Joel",No,,https://github.com/klacadin/evo-growth/blob/master/crm/audit/dashboard-queries.sql; https://github.com/klacadin/evo-growth/blob/master/crm/Link-Homecare-CRM-Status-Architecture-Execution-Workspace.md
+Target Architecture & Migration Design,,"Intake: pending NIA, Medicaid, auth, overdue follow-ups",Architecture,No,No,No,Discovery,M,P1,,Keren,"Angelo, Joel",No,,
+Target Architecture & Migration Design,,"Operations: expiring auth, non-authorized active, SOC issues",Architecture,No,No,No,Discovery,M,P1,,Keren,"Angelo, Joel",No,,
+Target Architecture & Migration Design,,"Growth: source attribution, conversion, drop by source",Architecture,No,No,No,Discovery,M,P1,,Keren,"Angelo, Joel",No,,
+Target Architecture & Migration Design,,Map to crm/audit/dashboard-queries.sql,Architecture,No,No,No,Discovery,M,P1,,Keren,"Angelo, Joel",No,,
+Target Architecture & Migration Design,Publish Implementation Brief for Avi,Picklist values from crm/schema/enums.json,Architecture,No,No,No,Discovery,M,P0,,Keren,Avi,No,,https://github.com/klacadin/evo-growth/blob/master/crm/schema/enums.json; https://github.com/klacadin/evo-growth/blob/master/crm/schema/nexus-episode-status-map.json; https://github.com/klacadin/evo-growth/blob/master/crm/schema/validation-rules.ts; https://github.com/klacadin/evo-growth/blob/master/crm/schema/lifecycle.ts; https://github.com/klacadin/evo-growth/blob/master/crm/glossary-pipeline-v2.md
+Target Architecture & Migration Design,,Field definitions and UI recommendations,Architecture,No,No,No,Discovery,M,P0,,Keren,Avi,No,,
+Target Architecture & Migration Design,,Validation rules and transition rules,Architecture,No,No,No,Discovery,M,P0,,Keren,Avi,No,,
+Target Architecture & Migration Design,,Migration safety rules and rollback plan,Architecture,No,No,No,Discovery,M,P0,,Keren,Avi,No,,
+Target Architecture & Migration Design,,Open technical questions list for Avi,Architecture,No,No,No,Discovery,M,P0,,Keren,Avi,No,,
+CRM Build — Staging,Episode picklist rebuild,Implement 5-stage pipeline: Lead | Qualifying | Referral in Progress | Active | Discharged,Build,No,No,No,Staging,M,P0,,Avi,,No,Sign Status Framework v1,https://github.com/klacadin/evo-growth/blob/master/crm/schema/enums.json; https://github.com/klacadin/evo-growth/blob/master/crm/schema/nexus-episode-status-map.json; https://github.com/klacadin/evo-growth/blob/master/crm/glossary-pipeline-v2.md
+CRM Build — Staging,,Add Dropped Off as terminal before Active,Build,No,No,No,Staging,M,P0,,Avi,,No,Sign Status Framework v1,
+CRM Build — Staging,,Map legacy EpisodeStatus values per signed flowchart,Build,No,No,No,Staging,M,P0,,Avi,,No,Sign Status Framework v1,
+CRM Build — Staging,,"Deprecate Pre-Intake, Closed, Converted, ambiguous In Progress labels",Build,No,No,No,Staging,M,P0,,Avi,,No,Sign Status Framework v1,
+CRM Build — Staging,,Short-term parallel status fields + icon display (separate from main bar),Build,No,No,No,Staging,M,P0,,Avi,,No,Sign Status Framework v1,
+CRM Build — Staging,Authorization picklist migration,Create Authorization status picklist (replace baseStatus STRING),Build,No,No,No,Staging,M,P0,,Avi,,No,,https://github.com/klacadin/evo-growth/blob/master/crm/schema/enums.json; https://github.com/klacadin/evo-growth/blob/master/crm/schema/validation-rules.ts; https://github.com/klacadin/evo-growth/blob/master/crm/asana/nexus-discovery-asana-sync.md
+CRM Build — Staging,,Map existing STRING values to picklist,Build,No,No,No,Staging,M,P0,,Avi,,No,,
+CRM Build — Staging,,Link picklist to intake and LOB timeline widget,Build,No,No,No,Staging,M,P0,,Avi,,No,,
+CRM Build — Staging,Episode UI updates,Progress bar: Lead → Qualifying → Referral in Progress → Active → Discharged,Build,No,No,No,Staging,L,P0,,Avi,Angelo,No,,https://github.com/klacadin/evo-growth/blob/master/crm/flowcharts/pipeline-flowcharts-v1.md; https://github.com/klacadin/evo-growth/blob/master/crm/glossary-pipeline-v2.md
+CRM Build — Staging,,Short-term care icon (parallel track — not on main bar until authorized),Build,No,No,No,Staging,L,P0,,Avi,Angelo,No,,
+CRM Build — Staging,,Per-LOB status chips when multiple LOBs open,Build,No,No,No,Staging,L,P0,,Avi,Angelo,No,,
+CRM Build — Staging,,Sub-status on Active: Authorized / Non-Authorized (computed),Build,No,No,No,Staging,L,P0,,Avi,Angelo,No,,
+CRM Build — Staging,,Require outcome modal on Dropped Off and Discharged,Build,No,No,No,Staging,L,P0,,Avi,Angelo,No,,
+CRM Build — Staging,,Hide legacy Patient status fields from layout,Build,No,No,No,Staging,L,P0,,Avi,Angelo,No,,
+CRM Build — Staging,Validation rules — blocking saves,Dropped Off Referral requires outcome,Build,No,No,No,Staging,M,P0,,Avi,,No,,https://github.com/klacadin/evo-growth/blob/master/crm/schema/validation-rules.ts; https://github.com/klacadin/evo-growth/blob/master/crm/schema/lifecycle.ts
+CRM Build — Staging,,Discharged requires outcome + discharge date,Build,No,No,No,Staging,M,P0,,Avi,,No,,
+CRM Build — Staging,,Discharged only from Active (was-ever-active check),Build,No,No,No,Staging,M,P0,,Avi,,No,,
+CRM Build — Staging,,leadStage cleared/hidden when Active or Discharged,Build,No,No,No,Staging,M,P0,,Avi,,No,,
+CRM Build — Staging,,Service-line drop ≠ Episode discharge unless last active LOB + confirm dialog,Build,No,No,No,Staging,M,P0,,Avi,,No,,
+CRM Build — Staging,Automations,Authorization save → recalc Active sub-status + LOB timeline (Ntelekos fix),Build,No,No,No,Staging,L,P0,,Avi,,No,,https://github.com/klacadin/evo-growth/blob/master/crm/schema/validation-rules.ts; https://github.com/klacadin/evo-growth/blob/master/crm/schema/lifecycle.ts; https://github.com/klacadin/evo-growth/blob/master/crm/asana/nexus-discovery-asana-sync.md
+CRM Build — Staging,,Nightly auth expiry → flag Active Non-Authorized + alert,Build,No,No,No,Staging,L,P0,,Avi,,No,,
+CRM Build — Staging,,NIA failed → ON_HOLD + 6-month hold_until + re-engage task,Build,No,No,No,Staging,L,P0,,Avi,,No,,
+CRM Build — Staging,,SOC confirmed → Episode ACTIVE,Build,No,No,No,Staging,L,P0,,Avi,,No,,
+CRM Build — Staging,,"SLA timers: lead 24h, follow-up 3d, referral→intake 7d, auth→SOC 14d",Build,No,No,No,Staging,L,P0,,Avi,,No,,
+CRM Build — Staging,Staging build complete,Demo to Keren + Joel — walk through one record per lifecycle stage,Build,No,Yes,No,Staging,S,P0,,Avi,Keren,Yes,,https://github.com/klacadin/evo-growth/blob/master/crm/schema/enums.json; https://github.com/klacadin/evo-growth/blob/master/crm/schema/validation-rules.ts; https://github.com/klacadin/evo-growth/blob/master/crm/schema/nexus-episode-status-map.json
+CRM Build — Staging,,"Confirm picklists, UI, rules, and automations working",Build,No,Yes,No,Staging,S,P0,,Avi,Keren,Yes,,
+CRM Build — Staging,,Unlock Data Remediation on staging,Build,No,Yes,No,Staging,S,P0,,Avi,Keren,Yes,,
+Data Remediation & QA,Build staging migration script,Implement nexus-episode-status-map.json rules,Remediation,No,No,No,Staging,L,P0,,Avi,,No,Baseline audit complete — all counts recorded,https://github.com/klacadin/evo-growth/blob/master/crm/schema/nexus-episode-status-map.json; https://github.com/klacadin/evo-growth/blob/master/crm/schema/legacy-status-map.json
+Data Remediation & QA,,Safe automatic batches first,Remediation,No,No,No,Staging,L,P0,,Avi,,No,Baseline audit complete — all counts recorded,
+Data Remediation & QA,,Conditional batches with flags,Remediation,No,No,No,Staging,L,P0,,Avi,,No,Baseline audit complete — all counts recorded,
+Data Remediation & QA,,Manual review queue export for ambiguous records,Remediation,No,No,No,Staging,L,P0,,Avi,,No,Baseline audit complete — all counts recorded,
+Data Remediation & QA,Migrate Episode statuses,New / Lead / Converted / On Hold → REFERRAL + leadStage,Remediation,No,No,No,Staging,M,P0,,Avi,,No,,https://github.com/klacadin/evo-growth/blob/master/crm/schema/nexus-episode-status-map.json
+Data Remediation & QA,,Dropped → REFERRAL + Dropped Off Referral + outcome,Remediation,No,No,No,Staging,M,P0,,Avi,,No,,
+Data Remediation & QA,,Active → compute Authorized vs Non-Authorized from auth,Remediation,No,No,No,Staging,M,P0,,Avi,,No,,
+Data Remediation & QA,,Discharged → retain + require outcome backfill,Remediation,No,No,No,Staging,M,P0,,Avi,,No,,
+Data Remediation & QA,Remediate legacy Patient picklists,pre-intake → Referral In Progress + hold badge,Remediation,No,No,No,Staging,M,P0,,Avi,,No,,https://github.com/klacadin/evo-growth/blob/master/crm/schema/legacy-status-map.json; https://github.com/klacadin/evo-growth/blob/master/crm/schema/nexus-episode-status-map.json
+Data Remediation & QA,,closed → manual split: Discharged vs Dropped Off Referral,Remediation,No,No,No,Staging,M,P0,,Avi,,No,,
+Data Remediation & QA,,person-level authorized → remove from display; compute from auth layer,Remediation,No,No,No,Staging,M,P0,,Avi,,No,,
+Data Remediation & QA,Run specialty remediation batches,CDPAP sunset cohort — discharge or drop per signed rule,Remediation,No,No,No,Staging,L,P0,,Avi,,No,,https://github.com/klacadin/evo-growth/blob/master/crm/schema/nexus-episode-status-map.json; https://github.com/klacadin/evo-growth/blob/master/crm/audit/data-integrity-audit.sql
+Data Remediation & QA,,Third-party referrals (Girling) — Dropped Off + THIRD_PARTY_REFERRAL,Remediation,No,No,No,Staging,L,P0,,Avi,,No,,
+Data Remediation & QA,,Orphan authorized — clear or flag Non-Authorized,Remediation,No,No,No,Staging,L,P0,,Avi,,No,,
+Data Remediation & QA,,Voided/dropped intakes — clear authorized display,Remediation,No,No,No,Staging,L,P0,,Avi,,No,,
+Data Remediation & QA,,leadStage = None — backfill from Episode.status,Remediation,No,No,No,Staging,L,P0,,Avi,,No,,
+Data Remediation & QA,,leadStage = Converted → In Progress Referral,Remediation,No,No,No,Staging,L,P0,,Avi,,No,,
+Data Remediation & QA,Re-run baselines on staging,Compare all audit cohort counts to baseline,Remediation,No,No,No,Staging,M,P0,Census gap closed vs Phase 1 baseline,Keren,Avi,No,,https://github.com/klacadin/evo-growth/blob/master/crm/audit/data-integrity-audit.sql; https://github.com/klacadin/evo-growth/blob/master/crm/audit/dashboard-queries.sql
+Data Remediation & QA,,Document remaining exceptions and accept/reject each,Remediation,No,No,No,Staging,M,P0,Census gap closed vs Phase 1 baseline,Keren,Avi,No,,
+Data Remediation & QA,,Confirm orphan authorized → target 0 on census widget,Remediation,No,No,No,Staging,M,P0,Census gap closed vs Phase 1 baseline,Keren,Avi,No,,
+Data Remediation & QA,Ops review — 50 remediated records,"Sample across LOBs: LTC, NHTD, OPWDD, private pay, short-term",Remediation,No,No,Yes,Staging,M,P0,,Joel,Keren,No,,https://github.com/klacadin/evo-growth/blob/master/crm/glossary-pipeline-v2.md; https://github.com/klacadin/evo-growth/blob/master/crm/alignment-meeting/03-decision-worksheet.md
+Data Remediation & QA,,"Sample edge cases: NIA hold, CDPAP, third-party, multi-LOB",Remediation,No,No,Yes,Staging,M,P0,,Joel,Keren,No,,
+Data Remediation & QA,,Confirm status labels match operational reality,Remediation,No,No,Yes,Staging,M,P0,,Joel,Keren,No,,
+Data Remediation & QA,,Document any corrections needed before dashboard rebuild,Remediation,No,No,Yes,Staging,M,P0,,Joel,Keren,No,,
+Data Remediation & QA,Remediation validated — census gap acceptable on staging,Joel signs ops acceptance on remediation sample,Remediation,No,Yes,No,Staging,S,P0,,Avi,"Keren, Joel",Yes,,https://github.com/klacadin/evo-growth/blob/master/crm/audit/data-integrity-audit.sql; https://github.com/klacadin/evo-growth/blob/master/crm/audit/dashboard-queries.sql
+Data Remediation & QA,,Gap within agreed threshold documented,Remediation,No,Yes,No,Staging,S,P0,,Avi,"Keren, Joel",Yes,,
+Data Remediation & QA,,Unlock Dashboard rebuild,Remediation,No,Yes,No,Staging,S,P0,,Avi,"Keren, Joel",Yes,,
+Dashboards & User Acceptance,Rebuild Leads / Referral list view,Show pipeline stage: Lead / Qualifying / Referral in Progress (not generic In Progress),Dashboards,No,No,No,Staging,M,P0,,Avi,Angelo,No,Remediation validated — census gap acceptable on staging,https://github.com/klacadin/evo-growth/blob/master/crm/glossary-pipeline-v2.md; https://github.com/klacadin/evo-growth/blob/master/crm/audit/dashboard-queries.sql
+Dashboards & User Acceptance,,Add intake opened date and LOB to list view,Dashboards,No,No,No,Staging,M,P0,,Avi,Angelo,No,Remediation validated — census gap acceptable on staging,
+Dashboards & User Acceptance,,"Filters: NIA upcoming, NIA passed/failed, qualifying stage, dropped cases",Dashboards,No,No,No,Staging,M,P0,,Avi,Angelo,No,Remediation validated — census gap acceptable on staging,
+Dashboards & User Acceptance,,Short-term icon column without affecting main status sort,Dashboards,No,No,No,Staging,M,P0,,Avi,Angelo,No,Remediation validated — census gap acceptable on staging,
+Dashboards & User Acceptance,,Automated list ordering by status and eligibility priority,Dashboards,No,No,No,Staging,M,P0,,Avi,Angelo,No,Remediation validated — census gap acceptable on staging,
+Dashboards & User Acceptance,Rebuild leadership widgets,"True census widget: Active + valid auth + SOC (~1,200–1,300)",Dashboards,No,No,No,Staging,M,P0,,Avi,,No,,https://github.com/klacadin/evo-growth/blob/master/crm/audit/dashboard-queries.sql; https://github.com/klacadin/evo-growth/blob/master/crm/audit/data-integrity-audit.sql
+Dashboards & User Acceptance,,Authorized pipeline widget (separate from census),Dashboards,No,No,No,Staging,M,P0,,Avi,,No,,
+Dashboards & User Acceptance,,Active Non-Authorized / expired auth risk widget,Dashboards,No,No,No,Staging,M,P0,,Avi,,No,,
+Dashboards & User Acceptance,,Referral funnel: New / In Progress / Dropped by leadStage,Dashboards,No,No,No,Staging,M,P0,,Avi,,No,,
+Dashboards & User Acceptance,Rebuild ops queues,Expiring authorizations (30-day window),Dashboards,No,No,No,Staging,M,P1,,Avi,,No,,https://github.com/klacadin/evo-growth/blob/master/crm/audit/dashboard-queries.sql
+Dashboards & User Acceptance,,Stale anticipated SOC queue,Dashboards,No,No,No,Staging,M,P1,,Avi,,No,,
+Dashboards & User Acceptance,,Active patients missing required fields,Dashboards,No,No,No,Staging,M,P1,,Avi,,No,,
+Dashboards & User Acceptance,,Multi-LOB conflict review queue,Dashboards,No,No,No,Staging,M,P1,,Avi,,No,,
+Dashboards & User Acceptance,Rebuild growth / funnel reporting,Drop/discharge by Episode.outcome + referral source,Dashboards,No,No,No,Staging,M,P2,,Avi,Keren,No,,https://github.com/klacadin/evo-growth/blob/master/crm/audit/dashboard-queries.sql
+Dashboards & User Acceptance,,Referral-to-active conversion by source and LOB,Dashboards,No,No,No,Staging,M,P2,,Avi,Keren,No,,
+Dashboards & User Acceptance,,Geography and campaign trends (when attribution fields clean),Dashboards,No,No,No,Staging,M,P2,,Avi,Keren,No,,
+Dashboards & User Acceptance,QA — zero orphan authorized on census widget,Run census widget query against staging,Dashboards,No,No,No,Staging,S,P0,,Avi,,No,,https://github.com/klacadin/evo-growth/blob/master/crm/audit/dashboard-queries.sql; https://github.com/klacadin/evo-growth/blob/master/crm/audit/data-integrity-audit.sql
+Dashboards & User Acceptance,,Confirm 0 rows matching orphan authorized pattern,Dashboards,No,No,No,Staging,S,P0,,Avi,,No,,
+Dashboards & User Acceptance,,Document any accepted exceptions with Joel sign-off,Dashboards,No,No,No,Staging,S,P0,,Avi,,No,,
+Dashboards & User Acceptance,Sales UAT — Angelo,Can identify lead vs referral vs patient in ≤3 seconds,Dashboards,No,No,Yes,Staging,M,P0,,Angelo,"Keren, Avi",No,,https://github.com/klacadin/evo-growth/blob/master/crm/alignment-meeting/03-decision-worksheet.md; https://github.com/klacadin/evo-growth/blob/master/crm/glossary-pipeline-v2.md
+Dashboards & User Acceptance,,Leads list shows meaningful funnel granularity,Dashboards,No,No,Yes,Staging,M,P0,,Angelo,"Keren, Avi",No,,
+Dashboards & User Acceptance,,Drop reasons visible without deep drill-down,Dashboards,No,No,Yes,Staging,M,P0,,Angelo,"Keren, Avi",No,,
+Dashboards & User Acceptance,,Sign UAT checklist or log defects,Dashboards,No,No,Yes,Staging,M,P0,,Angelo,"Keren, Avi",No,,
+Dashboards & User Acceptance,Ops UAT — Joel + intake leads,NIA hold workflow works without Pre-Intake label,Dashboards,No,No,Yes,Staging,M,P0,,Joel,Keren,No,,https://github.com/klacadin/evo-growth/blob/master/crm/alignment-meeting/03-decision-worksheet.md; https://github.com/klacadin/evo-growth/blob/master/crm/glossary-pipeline-v2.md
+Dashboards & User Acceptance,,Auth recalc updates LOB timeline immediately,Dashboards,No,No,Yes,Staging,M,P0,,Joel,Keren,No,,
+Dashboards & User Acceptance,,LOB drop does not accidentally discharge patient,Dashboards,No,No,Yes,Staging,M,P0,,Joel,Keren,No,,
+Dashboards & User Acceptance,,Sign UAT checklist or log defects,Dashboards,No,No,Yes,Staging,M,P0,,Joel,Keren,No,,
+Dashboards & User Acceptance,UAT passed — sales and ops sign-off,Compile UAT results and defect resolution,Dashboards,No,Yes,Yes,Discovery,S,P0,,Keren,"Angelo, Joel, Avi",Yes,,https://github.com/klacadin/evo-growth/blob/master/crm/alignment-meeting/03-decision-worksheet.md; https://github.com/klacadin/evo-growth/blob/master/crm/asana/milestones.json
+Dashboards & User Acceptance,,Written sign-off from Angelo (sales) and Joel (ops),Dashboards,No,Yes,Yes,Discovery,S,P0,,Keren,"Angelo, Joel, Avi",Yes,,
+Dashboards & User Acceptance,,Unlock Production Go-Live,Dashboards,No,Yes,Yes,Discovery,S,P0,,Keren,"Angelo, Joel, Avi",Yes,,
+Production Go-Live,Final go/no-go review,Confirm staging census gap within threshold,Go-Live,No,No,Yes,Production,S,P0,,Keren,"Joel, Avi, Angelo",No,UAT passed — sales and ops sign-off,https://github.com/klacadin/evo-growth/blob/master/crm/asana/milestones.json; https://github.com/klacadin/evo-growth/blob/master/crm/asana/dependencies.json; https://github.com/klacadin/evo-growth/blob/master/crm/asana/project-description.md
+Production Go-Live,,Confirm rollback plan documented,Go-Live,No,No,Yes,Production,S,P0,,Keren,"Joel, Avi, Angelo",No,UAT passed — sales and ops sign-off,
+Production Go-Live,,Confirm comms sent to sales + ops + intake,Go-Live,No,No,Yes,Production,S,P0,,Keren,"Joel, Avi, Angelo",No,UAT passed — sales and ops sign-off,
+Production Go-Live,,Go/no-go decision recorded,Go-Live,No,No,Yes,Production,S,P0,,Keren,"Joel, Avi, Angelo",No,UAT passed — sales and ops sign-off,
+Production Go-Live,Schedule and communicate migration window,"Announce window to sales, intake, ops, leadership",Go-Live,No,No,No,Production,S,P0,,Leah,"Keren, Avi",No,,https://github.com/klacadin/evo-growth/blob/master/crm/asana/project-description.md; https://github.com/klacadin/evo-growth/blob/master/crm/alignment-meeting/01-share-with-team.md
+Production Go-Live,,Document what changes for each team on day 1,Go-Live,No,No,No,Production,S,P0,,Leah,"Keren, Avi",No,,
+Production Go-Live,,Provide support channel during cutover,Go-Live,No,No,No,Production,S,P0,,Leah,"Keren, Avi",No,,
+Production Go-Live,Execute production remediation batch,Run validated migration script from staging,Go-Live,No,No,No,Production,L,P0,,Avi,,No,,https://github.com/klacadin/evo-growth/blob/master/crm/schema/nexus-episode-status-map.json
+Production Go-Live,,Process manual review queue with Keren + Joel,Go-Live,No,No,No,Production,L,P0,,Avi,,No,,
+Production Go-Live,,Verify sample records post-migration,Go-Live,No,No,No,Production,L,P0,,Avi,,No,,
+Production Go-Live,Enable production rules and automations,Enable validation rules,Go-Live,No,No,No,Production,M,P0,,Avi,,No,,https://github.com/klacadin/evo-growth/blob/master/crm/schema/validation-rules.ts; https://github.com/klacadin/evo-growth/blob/master/crm/schema/lifecycle.ts
+Production Go-Live,,Enable auth save → recalc automation,Go-Live,No,No,No,Production,M,P0,,Avi,,No,,
+Production Go-Live,,Enable nightly auth expiry alerts,Go-Live,No,No,No,Production,M,P0,,Avi,,No,,
+Production Go-Live,,Enable SLA timers,Go-Live,No,No,No,Production,M,P0,,Avi,,No,,
+Production Go-Live,Switch production dashboards and list views,Activate new census widget,Go-Live,No,No,No,Production,M,P0,,Avi,,No,,https://github.com/klacadin/evo-growth/blob/master/crm/audit/dashboard-queries.sql
+Production Go-Live,,Activate new Leads/Referral list,Go-Live,No,No,No,Production,M,P0,,Avi,,No,,
+Production Go-Live,,Hide legacy authorized counts from leadership default view,Go-Live,No,No,No,Production,M,P0,,Avi,,No,,
+Production Go-Live,,Archive old dashboard definitions (do not delete),Go-Live,No,No,No,Production,M,P0,,Avi,,No,,
+Production Go-Live,Post-cutover census validation,Re-run census gap audit on production,Go-Live,No,No,No,Production,S,P0,"~1,960 → ~1,200–1,300 confirmed",Keren,Avi,No,,https://github.com/klacadin/evo-growth/blob/master/crm/audit/data-integrity-audit.sql; https://github.com/klacadin/evo-growth/blob/master/crm/audit/dashboard-queries.sql
+Production Go-Live,,Compare to baseline and staging results,Go-Live,No,No,No,Production,S,P0,"~1,960 → ~1,200–1,300 confirmed",Keren,Avi,No,,
+Production Go-Live,,Document final counts for leadership,Go-Live,No,No,No,Production,S,P0,"~1,960 → ~1,200–1,300 confirmed",Keren,Avi,No,,
+Production Go-Live,Production live — census gap closed,Leadership briefed on new census number,Go-Live,No,Yes,No,Production,S,P0,,Avi,Keren,Yes,,https://github.com/klacadin/evo-growth/blob/master/crm/asana/milestones.json; https://github.com/klacadin/evo-growth/blob/master/crm/audit/dashboard-queries.sql
+Production Go-Live,,Old authorized dashboard retired from default views,Go-Live,No,Yes,No,Production,S,P0,,Avi,Keren,Yes,,
+Production Go-Live,,Begin 2-week hypercare monitoring,Go-Live,No,Yes,No,Production,S,P0,,Avi,Keren,Yes,,
+Production Go-Live,Hypercare monitoring (2 weeks),Monitor auth recalc — no Ntelekos regressions,Go-Live,No,No,No,Production,M,P1,,Avi,"Keren, Angelo",No,,https://github.com/klacadin/evo-growth/blob/master/crm/asana/project-description.md
+Production Go-Live,,Monitor SLA alert volume and false positives,Go-Live,No,No,No,Production,M,P1,,Avi,"Keren, Angelo",No,,
+Production Go-Live,,Daily check-in with sales and intake for label confusion,Go-Live,No,No,No,Production,M,P1,,Avi,"Keren, Angelo",No,,
+Production Go-Live,,Log and triage defects,Go-Live,No,No,No,Production,M,P1,,Avi,"Keren, Angelo",No,,
+"Documentation, Training & NY Playbook",Publish NY Status Framework v1 (canonical),Final glossary and lifecycle diagram,Training,No,No,No,Discovery,M,P1,,Keren,Joel,No,Production live — census gap closed,https://github.com/klacadin/evo-growth/blob/master/crm/glossary-pipeline-v2.md; https://github.com/klacadin/evo-growth/blob/master/crm/flowcharts/pipeline-flowcharts-v1.md; https://github.com/klacadin/evo-growth/blob/master/crm/onedrive-hub/index.md
+"Documentation, Training & NY Playbook",,"Per-team quick reference: sales, intake, ops, leadership",Training,No,No,No,Discovery,M,P1,,Keren,Joel,No,Production live — census gap closed,
+"Documentation, Training & NY Playbook",,Edge case handling guide,Training,No,No,No,Discovery,M,P1,,Keren,Joel,No,Production live — census gap closed,
+"Documentation, Training & NY Playbook",,Store in Teams + repo,Training,No,No,No,Discovery,M,P1,,Keren,Joel,No,Production live — census gap closed,
+"Documentation, Training & NY Playbook",Update department playbooks,Intake playbook — replace Pre-Intake with On Hold workflow,Training,No,No,No,Discovery,L,P1,,Joel,Keren,No,,https://github.com/klacadin/evo-growth/blob/master/crm/glossary-pipeline-v2.md; https://github.com/klacadin/evo-growth/blob/master/crm/alignment-meeting/05-phase0-workshop.md
+"Documentation, Training & NY Playbook",,Sales playbook — referral sub-status and drop reasons,Training,No,No,No,Discovery,L,P1,,Joel,Keren,No,,
+"Documentation, Training & NY Playbook",,Ops playbook — auth expiry and non-authorized active handling,Training,No,No,No,Discovery,L,P1,,Joel,Keren,No,,
+"Documentation, Training & NY Playbook",,Angela playbook revision,Training,No,No,No,Discovery,L,P1,,Joel,Keren,No,,
+"Documentation, Training & NY Playbook",Conduct team training sessions,"Enrollment specialists — 45 min: Qualifying vs Referral in Progress, NIA filters, dropped cases",Training,No,No,No,Discovery,M,P1,,Keren,"Joel, Angelo",No,,https://github.com/klacadin/evo-growth/blob/master/crm/glossary-pipeline-v2.md; https://github.com/klacadin/evo-growth/blob/master/crm/flowcharts/pipeline-flowcharts-v1.md; https://github.com/klacadin/evo-growth/blob/master/crm/onedrive-hub/index.md
+"Documentation, Training & NY Playbook",,Sales training — 30 min: pipeline stages and short-term icon,Training,No,No,No,Discovery,M,P1,,Keren,"Joel, Angelo",No,,
+"Documentation, Training & NY Playbook",,"Ops training — 30 min: census, auth expiry, LOB drop vs discharge, multi-LOB view",Training,No,No,No,Discovery,M,P1,,Keren,"Joel, Angelo",No,,
+"Documentation, Training & NY Playbook",,Record sessions for onboarding,Training,No,No,No,Discovery,M,P1,,Keren,"Joel, Angelo",No,,
+"Documentation, Training & NY Playbook",Deprecate legacy fields (write-block only),Write-block deprecated EpisodeStatus values,Training,No,No,No,Staging,M,P2,,Avi,,No,,https://github.com/klacadin/evo-growth/blob/master/crm/schema/nexus-episode-status-map.json; https://github.com/klacadin/evo-growth/blob/master/crm/schema/enums.json; https://github.com/klacadin/evo-growth/blob/master/crm/schema/legacy-status-map.json
+"Documentation, Training & NY Playbook",,Write-block LeadStatus Converted,Training,No,No,No,Staging,M,P2,,Avi,,No,,
+"Documentation, Training & NY Playbook",,Hide legacy Patient status picklists permanently,Training,No,No,No,Staging,M,P2,,Avi,,No,,
+"Documentation, Training & NY Playbook",,Plan intake field reduction (130 → target; no deletion yet),Training,No,No,No,Staging,M,P2,,Avi,,No,,
+"Documentation, Training & NY Playbook",Florida delta checklist,Document NY vs FL CRM differences,Training,No,No,Yes,Discovery,M,P3,,Keren,Joel,No,,https://github.com/klacadin/evo-growth/blob/master/crm/leadtrap/leadtrap.md; https://github.com/klacadin/evo-growth/blob/master/crm/README.md
+"Documentation, Training & NY Playbook",,Identify which status rules transfer unchanged,Training,No,No,Yes,Discovery,M,P3,,Keren,Joel,No,,
+"Documentation, Training & NY Playbook",,Note LeadTrap/Faith Healthcare integration (crm/leadtrap/),Training,No,No,Yes,Discovery,M,P3,,Keren,Joel,No,,
+"Documentation, Training & NY Playbook",,Estimate FL adaptation effort,Training,No,No,Yes,Discovery,M,P3,,Keren,Joel,No,,
+Growth Enablement,Confirm growth readiness prerequisites,Referral source field standardized and populated,Growth,No,No,No,Discovery,S,P2,,Keren,,No,Production live — census gap closed,https://github.com/klacadin/evo-growth/blob/master/crm/audit/dashboard-queries.sql; https://github.com/klacadin/evo-growth/blob/master/crm/asana/milestones.json
+Growth Enablement,,Drop/discharge outcomes required and populated,Growth,No,No,No,Discovery,S,P2,,Keren,,No,Production live — census gap closed,
+Growth Enablement,,Conversion reporting validated on 30-day cohort,Growth,No,No,No,Discovery,S,P2,,Keren,,No,Production live — census gap closed,
+Growth Enablement,,No orphan authorized on growth-facing views,Growth,No,No,No,Discovery,S,P2,,Keren,,No,Production live — census gap closed,
+Growth Enablement,UTM and campaign attribution standards,Define required UTM parameters for web forms,Growth,No,No,No,Discovery,M,P2,,Keren,,No,,https://github.com/klacadin/evo-growth/blob/master/crm/leadtrap/leadtrap.md
+Growth Enablement,,Map to Episode source fields in CRM,Growth,No,No,No,Discovery,M,P2,,Keren,,No,,
+Growth Enablement,,Document naming convention for campaigns and events,Growth,No,No,No,Discovery,M,P2,,Keren,,No,,
+Growth Enablement,Website forms → CRM integration audit,Confirm new leads land as Referral / New Referral,Growth,No,No,No,Discovery,M,P2,,Avi,Keren,No,,https://github.com/klacadin/evo-growth/blob/master/crm/leadtrap/leadtrap.md; https://github.com/klacadin/evo-growth/blob/master/src/app/api/webhooks/crm/route.ts
+Growth Enablement,,Confirm source attribution preserved,Growth,No,No,No,Discovery,M,P2,,Avi,Keren,No,,
+Growth Enablement,,Test end-to-end from form submit to Leads list,Growth,No,No,No,Discovery,M,P2,,Avi,Keren,No,,
+Growth Enablement,LeadTrap / Ava integration,Map bot qualification to Referral sub-status transitions,Growth,No,No,No,Discovery,L,P3,,Keren,,No,,https://github.com/klacadin/evo-growth/blob/master/crm/leadtrap/leadtrap.md
+Growth Enablement,,Ensure drop reasons flow to Episode.outcome,Growth,No,No,No,Discovery,L,P3,,Keren,,No,,
+Growth Enablement,,Conversion reporting: qualified referral → active patient,Growth,No,No,No,Discovery,L,P3,,Keren,,No,,
+Growth Enablement,Meta / paid social attribution,Connect campaign IDs to referral source,Growth,No,No,No,Discovery,M,P3,,Keren,,No,,https://github.com/klacadin/evo-growth/blob/master/crm/leadtrap/leadtrap.md
+Growth Enablement,,Build drop reason by campaign report,Growth,No,No,No,Discovery,M,P3,,Keren,,No,,
+Growth Enablement,,Define retargeting audience rules (exclude active patients),Growth,No,No,No,Discovery,M,P3,,Keren,,No,,
+Growth Enablement,"Referral partner tracking (doctors, case managers)",Standardize referral_partner field usage,Growth,No,No,No,Discovery,M,P2,,Keren,Angelo,No,,https://github.com/klacadin/evo-growth/blob/master/crm/audit/dashboard-queries.sql; https://github.com/klacadin/evo-growth/blob/master/crm/glossary-pipeline-v2.md
+Growth Enablement,,Partner conversion and drop reason reporting,Growth,No,No,No,Discovery,M,P2,,Keren,Angelo,No,,
+Growth Enablement,,Geography trends by partner,Growth,No,No,No,Discovery,M,P2,,Keren,Angelo,No,,
+Growth Enablement,Growth dashboard — qualified referral → active patient,Cohort conversion rate by source,Growth,No,No,No,Discovery,M,P2,,Avi,"Keren, Angelo",No,,https://github.com/klacadin/evo-growth/blob/master/crm/audit/dashboard-queries.sql; https://github.com/klacadin/evo-growth/blob/master/crm/leadtrap/leadtrap.md
+Growth Enablement,,Drop reason by source and LOB,Growth,No,No,No,Discovery,M,P2,,Avi,"Keren, Angelo",No,,
+Growth Enablement,,LOB demand signal by source,Growth,No,No,No,Discovery,M,P2,,Avi,"Keren, Angelo",No,,
+Growth Enablement,,Monthly growth review template for leadership,Growth,No,No,No,Discovery,M,P2,,Avi,"Keren, Angelo",No,,

@@ -1,152 +1,71 @@
 {
-  "project": "EVO CRM Status Label Overhaul Sprint",
+  "project": "CRM Status Architecture Rebuild",
+  "version": "2.1.0",
+  "updated": "2026-07-06",
+  "source": "Workstream-based structure — see asana-structure.md",
   "sections": [
     {
-      "name": "Phase 0 — Stakeholder Sign-Off",
+      "name": "Governance & Project Setup",
       "order": 1,
-      "purpose": "Blocks all implementation until Status Framework v1 is signed",
-      "tasks": [
-        "Schedule definitions workshop: dropped off vs discharged vs voided vs deferred vs authorized vs SOC dates",
-        "Confirm LOB qualification checklists (LTC, NHTD, OPWDD, private pay)",
-        "Confirm short-term rule: lead loss unless gold LOB open; hidden from sales dash",
-        "Confirm NIA fail rule: 6-month ON_HOLD then re-engage approach",
-        "Confirm CDPAP remediation approach (discharge vs drop vs archive)",
-        "Confirm census definition (billing vs EVV vs CRM service episodes)",
-        "Document signed decisions — Status Framework v1 (PowerPoint / doc)"
-      ]
+      "workstream": "Governance",
+      "purpose": "Charter, roles, workshop, change control"
     },
     {
-      "name": "Phase 1 — Access & Baseline Audit",
+      "name": "Business Definitions & Sign-Off",
       "order": 2,
-      "purpose": "Read-only discovery + SQL audit baseline",
-      "tasks": [
-        "Grant Keren Schema Manager access (read-only preferred)",
-        "Keren completes Schema Manager audit (objects, fields, picklists, relationships)",
-        "Map CRM table/column names to audit SQL placeholders",
-        "Run crm/audit/data-integrity-audit.sql against staging or read replica",
-        "Record baseline — orphan authorized count",
-        "Record baseline — authorized + dropped/voided intake",
-        "Record baseline — CDPAP remediation queue size",
-        "Record baseline — third-party referrals (e.g. Girling) counted as patients",
-        "Record baseline — pre-intake and closed counts",
-        "Record baseline — multi-intake open conflicts",
-        "Record baseline — short-term-only pipeline",
-        "Record baseline — stale anticipated SOC",
-        "Record baseline — census gap (legacy authorized vs true census)",
-        "Record baseline — 12+ mo no service but still authorized/active",
-        "Record baseline — Medicaid deferred > 30 days",
-        "Record baseline — duplicate person candidates",
-        "Record baseline — intake column count (121 fields)",
-        "Export remediation batch IDs — orphan authorized (Section 14)",
-        "Keren identifies top unused intake fields for deprecation",
-        "Milestone: Baseline audit complete — all counts recorded in project doc"
-      ]
+      "workstream": "Definitions",
+      "purpose": "Glossary, lifecycle, layers, edge cases — GATE blocks build"
     },
     {
-      "name": "Phase 2 — Schema Design (Staging)",
+      "name": "Current State & Data Baseline",
       "order": 3,
-      "purpose": "Picklists, enums, field cleanup in staging",
-      "tasks": [
-        "PHASE 2 — Schema Design (section header)",
-        "Import picklists from crm/schema/enums.json into Schema Manager",
-        "Add person.lifecycle_stage enum (computed; admin override only)",
-        "Add intake.status, intake.nia_status, authorization.status, medicaid_ticket.status enums",
-        "Add picklists: drop_reason_category, hold_reason, void_reason, line_of_business",
-        "Remove/hide deprecated person fields: patient, lead, authorized, pre-intake, closed tags",
-        "Normalize date fields: intake_opened_at, anticipated_soc_date, start_of_care_date, stage_entered_at",
-        "Add person_stage_history table for funnel reporting",
-        "Document field mapping legacy → new (legacy-status-map.json)"
-      ]
+      "workstream": "Baseline",
+      "purpose": "Schema inventory, audit queries, census gap measurement"
     },
     {
-      "name": "Phase 3 — Data Remediation (Staging)",
+      "name": "Target Architecture & Migration Design",
       "order": 4,
-      "purpose": "Batch migration jobs on staging data",
-      "tasks": [
-        "PHASE 3 — Data Remediation (section header)",
-        "Build staging migration script from legacy-status-map.json",
-        "Remediate pre-intake → ON_HOLD + hold_reason",
-        "Split closed → DROPPED_OFF or DISCHARGED",
-        "Remediate person-level authorized → compute from intakes + auth",
-        "CDPAP batch — apply sunset rules",
-        "Third-party referral batch (Girling; is_agency_patient=false)",
-        "Orphan authorized batch — downgrade intakes without AUTH_APPROVED",
-        "Voided/dropped intakes — clear authorized display",
-        "Re-run data-integrity-audit.sql on staging; compare to Phase 1 baseline",
-        "Ops sign-off on sample of 50 remediated records",
-        "Milestone: Staging remediation validated — gap acceptable"
-      ]
+      "workstream": "Architecture",
+      "purpose": "Status tables, mapping, required fields, implementation brief"
     },
     {
-      "name": "Phase 4 — Validation & Automation (Staging)",
+      "name": "CRM Build — Staging",
       "order": 5,
-      "purpose": "Blocking rules + computed lifecycle + SLAs",
-      "tasks": [
-        "PHASE 4 — Validation & Automation (section header)",
-        "Implement blocking rule: AUTHORIZED_PENDING_SOC requires AUTH_APPROVED auth",
-        "Implement blocking rule: PATIENT_ACTIVE requires start_of_care_date",
-        "Implement blocking rule: DROPPED_OFF requires drop_reason + category",
-        "Implement blocking rule: ON_HOLD requires hold_reason + hold_until_date",
-        "Implement blocking rule: short-term-only cannot set person above REFERRAL_ACTIVE",
-        "Implement automation triggers (all 7)",
-        "Implement computeLifecycleStage from crm/schema/lifecycle.ts (server-side computed field)",
-        "Implement SLA timers: lead 24h, follow-up 3d, referral→intake 7d, authorized→SOC 14d"
-      ]
+      "workstream": "Build",
+      "purpose": "Picklists, UI, validation, automations in staging"
     },
     {
-      "name": "Phase 5 — Dashboard Rebuild",
+      "name": "Data Remediation & QA",
       "order": 6,
-      "purpose": "Views + UAT on staging",
-      "tasks": [
-        "PHASE 5 — Dashboard Rebuild (section header)",
-        "Deploy views from crm/audit/dashboard-queries.sql (adjust table names)",
-        "Sales dashboard: v_sales_dashboard — gold LOBs only, no terminal, no short-term-only",
-        "Add list columns: lifecycle_stage, primary_lob, intake_opened_at, next_action_date, nia_status, days_in_stage",
-        "Ops dashboard: v_ops_dashboard + stale anticipated SOC + CDPAP remediation queues",
-        "True census widget: COUNT from v_active_census",
-        "Funnel leakage report: v_funnel_leakage by drop_reason_category",
-        "QA query: zero rows on \"never show on dashboard\" violations",
-        "UAT with Angelo (sales) and ops leads — no multi-click drill-down needed"
-      ]
+      "workstream": "Remediation",
+      "purpose": "Migration batches, specialty cohorts, ops review"
     },
     {
-      "name": "Phase 6 — Production Cutover",
+      "name": "Dashboards & User Acceptance",
       "order": 7,
-      "purpose": "Go-live",
-      "tasks": [
-        "PHASE 6 — Production Cutover (section header)",
-        "Final stakeholder sign-off on staging UAT results",
-        "Production migration window scheduled (communicate to sales + ops)",
-        "Run remediation batch in production",
-        "Enable validation rules in production",
-        "Enable computed lifecycle_stage in production",
-        "Switch dashboards to new views",
-        "Post-cutover: re-run audit Section 9 — confirm census gap closed",
-        "Monitor SLA alerts for 2 weeks post-cutover"
-      ]
+      "workstream": "Dashboards",
+      "purpose": "Rebuild views on clean data; sales + ops UAT"
     },
     {
-      "name": "Phase 7 — Cleanup & Florida Handoff",
+      "name": "Production Go-Live",
       "order": 8,
-      "purpose": "Field deprecation + FL delta",
-      "tasks": [
-        "Deprecate unused intake fields (121 → ~40 target)",
-        "Document NY Status Framework v1 as canonical",
-        "Create Florida delta checklist (NY vs FL differences)",
-        "Rename Teams group to New York Operations (if not done)"
-      ]
+      "workstream": "Go-Live",
+      "purpose": "Cutover, validation, hypercare"
     },
     {
-      "name": "Ongoing — Discovery (Keren)",
+      "name": "Documentation, Training & NY Playbook",
       "order": 9,
-      "purpose": "Parallel discovery; no prod changes",
-      "tasks": [
-        "Raise pointed questions via Teams as inconsistencies found — no prod changes",
-        "Produce PowerPoint deliverable: labels, LOB rules, use cases, lead-to-patient flow",
-        "Maintain open questions log until Phase 0 closed",
-        "Joel: compile and share department playbooks (Angela playbook + others)",
-        "Send Keren the Angela playbook"
-      ]
+      "workstream": "Training",
+      "purpose": "Playbooks, training, field deprecation, FL delta"
+    },
+    {
+      "name": "Growth Enablement",
+      "order": 10,
+      "workstream": "Growth",
+      "purpose": "LeadTrap, Meta, attribution — after data is trustworthy"
     }
-  ]
+  ],
+  "task_count": 71,
+  "milestone_count": 6,
+  "tasks_file": "structure.json"
 }

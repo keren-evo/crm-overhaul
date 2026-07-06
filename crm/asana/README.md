@@ -1,59 +1,65 @@
-# Asana execution kit — EVO CRM Status Label Overhaul Sprint
+# Asana execution kit — CRM Status Architecture Rebuild
 
-One-click artifacts to organize the Asana project per the sprint organization plan. **Asana itself must be updated manually or via Asana AI** — this folder is the source of truth.
+Workstream-based project structure for the Link Homecare / Nexus CRM status overhaul. **Not phase-numbered** — organized by what must happen in what order.
 
-## Quick start (30 minutes)
+## Quick start
 
 | Step | Action | File |
 |------|--------|------|
-| 1 | Paste project description into Asana | [`project-description.md`](project-description.md) |
-| 2 | Paste prompt into Asana AI chat | [`asana-ai-apply.prompt.md`](asana-ai-apply.prompt.md) |
-| 3 | Or: create 9 sections and drag tasks | [`sections.json`](sections.json) |
-| 4 | Create 6 custom fields | [`custom-fields.json`](custom-fields.json) |
-| 5 | Bulk-set fields from CSV | [`evo-crm-sprint-tasks.csv`](evo-crm-sprint-tasks.csv) |
-| 6 | Mark 5 milestones | [`milestones.json`](milestones.json) |
-| 7 | Wire dependencies | [`dependencies.json`](dependencies.json) |
-| 8 | Create 5 saved views | [`saved-views.md`](saved-views.md) |
+| 1 | Read the full structure | [`asana-structure.md`](asana-structure.md) |
+| 2 | Paste project description | [`project-description.md`](project-description.md) |
+| 3 | Create 3 Asana Goals + link to project | Goals in `structure.json` |
+| 4 | Run Asana AI prompt **or** import CSV | [`asana-ai-apply.prompt.md`](asana-ai-apply.prompt.md) · [`evo-crm-sprint-tasks.csv`](evo-crm-sprint-tasks.csv) |
+| 5 | Create 8 custom fields | [`custom-fields.json`](custom-fields.json) |
+| 6 | Mark 6 milestones + wire dependencies | [`milestones.json`](milestones.json) · [`dependencies.json`](dependencies.json) |
+| 7 | Create saved views | [`saved-views.md`](saved-views.md) |
+| 8 | Pin Jul 2026 workshop comment | [`workshop-jul2026-asana-sync.md`](workshop-jul2026-asana-sync.md) |
 
 ## Files
 
 | File | Purpose |
 |------|---------|
-| `sections.json` | 9 sections + task names per section |
-| `custom-fields.json` | Field definitions + bulk defaults + exceptions |
-| `evo-crm-sprint-tasks.csv` | Full task matrix: fields, assignees, dependencies |
-| `milestones.json` | 5 phase-gate milestones |
-| `dependencies.json` | Cross-phase + within-phase dependency chains |
+| **`asana-structure.md`** | **Primary doc** — full Goals → Project → Sections → Tasks → Subtasks tree |
+| `workshop-jul2026-asana-sync.md` | **Jul workshop** — pipeline agreement + action items to paste in Asana |
+| `../glossary/status-terminology-v1.md` | Glossary draft (Keren) — blocks CRM build until signed |
+| `structure.json` | Machine-readable source of truth (71 tasks, subtask rows in sprint CSV) |
+| `task-files.json` | Repo artifact paths per task (exported as OneDrive `.html` doc links in CSV) |
+| `evo-crm-sprint-tasks.csv` | Import matrix with subtasks |
+| `crm_asana_v3.csv` | **Simplified import** — parent tasks + GitHub doc links (regenerate via `_gen_csv.py`) |
 | `project-description.md` | Paste into Asana project description |
-| `saved-views.md` | Filter specs for 5 saved views |
-| `asana-ai-apply.prompt.md` | Single prompt for Asana AI to apply everything |
+| `custom-fields.json` | 8 custom field definitions |
+| `milestones.json` | 6 outcome-based milestones |
+| `dependencies.json` | Cross-section and within-section blockers |
+| `asana-ai-apply.prompt.md` | Single prompt for Asana AI |
+| `saved-views.md` | 7 saved view specs |
 
-## Assignee map
+## Structure at a glance
 
-| Person | Tasks |
-|--------|-------|
-| **Avi** | Schema, remediation, validation, dashboards, production cutover |
-| **Keren** | Phase 0–1, audit baselines, framework sign-off, discovery, UAT |
-| **Joel** | Workshops, playbooks, ops sign-off |
-| **Leah** | Migration comms, Teams rename |
-| **Angelo** | Sales dashboard UAT |
+```
+10 Sections · 71 Tasks · 6 Milestones · 3 Program Goals
 
-Primary assignee is `Assignee Primary` in CSV; `Assignee Secondary` = collaborator.
+§1 Governance → §2 Definitions (GATE) → §3 Baseline ∥ §4 Architecture
+    → §5 Build → §6 Remediation → §7 Dashboards/UAT → §8 Go-Live
+    → §9 Training → §10 Growth
+```
+
+## Assignees
+
+| Person | Primary workstreams |
+|--------|---------------------|
+| **Keren** | Governance, Definitions, Baseline, Architecture, UAT, Training, Growth |
+| **Joel** | Definitions decisions, edge cases, ops review, playbooks |
+| **Avi** | Build, Remediation, Automations, Dashboards, Go-Live |
+| **Angelo** | Sales UAT |
+| **Leah** | Cutover communications |
 
 ## Milestone chain
 
 ```
-Phase 0 sign-off → Phase 1 baseline → Phase 3 remediation → Phase 5 UAT → Phase 6 cutover → Phase 7
+Sign Framework v1 → Baseline complete → Staging build → Remediation validated → UAT passed → Production live
 ```
 
-Phase 2 starts after Phase 1 milestone. Phase 4 after Phase 3 milestone. Phase 5 after Phase 4 complete.
+## Related
 
-## CSV import notes
-
-- Asana CSV import creates **new** tasks — prefer Asana AI prompt to **update existing** tasks
-- Custom field names in CSV must match Asana field names exactly
-- `Depends On` column is for manual/AI dependency wiring (not auto-imported by Asana CSV)
-
-## Related CRM artifacts
-
-See [`../README.md`](../README.md) for schema, audit SQL, and migration order.
+- Workspace doc: [`../Link-Homecare-CRM-Status-Architecture-Execution-Workspace.md`](../Link-Homecare-CRM-Status-Architecture-Execution-Workspace.md)
+- CRM artifacts: [`../README.md`](../README.md)

@@ -2,6 +2,39 @@
 
 Executable specs for the Lead → Referral → Intake → Patient lifecycle overhaul (NY Operations).
 
+## Sign-off package (Jul 2026 — pending Joel/Leah)
+
+| Path | Purpose |
+|------|---------|
+| **`glossary-pipeline-v2.md`** | Status terminology — **send to Joel & Leah for sign-off** |
+| **`flowcharts/pipeline-flowcharts-v1.md`** | Main pipeline + short-term icon + multi-LOB Mermaid |
+| **`glossary/drop-reasons-for-signoff.md`** | 10 drop categories — Joel sign-off sheet |
+| `meeting-notes/2026-07-pipeline-alignment.md` | Workshop capture |
+| `Link-Homecare-CRM-Status-Architecture-Execution-Workspace.md` | Full execution workspace |
+
+**Gate:** Sign glossary + flowcharts → Joel schedules Avi · Leah coordinates calendar.
+
+## GitHub (canonical — all files)
+
+| Item | Link |
+|------|------|
+| **CRM package root** | [github.com/klacadin/evo-growth/tree/master/crm](https://github.com/klacadin/evo-growth/tree/master/crm) |
+| **Sign-off glossary** | [glossary-pipeline-v2.md](https://github.com/klacadin/evo-growth/blob/master/crm/glossary-pipeline-v2.md) |
+| **Flowcharts** | [pipeline-flowcharts-v1.md](https://github.com/klacadin/evo-growth/blob/master/crm/flowcharts/pipeline-flowcharts-v1.md) |
+| **Execution workspace** | [Link-Homecare-CRM-Status-Architecture-Execution-Workspace.md](https://github.com/klacadin/evo-growth/blob/master/crm/Link-Homecare-CRM-Status-Architecture-Execution-Workspace.md) |
+| **Asana task CSV** | [crm_asana_v3.csv](https://github.com/klacadin/evo-growth/blob/master/crm/asana/crm_asana_v3.csv) (Related Docs = GitHub links) |
+
+## OneDrive hub (clickable — share with team)
+
+| Item | Path |
+|------|------|
+| **Open in browser** | `O:\EVO\OneDrive - EVO Healthcare Group\Documents\Link Homecare - CRM Overhaul\index.html` |
+| **Re-sync after repo edits** | `powershell -File crm/sync-to-onedrive.ps1` |
+
+Hub source in repo: `crm/onedrive-hub/index.html`. Share the OneDrive folder with Joel/Leah for clickable links (glossary, flowcharts HTML, drop reasons, workspace, Asana).
+
+**OneDrive web:** Open `index.html` with **Open in browser** (not the side preview). All pages include a cloud navigation script so links open in a new tab with full SharePoint URLs.
+
 ## Contents
 
 | Path | Purpose |
@@ -10,7 +43,8 @@ Executable specs for the Lead → Referral → Intake → Patient lifecycle over
 | `schema/enums.json` | Schema Manager / picklist import |
 | `schema/lifecycle.ts` | Master stage computation + transition gates |
 | `schema/validation-rules.ts` | Blocking validation rule definitions |
-| `schema/legacy-status-map.json` | Salesforce-era → new status migration map |
+| `schema/nexus-episode-status-map.json` | Episode-centric migration map (Nexus CRM) |
+| `schema/legacy-status-map.json` | Legacy Salesforce-era → unified framework |
 | `audit/data-integrity-audit.sql` | Run against live CRM DB before migration |
 | `audit/dashboard-queries.sql` | Sales, ops, census, funnel leakage queries |
 | `asana/` | **Asana sprint organization kit** — CSV, sections, dependencies, AI prompt |

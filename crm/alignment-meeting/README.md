@@ -19,8 +19,8 @@ Executable prep for the team alignment session. **Do not edit the Cursor plan fi
 |----------|------|
 | Asana execution kit | [`../asana/README.md`](../asana/README.md) |
 | CRM bot discovery prompts | [`../crm-bot-discovery.prompt.md`](../crm-bot-discovery.prompt.md) |
-| Discovery session notes | [`../../1-1-CRM Status Label Overhaul — Lead-to-Patient Workflow Discovery Session.md`](../../1-1-CRM%20Status%20Label%20Overhaul%20—%20Lead-to-Patient%20Workflow%20Discovery%20Session.md) |
-| Decision workspace (Asana template) | [`../../CRM DECISION WORKSPACE.md`](../../CRM%20DECISION%20WORKSPACE.md) |
+| Discovery session notes | [`discovery/1-1-CRM-Discovery-Session.md`](../discovery/1-1-CRM-Discovery-Session.md) |
+| Decision workspace (Asana template) | [`discovery/CRM-DECISION-WORKSPACE.md`](../discovery/CRM-DECISION-WORKSPACE.md) |
 
 ## Meeting length
 

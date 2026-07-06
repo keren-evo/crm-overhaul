@@ -1,52 +1,69 @@
-# EVO CRM Status Label Overhaul Sprint
+# Link Homecare — CRM Status Architecture Rebuild
 
-## Goal
+**Program:** CRM Operating Model Rebuild (NY Operations)  
+**CRM:** Nexus at [crm.linkhomecare.com](https://crm.linkhomecare.com/)  
+**Framework owner:** Keren · **Operational truth:** Joel · **Build:** Avi · **Comms/scheduling:** Leah
 
-Standardize Lead → Referral → Intake → Patient lifecycle labels, fix authorized/census data integrity (~1,960 dashboard vs ~1,200–1,300 true census), and rebuild dashboards. **Baseline status labels before downstream reporting.**
+---
 
-## Success criteria
+## Why this project exists
 
-- Single computed `lifecycle_stage` per person — no conflicting patient/lead/new tags
-- `Authorized` only on intakes with valid linked Authorization object
-- True active census matches operational estimate (~1,200–1,300)
-- Sales dashboard: gold LOBs only; short-term-only hidden
-- `pre-intake` and `closed` eliminated → ON_HOLD, DROPPED_OFF, DISCHARGED
-- CDPAP cohort remediated (post 2025-04-01)
-- Funnel leakage reportable by `drop_reason_category`
+The CRM inherited Salesforce-era labels that no longer match how Link Homecare operates. Dashboards show ~1,960 "authorized" patients while true active census is ~1,200–1,300. This project fixes **business logic first**, then data, then dashboards.
 
-## Rule
+## Agreed pipeline (Jul 2026 — operational sign-off)
 
-**Do not start Phase 2+ until Phase 0 milestone (Status Framework v1 signed) is complete.**
+```
+Lead → Qualifying → Referral in Progress → Active → Discharged
+         Dropped Off (any time before Active)
+```
 
-## Repo artifacts (source of truth)
+- **Qualifying** = lead in progress (contact, insurance, diagnosis, LOB fit)
+- **Referral in Progress** = intake opened for a LOB (replaces ambiguous "in progress" / "intake")
+- **Short-term care** = parallel track with icon UI until authorized; then Active on main pipeline
+- **Multi-LOB** = simultaneous per-LOB statuses displayed alongside master pipeline
 
-| Artifact | Path |
-|----------|------|
-| Migration order | `crm/README.md` |
-| Picklists / enums | `crm/schema/enums.json` |
-| Legacy status map | `crm/schema/legacy-status-map.json` |
-| Lifecycle computation | `crm/schema/lifecycle.ts` |
-| Validation + automation | `crm/schema/validation-rules.ts` |
-| Pre-migration audit SQL | `crm/audit/data-integrity-audit.sql` |
-| Dashboard queries | `crm/audit/dashboard-queries.sql` |
-| Asana execution kit | `crm/asana/` |
-| Alignment meeting package | `crm/alignment-meeting/` |
-| Discovery session notes | `1-1-CRM Status Label Overhaul — Lead-to-Patient Workflow Discovery Session.md` |
+**Gate:** Finalize labels + flowcharts before Avi tech implementation. **One-pass** CRM update planned.
+
+## Program goals
+
+| Goal | Success looks like |
+|------|-------------------|
+| **Trustworthy census** | ~1,200–1,300 true active — not ~1,960 authorized inflation |
+| **Clear workflow** | Enrollment can identify stage in ≤3 seconds |
+| **Growth-ready data** | ~10 drop reasons; source and conversion reporting reliable |
+
+## How work is organized
+
+```
+Governance → Definitions (GATE) → Baseline ∥ Architecture → Build → Remediation → Dashboards → Go-Live → Training → Growth
+```
+
+**Next actions (from Jul 2026 meeting):**
+- Keren — refine glossary (`crm/glossary-pipeline-v2.md`)
+- Team — finalize labels + flowcharts
+- Joel — schedule Avi tech review after flowcharts signed
+- Leah — follow-up chat + coordinate meeting scheduling
 
 ## Team
 
-| Role | Owner | Scope |
-|------|-------|-------|
-| Framework + audit | Keren | Phase 0–1, sign-off, discovery |
-| CRM implementation | Avi | Phase 2–4, Phase 6 cutover |
-| Operational definitions | Joel | Phase 0 playbooks, ops sign-off |
-| Project comms | Leah | Phase 6 migration comms, Teams |
-| Sales UAT | Angelo | Phase 5 UAT |
+| Person | Role |
+|--------|------|
+| Keren | Glossary, flowcharts, audit, UAT |
+| Joel | Pipeline definitions, LOB eligibility, ops sign-off, Avi meeting |
+| Avi | CRM build, one-pass implementation, backfill |
+| Leah | Follow-up comms, meeting scheduling |
+| Angelo | Sales UAT |
+| Enrollment specialists | Status updates; dashboard users when live |
 
-## Phase milestones
+## Repo artifacts
 
-1. Status Framework v1 signed (Phase 0)
-2. Baseline audit complete (Phase 1)
-3. Staging remediation validated (Phase 3)
-4. UAT passed (Phase 5)
-5. Production cutover — census gap closed (Phase 6)
+| Artifact | Path |
+|----------|------|
+| Meeting notes | `crm/meeting-notes/2026-07-pipeline-alignment.md` |
+| Glossary v2 | `crm/glossary-pipeline-v2.md` |
+| Asana structure | `crm/asana/asana-structure.md` |
+| Workspace | `crm/Link-Homecare-CRM-Status-Architecture-Execution-Workspace.md` |
+
+## Rule
+
+**No CRM field updates or backfill until status labels and flowcharts are finalized and signed.**

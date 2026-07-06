@@ -1,74 +1,87 @@
-In project "EVO CRM Status Label Overhaul Sprint", apply the full organization spec below. Match existing tasks by title (fuzzy match OK). Do not create duplicate tasks if a close match exists.
+# Asana AI apply prompt — CRM Status Architecture Rebuild
 
-## 1. Create sections (in this order, top to bottom)
+Copy everything below the line into **Asana AI** chat for the project **CRM Status Architecture Rebuild**.
 
-1. Phase 0 — Stakeholder Sign-Off
-2. Phase 1 — Access & Baseline Audit
-3. Phase 2 — Schema Design (Staging)
-4. Phase 3 — Data Remediation (Staging)
-5. Phase 4 — Validation & Automation (Staging)
-6. Phase 5 — Dashboard Rebuild
-7. Phase 6 — Production Cutover
-8. Phase 7 — Cleanup & Florida Handoff
-9. Ongoing — Discovery (Keren)
+---
 
-Move each task into the section listed in the CSV/repo file crm/asana/evo-crm-sprint-tasks.csv (Section column).
+You are setting up the Link Homecare CRM transformation project in Asana. Use workstream-based sections — **not phase numbers**.
 
-## 2. Create custom fields (exact names)
+## Project
 
-- Phase (single-select): 0, 1, 2, 3, 4, 5, 6, 7, Ongoing
-- Blocker (single-select): Yes, No
-- Requires Stakeholder Decision (single-select): Yes, No
-- CRM Environment (single-select): Discovery, Staging, Production
-- Audit Section (single-select): 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 0-14
-- Baseline / Target Metric (text)
+- **Name:** CRM Status Architecture Rebuild
+- **Description:** Paste from `crm/asana/project-description.md` in the repo
+- **Goals (link to project):**
+  1. Trustworthy census and pipeline reporting (~1,200–1,300 true census, not ~1,960 authorized)
+  2. Clear lead-to-patient workflow (identify status in ≤3 seconds)
+  3. Clean data foundation for scalable growth
 
-Set field values from evo-crm-sprint-tasks.csv columns: Phase, Blocker, Requires Stakeholder Decision, CRM Environment, Audit Section, Baseline / Target Metric.
+## Custom fields (create exactly these 8)
 
-## 3. Mark milestones (5 tasks)
+Workstream (Governance, Definitions, Baseline, Architecture, Build, Remediation, Dashboards, Go-Live, Training, Growth) · Decision Gate (Yes/No) · Blocker (Yes/No) · Requires Stakeholder Decision (Yes/No) · CRM Environment (Discovery, Staging, Production) · Effort (S, M, L) · Priority (P0–P3) · Baseline / Target Metric (text)
 
-Mark as milestone:
-1. Document signed decisions — Status Framework v1 (PowerPoint / doc)
-2. Milestone: Baseline audit complete — all counts recorded in project doc
-3. Milestone: Staging remediation validated — gap acceptable
-4. UAT with Angelo (sales) and ops leads — no multi-click drill-down needed
-5. Post-cutover: re-run audit Section 9 — confirm census gap closed
+## Sections (create in this order)
 
-## 4. Set dependencies
+1. Governance & Project Setup
+2. Business Definitions & Sign-Off
+3. Current State & Data Baseline
+4. Target Architecture & Migration Design
+5. CRM Build — Staging
+6. Data Remediation & QA
+7. Dashboards & User Acceptance
+8. Production Go-Live
+9. Documentation, Training & NY Playbook
+10. Growth Enablement
 
-Use Depends On column in evo-crm-sprint-tasks.csv. Also block entire next phases on prior milestone:
+## Tasks
 
-- All Phase 1 → blocked by Phase 0 milestone (Framework v1 signed)
-- All Phase 2 → blocked by Phase 1 milestone (Baseline audit complete)
-- All Phase 4 → blocked by Phase 3 milestone (Staging remediation validated)
-- All Phase 6 → blocked by Phase 5 milestone (UAT passed)
-- All Phase 7 → blocked by Phase 6 milestone (Post-cutover audit)
+Create **65 parent tasks** from `crm/asana/structure.json` (one per task object). For each task, create **subtasks** from the `subtasks` array in that JSON file.
 
-## 5. Reassign owners
+Assignees:
+- **Keren** — Governance, Definitions, Baseline, Architecture, UAT coordination, Training, Growth
+- **Joel** — Definitions decisions, edge cases, LOB checklists, ops review, ops UAT, playbooks
+- **Avi** — Build, Remediation, Automations, Dashboards, Go-Live
+- **Angelo** — Sales UAT
+- **Leah** — Cutover communications
 
-Use Assignee Primary from CSV; add Assignee Secondary as collaborator where listed:
+## Milestones (mark exactly 6 tasks)
 
-- Avi: Phase 2, 3, 4, 5 implementation, Phase 6 cutover
-- Keren: Phase 0, 1 audit, framework sign-off, Ongoing discovery
-- Joel: Phase 0 playbooks, ops sign-off, stakeholder workshops
-- Leah: Production migration comms, Teams rename
-- Angelo: Sales UAT (Phase 5)
+1. Sign Status Framework v1
+2. Baseline audit complete — all counts recorded
+3. Staging build complete — picklists, UI, rules live
+4. Remediation validated — census gap acceptable on staging
+5. UAT passed — sales and ops sign-off
+6. Production live — census gap closed
 
-Do NOT leave all tasks assigned to Keren.
+## Dependencies
 
-## 6. Update project description
+Wire per `crm/asana/dependencies.json`:
+- §4 and §5 blocked by **Sign Status Framework v1**
+- §6 migration blocked by **Baseline complete** AND **Staging build complete**
+- §7 blocked by **Remediation validated**
+- §8 blocked by **UAT passed**
+- §10 blocked by **Production live**
 
-Paste content from crm/asana/project-description.md including success criteria and repo artifact links.
+## Field defaults
 
-## 7. Create saved views
+- §2 Definitions: Requires Stakeholder Decision = Yes for decision tasks
+- Milestones: Blocker = Yes, Decision Gate = Yes where applicable
+- §5–§7: CRM Environment = Staging
+- §8: CRM Environment = Production
+- §10 Growth: Priority = P2 or P3
 
-Per crm/asana/saved-views.md:
-- This week
-- Blocked (Blocker = Yes)
-- Stakeholder decisions (Requires Stakeholder Decision = Yes)
-- Phase 1 audit (Phase = 1, sort by Audit Section)
-- Go-live checklist (Phase = 6)
+## Saved views to create
 
-## Critical rule
+1. **This week** — due this week, incomplete, group by section
+2. **Decision gates** — Decision Gate = Yes OR Requires Stakeholder Decision = Yes
+3. **Blocked** — Blocker = Yes, incomplete
+4. **Go-live day** — Section = Production Go-Live
 
-Phase 2+ work must remain blocked until Phase 0 milestone is complete.
+Pin: Decision gates, Blocked, This week.
+
+## Do not
+
+- Use Phase 0–7 numbering in section names
+- Start CRM build tasks before Framework v1 milestone is complete
+- Switch dashboard tasks before Remediation validated milestone
+
+Source of truth: `crm/asana/asana-structure.md` and `crm/asana/structure.json`.

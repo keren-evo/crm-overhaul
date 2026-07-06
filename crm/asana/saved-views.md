@@ -1,6 +1,6 @@
-# Asana saved views — EVO CRM Status Label Overhaul Sprint
+# Asana saved views — CRM Status Architecture Rebuild
 
-Create these in the project: **Add view** → configure filters → **Save view**.
+Create in the project: **Add view** → configure filters → **Save view**.
 
 ---
 
@@ -10,127 +10,94 @@ Create these in the project: **Add view** → configure filters → **Save view*
 |---------|-------|
 | Layout | List |
 | Filter | Due date = This week |
-| Filter | Incomplete tasks |
+| Filter | Incomplete |
 | Sort | Due date ascending |
 | Group | Section |
 
-**Use for:** Weekly standup — what is due now.
+**Use for:** Weekly standup.
 
 ---
 
-## 2. Blocked
+## 2. Decision gates
 
 | Setting | Value |
 |---------|-------|
 | Layout | List |
-| Filter | **Blocker** = Yes |
-| Filter | Incomplete tasks |
-| OR filter | Tasks with unresolved dependencies (Asana "Blocked" smart list if available) |
-| Sort | Section order |
+| Filter | Decision Gate = Yes **OR** Requires Stakeholder Decision = Yes |
+| Filter | Incomplete |
+| Sort | Priority ascending |
+| Group | Section |
+| Columns | Task, Assignee, Workstream, Baseline / Target Metric |
+
+**Use for:** Joel workshop prep and sign-off sessions.
+
+**Key tasks:** All §2 Definitions decisions · Ops 50-record review · Sales/Ops UAT · Go/no-go · Florida delta
+
+---
+
+## 3. Blocked
+
+| Setting | Value |
+|---------|-------|
+| Layout | List |
+| Filter | Blocker = Yes |
+| Filter | Incomplete |
 | Group | Section |
 
-**Use for:** Unblock conversation — Phase 0 gates and milestones.
-
-**Manual check:** Project → **Timeline** or task detail → Dependencies tab for tasks waiting on predecessors.
+**Use for:** Milestone tracking — 6 gates total.
 
 ---
 
-## 3. Stakeholder decisions
+## 4. Baseline audit
 
 | Setting | Value |
 |---------|-------|
 | Layout | List |
-| Filter | **Requires Stakeholder Decision** = Yes |
-| Filter | Incomplete tasks |
-| Sort | Phase ascending |
+| Filter | Workstream = Baseline |
+| Sort | Priority |
+| Columns | Task, Assignee, Baseline / Target Metric, Subtasks |
+
+**Use for:** Filling census gap and cohort counts during §3.
+
+---
+
+## 5. Avi — implementation
+
+| Setting | Value |
+|---------|-------|
+| Layout | Board |
+| Filter | Assignee = Avi |
 | Group | Section |
-| Columns | Task name, Assignee, Phase, Baseline / Target Metric |
 
-**Use for:** Joel/Speaker 1 decision sessions — workshop items, ops sign-off, UAT, FL checklist.
-
-**Expected tasks (incomplete until resolved):**
-
-- All Phase 0 workshop tasks (7)
-- Ops sign-off on 50 remediated records
-- UAT with Angelo
-- Final stakeholder sign-off on staging UAT
-- Create Florida delta checklist
+**Use for:** Build, remediation, dashboards, go-live workload.
 
 ---
 
-## 4. Phase 1 audit
+## 6. Go-live day
 
 | Setting | Value |
 |---------|-------|
 | Layout | List |
-| Filter | **Phase** = 1 |
-| Sort | **Audit Section** ascending |
-| Group | None |
-| Columns | Task name, Audit Section, Baseline / Target Metric, Assignee, Due date |
+| Filter | Section = Production Go-Live |
+| Filter | Incomplete |
+| Sort | Dependencies / manual order |
 
-**Use for:** Running `data-integrity-audit.sql` section by section; fill Baseline / Target Metric as counts come in.
-
-**Section reference:**
-
-| Audit Section | SQL section |
-|---------------|-------------|
-| 0 | Baseline summary |
-| 1 | Authorized without valid auth |
-| 2 | Authorized + dropped/voided intake |
-| 3 | CDPAP remediation queue |
-| 4 | Third-party referrals (Girling) |
-| 5 | Conflicting legacy tags |
-| 6 | Multi-intake conflicts |
-| 7 | Short-term-only pipeline |
-| 8 | Stale anticipated SOC |
-| 9 | Census reconciliation |
-| 10 | Stale active 12+ mo |
-| 11 | Medicaid deferred > 30d |
-| 12 | Duplicate candidates |
-| 13 | Intake column count |
-| 14 | Remediation batch IDs |
+**Critical order:** Go/no-go → Leah comms → Prod remediation → Enable rules → Switch dashboards → Census validation → Hypercare
 
 ---
 
-## 5. Go-live checklist
+## 7. Growth (post-launch)
 
 | Setting | Value |
 |---------|-------|
 | Layout | List |
-| Filter | **Phase** = 6 |
-| Filter | Incomplete tasks |
-| Sort | Due date ascending |
-| Group | None |
-| Columns | Task name, Assignee, Blocker, CRM Environment, Depends on |
+| Filter | Workstream = Growth |
+| Filter | Incomplete |
 
-**Use for:** Production cutover day — sequential execution.
-
-**Critical order:**
-
-1. Final stakeholder sign-off on staging UAT
-2. Production migration window scheduled (Leah)
-3. Run remediation batch in production
-4. Enable validation rules + computed lifecycle
-5. Switch dashboards
-6. Post-cutover audit Section 9 (milestone)
-7. Monitor SLA 2 weeks
+**Use for:** After Production live milestone — do not start early.
 
 ---
 
-## 6. By assignee (optional)
+## Pin recommended
 
-Create one saved view per owner filtering **Assignee**:
-
-| View name | Assignee | Phases |
-|-----------|----------|--------|
-| Avi — implementation | Avi | 2, 3, 4, 5, 6 |
-| Keren — discovery | Keren | 0, 1, Ongoing |
-| Joel — ops | Joel | 0, 3, 5 |
-| Leah — comms | Leah | 6, 7 |
-| Angelo — sales UAT | Angelo | 5 |
-
----
-
-## Pin recommended views
-
-Pin to project header: **Blocked**, **Stakeholder decisions**, **This week**.
+**Decision gates** · **Blocked** · **This week**

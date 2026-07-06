@@ -1,0 +1,1153 @@
+{
+  "version": "2.1.0",
+  "updated": "2026-07-06",
+  "approach": "Workstream-based — not phase-numbered. Definitions before build. Dashboards after data truth.",
+  "meeting_decisions": {
+    "source": "crm/meeting-notes/2026-07-pipeline-alignment.md",
+    "agreed_pipeline": "Lead → Qualifying → Referral in Progress → Active → Discharged; Dropped Off anytime before Active",
+    "short_term_care": "Parallel track with icon UI until authorized; then Active on main pipeline",
+    "crm_gate": "Finalize labels + flowcharts before Avi tech implementation; one-pass update planned",
+    "nia_reapply_wait": "~180 days — Joel to confirm",
+    "drop_reasons_target": "~10 categories",
+    "supersedes": "Prior 3-stage Referral → Active → Discharged UI draft — reconcile at Avi meeting"
+  },
+  "program": {
+    "name": "Link Homecare — CRM Operating Model Rebuild",
+    "owner": "Keren",
+    "sponsor": "Joel",
+    "platform": "Nexus CRM — crm.linkhomecare.com",
+    "scope": "NY Operations first; Florida adapts after NY stable"
+  },
+  "goals": [
+    {
+      "id": "G1",
+      "name": "Trustworthy census and pipeline reporting",
+      "success_metric": "True active census ~1,200–1,300 reconciled; authorized inflation (~1,960) eliminated from leadership views",
+      "owner": "Joel + Keren"
+    },
+    {
+      "id": "G2",
+      "name": "Clear lead-to-patient workflow for every team",
+      "success_metric": "Any user can identify lead vs referral vs active patient in ≤3 seconds without multi-click drill-down",
+      "owner": "Angelo + Joel"
+    },
+    {
+      "id": "G3",
+      "name": "Clean data foundation for scalable growth",
+      "success_metric": "Referral source, drop reason, and conversion reporting reliable enough for LeadTrap/Meta/campaign decisions",
+      "owner": "Keren"
+    }
+  ],
+  "project": {
+    "name": "CRM Status Architecture Rebuild",
+    "description_file": "project-description.md",
+    "start_condition": "Keren has Schema Manager access; no production CRM changes until Framework v1 signed",
+    "hard_gates": [
+      "Framework v1 signed → CRM build may begin",
+      "Baseline recorded → migration batches may run",
+      "Staging remediation validated → dashboards may switch",
+      "UAT passed → production cutover may proceed"
+    ]
+  },
+  "custom_fields": [
+    { "name": "Workstream", "type": "single_select", "options": ["Governance", "Definitions", "Baseline", "Architecture", "Build", "Remediation", "Dashboards", "Go-Live", "Training", "Growth"] },
+    { "name": "Decision Gate", "type": "single_select", "options": ["Yes", "No"] },
+    { "name": "Blocker", "type": "single_select", "options": ["Yes", "No"] },
+    { "name": "Requires Stakeholder Decision", "type": "single_select", "options": ["Yes", "No"] },
+    { "name": "CRM Environment", "type": "single_select", "options": ["Discovery", "Staging", "Production"] },
+    { "name": "Effort", "type": "single_select", "options": ["S", "M", "L"] },
+    { "name": "Priority", "type": "single_select", "options": ["P0", "P1", "P2", "P3"] },
+    { "name": "Baseline / Target Metric", "type": "text" }
+  ],
+  "milestones": [
+    { "order": 1, "task": "Sign Status Framework v1", "blocks": "CRM Build — Staging" },
+    { "order": 2, "task": "Baseline audit complete — all counts recorded", "blocks": "Data Remediation batches" },
+    { "order": 3, "task": "Staging build complete", "blocks": "Remediation execution" },
+    { "order": 4, "task": "Remediation validated — census gap acceptable on staging", "blocks": "Dashboard rebuild" },
+    { "order": 5, "task": "UAT passed — sales and ops sign-off", "blocks": "Production Go-Live" },
+    { "order": 6, "task": "Production live — census gap closed", "blocks": "Growth Enablement" }
+  ],
+  "sections": [
+    {
+      "order": 1,
+      "name": "Governance & Project Setup",
+      "workstream": "Governance",
+      "purpose": "Charter the program, assign roles, schedule decisions, establish rules of engagement",
+      "tasks": [
+        {
+          "name": "Confirm project charter and success criteria",
+          "assignee": "Keren",
+          "collaborators": ["Joel"],
+          "effort": "S",
+          "priority": "P0",
+          "decision_gate": "No",
+          "subtasks": [
+            "Align on 3 program goals (census truth, workflow clarity, growth readiness)",
+            "Document non-negotiables: definitions before dashboards; no prod changes pre-sign-off",
+            "Link workspace doc: crm/Link-Homecare-CRM-Status-Architecture-Execution-Workspace.md"
+          ]
+        },
+        {
+          "name": "Confirm team roles and RACI",
+          "assignee": "Keren",
+          "collaborators": ["Joel", "Avi", "Leah", "Angelo"],
+          "effort": "S",
+          "priority": "P0",
+          "subtasks": [
+            "Keren — framework, audit, UAT coordination",
+            "Joel — operational definitions, ops sign-off, playbooks",
+            "Avi — CRM implementation, remediation, automations",
+            "Angelo — sales UAT",
+            "Leah — cutover communications"
+          ]
+        },
+        {
+          "name": "Schedule definitions workshop (90 min)",
+          "assignee": "Keren",
+          "collaborators": ["Joel"],
+          "effort": "S",
+          "priority": "P0",
+          "requires_stakeholder_decision": "Yes",
+          "subtasks": [
+            "Send pre-read: alignment-meeting/01-share-with-team.md",
+            "Confirm attendees: Joel, ops leads, Keren, Avi, Angelo",
+            "Use facilitator guide: alignment-meeting/05-phase0-workshop.md",
+            "Capture decisions in alignment-meeting/03-decision-worksheet.md"
+          ]
+        },
+        {
+          "name": "Establish change control rules",
+          "assignee": "Keren",
+          "collaborators": ["Avi"],
+          "effort": "S",
+          "priority": "P0",
+          "subtasks": [
+            "No production CRM changes until Framework v1 signed",
+            "CRM field work on hold until status labels + flowcharts finalized (Leah confirmed)",
+            "Old fields retained during migration; no immediate deletion",
+            "Dashboards not switched until staging data validated",
+            "Manual review queues for ambiguous legacy records",
+            "Plan one-pass CRM update: labels + filtering + backfill together"
+          ]
+        },
+        {
+          "name": "Joel: Schedule CRM implementation review with Avi's team",
+          "assignee": "Joel",
+          "collaborators": ["Avi", "Keren"],
+          "effort": "S",
+          "priority": "P0",
+          "requires_stakeholder_decision": "No",
+          "depends_on": "Finalize patient status labels and lifecycle flowcharts",
+          "subtasks": [
+            "Coordinate with Avi on tech team availability",
+            "Agenda: agreed pipeline, short-term parallel track, multi-LOB UI, NIA tracking, one-pass plan",
+            "Pre-read: crm/meeting-notes/2026-07-pipeline-alignment.md + crm/glossary-pipeline-v2.md",
+            "Capture technical mapping questions for Nexus Episode fields"
+          ]
+        },
+        {
+          "name": "Leah: Follow-up and coordinate Avi meeting scheduling",
+          "assignee": "Leah",
+          "collaborators": ["Joel", "Keren"],
+          "effort": "S",
+          "priority": "P0",
+          "depends_on": "Finalize patient status labels and lifecycle flowcharts",
+          "subtasks": [
+            "Send follow-up messages via team chat with meeting outcomes",
+            "Coordinate calendar once labels and flowcharts are finalized",
+            "Confirm enrollment specialist representation if needed"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "name": "Business Definitions & Sign-Off",
+      "workstream": "Definitions",
+      "purpose": "Lock language, lifecycle, layers, edge cases — blocks all CRM build",
+      "tasks": [
+        {
+          "name": "Refine CRM glossary and terminology (living doc)",
+          "assignee": "Keren",
+          "collaborators": ["Joel", "Leah"],
+          "effort": "M",
+          "priority": "P0",
+          "subtasks": [
+            "Maintain crm/glossary-pipeline-v2.md with meeting feedback",
+            "Define: Lead, Qualifying, Referral in Progress, Active, Discharged, Dropped Off",
+            "Retire ambiguous labels: Pre-Intake, Closed, Converted, generic In Progress / Intake as master status",
+            "Document short-term parallel track terms: In Progress, Accepted, Startup, Authorized",
+            "Mark each term: Known / Assumption / Needs confirmation"
+          ]
+        },
+        {
+          "name": "Finalize patient status labels and lifecycle flowcharts",
+          "assignee": "Keren",
+          "collaborators": ["Joel", "Leah"],
+          "effort": "M",
+          "priority": "P0",
+          "requires_stakeholder_decision": "Yes",
+          "decision_gate": "Yes",
+          "blocker": "Yes",
+          "subtasks": [
+            "Main pipeline flowchart: Lead → Qualifying → Referral in Progress → Active → Discharged",
+            "Show Dropped Off as terminal before Active from any prior stage",
+            "Short-term care parallel track + icon UI spec (does not affect main bar until authorized)",
+            "Multi-LOB simultaneous status display wireframe",
+            "Joel + Leah sign-off — unlocks Avi tech meeting and CRM build"
+          ]
+        },
+        {
+          "name": "Confirm master lifecycle model (Jul 2026 alignment)",
+          "assignee": "Joel",
+          "collaborators": ["Keren", "Avi"],
+          "effort": "M",
+          "priority": "P0",
+          "requires_stakeholder_decision": "Yes",
+          "decision_gate": "Yes",
+          "subtasks": [
+            "AGREED: Lead → Qualifying → Referral in Progress → Active → Discharged",
+            "AGREED: Dropped Off anytime before Active",
+            "AGREED: Referral in Progress replaces in progress / intake as master label",
+            "Confirm Episode as master object; map 5 stages to Nexus fields at Avi meeting",
+            "Confirm Authorized is not top-level status — validity layer under Active",
+            "Enrollment specialists assign and update statuses"
+          ]
+        },
+        {
+          "name": "Confirm layer separation model",
+          "assignee": "Keren",
+          "collaborators": ["Joel", "Avi"],
+          "effort": "M",
+          "priority": "P0",
+          "requires_stakeholder_decision": "Yes",
+          "subtasks": [
+            "Layer 1: Episode.status — master lifecycle",
+            "Layer 2: Episode.leadStage — referral funnel",
+            "Layer 3: Intake.status — LOB process (not master status)",
+            "Layer 4: Authorization.status — validity (not census)",
+            "Layer 5: Patient LOB — service-line status",
+            "Layer 6: Medicaid ticket — orthogonal track",
+            "Layer 7: Episode.outcome — terminal reason",
+            "Layer 8: Follow-up / hold / recycle dates"
+          ]
+        },
+        {
+          "name": "Resolve edge case decision log (20 scenarios)",
+          "assignee": "Joel",
+          "collaborators": ["Keren"],
+          "effort": "L",
+          "priority": "P0",
+          "requires_stakeholder_decision": "Yes",
+          "subtasks": [
+            "NIA failed → Dropped Off; re-apply after ~180-day wait (Joel confirming exact period)",
+            "Authorization received but no SOC started",
+            "Auth expired but patient still receiving care",
+            "One LOB dropped, another active",
+            "Short-term sent to third party (Girling)",
+            "CDPAP post–April 1, 2025 cohort",
+            "Returning former patient — new Episode vs reopen",
+            "Voided vs dropped intake",
+            "Medicaid deferred vs dropped off",
+            "Primary LOB when multiple intakes open"
+          ]
+        },
+        {
+          "name": "Confirm census definition",
+          "assignee": "Joel",
+          "collaborators": ["Avi"],
+          "effort": "S",
+          "priority": "P0",
+          "requires_stakeholder_decision": "Yes",
+          "decision_gate": "Yes",
+          "baseline_metric": "~1,960 authorized → ~1,200–1,300 true census",
+          "subtasks": [
+            "Define: Episode Active + valid AUTH_APPROVED + confirmed SOC on gold LOB",
+            "Choose source of truth: Billing vs EVV vs CRM vs hybrid",
+            "Confirm Active threshold: SOC required vs cleared-to-start",
+            "Exclude: CDPAP sunset, third-party referrals, short-term-only lead loss"
+          ]
+        },
+        {
+          "name": "Export and sign off ReferralOutcome picklist",
+          "assignee": "Avi",
+          "collaborators": ["Joel", "Keren"],
+          "effort": "S",
+          "priority": "P0",
+          "requires_stakeholder_decision": "Yes",
+          "subtasks": [
+            "Export current ReferralOutcome values from Schema Manager",
+            "Group into referral-drop reasons vs discharge reasons",
+            "Require outcome on Dropped Off Referral and Discharged",
+            "Joel signs final picklist values"
+          ]
+        },
+        {
+          "name": "Document LOB eligibility criteria matrix",
+          "assignee": "Joel",
+          "collaborators": ["Keren"],
+          "effort": "M",
+          "priority": "P0",
+          "subtasks": [
+            "MLTC: Medicaid + qualifying diagnosis (dementia, brain injury, etc.)",
+            "Custodial: Medicaid + developmental delay",
+            "Short-term: skilled need + Medicare/Medicaid",
+            "NHTD, OPWDD, Private Pay checklists",
+            "Note: dynamic LOB light-up UI as planned Phase 2 enhancement"
+          ]
+        },
+        {
+          "name": "Simplify drop reasons to ~10 categories",
+          "assignee": "Keren",
+          "collaborators": ["Joel"],
+          "effort": "S",
+          "priority": "P0",
+          "requires_stakeholder_decision": "Yes",
+          "subtasks": [
+            "Draft list in crm/glossary-pipeline-v2.md",
+            "Replace overly long current picklist",
+            "Joel signs final ~10 values before ReferralOutcome export",
+            "Map old drop reasons to new categories for backfill"
+          ]
+        },
+        {
+          "name": "Joel: Confirm NIA re-application waiting period",
+          "assignee": "Joel",
+          "effort": "S",
+          "priority": "P0",
+          "subtasks": [
+            "Confirm 180-day estimate from meeting",
+            "Document appeal process (unlimited appeals noted)",
+            "Define CRM follow-up bucket for failed NIA after wait period"
+          ]
+        },
+        {
+          "name": "Document short-term care integration rules",
+          "assignee": "Keren",
+          "collaborators": ["Joel"],
+          "effort": "M",
+          "priority": "P0",
+          "subtasks": [
+            "NH discharge planner as primary referral source",
+            "Parallel statuses: In Progress, Accepted, Startup, Authorized",
+            "Icon-only UI until authorized — does not affect main pipeline metrics",
+            "On authorized: promote to Active on main pipeline",
+            "If not authorized: main status may stay Dropped Off or Discharged"
+          ]
+        },
+        {
+          "name": "Sign Status Framework v1",
+          "assignee": "Keren",
+          "collaborators": ["Joel", "Avi", "Leah"],
+          "effort": "S",
+          "priority": "P0",
+          "milestone": true,
+          "decision_gate": "Yes",
+          "blocker": "Yes",
+          "depends_on": "Finalize patient status labels and lifecycle flowcharts",
+          "subtasks": [
+            "Compile signed glossary (pipeline v2), flowcharts, LOB matrix, drop reasons, NIA rules",
+            "Publish to Teams + repo",
+            "Joel ops sign-off + Leah comms alignment + Avi technical feasibility",
+            "Unlock Joel → Avi implementation review meeting and CRM Build workstream"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "name": "Current State & Data Baseline",
+      "workstream": "Baseline",
+      "purpose": "Measure how much the CRM is lying today — quantify before remediation",
+      "tasks": [
+        {
+          "name": "Schema Manager object inventory",
+          "assignee": "Keren",
+          "collaborators": ["Avi"],
+          "effort": "M",
+          "priority": "P0",
+          "crm_environment": "Discovery",
+          "subtasks": [
+            "Episode — 92 fields; document EpisodeStatus, leadStage, outcome",
+            "Patient — 278 fields, 53 picklists; document legacy status fields",
+            "Intake — 130 fields, 24 picklists",
+            "Authorization — 66 fields; document baseStatus STRING risk",
+            "Identify which objects share LeadStatus picklist"
+          ]
+        },
+        {
+          "name": "Map Nexus objects to audit queries",
+          "assignee": "Avi",
+          "collaborators": ["Keren"],
+          "effort": "M",
+          "priority": "P0",
+          "crm_environment": "Discovery",
+          "depends_on": "Sign Status Framework v1",
+          "subtasks": [
+            "Retarget crm/audit/data-integrity-audit.sql from persons → Episode/Patient/Intake/Authorization",
+            "Document Query Console equivalents",
+            "Create baseline recording template in workspace doc"
+          ]
+        },
+        {
+          "name": "Run distribution baselines",
+          "assignee": "Avi",
+          "effort": "M",
+          "priority": "P0",
+          "crm_environment": "Discovery",
+          "subtasks": [
+            "Episode.status distribution (New, Lead, Active, Converted, On Hold, Dropped, Discharged)",
+            "leadStage distribution — especially all-In-Progress on Leads list (~56)",
+            "Episode.status = Converted — export for manual review",
+            "Authorization baseStatus STRING value distribution"
+          ]
+        },
+        {
+          "name": "Run integrity baselines — critical cohorts",
+          "assignee": "Keren",
+          "collaborators": ["Avi"],
+          "effort": "L",
+          "priority": "P0",
+          "crm_environment": "Discovery",
+          "subtasks": [
+            "Orphan authorized — no valid AUTH_APPROVED (census inflation driver)",
+            "Authorized + dropped/voided intake pairs",
+            "Episode Active without valid authorization (Ntelekos pattern)",
+            "CDPAP remediation queue (post 2025-04-01)",
+            "Third-party referrals counted as patients (Girling)",
+            "Pre-intake and closed legacy counts on Patient picklists",
+            "Multi-intake open conflicts on single record",
+            "Short-term-only pipeline on sales views",
+            "Stale anticipated SOC (passed date, no confirmed SOC)",
+            "12+ months no service but still authorized/active",
+            "Medicaid deferred > 30 days"
+          ]
+        },
+        {
+          "name": "Record census gap baseline",
+          "assignee": "Keren",
+          "effort": "S",
+          "priority": "P0",
+          "baseline_metric": "~1,960 authorized → target ~1,200–1,300 true census",
+          "subtasks": [
+            "Document dashboard authorized count",
+            "Document estimated true census",
+            "Calculate and record gap (~760 records)",
+            "Identify top 3 drivers of gap from audit cohorts"
+          ]
+        },
+        {
+          "name": "Export manual review batch IDs",
+          "assignee": "Avi",
+          "effort": "S",
+          "priority": "P1",
+          "subtasks": [
+            "Converted Episode IDs",
+            "Active without valid auth IDs",
+            "Discharged but never was Active IDs",
+            "Dropped but had Active history IDs",
+            "Per nexus-episode-status-map.json manual_review_queries"
+          ]
+        },
+        {
+          "name": "Baseline audit complete — all counts recorded",
+          "assignee": "Keren",
+          "collaborators": ["Avi"],
+          "effort": "S",
+          "priority": "P0",
+          "milestone": true,
+          "blocker": "Yes",
+          "subtasks": [
+            "Fill Data Integrity Audit Matrix in workspace doc",
+            "Review counts with Joel — confirm remediation priority order",
+            "Unlock Data Remediation workstream"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "name": "Target Architecture & Migration Design",
+      "workstream": "Architecture",
+      "purpose": "Translate signed definitions into build-ready specs for Avi",
+      "tasks": [
+        {
+          "name": "Finalize status architecture tables",
+          "assignee": "Keren",
+          "collaborators": ["Joel", "Avi"],
+          "effort": "M",
+          "priority": "P0",
+          "depends_on": "Sign Status Framework v1",
+          "subtasks": [
+            "Master lifecycle: entry/exit conditions, allowed transitions",
+            "Referral sub-status rules",
+            "Intake status per LOB",
+            "Authorization validity rules",
+            "LOB/service-line status rules",
+            "Invalid transitions list"
+          ]
+        },
+        {
+          "name": "Complete old-to-new status mapping",
+          "assignee": "Keren",
+          "collaborators": ["Avi"],
+          "effort": "M",
+          "priority": "P0",
+          "subtasks": [
+            "Episode.status migration (New/Lead/Converted/On Hold → Referral)",
+            "LeadStatus migration (retire Converted)",
+            "Patient legacy: pre-intake, closed, authorized",
+            "Classify each: safe auto / conditional / manual review / deprecate",
+            "Update crm/schema/nexus-episode-status-map.json"
+          ]
+        },
+        {
+          "name": "Define required field matrix",
+          "assignee": "Keren",
+          "collaborators": ["Joel"],
+          "effort": "M",
+          "priority": "P0",
+          "subtasks": [
+            "Referral / New and In Progress required fields",
+            "Dropped Off Referral required fields",
+            "Active entry required fields (SOC, LOB, coordinator)",
+            "Discharged required fields",
+            "On Hold required fields (replaces Pre-Intake)",
+            "Map to crm/schema/validation-rules.ts"
+          ]
+        },
+        {
+          "name": "Draft dashboard logic spec",
+          "assignee": "Keren",
+          "collaborators": ["Angelo", "Joel"],
+          "effort": "M",
+          "priority": "P1",
+          "subtasks": [
+            "Leadership: true census, authorized pipeline, drop/discharge by reason",
+            "Intake: pending NIA, Medicaid, auth, overdue follow-ups",
+            "Operations: expiring auth, non-authorized active, SOC issues",
+            "Growth: source attribution, conversion, drop by source",
+            "Map to crm/audit/dashboard-queries.sql"
+          ]
+        },
+        {
+          "name": "Publish Implementation Brief for Avi",
+          "assignee": "Keren",
+          "collaborators": ["Avi"],
+          "effort": "M",
+          "priority": "P0",
+          "subtasks": [
+            "Picklist values from crm/schema/enums.json",
+            "Field definitions and UI recommendations",
+            "Validation rules and transition rules",
+            "Migration safety rules and rollback plan",
+            "Open technical questions list for Avi"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "name": "CRM Build — Staging",
+      "workstream": "Build",
+      "purpose": "Implement new picklists, UI, and rules in staging — no prod changes",
+      "tasks": [
+        {
+          "name": "Episode picklist rebuild",
+          "assignee": "Avi",
+          "effort": "M",
+          "priority": "P0",
+          "crm_environment": "Staging",
+          "depends_on": "Sign Status Framework v1",
+          "subtasks": [
+            "Implement 5-stage pipeline: Lead | Qualifying | Referral in Progress | Active | Discharged",
+            "Add Dropped Off as terminal before Active",
+            "Map legacy EpisodeStatus values per signed flowchart",
+            "Deprecate Pre-Intake, Closed, Converted, ambiguous In Progress labels",
+            "Short-term parallel status fields + icon display (separate from main bar)"
+          ]
+        },
+        {
+          "name": "Authorization picklist migration",
+          "assignee": "Avi",
+          "effort": "M",
+          "priority": "P0",
+          "crm_environment": "Staging",
+          "subtasks": [
+            "Create Authorization status picklist (replace baseStatus STRING)",
+            "Map existing STRING values to picklist",
+            "Link picklist to intake and LOB timeline widget"
+          ]
+        },
+        {
+          "name": "Episode UI updates",
+          "assignee": "Avi",
+          "collaborators": ["Angelo"],
+          "effort": "L",
+          "priority": "P0",
+          "crm_environment": "Staging",
+          "subtasks": [
+            "Progress bar: Lead → Qualifying → Referral in Progress → Active → Discharged",
+            "Short-term care icon (parallel track — not on main bar until authorized)",
+            "Per-LOB status chips when multiple LOBs open",
+            "Sub-status on Active: Authorized / Non-Authorized (computed)",
+            "Require outcome modal on Dropped Off and Discharged",
+            "Hide legacy Patient status fields from layout"
+          ]
+        },
+        {
+          "name": "Validation rules — blocking saves",
+          "assignee": "Avi",
+          "effort": "M",
+          "priority": "P0",
+          "crm_environment": "Staging",
+          "subtasks": [
+            "Dropped Off Referral requires outcome",
+            "Discharged requires outcome + discharge date",
+            "Discharged only from Active (was-ever-active check)",
+            "leadStage cleared/hidden when Active or Discharged",
+            "Service-line drop ≠ Episode discharge unless last active LOB + confirm dialog"
+          ]
+        },
+        {
+          "name": "Automations",
+          "assignee": "Avi",
+          "effort": "L",
+          "priority": "P0",
+          "crm_environment": "Staging",
+          "subtasks": [
+            "Authorization save → recalc Active sub-status + LOB timeline (Ntelekos fix)",
+            "Nightly auth expiry → flag Active Non-Authorized + alert",
+            "NIA failed → ON_HOLD + 6-month hold_until + re-engage task",
+            "SOC confirmed → Episode ACTIVE",
+            "SLA timers: lead 24h, follow-up 3d, referral→intake 7d, auth→SOC 14d"
+          ]
+        },
+        {
+          "name": "Staging build complete",
+          "assignee": "Avi",
+          "collaborators": ["Keren"],
+          "effort": "S",
+          "priority": "P0",
+          "milestone": true,
+          "crm_environment": "Staging",
+          "subtasks": [
+            "Demo to Keren + Joel — walk through one record per lifecycle stage",
+            "Confirm picklists, UI, rules, and automations working",
+            "Unlock Data Remediation on staging"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "name": "Data Remediation & QA",
+      "workstream": "Remediation",
+      "purpose": "Clean staging data to match new architecture; validate before dashboards",
+      "tasks": [
+        {
+          "name": "Build staging migration script",
+          "assignee": "Avi",
+          "effort": "L",
+          "priority": "P0",
+          "crm_environment": "Staging",
+          "depends_on": "Baseline audit complete — all counts recorded",
+          "subtasks": [
+            "Implement nexus-episode-status-map.json rules",
+            "Safe automatic batches first",
+            "Conditional batches with flags",
+            "Manual review queue export for ambiguous records"
+          ]
+        },
+        {
+          "name": "Migrate Episode statuses",
+          "assignee": "Avi",
+          "effort": "M",
+          "priority": "P0",
+          "crm_environment": "Staging",
+          "subtasks": [
+            "New / Lead / Converted / On Hold → REFERRAL + leadStage",
+            "Dropped → REFERRAL + Dropped Off Referral + outcome",
+            "Active → compute Authorized vs Non-Authorized from auth",
+            "Discharged → retain + require outcome backfill"
+          ]
+        },
+        {
+          "name": "Remediate legacy Patient picklists",
+          "assignee": "Avi",
+          "effort": "M",
+          "priority": "P0",
+          "crm_environment": "Staging",
+          "subtasks": [
+            "pre-intake → Referral In Progress + hold badge",
+            "closed → manual split: Discharged vs Dropped Off Referral",
+            "person-level authorized → remove from display; compute from auth layer"
+          ]
+        },
+        {
+          "name": "Run specialty remediation batches",
+          "assignee": "Avi",
+          "effort": "L",
+          "priority": "P0",
+          "crm_environment": "Staging",
+          "subtasks": [
+            "CDPAP sunset cohort — discharge or drop per signed rule",
+            "Third-party referrals (Girling) — Dropped Off + THIRD_PARTY_REFERRAL",
+            "Orphan authorized — clear or flag Non-Authorized",
+            "Voided/dropped intakes — clear authorized display",
+            "leadStage = None — backfill from Episode.status",
+            "leadStage = Converted → In Progress Referral"
+          ]
+        },
+        {
+          "name": "Re-run baselines on staging",
+          "assignee": "Keren",
+          "collaborators": ["Avi"],
+          "effort": "M",
+          "priority": "P0",
+          "crm_environment": "Staging",
+          "baseline_metric": "Census gap closed vs Phase 1 baseline",
+          "subtasks": [
+            "Compare all audit cohort counts to baseline",
+            "Document remaining exceptions and accept/reject each",
+            "Confirm orphan authorized → target 0 on census widget"
+          ]
+        },
+        {
+          "name": "Ops review — 50 remediated records",
+          "assignee": "Joel",
+          "collaborators": ["Keren"],
+          "effort": "M",
+          "priority": "P0",
+          "requires_stakeholder_decision": "Yes",
+          "crm_environment": "Staging",
+          "subtasks": [
+            "Sample across LOBs: LTC, NHTD, OPWDD, private pay, short-term",
+            "Sample edge cases: NIA hold, CDPAP, third-party, multi-LOB",
+            "Confirm status labels match operational reality",
+            "Document any corrections needed before dashboard rebuild"
+          ]
+        },
+        {
+          "name": "Remediation validated — census gap acceptable on staging",
+          "assignee": "Avi",
+          "collaborators": ["Keren", "Joel"],
+          "effort": "S",
+          "priority": "P0",
+          "milestone": true,
+          "blocker": "Yes",
+          "crm_environment": "Staging",
+          "subtasks": [
+            "Joel signs ops acceptance on remediation sample",
+            "Gap within agreed threshold documented",
+            "Unlock Dashboard rebuild"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "name": "Dashboards & User Acceptance",
+      "workstream": "Dashboards",
+      "purpose": "Rebuild reporting on clean data; validate with sales and ops",
+      "tasks": [
+        {
+          "name": "Rebuild Leads / Referral list view",
+          "assignee": "Avi",
+          "collaborators": ["Angelo"],
+          "effort": "M",
+          "priority": "P0",
+          "crm_environment": "Staging",
+          "depends_on": "Remediation validated — census gap acceptable on staging",
+          "subtasks": [
+            "Show pipeline stage: Lead / Qualifying / Referral in Progress (not generic In Progress)",
+            "Add intake opened date and LOB to list view",
+            "Filters: NIA upcoming, NIA passed/failed, qualifying stage, dropped cases",
+            "Short-term icon column without affecting main status sort",
+            "Automated list ordering by status and eligibility priority"
+          ]
+        },
+        {
+          "name": "Rebuild leadership widgets",
+          "assignee": "Avi",
+          "effort": "M",
+          "priority": "P0",
+          "crm_environment": "Staging",
+          "subtasks": [
+            "True census widget: Active + valid auth + SOC (~1,200–1,300)",
+            "Authorized pipeline widget (separate from census)",
+            "Active Non-Authorized / expired auth risk widget",
+            "Referral funnel: New / In Progress / Dropped by leadStage"
+          ]
+        },
+        {
+          "name": "Rebuild ops queues",
+          "assignee": "Avi",
+          "effort": "M",
+          "priority": "P1",
+          "crm_environment": "Staging",
+          "subtasks": [
+            "Expiring authorizations (30-day window)",
+            "Stale anticipated SOC queue",
+            "Active patients missing required fields",
+            "Multi-LOB conflict review queue"
+          ]
+        },
+        {
+          "name": "Rebuild growth / funnel reporting",
+          "assignee": "Avi",
+          "collaborators": ["Keren"],
+          "effort": "M",
+          "priority": "P2",
+          "crm_environment": "Staging",
+          "subtasks": [
+            "Drop/discharge by Episode.outcome + referral source",
+            "Referral-to-active conversion by source and LOB",
+            "Geography and campaign trends (when attribution fields clean)"
+          ]
+        },
+        {
+          "name": "QA — zero orphan authorized on census widget",
+          "assignee": "Avi",
+          "effort": "S",
+          "priority": "P0",
+          "crm_environment": "Staging",
+          "subtasks": [
+            "Run census widget query against staging",
+            "Confirm 0 rows matching orphan authorized pattern",
+            "Document any accepted exceptions with Joel sign-off"
+          ]
+        },
+        {
+          "name": "Sales UAT — Angelo",
+          "assignee": "Angelo",
+          "collaborators": ["Keren", "Avi"],
+          "effort": "M",
+          "priority": "P0",
+          "requires_stakeholder_decision": "Yes",
+          "crm_environment": "Staging",
+          "subtasks": [
+            "Can identify lead vs referral vs patient in ≤3 seconds",
+            "Leads list shows meaningful funnel granularity",
+            "Drop reasons visible without deep drill-down",
+            "Sign UAT checklist or log defects"
+          ]
+        },
+        {
+          "name": "Ops UAT — Joel + intake leads",
+          "assignee": "Joel",
+          "collaborators": ["Keren"],
+          "effort": "M",
+          "priority": "P0",
+          "requires_stakeholder_decision": "Yes",
+          "crm_environment": "Staging",
+          "subtasks": [
+            "NIA hold workflow works without Pre-Intake label",
+            "Auth recalc updates LOB timeline immediately",
+            "LOB drop does not accidentally discharge patient",
+            "Sign UAT checklist or log defects"
+          ]
+        },
+        {
+          "name": "UAT passed — sales and ops sign-off",
+          "assignee": "Keren",
+          "collaborators": ["Angelo", "Joel", "Avi"],
+          "effort": "S",
+          "priority": "P0",
+          "milestone": true,
+          "blocker": "Yes",
+          "requires_stakeholder_decision": "Yes",
+          "subtasks": [
+            "Compile UAT results and defect resolution",
+            "Written sign-off from Angelo (sales) and Joel (ops)",
+            "Unlock Production Go-Live"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 8,
+      "name": "Production Go-Live",
+      "workstream": "Go-Live",
+      "purpose": "Cut over production with safety controls and post-launch monitoring",
+      "tasks": [
+        {
+          "name": "Final go/no-go review",
+          "assignee": "Keren",
+          "collaborators": ["Joel", "Avi", "Angelo"],
+          "effort": "S",
+          "priority": "P0",
+          "requires_stakeholder_decision": "Yes",
+          "crm_environment": "Production",
+          "depends_on": "UAT passed — sales and ops sign-off",
+          "subtasks": [
+            "Confirm staging census gap within threshold",
+            "Confirm rollback plan documented",
+            "Confirm comms sent to sales + ops + intake",
+            "Go/no-go decision recorded"
+          ]
+        },
+        {
+          "name": "Schedule and communicate migration window",
+          "assignee": "Leah",
+          "collaborators": ["Keren", "Avi"],
+          "effort": "S",
+          "priority": "P0",
+          "crm_environment": "Production",
+          "subtasks": [
+            "Announce window to sales, intake, ops, leadership",
+            "Document what changes for each team on day 1",
+            "Provide support channel during cutover"
+          ]
+        },
+        {
+          "name": "Execute production remediation batch",
+          "assignee": "Avi",
+          "effort": "L",
+          "priority": "P0",
+          "crm_environment": "Production",
+          "subtasks": [
+            "Run validated migration script from staging",
+            "Process manual review queue with Keren + Joel",
+            "Verify sample records post-migration"
+          ]
+        },
+        {
+          "name": "Enable production rules and automations",
+          "assignee": "Avi",
+          "effort": "M",
+          "priority": "P0",
+          "crm_environment": "Production",
+          "subtasks": [
+            "Enable validation rules",
+            "Enable auth save → recalc automation",
+            "Enable nightly auth expiry alerts",
+            "Enable SLA timers"
+          ]
+        },
+        {
+          "name": "Switch production dashboards and list views",
+          "assignee": "Avi",
+          "effort": "M",
+          "priority": "P0",
+          "crm_environment": "Production",
+          "subtasks": [
+            "Activate new census widget",
+            "Activate new Leads/Referral list",
+            "Hide legacy authorized counts from leadership default view",
+            "Archive old dashboard definitions (do not delete)"
+          ]
+        },
+        {
+          "name": "Post-cutover census validation",
+          "assignee": "Keren",
+          "collaborators": ["Avi"],
+          "effort": "S",
+          "priority": "P0",
+          "baseline_metric": "~1,960 → ~1,200–1,300 confirmed",
+          "crm_environment": "Production",
+          "subtasks": [
+            "Re-run census gap audit on production",
+            "Compare to baseline and staging results",
+            "Document final counts for leadership"
+          ]
+        },
+        {
+          "name": "Production live — census gap closed",
+          "assignee": "Avi",
+          "collaborators": ["Keren"],
+          "effort": "S",
+          "priority": "P0",
+          "milestone": true,
+          "blocker": "Yes",
+          "crm_environment": "Production",
+          "subtasks": [
+            "Leadership briefed on new census number",
+            "Old authorized dashboard retired from default views",
+            "Begin 2-week hypercare monitoring"
+          ]
+        },
+        {
+          "name": "Hypercare monitoring (2 weeks)",
+          "assignee": "Avi",
+          "collaborators": ["Keren", "Angelo"],
+          "effort": "M",
+          "priority": "P1",
+          "crm_environment": "Production",
+          "subtasks": [
+            "Monitor auth recalc — no Ntelekos regressions",
+            "Monitor SLA alert volume and false positives",
+            "Daily check-in with sales and intake for label confusion",
+            "Log and triage defects"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 9,
+      "name": "Documentation, Training & NY Playbook",
+      "workstream": "Training",
+      "purpose": "Make the new model stick operationally",
+      "tasks": [
+        {
+          "name": "Publish NY Status Framework v1 (canonical)",
+          "assignee": "Keren",
+          "collaborators": ["Joel"],
+          "effort": "M",
+          "priority": "P1",
+          "depends_on": "Production live — census gap closed",
+          "subtasks": [
+            "Final glossary and lifecycle diagram",
+            "Per-team quick reference: sales, intake, ops, leadership",
+            "Edge case handling guide",
+            "Store in Teams + repo"
+          ]
+        },
+        {
+          "name": "Update department playbooks",
+          "assignee": "Joel",
+          "collaborators": ["Keren"],
+          "effort": "L",
+          "priority": "P1",
+          "subtasks": [
+            "Intake playbook — replace Pre-Intake with On Hold workflow",
+            "Sales playbook — referral sub-status and drop reasons",
+            "Ops playbook — auth expiry and non-authorized active handling",
+            "Angela playbook revision"
+          ]
+        },
+        {
+          "name": "Conduct team training sessions",
+          "assignee": "Keren",
+          "collaborators": ["Joel", "Angelo"],
+          "effort": "M",
+          "priority": "P1",
+          "subtasks": [
+            "Enrollment specialists — 45 min: Qualifying vs Referral in Progress, NIA filters, dropped cases",
+            "Sales training — 30 min: pipeline stages and short-term icon",
+            "Ops training — 30 min: census, auth expiry, LOB drop vs discharge, multi-LOB view",
+            "Record sessions for onboarding"
+          ]
+        },
+        {
+          "name": "Deprecate legacy fields (write-block only)",
+          "assignee": "Avi",
+          "effort": "M",
+          "priority": "P2",
+          "crm_environment": "Staging",
+          "subtasks": [
+            "Write-block deprecated EpisodeStatus values",
+            "Write-block LeadStatus Converted",
+            "Hide legacy Patient status picklists permanently",
+            "Plan intake field reduction (130 → target; no deletion yet)"
+          ]
+        },
+        {
+          "name": "Florida delta checklist",
+          "assignee": "Keren",
+          "collaborators": ["Joel"],
+          "effort": "M",
+          "priority": "P3",
+          "requires_stakeholder_decision": "Yes",
+          "subtasks": [
+            "Document NY vs FL CRM differences",
+            "Identify which status rules transfer unchanged",
+            "Note LeadTrap/Faith Healthcare integration (crm/leadtrap/)",
+            "Estimate FL adaptation effort"
+          ]
+        }
+      ]
+    },
+    {
+      "order": 10,
+      "name": "Growth Enablement",
+      "workstream": "Growth",
+      "purpose": "Connect growth systems only after CRM logic is trustworthy",
+      "tasks": [
+        {
+          "name": "Confirm growth readiness prerequisites",
+          "assignee": "Keren",
+          "effort": "S",
+          "priority": "P2",
+          "depends_on": "Production live — census gap closed",
+          "subtasks": [
+            "Referral source field standardized and populated",
+            "Drop/discharge outcomes required and populated",
+            "Conversion reporting validated on 30-day cohort",
+            "No orphan authorized on growth-facing views"
+          ]
+        },
+        {
+          "name": "UTM and campaign attribution standards",
+          "assignee": "Keren",
+          "effort": "M",
+          "priority": "P2",
+          "subtasks": [
+            "Define required UTM parameters for web forms",
+            "Map to Episode source fields in CRM",
+            "Document naming convention for campaigns and events"
+          ]
+        },
+        {
+          "name": "Website forms → CRM integration audit",
+          "assignee": "Avi",
+          "collaborators": ["Keren"],
+          "effort": "M",
+          "priority": "P2",
+          "subtasks": [
+            "Confirm new leads land as Referral / New Referral",
+            "Confirm source attribution preserved",
+            "Test end-to-end from form submit to Leads list"
+          ]
+        },
+        {
+          "name": "LeadTrap / Ava integration",
+          "assignee": "Keren",
+          "effort": "L",
+          "priority": "P3",
+          "subtasks": [
+            "Map bot qualification to Referral sub-status transitions",
+            "Ensure drop reasons flow to Episode.outcome",
+            "Conversion reporting: qualified referral → active patient"
+          ]
+        },
+        {
+          "name": "Meta / paid social attribution",
+          "assignee": "Keren",
+          "effort": "M",
+          "priority": "P3",
+          "subtasks": [
+            "Connect campaign IDs to referral source",
+            "Build drop reason by campaign report",
+            "Define retargeting audience rules (exclude active patients)"
+          ]
+        },
+        {
+          "name": "Referral partner tracking (doctors, case managers)",
+          "assignee": "Keren",
+          "collaborators": ["Angelo"],
+          "effort": "M",
+          "priority": "P2",
+          "subtasks": [
+            "Standardize referral_partner field usage",
+            "Partner conversion and drop reason reporting",
+            "Geography trends by partner"
+          ]
+        },
+        {
+          "name": "Growth dashboard — qualified referral → active patient",
+          "assignee": "Avi",
+          "collaborators": ["Keren", "Angelo"],
+          "effort": "M",
+          "priority": "P2",
+          "subtasks": [
+            "Cohort conversion rate by source",
+            "Drop reason by source and LOB",
+            "LOB demand signal by source",
+            "Monthly growth review template for leadership"
+          ]
+        }
+      ]
+    }
+  ]
+}

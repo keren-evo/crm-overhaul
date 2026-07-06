@@ -2,7 +2,7 @@
 
 Copy-paste prompts for auditing Nexus/Link CRM during the **EVO CRM Status Label Overhaul Sprint** (Phase 0–1). Discovery only — no configuration changes.
 
-**Related artifacts:** [`audit/data-integrity-audit.sql`](audit/data-integrity-audit.sql), [`schema/enums.json`](schema/enums.json), [discovery session notes](../1-1-CRM%20Status%20Label%20Overhaul%20—%20Lead-to-Patient%20Workflow%20Discovery%20Session.md)
+**Related artifacts:** [`audit/data-integrity-audit.sql`](audit/data-integrity-audit.sql), [`schema/enums.json`](schema/enums.json), [discovery session notes](discovery/1-1-CRM-Discovery-Session.md)
 
 ## How to use
 

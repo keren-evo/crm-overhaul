@@ -1,0 +1,143 @@
+{
+  "version": "1.1.0",
+  "description": "Nexus/Link CRM Episode-centric migration map. Workshop-aligned pipeline Jul 2026. Run in staging first.",
+  "platform": {
+    "crm_url": "https://crm.linkhomecare.com/",
+    "master_object": "Episode",
+    "master_status_field": "status",
+    "master_picklist": "EpisodeStatus",
+    "pipeline_stage_field": "leadStage",
+    "pipeline_picklist": "LeadStatus",
+    "terminal_reason_field": "outcome",
+    "terminal_reason_picklist": "ReferralOutcome"
+  },
+  "workshop_pipeline_agreed": {
+    "progress_bar_stages": ["Lead", "Qualifying", "Referral in Progress", "Active", "Discharged"],
+    "terminal_pre_active": "Dropped Off",
+    "notes": "Dropped Off reachable anytime before Active. Short-term care parallel until authorized."
+  },
+  "current_picklists": {
+    "EpisodeStatus": ["New", "Lead", "Active", "Converted", "On Hold", "Dropped", "Discharged"],
+    "LeadStatus": ["— None —", "New", "In Progress", "Dropped Off", "Converted"]
+  },
+  "target_model": {
+    "master_status_values": ["REFERRAL", "ACTIVE", "DISCHARGED"],
+    "pipeline_stage_values": ["LEAD", "QUALIFYING", "REFERRAL_IN_PROGRESS", "DROPPED_OFF"],
+    "pipeline_labels": {
+      "LEAD": "Lead",
+      "QUALIFYING": "Qualifying",
+      "REFERRAL_IN_PROGRESS": "Referral in Progress",
+      "DROPPED_OFF": "Dropped Off"
+    },
+    "active_sub_statuses": ["ACTIVE_AUTHORIZED", "ACTIVE_NON_AUTHORIZED"],
+    "short_term_parallel": {
+      "enabled": true,
+      "ui": "icon_not_main_bar_until_authorized",
+      "lob_stages": ["IN_PROGRESS", "ACCEPTED", "STARTUP", "AUTHORIZED"],
+      "main_pipeline_active_when": "SHORT_TERM_AUTHORIZED"
+    }
+  },
+  "pipeline_stage_migration": {
+    "— None —": {
+      "target": "DERIVE_FROM_EPISODE_STATUS",
+      "manual_review": true
+    },
+    "New": {
+      "target": "LEAD",
+      "label": "Lead",
+      "manual_review": false
+    },
+    "In Progress": {
+      "target": "REFERRAL_IN_PROGRESS",
+      "label": "Referral in Progress",
+      "notes": "Workshop: replaces ambiguous In Progress when intake opened. If no intake, may map to QUALIFYING — manual review.",
+      "manual_review": "medium"
+    },
+    "Dropped Off": {
+      "target": "DROPPED_OFF",
+      "label": "Dropped Off",
+      "require_outcome": true,
+      "manual_review": false
+    },
+    "Converted": {
+      "target": "QUALIFYING",
+      "label": "Qualifying",
+      "retire_value": true,
+      "manual_review": true,
+      "notes": "Or Referral in Progress if intake already open"
+    }
+  },
+  "episode_status_migration": {
+    "New": {
+      "target_master": "REFERRAL",
+      "target_pipeline": "LEAD",
+      "manual_review": false
+    },
+    "Lead": {
+      "target_master": "REFERRAL",
+      "target_pipeline": "QUALIFYING",
+      "manual_review": "medium"
+    },
+    "Active": {
+      "target_master": "ACTIVE",
+      "target_sub_status": "COMPUTED_FROM_AUTH",
+      "manual_review": true
+    },
+    "Converted": {
+      "target_master": "REFERRAL",
+      "target_pipeline": "QUALIFYING",
+      "manual_review": true
+    },
+    "On Hold": {
+      "target_master": "REFERRAL",
+      "target_pipeline": "REFERRAL_IN_PROGRESS",
+      "hold_badge": true,
+      "manual_review": "medium"
+    },
+    "Dropped": {
+      "target_master": "REFERRAL",
+      "target_pipeline": "DROPPED_OFF",
+      "require_outcome": true,
+      "manual_review": "low_if_never_active"
+    },
+    "Discharged": {
+      "target_master": "DISCHARGED",
+      "require_outcome": true,
+      "manual_review": "low_if_was_active"
+    }
+  },
+  "drop_reason_categories_target": [
+    "NO_FOLLOW_UP",
+    "COMPETITOR",
+    "PAYER_DENIED",
+    "NIA_FAILED",
+    "PATIENT_DECLINED",
+    "NOT_ELIGIBLE",
+    "SHORT_TERM_OR_THIRD_PARTY",
+    "DOC_INCOMPLETE",
+    "OUT_OF_AREA",
+    "OTHER"
+  ],
+  "nia_rules": {
+    "fail_default": "DROPPED_OFF",
+    "reapply_wait_days": 180,
+    "reapply_wait_confirmed": false,
+    "notes": "Joel to confirm 180 days vs 6 months"
+  },
+  "manual_review_queries": [
+    "Episode.status = Converted",
+    "Episode.status = Active AND no valid Authorization",
+    "leadStage = In Progress AND no open Intake",
+    "Episode.status = Discharged AND never was Active",
+    "Episode.status = Dropped AND had Active history",
+    "Short-term authorized but main status not Active"
+  ],
+  "automation_requirements": [
+    "Authorization save → recalc Active sub-status + LOB timeline",
+    "Nightly auth expiry → Active Non-Authorized alert",
+    "Require outcome on Dropped Off and Discharged",
+    "Short-term icon independent until ST authorized",
+    "NIA fail → Dropped Off + recycle date for reapply queue"
+  ],
+  "implementation_gate": "CRM build on hold until glossary + flowcharts signed; then one-pass update with Avi team"
+}

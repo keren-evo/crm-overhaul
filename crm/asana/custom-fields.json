@@ -1,36 +1,50 @@
 {
-  "project": "EVO CRM Status Label Overhaul Sprint",
-  "instructions": "Create at Project → Customize → Fields. Names must match exactly for CSV import.",
+  "project": "CRM Status Architecture Rebuild",
+  "version": "2.0.0",
+  "updated": "2026-07-02",
+  "instructions": "Create at Project → Customize → Fields. Names must match CSV exactly.",
   "fields": [
     {
-      "name": "Phase",
+      "name": "Workstream",
       "type": "single_select",
-      "options": ["0", "1", "2", "3", "4", "5", "6", "7", "Ongoing"],
-      "description": "Sprint phase. Mutually exclusive per task."
+      "options": ["Governance", "Definitions", "Baseline", "Architecture", "Build", "Remediation", "Dashboards", "Go-Live", "Training", "Growth"],
+      "description": "Logical work area — replaces phase numbers"
+    },
+    {
+      "name": "Decision Gate",
+      "type": "single_select",
+      "options": ["Yes", "No"],
+      "description": "Yes when task is a formal sign-off or go/no-go gate"
     },
     {
       "name": "Blocker",
       "type": "single_select",
       "options": ["Yes", "No"],
-      "description": "Yes for Phase 0 gates and phase milestones until complete."
+      "description": "Yes for milestones and tasks that block downstream work"
     },
     {
       "name": "Requires Stakeholder Decision",
       "type": "single_select",
       "options": ["Yes", "No"],
-      "description": "Yes when Joel/Speaker 1 must decide before work proceeds."
+      "description": "Yes when Joel, Angelo, or leadership must decide before proceeding"
     },
     {
       "name": "CRM Environment",
       "type": "single_select",
       "options": ["Discovery", "Staging", "Production"],
-      "description": "Where this task is executed."
+      "description": "Where this task is executed"
     },
     {
-      "name": "Audit Section",
+      "name": "Effort",
       "type": "single_select",
-      "options": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "0-14"],
-      "description": "Maps to crm/audit/data-integrity-audit.sql sections. Phase 1 only."
+      "options": ["S", "M", "L"],
+      "description": "S = hours, M = days, L = week+"
+    },
+    {
+      "name": "Priority",
+      "type": "single_select",
+      "options": ["P0", "P1", "P2", "P3"],
+      "description": "P0 = critical path, P3 = post-launch"
     },
     {
       "name": "Baseline / Target Metric",
@@ -39,94 +53,15 @@
     }
   ],
   "bulk_defaults_by_section": {
-    "Phase 0 — Stakeholder Sign-Off": {
-      "Phase": "0",
-      "Blocker": "Yes",
-      "Requires Stakeholder Decision": "Yes",
-      "CRM Environment": "Discovery"
-    },
-    "Phase 1 — Access & Baseline Audit": {
-      "Phase": "1",
-      "Blocker": "No",
-      "Requires Stakeholder Decision": "No",
-      "CRM Environment": "Discovery"
-    },
-    "Phase 1 milestone only": {
-      "Phase": "1",
-      "Blocker": "Yes",
-      "Requires Stakeholder Decision": "No",
-      "CRM Environment": "Discovery"
-    },
-    "Phase 2 — Schema Design (Staging)": {
-      "Phase": "2",
-      "Blocker": "No",
-      "Requires Stakeholder Decision": "No",
-      "CRM Environment": "Staging"
-    },
-    "Phase 3 — Data Remediation (Staging)": {
-      "Phase": "3",
-      "Blocker": "No",
-      "Requires Stakeholder Decision": "No",
-      "CRM Environment": "Staging"
-    },
-    "Phase 3 milestone only": {
-      "Phase": "3",
-      "Blocker": "Yes",
-      "Requires Stakeholder Decision": "No",
-      "CRM Environment": "Staging"
-    },
-    "Phase 4 — Validation & Automation (Staging)": {
-      "Phase": "4",
-      "Blocker": "No",
-      "Requires Stakeholder Decision": "No",
-      "CRM Environment": "Staging"
-    },
-    "Phase 5 — Dashboard Rebuild": {
-      "Phase": "5",
-      "Blocker": "No",
-      "Requires Stakeholder Decision": "No",
-      "CRM Environment": "Staging"
-    },
-    "Phase 6 — Production Cutover": {
-      "Phase": "6",
-      "Blocker": "No",
-      "Requires Stakeholder Decision": "No",
-      "CRM Environment": "Production"
-    },
-    "Phase 7 — Cleanup & Florida Handoff": {
-      "Phase": "7",
-      "Blocker": "No",
-      "Requires Stakeholder Decision": "No",
-      "CRM Environment": "Discovery"
-    },
-    "Ongoing — Discovery (Keren)": {
-      "Phase": "Ongoing",
-      "Blocker": "No",
-      "Requires Stakeholder Decision": "No",
-      "CRM Environment": "Discovery"
-    }
-  },
-  "exceptions": [
-    {
-      "task": "Ops sign-off on sample of 50 remediated records",
-      "Requires Stakeholder Decision": "Yes"
-    },
-    {
-      "task": "UAT with Angelo (sales) and ops leads — no multi-click drill-down needed",
-      "Requires Stakeholder Decision": "Yes"
-    },
-    {
-      "task": "Final stakeholder sign-off on staging UAT results",
-      "Blocker": "Yes",
-      "Requires Stakeholder Decision": "Yes"
-    },
-    {
-      "task": "Post-cutover: re-run audit Section 9 — confirm census gap closed",
-      "Blocker": "Yes"
-    },
-    {
-      "task": "Create Florida delta checklist (NY vs FL differences)",
-      "Requires Stakeholder Decision": "Yes"
-    }
-  ]
+    "Governance & Project Setup": { "Workstream": "Governance", "CRM Environment": "Discovery", "Priority": "P0" },
+    "Business Definitions & Sign-Off": { "Workstream": "Definitions", "CRM Environment": "Discovery", "Priority": "P0", "Requires Stakeholder Decision": "Yes" },
+    "Current State & Data Baseline": { "Workstream": "Baseline", "CRM Environment": "Discovery", "Priority": "P0" },
+    "Target Architecture & Migration Design": { "Workstream": "Architecture", "CRM Environment": "Discovery", "Priority": "P0" },
+    "CRM Build — Staging": { "Workstream": "Build", "CRM Environment": "Staging", "Priority": "P0" },
+    "Data Remediation & QA": { "Workstream": "Remediation", "CRM Environment": "Staging", "Priority": "P0" },
+    "Dashboards & User Acceptance": { "Workstream": "Dashboards", "CRM Environment": "Staging", "Priority": "P0" },
+    "Production Go-Live": { "Workstream": "Go-Live", "CRM Environment": "Production", "Priority": "P0" },
+    "Documentation, Training & NY Playbook": { "Workstream": "Training", "CRM Environment": "Discovery", "Priority": "P1" },
+    "Growth Enablement": { "Workstream": "Growth", "CRM Environment": "Discovery", "Priority": "P2" }
+  }
 }
