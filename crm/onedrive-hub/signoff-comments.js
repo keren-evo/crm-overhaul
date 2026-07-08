@@ -70,7 +70,10 @@
       try {
         if (ta.value) {
           localStorage.setItem(storageKey(docId, rowId), ta.value);
-          localStorage.setItem(storageKey(docId, rowId + ":label"), label);
+          localStorage.setItem(
+            storageKey(docId, rowId + ":label"),
+            ta.dataset.rowLabel || label || ""
+          );
         } else {
           localStorage.removeItem(storageKey(docId, rowId));
           localStorage.removeItem(storageKey(docId, rowId + ":label"));
@@ -321,9 +324,13 @@
     try {
       for (var i = 0; i < localStorage.length; i++) {
         var key = localStorage.key(i);
-        if (key && key.indexOf(STORAGE_PREFIX) === 0 && key !== REVIEWER_KEY) {
-          if ((localStorage.getItem(key) || "").trim()) n++;
-        }
+        if (!key || key.indexOf(STORAGE_PREFIX) !== 0 || key === REVIEWER_KEY) continue;
+        var rest = key.slice(STORAGE_PREFIX.length);
+        var sep = rest.indexOf(":");
+        if (sep === -1) continue;
+        var fieldId = rest.slice(sep + 1);
+        if (fieldId.endsWith(":label")) continue;
+        if ((localStorage.getItem(key) || "").trim()) n++;
       }
     } catch (e) {}
     return n;
