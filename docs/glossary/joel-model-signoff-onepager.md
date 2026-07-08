@@ -2,9 +2,9 @@
 
 **For:** Joel Schlanger (ops), Leah Adelman (coordination)  
 **From:** Keren · Link Homecare CRM Status Framework  
-**Purpose:** Approve the **simple idea** so Avi can start the one-pass CRM update  
+**Purpose:** Approve the **patient status framework** for CRM implementation  
 **Problem (already agreed):** Screens and ops don’t share language; authorized ≠ active census  
-**Status:** Ready for sign-off — no Asana required  
+**Status:** Ready for sign-off  
 
 **Full glossary:** [`glossary-pipeline-v2.md`](../glossary-pipeline-v2.md)  
 **Flowcharts:** [`flowcharts/pipeline-flowcharts-v1.md`](../flowcharts/pipeline-flowcharts-v1.md)  
@@ -83,12 +83,3 @@ By signing, this one-pager (and companion glossary / flowcharts) is the **busine
 | CRM build *(after tech review)* | Avi | | |
 
 ---
-
-## After you sign
-
-| Who | Does |
-|-----|------|
-| Joel | Schedule Avi implementation review |
-| Leah | Coordinate calendar + team follow-up |
-| Keren | Hand Avi the signed glossary + flowcharts + drop reasons |
-| Avi | One-pass build — only after this gate |

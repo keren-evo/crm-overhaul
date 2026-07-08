@@ -6,11 +6,10 @@ Executable specs for the Lead → Referral → Intake → Patient lifecycle over
 
 | Path | Purpose |
 |------|---------|
-| **`glossary/joel-model-signoff-onepager.md`** | **Send first** — plain-language freeze of Joel’s path |
-| **`glossary/teams-ask-glossary-signoff.md`** | Copy-paste Teams/email ask for approval |
-| **`glossary-pipeline-v2.md`** | Full status terminology (companion to one-pager) |
+| **`glossary/joel-model-signoff-onepager.md`** | Plain-language patient path summary |
+| **`glossary-pipeline-v2.md`** | Full status terminology |
 | **`flowcharts/pipeline-flowcharts-v1.md`** | Main pipeline + short-term icon + multi-LOB Mermaid |
-| **`glossary/drop-reasons-for-signoff.md`** | 10 drop categories — Joel sign-off sheet |
+| **`glossary/drop-reasons-for-signoff.md`** | 10 drop categories — sign-off sheet |
 | `meeting-notes/2026-07-pipeline-alignment.md` | Workshop capture |
 | `Link-Homecare-CRM-Status-Architecture-Execution-Workspace.md` | Full execution workspace |
 

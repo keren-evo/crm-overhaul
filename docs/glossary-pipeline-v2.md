@@ -8,8 +8,7 @@
 **Last updated:** July 6, 2026
 
 **Companion artifacts:**
-- **Leadership one-pager (send first):** [`glossary/joel-model-signoff-onepager.md`](glossary/joel-model-signoff-onepager.md)
-- **Teams/email ask:** [`glossary/teams-ask-glossary-signoff.md`](glossary/teams-ask-glossary-signoff.md)
+- **One-pager:** [`glossary/joel-model-signoff-onepager.md`](glossary/joel-model-signoff-onepager.md)
 - Flowcharts: [`flowcharts/pipeline-flowcharts-v1.md`](flowcharts/pipeline-flowcharts-v1.md)
 - Drop reasons (Joel sign-off): [`glossary/drop-reasons-for-signoff.md`](glossary/drop-reasons-for-signoff.md)
 - Meeting notes: [`meeting-notes/2026-07-pipeline-alignment.md`](meeting-notes/2026-07-pipeline-alignment.md)
@@ -332,7 +331,6 @@ Business labels above map to Nexus **Episode** object. Proposed split:
 - [ ] Joel: Sign [`glossary/drop-reasons-for-signoff.md`](glossary/drop-reasons-for-signoff.md)
 - [ ] Joel: Confirm master bar precedence when multiple LOBs at different stages
 - [ ] Joel: Confirm Active requires **confirmed SOC**
-- [ ] Leah: Acknowledge gate — scheduling Avi meeting only after sign-off below
 - [ ] Avi: Technical review — field mapping, one-pass migration plan
 
 ---
