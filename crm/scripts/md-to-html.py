@@ -434,7 +434,9 @@ SIGNOFF_SCRIPT = """
       if (!confirm("Clear all comments on this page?")) return;
       article.querySelectorAll("textarea.signoff-comment, textarea.section-comment").forEach(function (ta) {
         ta.value = "";
-        var id = ta.dataset.rowId || ("section:" + (ta.id || "").replace(/^sec-/, ""));
+        var id = ta.dataset.rowId;
+        if (!id && ta.id) id = "section:" + ta.id.replace(/^sec-/, "");
+        if (!id) return;
         try { localStorage.removeItem(storageKey(id)); } catch (e) {}
       });
       updateCount();
