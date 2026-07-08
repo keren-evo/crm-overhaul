@@ -18,11 +18,11 @@
 
 ## Sign-off gate
 
-| Order | Role | Name | Signed | Date |
-|-------|------|------|--------|------|
-| 1 | Operations | Joel Schlanger | ☐ | |
-| 2 | CRM implementation | Avi | ☐ | |
-| 3 | **CEO** *(final)* | **Hillel** | ☐ | |
+| Order | Role | Name | Agree? | Comments |
+|-------|------|------|--------|----------|
+| 1 | Operations | Joel Schlanger | ☐ Yes | |
+| 2 | CRM implementation | Avi | ☐ Yes | |
+| 3 | **CEO** *(final)* | **Hillel** | ☐ Yes | |
 
 **When the gate is complete:** Joel schedules Avi’s review; cc Leah; Hillel gives final executive approval. One-pass CRM update (labels + filters + backfill) may proceed.
 
@@ -183,6 +183,7 @@ Example: LTC = Referral in Progress (pending NIA); Short-term = Active via icon 
 
 ---
 
+## 2. Active sub-status chips (Authorized)
 
 When master stage = **Active**, show one chip:
 
@@ -337,12 +338,6 @@ Business labels above map to Nexus **Episode** object. Proposed split:
 
 ---
 
-## Approval
+*Business source of truth once the sign-off gate above is complete.*
 
-By signing, reviewers agree this glossary is the business source of truth for CRM status implementation.
-
-| Signatory | Signature / initials | Date |
-|-----------|---------------------|------|
-| Joel Schlanger (ops) | | |
-| Avi (CRM implementation) | | |
-| Hillel (CEO — final) | | |
+---

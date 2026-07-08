@@ -66,6 +66,8 @@ Copy-Item (Join-Path $CrmSource "onedrive-hub\index.html") (Join-Path $SiteRoot 
 Copy-Item (Join-Path $CrmSource "onedrive-hub\hub.html") (Join-Path $SiteRoot "hub.html") -Force
 Copy-Item (Join-Path $CrmSource "onedrive-hub\signoff-comments.js") (Join-Path $SiteRoot "signoff-comments.js") -Force
 Copy-Item (Join-Path $CrmSource "onedrive-hub\signoff-comments.css") (Join-Path $SiteRoot "signoff-comments.css") -Force
+Copy-Item (Join-Path $CrmSource "onedrive-hub\glossary-pipeline-interactive.js") (Join-Path $SiteRoot "glossary-pipeline-interactive.js") -Force
+Copy-Item (Join-Path $CrmSource "onedrive-hub\glossary-pipeline-interactive.css") (Join-Path $SiteRoot "glossary-pipeline-interactive.css") -Force
 New-Item -ItemType File -Force -Path (Join-Path $SiteRoot ".nojekyll") | Out-Null
 
 Write-Host "Converting markdown to styled HTML..."

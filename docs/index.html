@@ -4,211 +4,274 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CRM Sign-Off Package — Link Homecare</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="signoff-comments.css" />
   <style>
     :root {
-      --bg: #f4f6f9;
-      --card: #fff;
-      --text: #172033;
-      --muted: #5c6578;
-      --accent: #0f766e;
-      --accent-light: #e6f4f2;
-      --border: #d8dee9;
-      --gate: #b45309;
+      --bg: #f5f3ff;
+      --card: #ffffff;
+      --text: #1f2440;
+      --muted: #667085;
+      --accent: #7c3aed;
+      --accent-dark: #5b21b6;
+      --accent-light: #f3e8ff;
+      --border: #ddd6fe;
+      --border-soft: #ece7ff;
+      --shadow: 0 18px 45px rgba(91, 33, 182, 0.10);
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      font: 16px/1.55 "Segoe UI", system-ui, sans-serif;
+      font: 16px/1.55 "Inter", "Segoe UI", system-ui, sans-serif;
       background: var(--bg);
       color: var(--text);
     }
-    header {
-      background: linear-gradient(135deg, #0f766e 0%, #134e4a 100%);
-      color: #fff;
-      padding: 2rem 1.5rem 2.5rem;
-    }
-    header h1 { margin: 0 0 0.35rem; font-size: 1.65rem; font-weight: 600; }
-    header p { margin: 0; opacity: 0.92; max-width: 52rem; }
-    .gate {
-      margin-top: 1rem;
-      padding: 0.75rem 1rem;
-      background: rgba(255,255,255,0.15);
-      border-radius: 8px;
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-    .path {
-      margin-top: 1rem;
-      padding: 0.65rem 1rem;
-      background: rgba(0,0,0,0.12);
-      border-radius: 8px;
-      font-family: Consolas, "SF Mono", monospace;
-      font-size: 0.88rem;
-      line-height: 1.6;
-    }
-    main { max-width: 720px; margin: -1.25rem auto 3rem; padding: 0 1rem; }
-    section {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.25rem 1.35rem;
-      margin-bottom: 1rem;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-    }
-    h2 {
-      margin: 0 0 0.85rem;
-      font-size: 1.05rem;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      font-weight: 700;
-    }
-    ul { list-style: none; margin: 0; padding: 0; }
-    li { margin: 0.35rem 0; }
-    a.doc {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.65rem;
-      padding: 0.85rem 1rem;
-      border-radius: 8px;
+    a {
+      color: var(--accent-dark);
       text-decoration: none;
-      color: var(--text);
-      border: 1px solid var(--border);
-      transition: background 0.15s, border-color 0.15s;
     }
-    a.doc:hover {
-      background: var(--accent-light);
-      border-color: #b8ddd8;
+    a:hover { text-decoration: underline; }
+    .hero {
+      background: linear-gradient(135deg, #6d28d9 0%, #7c3aed 55%, #5b21b6 100%);
+      color: #fff;
+      padding: 0.9rem 1rem 1rem;
     }
-    a.doc.primary {
-      border-color: #86efac;
-      background: #f0fdf4;
+    .hero-inner,
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
     }
-    a.doc strong { display: block; color: #0d5c56; font-size: 1.05rem; }
-    a.doc span { font-size: 0.88rem; color: var(--muted); margin-top: 0.2rem; }
-    .badge {
-      font-size: 0.7rem;
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 320px);
+      gap: 0.85rem 1rem;
+      align-items: end;
+    }
+    .hero-inner h1 {
+      margin: 0;
+      font-size: 1.05rem;
+      line-height: 1.2;
+    }
+    .hero-copy {
+      display: grid;
+      gap: 0.28rem;
+    }
+    .hero-status {
+      font-size: 0.84rem;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.88);
+    }
+    .hero-status-label {
       font-weight: 700;
-      text-transform: uppercase;
-      padding: 0.2rem 0.5rem;
-      border-radius: 4px;
-      background: var(--accent-light);
-      color: var(--accent);
-      flex-shrink: 0;
-      margin-top: 0.2rem;
     }
-    .badge.sign { background: #fef3c7; color: var(--gate); }
-    .badge.html { background: #dbeafe; color: #1d4ed8; }
-    .steps {
-      margin: 0;
-      padding-left: 1.25rem;
-      color: var(--text);
-      font-size: 0.95rem;
+    .hero-reviewer {
+      padding: 0.7rem 0.8rem;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.18);
     }
-    .steps li { margin: 0.5rem 0; }
-    .steps strong { color: #0d5c56; }
-    .rules {
+    .hero-reviewer-title {
+      margin: 0 0 0.15rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .hero-reviewer-copy {
+      margin: 0 0 0.55rem;
+      font-size: 0.79rem;
+      line-height: 1.45;
+      opacity: 0.9;
+    }
+    main {
+      margin-top: -0.35rem;
+      padding: 0 1rem 2rem;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border-soft);
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(91, 33, 182, 0.07);
+      margin-bottom: 1rem;
+    }
+    .glossary-head h2 {
       margin: 0;
-      padding-left: 1.25rem;
+      font-size: 1.05rem;
+      color: var(--accent-dark);
+    }
+    .package-comments {
+      margin-top: 0.9rem;
+      padding: 0.95rem 1rem;
+      border-radius: 14px;
+      background: linear-gradient(180deg, #faf7ff, #ffffff);
+      border: 1px solid var(--border-soft);
+    }
+    .hero-reviewer .package-comments {
+      margin-top: 0;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+    }
+    .hero-reviewer .reviewer-field {
+      margin-bottom: 0.45rem;
+    }
+    .hero-reviewer .reviewer-field label,
+    .hero-reviewer .signoff-hint,
+    .hero-reviewer #package-comment-count,
+    .hero-reviewer #package-save-status {
+      color: #fff;
+    }
+    .hero-reviewer .reviewer-field label {
+      font-size: 0.78rem;
+      opacity: 0.9;
+    }
+    .hero-reviewer .reviewer-field input {
+      min-height: 38px;
+      border: 1px solid rgba(255,255,255,0.28);
+      background: rgba(255,255,255,0.96);
+    }
+    .hero-reviewer .signoff-hint,
+    .hero-reviewer #package-comment-count {
+      font-size: 0.78rem;
+      opacity: 0.88;
+    }
+    .hero-reviewer .signoff-hint {
+      display: none;
+    }
+    .hero-reviewer #package-comment-count {
+      display: none;
+    }
+    .hero-reviewer #package-save-status {
+      display: none;
+    }
+    .hero-reviewer #copy-all-comments-btn {
+      display: none;
+    }
+    .glossary-shell {
+      overflow: hidden;
+    }
+    .glossary-head {
+      padding: 0.9rem 1rem 0.8rem;
+      border-bottom: 1px solid var(--border-soft);
+      background: linear-gradient(180deg, #faf7ff, #ffffff);
+    }
+    .glossary-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem 0.65rem;
+      align-items: center;
+      margin-top: 0.35rem;
+      font-size: 0.84rem;
       color: var(--muted);
-      font-size: 0.92rem;
     }
-    .rules li { margin: 0.4rem 0; }
+    .glossary-note {
+      display: none;
+    }
+    .glossary-frame {
+      width: 100%;
+      height: 1120px;
+      border: 0;
+      display: block;
+      background: #fff;
+    }
+    .utility-row {
+      padding: 0.8rem 1rem 0.95rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.75rem 1rem;
+      align-items: center;
+      border-top: 1px solid var(--border-soft);
+      background: #fff;
+    }
+    .utility-links,
+    .utility-rules {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1rem;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
     footer {
       text-align: center;
       color: var(--muted);
-      font-size: 0.85rem;
-      padding: 1rem;
+      font-size: 0.84rem;
+      padding: 0 1rem 1.25rem;
+    }
+    @media (max-width: 760px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+      main {
+        padding: 0 0.75rem 1.5rem;
+      }
+      .glossary-head,
+      .utility-row {
+        padding: 0.9rem;
+      }
+      .glossary-frame {
+        height: 840px;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>CRM Sign-Off Package</h1>
-    <p>Link Homecare · Patient status framework · Pending leadership review</p>
-    <div class="gate">
-      <strong>Status:</strong> Pending sign-off — <strong>Joel</strong> → <strong>Avi</strong> → <strong>Hillel</strong> (CEO) · cc Leah.
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <h1>Pipeline glossary review</h1>
+        <div class="hero-status"><span class="hero-status-label">Pending sign-off:</span> Joel → Avi → Hillel</div>
+      </div>
+      <div class="hero-reviewer">
+        <p class="hero-reviewer-title">Reviewer</p>
+        <p class="hero-reviewer-copy">Enter your name, then review in the glossary below. Comments autosave.</p>
+        <div class="package-comments">
+          <div class="reviewer-field">
+            <label for="reviewer-name">Your name</label>
+            <input id="reviewer-name" type="text" placeholder="e.g. Joel Schlanger" autocomplete="name" />
+          </div>
+          <span class="signoff-hint">Comments autosave as you type.</span>
+          <span id="package-save-status" class="save-status" aria-live="polite"></span>
+          <span id="package-comment-count">No comments saved yet</span>
+        </div>
+      </div>
     </div>
-    <div class="path">Lead → Qualifying → Referral in Progress → Active → Discharged<br>↘ Dropped Off if they never become Active</div>
   </header>
 
   <main>
-    <section>
-      <h2>How to review</h2>
-      <ol class="steps">
-        <li><strong>Enter your name</strong> below.</li>
-        <li><strong>Open each document</strong> — type in the <strong>Comments</strong> column on any row you want to change. Comments <strong>save automatically</strong> as you type in this browser.</li>
-      </ol>
-      <p style="margin:0.75rem 0 0;font-size:0.88rem;color:var(--muted)">Start with the one-pager if you only have a few minutes. When you're done, your comments stay saved here — no extra steps needed.</p>
-    </section>
-
-    <section>
-      <h2>Your progress</h2>
-      <div class="package-comments">
-        <div class="reviewer-field">
-          <label for="reviewer-name">Your name</label>
-          <input id="reviewer-name" type="text" placeholder="e.g. Joel Schlanger" autocomplete="name" />
+    <section class="card glossary-shell">
+      <div class="glossary-head">
+        <div>
+          <h2>Pipeline glossary</h2>
+          <div class="glossary-links">
+            <a href="glossary-pipeline-v2.html">Open standalone</a>
+            <span>•</span>
+            <a href="glossary/drop-reasons-for-signoff.html">Drop reasons</a>
+            <span>•</span>
+            <a href="glossary/joel-model-signoff-onepager.html">Backup one-pager</a>
+          </div>
         </div>
-        <span class="signoff-hint">Comments autosave as you type.</span>
-        <span id="package-save-status" class="save-status" aria-live="polite"></span>
-        <span id="package-comment-count">No comments saved yet</span>
-        <button type="button" id="copy-all-comments-btn" title="Optional — paste into Teams or email">Copy all comments</button>
       </div>
-    </section>
-
-    <section>
-      <h2>Documents</h2>
-      <ul>
-        <li>
-          <a class="doc primary" href="glossary/joel-model-signoff-onepager.html">
-            <span class="badge sign">1</span>
-            <div>
-              <strong>Patient path — one-pager</strong>
-              <span>Start here · ~3 min</span>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a class="doc" href="glossary-pipeline-v2.html">
-            <span class="badge sign">2</span>
-            <div>
-              <strong>Full glossary</strong>
-              <span>Reference if you need detail</span>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a class="doc" href="flowcharts/pipeline-flowcharts-v1.html">
-            <span class="badge html">3</span>
-            <div>
-              <strong>Pipeline flowcharts</strong>
-              <span>Visual walkthrough</span>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a class="doc" href="glossary/drop-reasons-for-signoff.html">
-            <span class="badge sign">4</span>
-            <div>
-              <strong>Drop reasons</strong>
-              <span>10 categories when a patient never starts care</span>
-            </div>
-          </a>
-        </li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Two rules to keep</h2>
-      <ol class="rules">
-        <li><strong>Authorized ≠ Active.</strong> Authorized = payer approved. Active = we are giving care.</li>
-        <li><strong>Dropped Off ≠ Discharged.</strong> Dropped = never started. Discharged = was in care, then left.</li>
-      </ol>
+      <iframe
+        class="glossary-frame"
+        src="glossary-pipeline-v2.html#glossary-pipeline-explorer"
+        title="Pipeline glossary preview"
+        loading="lazy"
+      ></iframe>
+      <div class="utility-row">
+        <div class="utility-rules">
+          <span>Authorized != Active</span>
+          <span>Dropped Off != Discharged</span>
+        </div>
+        <div class="utility-links">
+          <span>Comments autosave locally.</span>
+        </div>
+      </div>
     </section>
   </main>
 
-  <footer>Link Homecare CRM Status Framework · July 2026</footer>
+  <footer>Link Homecare CRM Status Framework - July 2026</footer>
   <script src="signoff-comments.js"></script>
   <script>document.addEventListener("DOMContentLoaded", function () { LinkCrmSignoff.initPackage(); });</script>
 </body>

@@ -127,8 +127,27 @@
     });
   }
 
+  function sectionHasCommentTable(h2) {
+    var el = h2.nextElementSibling;
+    while (el && el.tagName !== "H2") {
+      if (el.tagName === "TABLE") return true;
+      el = el.nextElementSibling;
+    }
+    return false;
+  }
+
+  function shouldSkipSection(h2) {
+    var title = (h2.textContent || "").trim().toLowerCase();
+    if (h2.closest && h2.closest("#glossary-pipeline-explorer")) return true;
+    if (/^signatures?$|^approval$|^sign-off gate$/.test(title)) return true;
+    if (/what .approve. unlocks/.test(title)) return true;
+    if (sectionHasCommentTable(h2)) return true;
+    return false;
+  }
+
   function enhanceSections(article, docId) {
     article.querySelectorAll("h2").forEach(function (h2, idx) {
+      if (shouldSkipSection(h2)) return;
       var id = h2.id || "section-" + idx;
       if (!h2.id) h2.id = id;
       if (article.querySelector('[data-section-id="' + id + '"]')) return;
@@ -386,8 +405,9 @@
     var article = document.querySelector("article");
     if (!article) return;
     var docId = docIdFromPath();
+    var isGlossaryPage = /glossary-pipeline-v2\.html$/i.test(location.pathname);
 
-    if (!article.querySelector(".signoff-toolbar")) {
+    if (!isGlossaryPage && !article.querySelector(".signoff-toolbar")) {
       var toolbar = document.createElement("div");
       toolbar.className = "signoff-toolbar";
       toolbar.innerHTML =

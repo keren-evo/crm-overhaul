@@ -8,7 +8,7 @@
   color: #78350f;
 }
 .signoff-banner a {
-  color: #0d5c56;
+  color: #6b00b3;
   font-weight: 600;
 }
 .signoff-toolbar,
@@ -19,8 +19,8 @@
   gap: 0.5rem 1rem;
   margin: 0 0 1.25rem;
   padding: 0.75rem 1rem;
-  background: #e6f4f2;
-  border: 1px solid #b8ddd8;
+  background: #f3e8ff;
+  border: 1px solid #e9d5ff;
   border-radius: 8px;
   font-size: 0.88rem;
 }
@@ -43,17 +43,17 @@
 .signoff-toolbar button:hover,
 .package-comments button:hover {
   background: #f8fafc;
-  border-color: #b8ddd8;
+  border-color: #e9d5ff;
 }
 .signoff-toolbar button.primary,
 .package-comments button.primary {
-  background: #0f766e;
+  background: #8900e1;
   color: #fff;
-  border-color: #0f766e;
+  border-color: #8900e1;
 }
 .signoff-toolbar button.primary:hover,
 .package-comments button.primary:hover {
-  background: #0d5c56;
+  background: #6b00b3;
 }
 .reviewer-field {
   display: flex;

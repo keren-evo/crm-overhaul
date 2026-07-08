@@ -73,6 +73,8 @@ Copy-Item (Join-Path $CrmSource "onedrive-hub\index.html") (Join-Path $OneDriveR
 Copy-Item (Join-Path $CrmSource "onedrive-hub\hub.html") (Join-Path $OneDriveRoot "hub.html") -Force
 Copy-Item (Join-Path $CrmSource "onedrive-hub\signoff-comments.js") (Join-Path $OneDriveRoot "signoff-comments.js") -Force
 Copy-Item (Join-Path $CrmSource "onedrive-hub\signoff-comments.css") (Join-Path $OneDriveRoot "signoff-comments.css") -Force
+Copy-Item (Join-Path $CrmSource "onedrive-hub\glossary-pipeline-interactive.js") (Join-Path $OneDriveRoot "glossary-pipeline-interactive.js") -Force
+Copy-Item (Join-Path $CrmSource "onedrive-hub\glossary-pipeline-interactive.css") (Join-Path $OneDriveRoot "glossary-pipeline-interactive.css") -Force
 
 Write-Host "Converting markdown to styled HTML..."
 python $MdScript $OneDriveRoot

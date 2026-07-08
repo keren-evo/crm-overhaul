@@ -19,17 +19,21 @@ HTML_SHELL = """<!DOCTYPE html>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{title}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   {extra_head}
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
   <style>
     :root {{
-      --bg: #f4f6f9;
+      --bg: #faf8ff;
       --card: #ffffff;
       --text: #172033;
       --muted: #5c6578;
-      --accent: #0f766e;
-      --accent-light: #e6f4f2;
-      --border: #d8dee9;
+      --accent: #8900e1;
+      --accent-light: #f3e8ff;
+      --accent-dark: #6b00b3;
+      --border: #e2e8f0;
       --code-bg: #f1f5f9;
     }}
     * {{ box-sizing: border-box; }}
@@ -37,10 +41,10 @@ HTML_SHELL = """<!DOCTYPE html>
       margin: 0;
       background: var(--bg);
       color: var(--text);
-      font: 16px/1.65 "Segoe UI", system-ui, -apple-system, sans-serif;
+      font: 16px/1.65 "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
     }}
     .topbar {{
-      background: linear-gradient(135deg, #0f766e 0%, #134e4a 100%);
+      background: linear-gradient(135deg, #8900e1 0%, #6b00b3 100%);
       color: #fff;
       padding: 0.75rem 1.25rem;
       font-size: 0.9rem;
@@ -66,7 +70,7 @@ HTML_SHELL = """<!DOCTYPE html>
     article h1 {{
       margin-top: 0;
       font-size: 1.75rem;
-      color: #0d5c56;
+      color: #4c1d95;
       line-height: 1.25;
       border-bottom: 2px solid var(--accent-light);
       padding-bottom: 0.5rem;
@@ -74,14 +78,14 @@ HTML_SHELL = """<!DOCTYPE html>
     article h2 {{
       margin-top: 2rem;
       font-size: 1.25rem;
-      color: #134e4a;
+      color: #5b21b6;
       border-bottom: 1px solid var(--border);
       padding-bottom: 0.35rem;
     }}
-    article h3 {{ margin-top: 1.5rem; color: #1e3a38; }}
+    article h3 {{ margin-top: 1.5rem; color: #4c1d95; }}
     article h4 {{ margin-top: 1.25rem; }}
     a {{ color: var(--accent); }}
-    a:hover {{ color: #0d5c56; }}
+    a:hover {{ color: var(--accent-dark); }}
     p {{ margin: 0.85rem 0; }}
     ul, ol {{ padding-left: 1.5rem; }}
     li {{ margin: 0.35rem 0; }}
@@ -130,7 +134,7 @@ HTML_SHELL = """<!DOCTYPE html>
     th {{
       background: #f8fafc;
       font-weight: 600;
-      color: #134e4a;
+      color: #5b21b6;
     }}
     tr:nth-child(even) td {{ background: #fafbfc; }}
     hr {{
@@ -193,7 +197,7 @@ SIGNOFF_CSS = """
       margin: 0 0 1.25rem;
       padding: 0.75rem 1rem;
       background: var(--accent-light);
-      border: 1px solid #b8ddd8;
+      border: 1px solid #e9d5ff;
       border-radius: 8px;
       font-size: 0.88rem;
     }
@@ -208,9 +212,9 @@ SIGNOFF_CSS = """
       color: var(--text);
       cursor: pointer;
     }
-    .signoff-toolbar button:hover { background: #f8fafc; border-color: #b8ddd8; }
+    .signoff-toolbar button:hover { background: #f8fafc; border-color: #e9d5ff; }
     .signoff-toolbar button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
-    .signoff-toolbar button.primary:hover { background: #0d5c56; }
+    .signoff-toolbar button.primary:hover { background: #6b00b3; }
     table.signoff-table th:last-child,
     table.signoff-table td:last-child { min-width: 11rem; }
     textarea.signoff-comment {
@@ -284,6 +288,35 @@ def signoff_assets(md_path: Path, root: Path) -> tuple[str, str]:
         f'<script src="{prefix}signoff-comments.js"></script>\n'
         "  <script>document.addEventListener('DOMContentLoaded', function () { "
         "LinkCrmSignoff.initPage(); });</script>"
+    )
+    return css, scripts
+
+
+GLOSSARY_INTERACTIVE_DOC = "glossary-pipeline-v2.md"
+
+
+def glossary_interactive_shell() -> str:
+    return (
+        '<div id="glossary-pipeline-explorer" class="glossary-explorer">'
+        '<h2 class="glossary-explorer-title">Pipeline glossary: interactive flowcharts for the proposed patient path.</h2>'
+        "</div>"
+    )
+
+
+def glossary_interactive_assets(md_path: Path, root: Path) -> tuple[str, str]:
+    if md_path.name != GLOSSARY_INTERACTIVE_DOC:
+        return "", ""
+    prefix = asset_prefix(md_path, root)
+    font = (
+        '<link rel="preconnect" href="https://fonts.googleapis.com" />'
+        '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />'
+        '<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />'
+    )
+    css = font + f'<link rel="stylesheet" href="{prefix}glossary-pipeline-interactive.css" />'
+    scripts = (
+        f'<script src="{prefix}glossary-pipeline-interactive.js"></script>\n'
+        "  <script>document.addEventListener('DOMContentLoaded', function () { "
+        "LinkGlossaryPipeline.init(); });</script>"
     )
     return css, scripts
 
@@ -375,18 +408,29 @@ def convert_file(md_path: Path, root: Path) -> Path:
     signoff = is_signoff_doc(md_path)
     if signoff:
         body = signoff_banner(md_path, root) + body
+    if md_path.name == GLOSSARY_INTERACTIVE_DOC:
+        body = glossary_interactive_shell() + body
 
     nav = hub_link(md_path, root)
     signoff_css_link, signoff_scripts = signoff_assets(md_path, root) if signoff else ("", "")
+    glossary_css, glossary_scripts = glossary_interactive_assets(md_path, root)
+    extra_head = signoff_css_link + ("\n  " + glossary_css if glossary_css else "")
+    extra_scripts = signoff_scripts + ("\n  " + glossary_scripts if glossary_scripts else "")
+
+    classes = []
+    if signoff:
+        classes.append("signoff-doc")
+    if md_path.name == GLOSSARY_INTERACTIVE_DOC:
+        classes.append("glossary-doc")
 
     html = HTML_SHELL.format(
         title=title,
         nav=nav,
         body=body,
-        class_attr=' class="signoff-doc"' if signoff else "",
-        extra_head=signoff_css_link,
+        class_attr=f' class="{" ".join(classes)}"' if classes else "",
+        extra_head=extra_head,
         extra_css=SIGNOFF_CSS if signoff else "",
-        extra_scripts=signoff_scripts,
+        extra_scripts=extra_scripts,
     )
 
     out_path = md_path.with_suffix(".html")

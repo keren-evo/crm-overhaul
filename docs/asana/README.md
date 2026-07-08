@@ -31,7 +31,7 @@ Workstream-based project structure for the Link Homecare / Nexus CRM status over
 | `custom-fields.json` | 8 custom field definitions |
 | `milestones.json` | 6 outcome-based milestones |
 | `dependencies.json` | Cross-section and within-section blockers |
-| `signoff-package-asana-map.md` | **Sign-off web package → Asana tasks** (Joel → Avi → Hilleh · cc Leah) |
+| `signoff-package-asana-map.md` | **Sign-off web package → Asana tasks** (Joel → Avi → Hillel · cc Leah) |
 | `saved-views.md` | 7 saved view specs |
 
 ## Structure at a glance

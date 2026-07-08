@@ -75,16 +75,14 @@ Check yes / revise. Defaults are workshop recommendations.
 
 ---
 
-## Signatures
+## Who signs (in order)
 
-By signing, this one-pager (and companion glossary / flowcharts) is the **business source of truth** for CRM status work.
+| Order | Who | Role | Agree? | Comments |
+|-------|-----|------|--------|----------|
+| 1 | Joel Schlanger | Operations | ☐ Yes | |
+| 2 | Avi | CRM implementation | ☐ Yes | |
+| 3 | **Hillel** | **CEO** *(final)* | ☐ Yes | |
 
-| Role | Name | Initials | Date |
-|------|------|----------|------|
-| Operations | Joel Schlanger | | |
-| CRM implementation | Avi | | |
-| **CEO** *(final)* | **Hillel** | | |
-
-**Gate:** Joel → Avi → Hillel (CEO) · cc Leah.
+Once all three agree, this one-pager (and companion glossary / flowcharts) is the **business source of truth** for CRM status work. cc Leah on scheduling.
 
 ---

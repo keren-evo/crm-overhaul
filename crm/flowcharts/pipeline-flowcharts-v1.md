@@ -208,16 +208,13 @@ flowchart TD
 
 ## 5. Sign-off
 
-| Artifact | Signatory | Signed | Date |
-|----------|-----------|--------|------|
-| Main pipeline (§1) | Joel Schlanger (ops) | ☐ | |
-| Short-term icon model (§2) | Joel Schlanger (ops) | ☐ | |
-| Multi-LOB view (§3) | Joel Schlanger (ops) | ☐ | |
-| NIA branch (§4) | Joel Schlanger (ops) | ☐ | |
-| CRM implementation feasibility | Avi | ☐ | |
-| **Executive approval** *(final)* | **Hillel (CEO)** | ☐ | |
+| Section | Who | Agree? | Comments |
+|---------|-----|--------|----------|
+| Main pipeline (§1) | Joel | ☐ Yes | |
+| Short-term icon (§2) | Joel | ☐ Yes | |
+| Multi-LOB (§3) | Joel | ☐ Yes | |
+| NIA branch (§4) | Joel | ☐ Yes | |
+| CRM implementation feasibility | Avi | ☐ Yes | |
+| **Executive approval** *(final)* | **Hillel (CEO)** | ☐ Yes | |
 
-**After gate complete (Joel → Avi → Leah → Hillel):**
-1. Joel → schedule Avi CRM implementation review *(if not already held)*
-2. Leah → coordinate calendar and team follow-up
-3. One-pass CRM update proceeds — enrollment specialist dashboard work in build phase (§7 Dashboards)
+**After Joel → Avi → Hillel agree:** Joel schedules Avi review if needed · cc Leah on calendar · one-pass CRM update proceeds.
