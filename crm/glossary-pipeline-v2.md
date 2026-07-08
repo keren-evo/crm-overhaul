@@ -8,7 +8,7 @@
 **Status:** **Pending sign-off** — CRM implementation on hold until signed  
 **Last updated:** July 6, 2026
 
-> **Comments:** Use the **Comments** column on each glossary row. In the web version, comments save in your browser — **Copy all comments** when done and send to Keren.
+> **Comments:** Use the **Comments** column on each glossary row. In the web version, comments save in your browser — **Copy all comments** when finished.
 
 **Companion artifacts:**
 - **One-pager:** [`glossary/joel-model-signoff-onepager.md`](glossary/joel-model-signoff-onepager.md)

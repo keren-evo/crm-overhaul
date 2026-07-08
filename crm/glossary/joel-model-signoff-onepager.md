@@ -6,7 +6,7 @@
 **Problem (already agreed):** Screens and ops don’t share language; authorized ≠ active census  
 **Status:** Ready for sign-off  
 
-> **Comments:** Add notes in the **Comments** column on each row (web version). Use **Copy all comments** and send to Keren.
+> **Comments:** Add notes in the **Comments** column on each row (web version). Use **Copy all comments** when finished.
 
 **Full glossary:** [`glossary-pipeline-v2.md`](../glossary-pipeline-v2.md)  
 **Flowcharts:** [`flowcharts/pipeline-flowcharts-v1.md`](../flowcharts/pipeline-flowcharts-v1.md)  

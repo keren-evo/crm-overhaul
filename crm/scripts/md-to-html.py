@@ -423,7 +423,7 @@ SIGNOFF_SCRIPT = """
       }
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(text).then(function () {
-          alert("Comments copied — paste into Teams or email for Keren.");
+          alert("Comments copied — paste into Teams or email to share feedback.");
         });
       } else {
         prompt("Copy these comments:", text);
@@ -448,7 +448,7 @@ SIGNOFF_SCRIPT = """
 SIGNOFF_BANNER = (
     '<div class="signoff-banner"><strong>Reviewers:</strong> Use the '
     '<strong>Comments</strong> column on each glossary row (and section boxes below headings). '
-    'Comments save in your browser — click <strong>Copy all comments</strong> when done and send to Keren.</div>'
+    'Comments save in your browser — click <strong>Copy all comments</strong> when finished.</div>'
 )
 
 SIGNOFF_DOCS = frozenset({
