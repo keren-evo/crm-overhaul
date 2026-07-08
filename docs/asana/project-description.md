@@ -2,7 +2,7 @@
 
 **Program:** CRM Operating Model Rebuild (NY Operations)  
 **CRM:** Nexus at [crm.linkhomecare.com](https://crm.linkhomecare.com/)  
-**Framework owner:** Keren · **Operational truth:** Joel · **Build:** Avi · **Comms/scheduling:** Leah
+**Framework owner:** Keren · **Operational truth:** Joel · **Executive approval:** Hillel (CEO) · **Build:** Avi · **Comms/scheduling:** Leah
 
 ---
 
@@ -22,7 +22,7 @@ Lead → Qualifying → Referral in Progress → Active → Discharged
 - **Short-term care** = parallel track with icon UI until authorized; then Active on main pipeline
 - **Multi-LOB** = simultaneous per-LOB statuses displayed alongside master pipeline
 
-**Gate:** Finalize labels + flowcharts before Avi tech implementation. **One-pass** CRM update planned.
+**Gate:** Joel + Hillel (CEO) sign labels + flowcharts → Joel schedules Avi tech implementation. **One-pass** CRM update planned.
 
 ## Program goals
 
@@ -41,7 +41,8 @@ Governance → Definitions (GATE) → Baseline ∥ Architecture → Build → Re
 **Next actions (from Jul 2026 meeting):**
 - Keren — refine glossary (`crm/glossary-pipeline-v2.md`)
 - Team — finalize labels + flowcharts
-- Joel — schedule Avi tech review after flowcharts signed
+- **Hillel (CEO) + Joel — sign off** on patient path framework
+- Joel — schedule Avi tech review after sign-off
 - Leah — follow-up chat + coordinate meeting scheduling
 
 ## Team
@@ -50,6 +51,7 @@ Governance → Definitions (GATE) → Baseline ∥ Architecture → Build → Re
 |--------|------|
 | Keren | Glossary, flowcharts, audit, UAT |
 | Joel | Pipeline definitions, LOB eligibility, ops sign-off, Avi meeting |
+| Hillel | CEO executive approval — unlocks next step |
 | Avi | CRM build, one-pass implementation, backfill |
 | Leah | Follow-up comms, meeting scheduling |
 | Angelo | Sales UAT |
@@ -66,4 +68,4 @@ Governance → Definitions (GATE) → Baseline ∥ Architecture → Build → Re
 
 ## Rule
 
-**No CRM field updates or backfill until status labels and flowcharts are finalized and signed.**
+**No CRM field updates or backfill until Joel + Hillel (CEO) sign status labels and flowcharts.**

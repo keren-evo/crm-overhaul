@@ -5,6 +5,8 @@
 **Owner:** Keren · **Sign-off:** Joel Schlanger  
 **Status:** **Pending Joel sign-off** — required before ReferralOutcome export and backfill
 
+> **Comments:** Use the **Comments** column on each drop reason. Web version saves in your browser — **Copy all comments** when done.
+
 **Use when:** Master pipeline moves to **Dropped Off** (anytime before Active).  
 **Not for:** Discharge reasons — see discharge list at bottom.
 
@@ -12,18 +14,18 @@
 
 ## Proposed drop reasons (10)
 
-| # | Category | Definition | When enrollment uses it | Example |
-|---|----------|------------|-------------------------|---------|
-| 1 | **NIA Failed** | Patient did not pass NY Independent Assessor for MLTC/LTC | NIA outcome = fail; no alternate LOB | Failed both NIA appointments |
-| 2 | **Not Eligible — Insurance or Diagnosis** | Does not meet LOB eligibility (payer or clinical) | Qualifying or Referral in Progress | Medicare-only for MLTC path |
-| 3 | **Payer Denied** | Authorization or payer explicitly denied | Referral in Progress after auth denial | MLTC denial letter |
-| 4 | **Patient / Family Declined** | Patient or family chose not to proceed | Any pre-Active stage | "Changed mind about home care" |
-| 5 | **No Follow-Up / Unresponsive** | Could not reach after defined outreach attempts | Qualifying — SLA exceeded | 3+ calls, no response |
-| 6 | **Chose Competitor** | Patient went to another agency | Qualifying or Referral in Progress | Signed with competing CHHA |
-| 7 | **Documentation Incomplete** | Required docs not obtained in reasonable time | Referral in Progress | Missing POA after 30 days |
-| 8 | **Short-Term Only / Not Continuing** | Accepted short-term path only; not pursuing long-term | Short-term complete or declined LTC upsell | NH discharge only; no LTC interest |
-| 9 | **Referred to Third Party** | Link routed patient elsewhere (not Link patient) | Qualifying or Referral in Progress | Sent to Girling or partner agency |
-| 10 | **Other** | None of above | Last resort | **Free-text note required** |
+| # | Category | Definition | When enrollment uses it | Example | Comments |
+|---|----------|------------|-------------------------|---------|----------|
+| 1 | **NIA Failed** | Patient did not pass NY Independent Assessor for MLTC/LTC | NIA outcome = fail; no alternate LOB | Failed both NIA appointments | |
+| 2 | **Not Eligible — Insurance or Diagnosis** | Does not meet LOB eligibility (payer or clinical) | Qualifying or Referral in Progress | Medicare-only for MLTC path | |
+| 3 | **Payer Denied** | Authorization or payer explicitly denied | Referral in Progress after auth denial | MLTC denial letter | |
+| 4 | **Patient / Family Declined** | Patient or family chose not to proceed | Any pre-Active stage | "Changed mind about home care" | |
+| 5 | **No Follow-Up / Unresponsive** | Could not reach after defined outreach attempts | Qualifying — SLA exceeded | 3+ calls, no response | |
+| 6 | **Chose Competitor** | Patient went to another agency | Qualifying or Referral in Progress | Signed with competing CHHA | |
+| 7 | **Documentation Incomplete** | Required docs not obtained in reasonable time | Referral in Progress | Missing POA after 30 days | |
+| 8 | **Short-Term Only / Not Continuing** | Accepted short-term path only; not pursuing long-term | Short-term complete or declined LTC upsell | NH discharge only; no LTC interest | |
+| 9 | **Referred to Third Party** | Link routed patient elsewhere (not Link patient) | Qualifying or Referral in Progress | Sent to Girling or partner agency | |
+| 10 | **Other** | None of above | Last resort | **Free-text note required** | |
 
 ### Special cohort mappings (backfill)
 
@@ -67,8 +69,8 @@ Use when master pipeline = **Discharged**. Joel to confirm final list; suggested
 
 ## Joel sign-off
 
-| Item | Agree? | Changes requested |
-|------|--------|-------------------|
+| Item | Agree? | Comments |
+|------|--------|----------|
 | 10 drop categories above | ☐ Yes ☐ Revise | |
 | NIA Failed → 180-day follow-up queue | ☐ Yes ☐ No ☐ Different: ___ days | |
 | Discharge starter set (8) | ☐ Yes ☐ Revise | |

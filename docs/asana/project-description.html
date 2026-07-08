@@ -134,10 +134,17 @@
     }
     .toc ul { margin: 0.5rem 0 0; }
     input[type="checkbox"] { margin-right: 0.35rem; }
+    
     @media print {
       body { background: #fff; }
       .topbar { display: none; }
+      .signoff-toolbar { display: none; }
       article { box-shadow: none; border: none; }
+      textarea.signoff-comment {
+        border: 1px solid #ccc;
+        min-height: 2.5rem;
+        print-color-adjust: exact;
+      }
     }
   </style>
 </head>
@@ -146,7 +153,7 @@
   <main><article><h1 id="link-homecare-crm-status-architecture-rebuild">Link Homecare — CRM Status Architecture Rebuild</h1>
 <p><strong>Program:</strong> CRM Operating Model Rebuild (NY Operations)<br>
 <strong>CRM:</strong> Nexus at <a href="https://crm.linkhomecare.com/">crm.linkhomecare.com</a><br>
-<strong>Framework owner:</strong> Keren · <strong>Operational truth:</strong> Joel · <strong>Build:</strong> Avi · <strong>Comms/scheduling:</strong> Leah</p>
+<strong>Framework owner:</strong> Keren · <strong>Operational truth:</strong> Joel · <strong>Executive approval:</strong> Hillel (CEO) · <strong>Build:</strong> Avi · <strong>Comms/scheduling:</strong> Leah</p>
 <hr>
 <h2 id="why-this-project-exists">Why this project exists</h2>
 <p>The CRM inherited Salesforce-era labels that no longer match how Link Homecare operates. Dashboards show ~1,960 "authorized" patients while true active census is ~1,200–1,300. This project fixes <strong>business logic first</strong>, then data, then dashboards.</p>
@@ -160,7 +167,7 @@
 <li><strong>Short-term care</strong> = parallel track with icon UI until authorized; then Active on main pipeline</li>
 <li><strong>Multi-LOB</strong> = simultaneous per-LOB statuses displayed alongside master pipeline</li>
 </ul>
-<p><strong>Gate:</strong> Finalize labels + flowcharts before Avi tech implementation. <strong>One-pass</strong> CRM update planned.</p>
+<p><strong>Gate:</strong> Joel + Hillel (CEO) sign labels + flowcharts → Joel schedules Avi tech implementation. <strong>One-pass</strong> CRM update planned.</p>
 <h2 id="program-goals">Program goals</h2>
 <table>
 <thead>
@@ -190,7 +197,8 @@
 <p><strong>Next actions (from Jul 2026 meeting):</strong><br>
 - Keren — refine glossary (<code>crm/glossary-pipeline-v2.md</code>)<br>
 - Team — finalize labels + flowcharts<br>
-- Joel — schedule Avi tech review after flowcharts signed<br>
+- <strong>Hillel (CEO) + Joel — sign off</strong> on patient path framework<br>
+- Joel — schedule Avi tech review after sign-off<br>
 - Leah — follow-up chat + coordinate meeting scheduling</p>
 <h2 id="team">Team</h2>
 <table>
@@ -208,6 +216,10 @@
 <tr>
 <td>Joel</td>
 <td>Pipeline definitions, LOB eligibility, ops sign-off, Avi meeting</td>
+</tr>
+<tr>
+<td>Hillel</td>
+<td>CEO executive approval — unlocks next step</td>
 </tr>
 <tr>
 <td>Avi</td>
@@ -255,9 +267,10 @@
 </tbody>
 </table>
 <h2 id="rule">Rule</h2>
-<p><strong>No CRM field updates or backfill until status labels and flowcharts are finalized and signed.</strong></p></article></main>
+<p><strong>No CRM field updates or backfill until Joel + Hillel (CEO) sign status labels and flowcharts.</strong></p></article></main>
   <script>
     mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose" });
   </script>
+  
 </body>
 </html>

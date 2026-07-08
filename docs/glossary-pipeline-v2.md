@@ -3,9 +3,12 @@
 **Version:** 2.1 (sign-off draft)  
 **Owner:** Keren Hapuch Lacadin  
 **Operational review:** Joel Schlanger, Leah Adelman  
+**Executive approval:** Hillel (CEO)  
 **Technical review:** Avi *(after this document + flowcharts signed)*  
 **Status:** **Pending sign-off** — CRM implementation on hold until signed  
 **Last updated:** July 6, 2026
+
+> **Comments:** Use the **Comments** column on each glossary row. In the web version, comments save in your browser — **Copy all comments** when done and send to Keren.
 
 **Companion artifacts:**
 - **One-pager:** [`glossary/joel-model-signoff-onepager.md`](glossary/joel-model-signoff-onepager.md)
@@ -19,12 +22,13 @@
 
 | Role | Name | Signed | Date |
 |------|------|--------|------|
-| Framework | Keren Hapuch Lacadin | ☐ | |
+| **CEO** | **Hillel** | ☐ | |
 | Operations | Joel Schlanger | ☐ | |
+| Framework | Keren Hapuch Lacadin | ☐ | |
 | Project coordination | Leah Adelman | ☐ | |
 | CRM implementation | Avi | ☐ *(after tech review meeting)* | |
 
-**When signed:** Joel schedules Avi tech review; Leah coordinates calendar. One-pass CRM update (labels + filters + backfill) may proceed.
+**When Joel + Hillel sign:** Joel schedules Avi tech review; Leah coordinates calendar. One-pass CRM update (labels + filters + backfill) may proceed.
 
 ---
 
@@ -326,12 +330,14 @@ Business labels above map to Nexus **Episode** object. Proposed split:
 
 ## Open items (resolve at sign-off)
 
-- [ ] Joel: Confirm NIA reapply wait (**180 days**?)
-- [ ] Joel: Finalize NHTD, OPWDD, Private Pay eligibility checklists
-- [ ] Joel: Sign [`glossary/drop-reasons-for-signoff.md`](glossary/drop-reasons-for-signoff.md)
-- [ ] Joel: Confirm master bar precedence when multiple LOBs at different stages
-- [ ] Joel: Confirm Active requires **confirmed SOC**
-- [ ] Avi: Technical review — field mapping, one-pass migration plan
+| Item | Owner | Comments |
+|------|-------|----------|
+| Confirm NIA reapply wait (**180 days**?) | Joel | |
+| Finalize NHTD, OPWDD, Private Pay eligibility checklists | Joel | |
+| Sign [`glossary/drop-reasons-for-signoff.md`](glossary/drop-reasons-for-signoff.md) | Joel | |
+| Confirm master bar precedence when multiple LOBs at different stages | Joel | |
+| Confirm Active requires **confirmed SOC** | Joel | |
+| Technical review — field mapping, one-pass migration plan | Avi | |
 
 ---
 
@@ -341,6 +347,7 @@ By signing, reviewers agree this glossary is the business source of truth for CR
 
 | Reviewer | Signature / initials | Date |
 |----------|---------------------|------|
-| Keren Hapuch Lacadin | | |
+| Hillel (CEO) | | |
 | Joel Schlanger | | |
+| Keren Hapuch Lacadin | | |
 | Leah Adelman | | |

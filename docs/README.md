@@ -2,18 +2,18 @@
 
 Executable specs for the Lead → Referral → Intake → Patient lifecycle overhaul (NY Operations).
 
-## Sign-off package (Jul 2026 — pending Joel/Leah)
+## Sign-off package (Jul 2026 — pending Hillel + Joel)
 
 | Path | Purpose |
 |------|---------|
-| **`glossary/joel-model-signoff-onepager.md`** | Plain-language patient path summary |
+| **`glossary/joel-model-signoff-onepager.md`** | Plain-language patient path summary — **send first** |
 | **`glossary-pipeline-v2.md`** | Full status terminology |
 | **`flowcharts/pipeline-flowcharts-v1.md`** | Main pipeline + short-term icon + multi-LOB Mermaid |
-| **`glossary/drop-reasons-for-signoff.md`** | 10 drop categories — sign-off sheet |
+| **`glossary/drop-reasons-for-signoff.md`** | 10 drop categories — Joel sign-off sheet |
 | `meeting-notes/2026-07-pipeline-alignment.md` | Workshop capture |
 | `Link-Homecare-CRM-Status-Architecture-Execution-Workspace.md` | Full execution workspace |
 
-**Gate:** Sign one-pager (or full glossary) + flowcharts → Joel schedules Avi · Leah coordinates calendar.
+**Gate:** Hillel (CEO) + Joel sign one-pager (or full glossary) + flowcharts → Joel schedules Avi · Leah coordinates calendar.
 
 ## GitHub & web hub
 

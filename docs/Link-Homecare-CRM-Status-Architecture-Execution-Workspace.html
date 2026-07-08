@@ -134,10 +134,17 @@
     }
     .toc ul { margin: 0.5rem 0 0; }
     input[type="checkbox"] { margin-right: 0.35rem; }
+    
     @media print {
       body { background: #fff; }
       .topbar { display: none; }
+      .signoff-toolbar { display: none; }
       article { box-shadow: none; border: none; }
+      textarea.signoff-comment {
+        border: 1px solid #ccc;
+        min-height: 2.5rem;
+        print-color-adjust: exact;
+      }
     }
   </style>
 </head>
@@ -2861,5 +2868,6 @@ flowchart TB
   <script>
     mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose" });
   </script>
+  
 </body>
 </html>

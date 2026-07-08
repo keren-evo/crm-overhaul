@@ -134,21 +134,115 @@
     }
     .toc ul { margin: 0.5rem 0 0; }
     input[type="checkbox"] { margin-right: 0.35rem; }
+    
+    .signoff-banner {
+      margin: 0 0 1.25rem;
+      padding: 0.75rem 1rem;
+      background: #fffbeb;
+      border: 1px solid #fcd34d;
+      border-radius: 8px;
+      font-size: 0.92rem;
+      color: #78350f;
+    }
+    .signoff-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem 1rem;
+      margin: 0 0 1.25rem;
+      padding: 0.75rem 1rem;
+      background: var(--accent-light);
+      border: 1px solid #b8ddd8;
+      border-radius: 8px;
+      font-size: 0.88rem;
+    }
+    .signoff-toolbar .signoff-hint { color: var(--muted); flex: 1 1 12rem; }
+    .signoff-toolbar button {
+      font: inherit;
+      font-size: 0.85rem;
+      padding: 0.4rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: #fff;
+      color: var(--text);
+      cursor: pointer;
+    }
+    .signoff-toolbar button:hover { background: #f8fafc; border-color: #b8ddd8; }
+    .signoff-toolbar button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .signoff-toolbar button.primary:hover { background: #0d5c56; }
+    table.signoff-table th:last-child,
+    table.signoff-table td:last-child { min-width: 11rem; }
+    textarea.signoff-comment {
+      width: 100%;
+      min-width: 10rem;
+      min-height: 2.75rem;
+      font: inherit;
+      font-size: 0.88rem;
+      line-height: 1.45;
+      padding: 0.45rem 0.55rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      resize: vertical;
+      background: #fff;
+      color: var(--text);
+    }
+    textarea.signoff-comment:focus {
+      outline: 2px solid #99f6e4;
+      border-color: var(--accent);
+    }
+    textarea.signoff-comment::placeholder { color: #94a3b8; }
+    .section-comment-wrap {
+      margin: 0.75rem 0 1.25rem;
+      padding: 0.65rem 0.85rem;
+      background: #f8fafc;
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+    }
+    .section-comment-wrap label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    textarea.section-comment {
+      width: 100%;
+      min-height: 3rem;
+      font: inherit;
+      font-size: 0.9rem;
+      padding: 0.5rem 0.6rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      resize: vertical;
+      background: #fff;
+    }
+
     @media print {
       body { background: #fff; }
       .topbar { display: none; }
+      .signoff-toolbar { display: none; }
       article { box-shadow: none; border: none; }
+      textarea.signoff-comment {
+        border: 1px solid #ccc;
+        min-height: 2.5rem;
+        print-color-adjust: exact;
+      }
     }
   </style>
 </head>
-<body>
+<body class="signoff-doc">
   <nav class="topbar"><a href="../index.html">← Sign-off package</a></nav>
-  <main><article><h1 id="joels-model-glossary-sign-off-one-pager">Joel’s Model — Glossary Sign-Off One-Pager</h1>
-<p><strong>For:</strong> Joel Schlanger (ops), Leah Adelman (coordination)<br>
+  <main><article><div class="signoff-banner"><strong>Reviewers:</strong> Use the <strong>Comments</strong> column on each glossary row (and section boxes below headings). Comments save in your browser — click <strong>Copy all comments</strong> when done and send to Keren.</div><h1 id="joels-model-glossary-sign-off-one-pager">Joel’s Model — Glossary Sign-Off One-Pager</h1>
+<p><strong>For:</strong> Hillel (CEO), Joel Schlanger (ops), Leah Adelman (coordination)<br>
 <strong>From:</strong> Keren · Link Homecare CRM Status Framework<br>
 <strong>Purpose:</strong> Approve the <strong>patient status framework</strong> for CRM implementation<br>
 <strong>Problem (already agreed):</strong> Screens and ops don’t share language; authorized ≠ active census<br>
 <strong>Status:</strong> Ready for sign-off  </p>
+<blockquote>
+<p><strong>Comments:</strong> Add notes in the <strong>Comments</strong> column on each row (web version). Use <strong>Copy all comments</strong> and send to Keren.</p>
+</blockquote>
 <p><strong>Full glossary:</strong> <a href="../glossary-pipeline-v2.html"><code>glossary-pipeline-v2.md</code></a><br>
 <strong>Flowcharts:</strong> <a href="../flowcharts/pipeline-flowcharts-v1.html"><code>flowcharts/pipeline-flowcharts-v1.md</code></a><br>
 <strong>Drop reasons:</strong> <a href="drop-reasons-for-signoff.html"><code>drop-reasons-for-signoff.md</code></a></p>
@@ -163,6 +257,7 @@
 <th>Stage</th>
 <th>Plain English</th>
 <th>Not this</th>
+<th>Comments</th>
 </tr>
 </thead>
 <tbody>
@@ -170,31 +265,37 @@
 <td><strong>Lead</strong></td>
 <td>Brand-new inquiry</td>
 <td>Already a patient</td>
+<td></td>
 </tr>
 <tr>
 <td><strong>Qualifying</strong></td>
 <td>Checking fit (contact, insurance, diagnosis, program) — <strong>intake not open</strong></td>
 <td>Intake already open</td>
+<td></td>
 </tr>
 <tr>
 <td><strong>Referral in Progress</strong></td>
 <td>Intake open for a specific program</td>
 <td>Vague “in progress” / old “Converted”</td>
+<td></td>
 </tr>
 <tr>
 <td><strong>Active</strong></td>
 <td>Receiving care from us</td>
 <td>Payer said yes only (“authorized”)</td>
+<td></td>
 </tr>
 <tr>
 <td><strong>Discharged</strong></td>
 <td>Left the agency after being Active</td>
 <td>Never started with us</td>
+<td></td>
 </tr>
 <tr>
 <td><strong>Dropped Off</strong></td>
 <td>Never became Active</td>
 <td>Same as Discharged</td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -208,28 +309,33 @@
 <tr>
 <th>Extra</th>
 <th>Rule</th>
+<th>Comments</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><strong>Short-term care</strong></td>
 <td>Sits <strong>beside</strong> the main path (icon) until short-term care starts → then main bar becomes <strong>Active</strong></td>
+<td></td>
 </tr>
 <tr>
 <td><strong>Multi-program (multi-LOB)</strong></td>
 <td>One person can be in more than one program; dropping one program ≠ discharging the patient</td>
+<td></td>
 </tr>
 </tbody>
 </table>
 <hr>
 <h2 id="what-approve-unlocks">What “approve” unlocks</h2>
 <ol>
+<li><strong>Hillel (CEO)</strong> signs → leadership green-light to proceed  </li>
+<li><strong>Joel (ops)</strong> signs → operational truth locked  </li>
 <li>Joel schedules Avi’s CRM implementation review  </li>
 <li>Leah coordinates calendar  </li>
 <li>Avi does <strong>one-pass</strong> update: labels + filters + backfill together  </li>
 <li>Growth / marketing reporting waits until these stages are live  </li>
 </ol>
-<p><strong>No CRM field changes until this page (or full glossary) is signed.</strong></p>
+<p><strong>No CRM field changes until Joel + Hillel sign this page (or full glossary).</strong></p>
 <hr>
 <h2 id="confirm-or-change-at-sign-off-ops-truth">Confirm or change at sign-off (ops truth)</h2>
 <p>Check yes / revise. Defaults are workshop recommendations.</p>
@@ -239,7 +345,8 @@
 <th>#</th>
 <th>Item</th>
 <th>Proposed default</th>
-<th>Joel</th>
+<th>Agree?</th>
+<th>Comments</th>
 </tr>
 </thead>
 <tbody>
@@ -247,37 +354,43 @@
 <td>1</td>
 <td>Master path labels above</td>
 <td>Keep as written</td>
-<td>☐ Yes ☐ Revise: ___</td>
+<td>☐ Yes ☐ Revise</td>
+<td></td>
 </tr>
 <tr>
 <td>2</td>
 <td>Active requires confirmed <strong>start of care (SOC)</strong></td>
 <td>Yes</td>
 <td>☐ Yes ☐ No</td>
+<td></td>
 </tr>
 <tr>
 <td>3</td>
 <td>NIA fail → reapply wait</td>
 <td><strong>~180 days</strong></td>
 <td>☐ 180 ☐ Other: ___</td>
+<td></td>
 </tr>
 <tr>
 <td>4</td>
 <td>Multi-LOB master bar</td>
 <td>Show <strong>most advanced</strong> open gold LOB</td>
 <td>☐ Yes ☐ Other: ___</td>
+<td></td>
 </tr>
 <tr>
 <td>5</td>
 <td>10 drop reasons sheet</td>
 <td>Approve <a href="drop-reasons-for-signoff.html"><code>drop-reasons-for-signoff.md</code></a></td>
 <td>☐ Yes ☐ Revise</td>
+<td></td>
 </tr>
 <tr>
 <td>6</td>
 <td>Short-term icon model</td>
 <td>Parallel until Authorized → Active</td>
 <td>☐ Yes ☐ Revise</td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -296,14 +409,20 @@
 </thead>
 <tbody>
 <tr>
-<td>Framework</td>
-<td>Keren Hapuch Lacadin</td>
+<td><strong>CEO</strong></td>
+<td><strong>Hillel</strong></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>Operations</td>
 <td>Joel Schlanger</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Framework</td>
+<td>Keren Hapuch Lacadin</td>
 <td></td>
 <td></td>
 </tr>
@@ -321,9 +440,194 @@
 </tr>
 </tbody>
 </table>
+<p><strong>Gate:</strong> Joel (ops) + Hillel (CEO) sign → Joel schedules Avi · Leah coordinates calendar.</p>
 <hr></article></main>
   <script>
     mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose" });
   </script>
+  
+  <script>
+  (function () {
+    var article = document.querySelector("article");
+    if (!article) return;
+
+    var docId = location.pathname.replace(/[^a-zA-Z0-9]+/g, "_").replace(/^_|_$/g, "") || "signoff";
+
+    function storageKey(id) {
+      return "link-crm-signoff:" + docId + ":" + id;
+    }
+
+    function shouldSkipTable(table) {
+      var header = (table.querySelector("tr") || {}).textContent || "";
+      header = header.replace(/\s+/g, " ").toLowerCase();
+      if (/role.*name.*signed.*date/.test(header)) return true;
+      if (/reviewer.*signature.*date/.test(header)) return true;
+      if (/artifact.*reviewer.*signed/.test(header)) return true;
+      if (header.indexOf("tag") !== -1 && header.indexOf("meaning") !== -1 && header.split(" ").length < 8) return true;
+      return false;
+    }
+
+    function commentColIndex(row) {
+      var cells = row.cells;
+      for (var i = 0; i < cells.length; i++) {
+        if (/comment/i.test(cells[i].textContent)) return i;
+      }
+      return -1;
+    }
+
+    function makeTextarea(rowId, placeholder) {
+      var ta = document.createElement("textarea");
+      ta.className = "signoff-comment";
+      ta.dataset.rowId = rowId;
+      ta.placeholder = placeholder || "Comment or revision…";
+      ta.rows = 2;
+      try { ta.value = localStorage.getItem(storageKey(rowId)) || ""; } catch (e) {}
+      ta.addEventListener("input", function () {
+        try { localStorage.setItem(storageKey(rowId), ta.value); } catch (e) {}
+        updateCount();
+      });
+      return ta;
+    }
+
+    function enhanceTables() {
+      var tables = article.querySelectorAll("table");
+      tables.forEach(function (table, tableIdx) {
+        if (shouldSkipTable(table)) {
+          table.classList.add("no-comments");
+          return;
+        }
+        var rows = table.querySelectorAll("tr");
+        if (!rows.length) return;
+        var headerRow = rows[0];
+        var colIdx = commentColIndex(headerRow);
+        if (colIdx === -1) {
+          var th = document.createElement("th");
+          th.textContent = "Comments";
+          headerRow.appendChild(th);
+          colIdx = headerRow.cells.length - 1;
+        }
+        for (var i = 1; i < rows.length; i++) {
+          var tr = rows[i];
+          if (!tr.cells.length) continue;
+          var rowId = "t" + tableIdx + "-r" + i;
+          var label = (tr.cells[0] && tr.cells[0].textContent.trim()) || ("Row " + i);
+          var td = tr.cells[colIdx];
+          if (!td) {
+            td = document.createElement("td");
+            tr.appendChild(td);
+          }
+          if (td.querySelector("textarea.signoff-comment")) continue;
+          var existing = td.textContent.trim();
+          var ta = makeTextarea(rowId, "Comment on: " + label.slice(0, 48));
+          if (existing && existing !== "—" && existing !== "-") ta.value = existing;
+          td.textContent = "";
+          td.appendChild(ta);
+          try {
+            if (ta.value) localStorage.setItem(storageKey(rowId), ta.value);
+          } catch (e) {}
+        }
+        table.classList.add("signoff-table");
+      });
+    }
+
+    function enhanceSections() {
+      article.querySelectorAll("h2").forEach(function (h2, idx) {
+        var id = h2.id || ("section-" + idx);
+        if (!h2.id) h2.id = id;
+        if (article.querySelector('[data-section-id="' + id + '"]')) return;
+        var wrap = document.createElement("div");
+        wrap.className = "section-comment-wrap";
+        wrap.dataset.sectionId = id;
+        var label = document.createElement("label");
+        label.textContent = "Section comment — " + h2.textContent.trim();
+        label.setAttribute("for", "sec-" + id);
+        var ta = document.createElement("textarea");
+        ta.className = "section-comment";
+        ta.id = "sec-" + id;
+        ta.placeholder = "Comments on this section…";
+        var key = "section:" + id;
+        try { ta.value = localStorage.getItem(storageKey(key)) || ""; } catch (e) {}
+        ta.addEventListener("input", function () {
+          try { localStorage.setItem(storageKey(key), ta.value); } catch (e) {}
+          updateCount();
+        });
+        wrap.appendChild(label);
+        wrap.appendChild(ta);
+        h2.insertAdjacentElement("afterend", wrap);
+      });
+    }
+
+    function collectComments() {
+      var lines = ["Sign-off comments — " + document.title, "Source: " + location.href, ""];
+      article.querySelectorAll("h2").forEach(function (h2) {
+        var id = h2.id;
+        var ta = document.getElementById("sec-" + id);
+        if (ta && ta.value.trim()) {
+          lines.push("## " + h2.textContent.trim());
+          lines.push(ta.value.trim());
+          lines.push("");
+        }
+      });
+      article.querySelectorAll("table.signoff-table tr").forEach(function (tr, i) {
+        if (i === 0) return;
+        var ta = tr.querySelector("textarea.signoff-comment");
+        if (!ta || !ta.value.trim()) return;
+        var item = (tr.cells[0] && tr.cells[0].textContent.trim()) || ("Row " + i);
+        lines.push("- **" + item + "**: " + ta.value.trim().replace(/\n/g, " "));
+      });
+      return lines.join("\n");
+    }
+
+    function updateCount() {
+      var n = 0;
+      article.querySelectorAll("textarea.signoff-comment, textarea.section-comment").forEach(function (ta) {
+        if (ta.value.trim()) n++;
+      });
+      var el = document.getElementById("comment-count");
+      if (el) el.textContent = n ? n + " comment(s) saved" : "No comments yet";
+    }
+
+    var toolbar = document.createElement("div");
+    toolbar.className = "signoff-toolbar";
+    toolbar.innerHTML =
+      '<span class="signoff-hint">Add comments on each row or section. Saved in this browser until you copy or clear.</span>' +
+      '<span id="comment-count">No comments yet</span>' +
+      '<button type="button" class="primary" id="copy-comments-btn">Copy all comments</button>' +
+      '<button type="button" id="clear-comments-btn">Clear all</button>';
+    article.insertBefore(toolbar, article.firstChild);
+
+    enhanceTables();
+    enhanceSections();
+    updateCount();
+
+    document.getElementById("copy-comments-btn").addEventListener("click", function () {
+      var text = collectComments();
+      if (!text.trim() || text.indexOf("- **") === -1 && text.split("\n").length < 4) {
+        alert("No comments to copy yet.");
+        return;
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () {
+          alert("Comments copied — paste into Teams or email for Keren.");
+        });
+      } else {
+        prompt("Copy these comments:", text);
+      }
+    });
+
+    document.getElementById("clear-comments-btn").addEventListener("click", function () {
+      if (!confirm("Clear all comments on this page?")) return;
+      article.querySelectorAll("textarea.signoff-comment, textarea.section-comment").forEach(function (ta) {
+        ta.value = "";
+        var id = ta.dataset.rowId;
+        if (!id && ta.id) id = "section:" + ta.id.replace(/^sec-/, "");
+        if (!id) return;
+        try { localStorage.removeItem(storageKey(id)); } catch (e) {}
+      });
+      updateCount();
+    });
+  })();
+  </script>
+
 </body>
 </html>

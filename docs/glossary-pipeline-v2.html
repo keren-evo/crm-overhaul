@@ -134,22 +134,117 @@
     }
     .toc ul { margin: 0.5rem 0 0; }
     input[type="checkbox"] { margin-right: 0.35rem; }
+    
+    .signoff-banner {
+      margin: 0 0 1.25rem;
+      padding: 0.75rem 1rem;
+      background: #fffbeb;
+      border: 1px solid #fcd34d;
+      border-radius: 8px;
+      font-size: 0.92rem;
+      color: #78350f;
+    }
+    .signoff-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem 1rem;
+      margin: 0 0 1.25rem;
+      padding: 0.75rem 1rem;
+      background: var(--accent-light);
+      border: 1px solid #b8ddd8;
+      border-radius: 8px;
+      font-size: 0.88rem;
+    }
+    .signoff-toolbar .signoff-hint { color: var(--muted); flex: 1 1 12rem; }
+    .signoff-toolbar button {
+      font: inherit;
+      font-size: 0.85rem;
+      padding: 0.4rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: #fff;
+      color: var(--text);
+      cursor: pointer;
+    }
+    .signoff-toolbar button:hover { background: #f8fafc; border-color: #b8ddd8; }
+    .signoff-toolbar button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .signoff-toolbar button.primary:hover { background: #0d5c56; }
+    table.signoff-table th:last-child,
+    table.signoff-table td:last-child { min-width: 11rem; }
+    textarea.signoff-comment {
+      width: 100%;
+      min-width: 10rem;
+      min-height: 2.75rem;
+      font: inherit;
+      font-size: 0.88rem;
+      line-height: 1.45;
+      padding: 0.45rem 0.55rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      resize: vertical;
+      background: #fff;
+      color: var(--text);
+    }
+    textarea.signoff-comment:focus {
+      outline: 2px solid #99f6e4;
+      border-color: var(--accent);
+    }
+    textarea.signoff-comment::placeholder { color: #94a3b8; }
+    .section-comment-wrap {
+      margin: 0.75rem 0 1.25rem;
+      padding: 0.65rem 0.85rem;
+      background: #f8fafc;
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+    }
+    .section-comment-wrap label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    textarea.section-comment {
+      width: 100%;
+      min-height: 3rem;
+      font: inherit;
+      font-size: 0.9rem;
+      padding: 0.5rem 0.6rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      resize: vertical;
+      background: #fff;
+    }
+
     @media print {
       body { background: #fff; }
       .topbar { display: none; }
+      .signoff-toolbar { display: none; }
       article { box-shadow: none; border: none; }
+      textarea.signoff-comment {
+        border: 1px solid #ccc;
+        min-height: 2.5rem;
+        print-color-adjust: exact;
+      }
     }
   </style>
 </head>
-<body>
+<body class="signoff-doc">
   <nav class="topbar"><a href="index.html">← Sign-off package</a></nav>
-  <main><article><h1 id="link-homecare-crm-status-terminology-pipeline-glossary">Link Homecare CRM — Status Terminology &amp; Pipeline Glossary</h1>
+  <main><article><div class="signoff-banner"><strong>Reviewers:</strong> Use the <strong>Comments</strong> column on each glossary row (and section boxes below headings). Comments save in your browser — click <strong>Copy all comments</strong> when done and send to Keren.</div><h1 id="link-homecare-crm-status-terminology-pipeline-glossary">Link Homecare CRM — Status Terminology &amp; Pipeline Glossary</h1>
 <p><strong>Version:</strong> 2.1 (sign-off draft)<br>
 <strong>Owner:</strong> Keren Hapuch Lacadin<br>
 <strong>Operational review:</strong> Joel Schlanger, Leah Adelman<br>
+<strong>Executive approval:</strong> Hillel (CEO)<br>
 <strong>Technical review:</strong> Avi <em>(after this document + flowcharts signed)</em><br>
 <strong>Status:</strong> <strong>Pending sign-off</strong> — CRM implementation on hold until signed<br>
 <strong>Last updated:</strong> July 6, 2026</p>
+<blockquote>
+<p><strong>Comments:</strong> Use the <strong>Comments</strong> column on each glossary row. In the web version, comments save in your browser — <strong>Copy all comments</strong> when done and send to Keren.</p>
+</blockquote>
 <p><strong>Companion artifacts:</strong><br>
 - <strong>One-pager:</strong> <a href="glossary/joel-model-signoff-onepager.html"><code>glossary/joel-model-signoff-onepager.md</code></a><br>
 - Flowcharts: <a href="flowcharts/pipeline-flowcharts-v1.html"><code>flowcharts/pipeline-flowcharts-v1.md</code></a><br>
@@ -168,14 +263,20 @@
 </thead>
 <tbody>
 <tr>
-<td>Framework</td>
-<td>Keren Hapuch Lacadin</td>
+<td><strong>CEO</strong></td>
+<td><strong>Hillel</strong></td>
 <td>☐</td>
 <td></td>
 </tr>
 <tr>
 <td>Operations</td>
 <td>Joel Schlanger</td>
+<td>☐</td>
+<td></td>
+</tr>
+<tr>
+<td>Framework</td>
+<td>Keren Hapuch Lacadin</td>
 <td>☐</td>
 <td></td>
 </tr>
@@ -193,7 +294,7 @@
 </tr>
 </tbody>
 </table>
-<p><strong>When signed:</strong> Joel schedules Avi tech review; Leah coordinates calendar. One-pass CRM update (labels + filters + backfill) may proceed.</p>
+<p><strong>When Joel + Hillel sign:</strong> Joel schedules Avi tech review; Leah coordinates calendar. One-pass CRM update (labels + filters + backfill) may proceed.</p>
 <hr>
 <h2 id="legend">Legend</h2>
 <table>
@@ -932,14 +1033,47 @@ flowchart LR
 <p><strong>Do not build until this glossary + flowcharts are signed.</strong></p>
 <hr>
 <h2 id="open-items-resolve-at-sign-off">Open items (resolve at sign-off)</h2>
-<ul>
-<li>[ ] Joel: Confirm NIA reapply wait (<strong>180 days</strong>?)</li>
-<li>[ ] Joel: Finalize NHTD, OPWDD, Private Pay eligibility checklists</li>
-<li>[ ] Joel: Sign <a href="glossary/drop-reasons-for-signoff.html"><code>glossary/drop-reasons-for-signoff.md</code></a></li>
-<li>[ ] Joel: Confirm master bar precedence when multiple LOBs at different stages</li>
-<li>[ ] Joel: Confirm Active requires <strong>confirmed SOC</strong></li>
-<li>[ ] Avi: Technical review — field mapping, one-pass migration plan</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Owner</th>
+<th>Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Confirm NIA reapply wait (<strong>180 days</strong>?)</td>
+<td>Joel</td>
+<td></td>
+</tr>
+<tr>
+<td>Finalize NHTD, OPWDD, Private Pay eligibility checklists</td>
+<td>Joel</td>
+<td></td>
+</tr>
+<tr>
+<td>Sign <a href="glossary/drop-reasons-for-signoff.html"><code>glossary/drop-reasons-for-signoff.md</code></a></td>
+<td>Joel</td>
+<td></td>
+</tr>
+<tr>
+<td>Confirm master bar precedence when multiple LOBs at different stages</td>
+<td>Joel</td>
+<td></td>
+</tr>
+<tr>
+<td>Confirm Active requires <strong>confirmed SOC</strong></td>
+<td>Joel</td>
+<td></td>
+</tr>
+<tr>
+<td>Technical review — field mapping, one-pass migration plan</td>
+<td>Avi</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <hr>
 <h2 id="approval">Approval</h2>
 <p>By signing, reviewers agree this glossary is the business source of truth for CRM status implementation.</p>
@@ -953,12 +1087,17 @@ flowchart LR
 </thead>
 <tbody>
 <tr>
-<td>Keren Hapuch Lacadin</td>
+<td>Hillel (CEO)</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>Joel Schlanger</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Keren Hapuch Lacadin</td>
 <td></td>
 <td></td>
 </tr>
@@ -972,5 +1111,189 @@ flowchart LR
   <script>
     mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose" });
   </script>
+  
+  <script>
+  (function () {
+    var article = document.querySelector("article");
+    if (!article) return;
+
+    var docId = location.pathname.replace(/[^a-zA-Z0-9]+/g, "_").replace(/^_|_$/g, "") || "signoff";
+
+    function storageKey(id) {
+      return "link-crm-signoff:" + docId + ":" + id;
+    }
+
+    function shouldSkipTable(table) {
+      var header = (table.querySelector("tr") || {}).textContent || "";
+      header = header.replace(/\s+/g, " ").toLowerCase();
+      if (/role.*name.*signed.*date/.test(header)) return true;
+      if (/reviewer.*signature.*date/.test(header)) return true;
+      if (/artifact.*reviewer.*signed/.test(header)) return true;
+      if (header.indexOf("tag") !== -1 && header.indexOf("meaning") !== -1 && header.split(" ").length < 8) return true;
+      return false;
+    }
+
+    function commentColIndex(row) {
+      var cells = row.cells;
+      for (var i = 0; i < cells.length; i++) {
+        if (/comment/i.test(cells[i].textContent)) return i;
+      }
+      return -1;
+    }
+
+    function makeTextarea(rowId, placeholder) {
+      var ta = document.createElement("textarea");
+      ta.className = "signoff-comment";
+      ta.dataset.rowId = rowId;
+      ta.placeholder = placeholder || "Comment or revision…";
+      ta.rows = 2;
+      try { ta.value = localStorage.getItem(storageKey(rowId)) || ""; } catch (e) {}
+      ta.addEventListener("input", function () {
+        try { localStorage.setItem(storageKey(rowId), ta.value); } catch (e) {}
+        updateCount();
+      });
+      return ta;
+    }
+
+    function enhanceTables() {
+      var tables = article.querySelectorAll("table");
+      tables.forEach(function (table, tableIdx) {
+        if (shouldSkipTable(table)) {
+          table.classList.add("no-comments");
+          return;
+        }
+        var rows = table.querySelectorAll("tr");
+        if (!rows.length) return;
+        var headerRow = rows[0];
+        var colIdx = commentColIndex(headerRow);
+        if (colIdx === -1) {
+          var th = document.createElement("th");
+          th.textContent = "Comments";
+          headerRow.appendChild(th);
+          colIdx = headerRow.cells.length - 1;
+        }
+        for (var i = 1; i < rows.length; i++) {
+          var tr = rows[i];
+          if (!tr.cells.length) continue;
+          var rowId = "t" + tableIdx + "-r" + i;
+          var label = (tr.cells[0] && tr.cells[0].textContent.trim()) || ("Row " + i);
+          var td = tr.cells[colIdx];
+          if (!td) {
+            td = document.createElement("td");
+            tr.appendChild(td);
+          }
+          if (td.querySelector("textarea.signoff-comment")) continue;
+          var existing = td.textContent.trim();
+          var ta = makeTextarea(rowId, "Comment on: " + label.slice(0, 48));
+          if (existing && existing !== "—" && existing !== "-") ta.value = existing;
+          td.textContent = "";
+          td.appendChild(ta);
+          try {
+            if (ta.value) localStorage.setItem(storageKey(rowId), ta.value);
+          } catch (e) {}
+        }
+        table.classList.add("signoff-table");
+      });
+    }
+
+    function enhanceSections() {
+      article.querySelectorAll("h2").forEach(function (h2, idx) {
+        var id = h2.id || ("section-" + idx);
+        if (!h2.id) h2.id = id;
+        if (article.querySelector('[data-section-id="' + id + '"]')) return;
+        var wrap = document.createElement("div");
+        wrap.className = "section-comment-wrap";
+        wrap.dataset.sectionId = id;
+        var label = document.createElement("label");
+        label.textContent = "Section comment — " + h2.textContent.trim();
+        label.setAttribute("for", "sec-" + id);
+        var ta = document.createElement("textarea");
+        ta.className = "section-comment";
+        ta.id = "sec-" + id;
+        ta.placeholder = "Comments on this section…";
+        var key = "section:" + id;
+        try { ta.value = localStorage.getItem(storageKey(key)) || ""; } catch (e) {}
+        ta.addEventListener("input", function () {
+          try { localStorage.setItem(storageKey(key), ta.value); } catch (e) {}
+          updateCount();
+        });
+        wrap.appendChild(label);
+        wrap.appendChild(ta);
+        h2.insertAdjacentElement("afterend", wrap);
+      });
+    }
+
+    function collectComments() {
+      var lines = ["Sign-off comments — " + document.title, "Source: " + location.href, ""];
+      article.querySelectorAll("h2").forEach(function (h2) {
+        var id = h2.id;
+        var ta = document.getElementById("sec-" + id);
+        if (ta && ta.value.trim()) {
+          lines.push("## " + h2.textContent.trim());
+          lines.push(ta.value.trim());
+          lines.push("");
+        }
+      });
+      article.querySelectorAll("table.signoff-table tr").forEach(function (tr, i) {
+        if (i === 0) return;
+        var ta = tr.querySelector("textarea.signoff-comment");
+        if (!ta || !ta.value.trim()) return;
+        var item = (tr.cells[0] && tr.cells[0].textContent.trim()) || ("Row " + i);
+        lines.push("- **" + item + "**: " + ta.value.trim().replace(/\n/g, " "));
+      });
+      return lines.join("\n");
+    }
+
+    function updateCount() {
+      var n = 0;
+      article.querySelectorAll("textarea.signoff-comment, textarea.section-comment").forEach(function (ta) {
+        if (ta.value.trim()) n++;
+      });
+      var el = document.getElementById("comment-count");
+      if (el) el.textContent = n ? n + " comment(s) saved" : "No comments yet";
+    }
+
+    var toolbar = document.createElement("div");
+    toolbar.className = "signoff-toolbar";
+    toolbar.innerHTML =
+      '<span class="signoff-hint">Add comments on each row or section. Saved in this browser until you copy or clear.</span>' +
+      '<span id="comment-count">No comments yet</span>' +
+      '<button type="button" class="primary" id="copy-comments-btn">Copy all comments</button>' +
+      '<button type="button" id="clear-comments-btn">Clear all</button>';
+    article.insertBefore(toolbar, article.firstChild);
+
+    enhanceTables();
+    enhanceSections();
+    updateCount();
+
+    document.getElementById("copy-comments-btn").addEventListener("click", function () {
+      var text = collectComments();
+      if (!text.trim() || text.indexOf("- **") === -1 && text.split("\n").length < 4) {
+        alert("No comments to copy yet.");
+        return;
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () {
+          alert("Comments copied — paste into Teams or email for Keren.");
+        });
+      } else {
+        prompt("Copy these comments:", text);
+      }
+    });
+
+    document.getElementById("clear-comments-btn").addEventListener("click", function () {
+      if (!confirm("Clear all comments on this page?")) return;
+      article.querySelectorAll("textarea.signoff-comment, textarea.section-comment").forEach(function (ta) {
+        ta.value = "";
+        var id = ta.dataset.rowId;
+        if (!id && ta.id) id = "section:" + ta.id.replace(/^sec-/, "");
+        if (!id) return;
+        try { localStorage.removeItem(storageKey(id)); } catch (e) {}
+      });
+      updateCount();
+    });
+  })();
+  </script>
+
 </body>
 </html>

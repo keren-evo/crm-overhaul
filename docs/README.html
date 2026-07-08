@@ -134,10 +134,17 @@
     }
     .toc ul { margin: 0.5rem 0 0; }
     input[type="checkbox"] { margin-right: 0.35rem; }
+    
     @media print {
       body { background: #fff; }
       .topbar { display: none; }
+      .signoff-toolbar { display: none; }
       article { box-shadow: none; border: none; }
+      textarea.signoff-comment {
+        border: 1px solid #ccc;
+        min-height: 2.5rem;
+        print-color-adjust: exact;
+      }
     }
   </style>
 </head>
@@ -145,7 +152,7 @@
   <nav class="topbar"><a href="index.html">← Sign-off package</a></nav>
   <main><article><h1 id="crm-status-framework-implementation-artifacts">CRM Status Framework — Implementation Artifacts</h1>
 <p>Executable specs for the Lead → Referral → Intake → Patient lifecycle overhaul (NY Operations).</p>
-<h2 id="sign-off-package-jul-2026-pending-joelleah">Sign-off package (Jul 2026 — pending Joel/Leah)</h2>
+<h2 id="sign-off-package-jul-2026-pending-hillel-joel">Sign-off package (Jul 2026 — pending Hillel + Joel)</h2>
 <table>
 <thead>
 <tr>
@@ -156,7 +163,7 @@
 <tbody>
 <tr>
 <td><strong><code>glossary/joel-model-signoff-onepager.md</code></strong></td>
-<td>Plain-language patient path summary</td>
+<td>Plain-language patient path summary — <strong>send first</strong></td>
 </tr>
 <tr>
 <td><strong><code>glossary-pipeline-v2.md</code></strong></td>
@@ -168,7 +175,7 @@
 </tr>
 <tr>
 <td><strong><code>glossary/drop-reasons-for-signoff.md</code></strong></td>
-<td>10 drop categories — sign-off sheet</td>
+<td>10 drop categories — Joel sign-off sheet</td>
 </tr>
 <tr>
 <td><code>meeting-notes/2026-07-pipeline-alignment.md</code></td>
@@ -180,7 +187,7 @@
 </tr>
 </tbody>
 </table>
-<p><strong>Gate:</strong> Sign one-pager (or full glossary) + flowcharts → Joel schedules Avi · Leah coordinates calendar.</p>
+<p><strong>Gate:</strong> Hillel (CEO) + Joel sign one-pager (or full glossary) + flowcharts → Joel schedules Avi · Leah coordinates calendar.</p>
 <h2 id="github-web-hub">GitHub &amp; web hub</h2>
 <table>
 <thead>
@@ -354,5 +361,6 @@ psql &quot;$CRM_DATABASE_URL&quot; -f crm/audit/data-integrity-audit.sql
   <script>
     mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose" });
   </script>
+  
 </body>
 </html>
