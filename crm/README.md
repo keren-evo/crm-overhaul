@@ -6,13 +6,15 @@ Executable specs for the Lead → Referral → Intake → Patient lifecycle over
 
 | Path | Purpose |
 |------|---------|
-| **`glossary-pipeline-v2.md`** | Status terminology — **send to Joel & Leah for sign-off** |
+| **`glossary/joel-model-signoff-onepager.md`** | **Send first** — plain-language freeze of Joel’s path |
+| **`glossary/teams-ask-glossary-signoff.md`** | Copy-paste Teams/email ask for approval |
+| **`glossary-pipeline-v2.md`** | Full status terminology (companion to one-pager) |
 | **`flowcharts/pipeline-flowcharts-v1.md`** | Main pipeline + short-term icon + multi-LOB Mermaid |
 | **`glossary/drop-reasons-for-signoff.md`** | 10 drop categories — Joel sign-off sheet |
 | `meeting-notes/2026-07-pipeline-alignment.md` | Workshop capture |
 | `Link-Homecare-CRM-Status-Architecture-Execution-Workspace.md` | Full execution workspace |
 
-**Gate:** Sign glossary + flowcharts → Joel schedules Avi · Leah coordinates calendar.
+**Gate:** Sign one-pager (or full glossary) + flowcharts → Joel schedules Avi · Leah coordinates calendar.
 
 ## GitHub & web hub
 

@@ -171,7 +171,10 @@ def hub_link(md_path: Path, root: Path) -> str:
     rel = md_path.parent.relative_to(root)
     depth = len(rel.parts)
     prefix = "../" * depth if depth else ""
-    return f'<a href="{prefix}index.html">← CRM Overhaul Hub</a>'
+    return (
+        f'<a href="{prefix}index.html">← Sign-off package</a>'
+        f' · <a href="{prefix}hub.html">Full hub</a>'
+    )
 
 
 def preprocess_mermaid(text: str) -> str:

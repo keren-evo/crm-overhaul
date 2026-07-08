@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Joel’s Model — Glossary Sign-Off One-Pager</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    :root {
+      --bg: #f4f6f9;
+      --card: #ffffff;
+      --text: #172033;
+      --muted: #5c6578;
+      --accent: #0f766e;
+      --accent-light: #e6f4f2;
+      --border: #d8dee9;
+      --code-bg: #f1f5f9;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.65 "Segoe UI", system-ui, -apple-system, sans-serif;
+    }
+    .topbar {
+      background: linear-gradient(135deg, #0f766e 0%, #134e4a 100%);
+      color: #fff;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.9rem;
+    }
+    .topbar a {
+      color: #fff;
+      text-decoration: none;
+      opacity: 0.95;
+    }
+    .topbar a:hover { text-decoration: underline; }
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+    article {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem 2.25rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    article h1 {
+      margin-top: 0;
+      font-size: 1.75rem;
+      color: #0d5c56;
+      line-height: 1.25;
+      border-bottom: 2px solid var(--accent-light);
+      padding-bottom: 0.5rem;
+    }
+    article h2 {
+      margin-top: 2rem;
+      font-size: 1.25rem;
+      color: #134e4a;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.35rem;
+    }
+    article h3 { margin-top: 1.5rem; color: #1e3a38; }
+    article h4 { margin-top: 1.25rem; }
+    a { color: var(--accent); }
+    a:hover { color: #0d5c56; }
+    p { margin: 0.85rem 0; }
+    ul, ol { padding-left: 1.5rem; }
+    li { margin: 0.35rem 0; }
+    li > ul { margin-top: 0.25rem; }
+    blockquote {
+      margin: 1.25rem 0;
+      padding: 0.75rem 1rem;
+      border-left: 4px solid var(--accent);
+      background: var(--accent-light);
+      border-radius: 0 8px 8px 0;
+    }
+    blockquote p { margin: 0.35rem 0; }
+    code {
+      font-family: Consolas, "SF Mono", monospace;
+      font-size: 0.9em;
+      background: var(--code-bg);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+    }
+    pre {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 1rem 1.15rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+    pre code {
+      background: transparent;
+      padding: 0;
+      color: inherit;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.25rem 0;
+      font-size: 0.95rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.6rem 0.75rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #f8fafc;
+      font-weight: 600;
+      color: #134e4a;
+    }
+    tr:nth-child(even) td { background: #fafbfc; }
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+    .mermaid {
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+    .toc {
+      background: var(--accent-light);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .toc ul { margin: 0.5rem 0 0; }
+    input[type="checkbox"] { margin-right: 0.35rem; }
+    @media print {
+      body { background: #fff; }
+      .topbar { display: none; }
+      article { box-shadow: none; border: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topbar"><a href="../index.html">← Sign-off package</a> · <a href="../hub.html">Full hub</a></nav>
+  <main><article><h1 id="joels-model-glossary-sign-off-one-pager">Joel’s Model — Glossary Sign-Off One-Pager</h1>
+<p><strong>For:</strong> Joel Schlanger (ops), Leah Adelman (coordination)<br>
+<strong>From:</strong> Keren · Link Homecare CRM Status Framework<br>
+<strong>Purpose:</strong> Approve the <strong>simple idea</strong> so Avi can start the one-pass CRM update<br>
+<strong>Problem (already agreed):</strong> Screens and ops don’t share language; authorized ≠ active census<br>
+<strong>Status:</strong> Ready for sign-off — no Asana required  </p>
+<p><strong>Full glossary:</strong> <a href="../glossary-pipeline-v2.html"><code>glossary-pipeline-v2.md</code></a><br>
+<strong>Flowcharts:</strong> <a href="../flowcharts/pipeline-flowcharts-v1.html"><code>flowcharts/pipeline-flowcharts-v1.md</code></a><br>
+<strong>Drop reasons:</strong> <a href="drop-reasons-for-signoff.html"><code>drop-reasons-for-signoff.md</code></a></p>
+<hr>
+<h2 id="the-idea-freeze-this">The idea (freeze this)</h2>
+<pre><code>Lead → Qualifying → Referral in Progress → Active → Discharged
+                    ↘ Dropped Off (never became Active)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Plain English</th>
+<th>Not this</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Lead</strong></td>
+<td>Brand-new inquiry</td>
+<td>Already a patient</td>
+</tr>
+<tr>
+<td><strong>Qualifying</strong></td>
+<td>Checking fit (contact, insurance, diagnosis, program) — <strong>intake not open</strong></td>
+<td>Intake already open</td>
+</tr>
+<tr>
+<td><strong>Referral in Progress</strong></td>
+<td>Intake open for a specific program</td>
+<td>Vague “in progress” / old “Converted”</td>
+</tr>
+<tr>
+<td><strong>Active</strong></td>
+<td>Receiving care from us</td>
+<td>Payer said yes only (“authorized”)</td>
+</tr>
+<tr>
+<td><strong>Discharged</strong></td>
+<td>Left the agency after being Active</td>
+<td>Never started with us</td>
+</tr>
+<tr>
+<td><strong>Dropped Off</strong></td>
+<td>Never became Active</td>
+<td>Same as Discharged</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Two rules everyone must keep:</strong><br>
+1. <strong>Authorized ≠ Active.</strong> Authorized = payer approved. Active = we are giving care.<br>
+2. <strong>Dropped Off ≠ Discharged.</strong> Dropped = never started. Discharged = was in care, then left.</p>
+<hr>
+<h2 id="two-extras-still-simple">Two extras (still simple)</h2>
+<table>
+<thead>
+<tr>
+<th>Extra</th>
+<th>Rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Short-term care</strong></td>
+<td>Sits <strong>beside</strong> the main path (icon) until short-term care starts → then main bar becomes <strong>Active</strong></td>
+</tr>
+<tr>
+<td><strong>Multi-program (multi-LOB)</strong></td>
+<td>One person can be in more than one program; dropping one program ≠ discharging the patient</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="what-approve-unlocks">What “approve” unlocks</h2>
+<ol>
+<li>Joel schedules Avi’s CRM implementation review  </li>
+<li>Leah coordinates calendar  </li>
+<li>Avi does <strong>one-pass</strong> update: labels + filters + backfill together  </li>
+<li>Growth / marketing reporting waits until these stages are live  </li>
+</ol>
+<p><strong>No CRM field changes until this page (or full glossary) is signed.</strong></p>
+<hr>
+<h2 id="confirm-or-change-at-sign-off-ops-truth">Confirm or change at sign-off (ops truth)</h2>
+<p>Check yes / revise. Defaults are workshop recommendations.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Item</th>
+<th>Proposed default</th>
+<th>Joel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Master path labels above</td>
+<td>Keep as written</td>
+<td>☐ Yes ☐ Revise: ___</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Active requires confirmed <strong>start of care (SOC)</strong></td>
+<td>Yes</td>
+<td>☐ Yes ☐ No</td>
+</tr>
+<tr>
+<td>3</td>
+<td>NIA fail → reapply wait</td>
+<td><strong>~180 days</strong></td>
+<td>☐ 180 ☐ Other: ___</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Multi-LOB master bar</td>
+<td>Show <strong>most advanced</strong> open gold LOB</td>
+<td>☐ Yes ☐ Other: ___</td>
+</tr>
+<tr>
+<td>5</td>
+<td>10 drop reasons sheet</td>
+<td>Approve <a href="drop-reasons-for-signoff.html"><code>drop-reasons-for-signoff.md</code></a></td>
+<td>☐ Yes ☐ Revise</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Short-term icon model</td>
+<td>Parallel until Authorized → Active</td>
+<td>☐ Yes ☐ Revise</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Still Joel-owned after yes (does not block Avi meeting):</strong> NHTD / OPWDD / Private Pay eligibility checklists.</p>
+<hr>
+<h2 id="signatures">Signatures</h2>
+<p>By signing, this one-pager (and companion glossary / flowcharts) is the <strong>business source of truth</strong> for CRM status work.</p>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Name</th>
+<th>Initials</th>
+<th>Date</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Framework</td>
+<td>Keren Hapuch Lacadin</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Operations</td>
+<td>Joel Schlanger</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Coordination</td>
+<td>Leah Adelman</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>CRM build <em>(after tech review)</em></td>
+<td>Avi</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="after-you-sign">After you sign</h2>
+<table>
+<thead>
+<tr>
+<th>Who</th>
+<th>Does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Joel</td>
+<td>Schedule Avi implementation review</td>
+</tr>
+<tr>
+<td>Leah</td>
+<td>Coordinate calendar + team follow-up</td>
+</tr>
+<tr>
+<td>Keren</td>
+<td>Hand Avi the signed glossary + flowcharts + drop reasons</td>
+</tr>
+<tr>
+<td>Avi</td>
+<td>One-pass build — only after this gate</td>
+</tr>
+</tbody>
+</table></article></main>
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose" });
+  </script>
+</body>
+</html>

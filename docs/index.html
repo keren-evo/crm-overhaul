@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Link Homecare — CRM Overhaul Hub</title>
+  <title>CRM Sign-Off Package — Link Homecare</title>
   <style>
     :root {
       --bg: #f4f6f9;
@@ -31,12 +31,27 @@
     header p { margin: 0; opacity: 0.92; max-width: 52rem; }
     .gate {
       margin-top: 1rem;
-      padding: 0.65rem 1rem;
+      padding: 0.75rem 1rem;
       background: rgba(255,255,255,0.15);
       border-radius: 8px;
       font-size: 0.95rem;
+      line-height: 1.5;
     }
-    main { max-width: 960px; margin: -1.25rem auto 3rem; padding: 0 1rem; }
+    .path {
+      margin-top: 1rem;
+      padding: 0.65rem 1rem;
+      background: rgba(0,0,0,0.12);
+      border-radius: 8px;
+      font-family: Consolas, "SF Mono", monospace;
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+    .nav-top {
+      margin-top: 0.75rem;
+      font-size: 0.88rem;
+    }
+    .nav-top a { color: #fff; }
+    main { max-width: 720px; margin: -1.25rem auto 3rem; padding: 0 1rem; }
     section {
       background: var(--card);
       border: 1px solid var(--border);
@@ -59,32 +74,44 @@
       display: flex;
       align-items: flex-start;
       gap: 0.65rem;
-      padding: 0.7rem 0.85rem;
+      padding: 0.85rem 1rem;
       border-radius: 8px;
       text-decoration: none;
       color: var(--text);
-      border: 1px solid transparent;
+      border: 1px solid var(--border);
       transition: background 0.15s, border-color 0.15s;
     }
     a.doc:hover {
       background: var(--accent-light);
       border-color: #b8ddd8;
     }
-    a.doc strong { display: block; color: #0d5c56; font-size: 1rem; }
-    a.doc span { font-size: 0.88rem; color: var(--muted); }
+    a.doc.primary {
+      border-color: #86efac;
+      background: #f0fdf4;
+    }
+    a.doc strong { display: block; color: #0d5c56; font-size: 1.05rem; }
+    a.doc span { font-size: 0.88rem; color: var(--muted); margin-top: 0.2rem; }
     .badge {
       font-size: 0.7rem;
       font-weight: 700;
       text-transform: uppercase;
-      padding: 0.15rem 0.45rem;
+      padding: 0.2rem 0.5rem;
       border-radius: 4px;
       background: var(--accent-light);
       color: var(--accent);
       flex-shrink: 0;
-      margin-top: 0.15rem;
+      margin-top: 0.2rem;
     }
     .badge.sign { background: #fef3c7; color: var(--gate); }
     .badge.html { background: #dbeafe; color: #1d4ed8; }
+    .badge.first { background: #dcfce7; color: #166534; }
+    .rules {
+      margin: 0;
+      padding-left: 1.25rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    .rules li { margin: 0.4rem 0; }
     footer {
       text-align: center;
       color: var(--muted);
@@ -95,134 +122,80 @@
 </head>
 <body>
   <header>
-    <h1>Link Homecare — CRM Status Overhaul</h1>
-    <p>NY Operations · Nexus CRM · Keren (framework) · Joel (ops) · Leah (coordination) · Avi (build)</p>
-    <div class="gate">⏸ <strong>Gate:</strong> Sign glossary + flowcharts + drop reasons → Joel schedules Avi · Leah coordinates calendar · No CRM field work until then.</div>
-    <p style="margin:0.75rem 0 0;font-size:0.88rem;opacity:0.9">Browse online at <a href="https://keren-evo.github.io/crm-overhaul/" style="color:#fff">keren-evo.github.io/crm-overhaul</a> · OneDrive: use <strong>Open in browser</strong> if preview links fail.</p>
+    <h1>CRM Sign-Off Package</h1>
+    <p>Link Homecare · Joel Schlanger (ops) · Leah Adelman (coordination) · Keren (framework)</p>
+    <div class="gate">
+      <strong>CRM implementation is on hold</strong> until this package is signed.<br>
+      Reply <strong>Approved</strong> on the one-pager (or mark confirm items) → Joel schedules Avi → Leah coordinates calendar → one-pass CRM update.
+    </div>
+    <div class="path">Lead → Qualifying → Referral in Progress → Active → Discharged<br>↘ Dropped Off if they never become Active</div>
+    <p class="nav-top"><a href="hub.html">Full CRM hub (workspace, Asana, technical) →</a></p>
   </header>
 
   <main>
     <section>
-      <h2>Start here — sign-off package</h2>
+      <h2>Review these (in order)</h2>
       <ul>
         <li>
+          <a class="doc primary" href="glossary/joel-model-signoff-onepager.html">
+            <span class="badge first">1 · Send first</span>
+            <div>
+              <strong>Joel one-pager</strong>
+              <span>2–3 min · freeze the simple idea · Authorized ≠ Active · Dropped Off ≠ Discharged</span>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a class="doc" href="glossary/teams-ask-glossary-signoff.html">
+            <span class="badge">2 · Email</span>
+            <div>
+              <strong>Teams / email ask</strong>
+              <span>Copy-paste subject + message if sending async</span>
+            </div>
+          </a>
+        </li>
+        <li>
           <a class="doc" href="glossary-pipeline-v2.html">
-            <span class="badge sign">Sign-off</span>
-            <div><strong>Status glossary v2.1</strong><span>Pipeline stages, referral substatuses, LOB, NIA, retired terms</span></div>
+            <span class="badge sign">3 · Glossary</span>
+            <div>
+              <strong>Full status glossary v2.1</strong>
+              <span>Companion reference — stages, substatuses, LOB, NIA, retired terms</span>
+            </div>
           </a>
         </li>
         <li>
           <a class="doc" href="flowcharts/pipeline-flowcharts-v1.html">
-            <span class="badge html">Interactive</span>
-            <div><strong>Pipeline flowcharts</strong><span>Main pipeline · short-term icon · multi-LOB · NIA branch (Mermaid)</span></div>
+            <span class="badge html">4 · Flowcharts</span>
+            <div>
+              <strong>Pipeline flowcharts</strong>
+              <span>Main path · short-term icon · multi-LOB · NIA branch</span>
+            </div>
           </a>
         </li>
         <li>
           <a class="doc" href="glossary/drop-reasons-for-signoff.html">
-            <span class="badge sign">Joel</span>
-            <div><strong>Drop reasons — 10 categories</strong><span>Sign-off sheet for ReferralOutcome picklist</span></div>
-          </a>
-        </li>
-        <li>
-          <a class="doc" href="meeting-notes/2026-07-pipeline-alignment.html">
-            <span class="badge">Notes</span>
-            <div><strong>Jul 2026 pipeline alignment meeting</strong><span>Agreed flow, short-term rules, action items</span></div>
+            <span class="badge sign">5 · Joel</span>
+            <div>
+              <strong>Drop reasons — 10 categories</strong>
+              <span>Required when moving to Dropped Off · maps to Episode.outcome</span>
+            </div>
           </a>
         </li>
       </ul>
     </section>
 
     <section>
-      <h2>Full workspace &amp; discovery</h2>
-      <ul>
-        <li>
-          <a class="doc" href="Link-Homecare-CRM-Status-Architecture-Execution-Workspace.html">
-            <span class="badge html">HTML</span>
-            <div><strong>Execution workspace (full)</strong><span>17-section master document — audit, mapping, dashboards, Asana plan</span></div>
-          </a>
-        </li>
-        <li>
-          <a class="doc" href="discovery/1-1-CRM-Discovery-Session.html">
-            <span class="badge">Notes</span>
-            <div><strong>1:1 discovery session with Joel</strong><span>Original pain points and mandate</span></div>
-          </a>
-        </li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Asana &amp; project execution</h2>
-      <ul>
-        <li>
-          <a class="doc" href="asana/asana-structure.html">
-            <span class="badge">Plan</span>
-            <div><strong>Asana structure (full tree)</strong><span>10 workstreams · 71 tasks · 6 milestones</span></div>
-          </a>
-        </li>
-        <li>
-          <a class="doc" href="asana/project-description.html">
-            <span class="badge">Paste</span>
-            <div><strong>Asana project description</strong><span>For CRM Status Architecture Rebuild project</span></div>
-          </a>
-        </li>
-        <li>
-          <a class="doc" href="asana/evo-crm-sprint-tasks.csv">
-            <span class="badge">CSV</span>
-            <div><strong>Task import CSV</strong><span>Tasks + subtasks for Asana</span></div>
-          </a>
-        </li>
-        <li>
-          <a class="doc" href="asana/workshop-jul2026-asana-sync.html">
-            <span class="badge">Sync</span>
-            <div><strong>Workshop → Asana sync notes</strong></div>
-          </a>
-        </li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Technical (Avi — after sign-off)</h2>
-      <ul>
-        <li>
-          <a class="doc" href="schema/nexus-episode-status-map.json">
-            <span class="badge">JSON</span>
-            <div><strong>Nexus Episode status migration map</strong></div>
-          </a>
-        </li>
-        <li>
-          <a class="doc" href="schema/enums.json">
-            <span class="badge">JSON</span>
-            <div><strong>Picklist enums</strong></div>
-          </a>
-        </li>
-        <li>
-          <a class="doc" href="audit/data-integrity-audit.sql">
-            <span class="badge">SQL</span>
-            <div><strong>Data integrity audit pack</strong></div>
-          </a>
-        </li>
-        <li>
-          <a class="doc" href="asana/nexus-discovery-asana-sync.html">
-            <span class="badge">Notes</span>
-            <div><strong>Nexus Schema Manager discovery</strong></div>
-          </a>
-        </li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Alignment meetings</h2>
-      <ul>
-        <li><a class="doc" href="alignment-meeting/01-share-with-team.html"><div><strong>Share with team (pre-read)</strong></div></a></li>
-        <li><a class="doc" href="alignment-meeting/03-decision-worksheet.html"><div><strong>Decision worksheet</strong></div></a></li>
-        <li><a class="doc" href="alignment-meeting/05-phase0-workshop.html"><div><strong>Definitions workshop agenda</strong></div></a></li>
-      </ul>
+      <h2>Two rules to keep</h2>
+      <ol class="rules">
+        <li><strong>Authorized ≠ Active.</strong> Authorized = payer approved. Active = we are giving care.</li>
+        <li><strong>Dropped Off ≠ Discharged.</strong> Dropped = never started. Discharged = was in care, then left.</li>
+      </ol>
     </section>
   </main>
 
   <footer>
   <a href="https://github.com/keren-evo/crm-overhaul" target="_blank" rel="noopener">GitHub — crm-overhaul</a>
-  · Re-run <code>crm/build-pages.ps1</code> or push to <code>main</code> to update Pages
+  · <a href="hub.html">Full hub</a>
   </footer>
 </body>
 </html>

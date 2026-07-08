@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Asana saved views — CRM Status Architecture Rebuild</title>
+  <title>Teams / email — ask for glossary approval</title>
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
   <style>
     :root {
@@ -143,219 +143,41 @@
 </head>
 <body>
   <nav class="topbar"><a href="../index.html">← Sign-off package</a> · <a href="../hub.html">Full hub</a></nav>
-  <main><article><h1 id="asana-saved-views-crm-status-architecture-rebuild">Asana saved views — CRM Status Architecture Rebuild</h1>
-<p>Create in the project: <strong>Add view</strong> → configure filters → <strong>Save view</strong>.</p>
+  <main><article><h1 id="teams-email-ask-for-glossary-approval">Teams / email — ask for glossary approval</h1>
+<p><strong>Send to:</strong> Joel Schlanger, Leah Adelman<br>
+<strong>Optional CC:</strong> Angelo (sales)<br>
+<strong>Attach / link:</strong> one-pager + full glossary + flowcharts + drop reasons</p>
 <hr>
-<h2 id="1-this-week">1. This week</h2>
-<table>
-<thead>
-<tr>
-<th>Setting</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Layout</td>
-<td>List</td>
-</tr>
-<tr>
-<td>Filter</td>
-<td>Due date = This week</td>
-</tr>
-<tr>
-<td>Filter</td>
-<td>Incomplete</td>
-</tr>
-<tr>
-<td>Sort</td>
-<td>Due date ascending</td>
-</tr>
-<tr>
-<td>Group</td>
-<td>Section</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Use for:</strong> Weekly standup.</p>
+<h2 id="subject">Subject</h2>
+<pre><code>Approve Joel’s patient path (simple) — unlocks Avi CRM work
+</code></pre>
 <hr>
-<h2 id="2-decision-gates">2. Decision gates</h2>
-<table>
-<thead>
-<tr>
-<th>Setting</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Layout</td>
-<td>List</td>
-</tr>
-<tr>
-<td>Filter</td>
-<td>Decision Gate = Yes <strong>OR</strong> Requires Stakeholder Decision = Yes</td>
-</tr>
-<tr>
-<td>Filter</td>
-<td>Incomplete</td>
-</tr>
-<tr>
-<td>Sort</td>
-<td>Priority ascending</td>
-</tr>
-<tr>
-<td>Group</td>
-<td>Section</td>
-</tr>
-<tr>
-<td>Columns</td>
-<td>Task, Assignee, Workstream, Baseline / Target Metric</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Use for:</strong> Joel workshop prep and sign-off sessions.</p>
-<p><strong>Key tasks:</strong> All §2 Definitions decisions · Ops 50-record review · Sales/Ops UAT · Go/no-go · Florida delta</p>
+<h2 id="message-copy-paste">Message (copy-paste)</h2>
+<p>Hi Joel and Leah,</p>
+<p>We already aligned on the problem: our screens and ops don’t share the same language, and <strong>authorized is not the same as active census</strong>.</p>
+<p>I’m not sending Asana or a build plan. I’m asking you to <strong>approve the simple idea</strong> so Avi can start.</p>
+<p><strong>Joel’s path (freeze this):</strong></p>
+<p>Lead → Qualifying → Referral in Progress → Active → Discharged<br>
+↘ Dropped Off if they never become Active</p>
+<ul>
+<li><strong>Active</strong> = receiving care  </li>
+<li><strong>Authorized</strong> = payer said yes (not the same thing)  </li>
+<li><strong>Dropped Off</strong> ≠ <strong>Discharged</strong></li>
+</ul>
+<p>Extras you already guided: short-term sits beside the main path until care starts; one person can be on more than one program.</p>
+<p><strong>Ask:</strong> Please review the one-pager (2–3 min) and reply <strong>Approved</strong> or mark the few confirm items (SOC, NIA wait days, drop reasons).</p>
+<p>Once signed:<br>
+1. Joel schedules Avi<br>
+2. Leah coordinates calendar<br>
+3. One-pass CRM update can proceed  </p>
+<p>Full glossary + flowcharts are linked for reference — the one-pager is enough if you prefer.</p>
+<p>Thanks,<br>
+Keren</p>
 <hr>
-<h2 id="3-blocked">3. Blocked</h2>
-<table>
-<thead>
-<tr>
-<th>Setting</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Layout</td>
-<td>List</td>
-</tr>
-<tr>
-<td>Filter</td>
-<td>Blocker = Yes</td>
-</tr>
-<tr>
-<td>Filter</td>
-<td>Incomplete</td>
-</tr>
-<tr>
-<td>Group</td>
-<td>Section</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Use for:</strong> Milestone tracking — 6 gates total.</p>
-<hr>
-<h2 id="4-baseline-audit">4. Baseline audit</h2>
-<table>
-<thead>
-<tr>
-<th>Setting</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Layout</td>
-<td>List</td>
-</tr>
-<tr>
-<td>Filter</td>
-<td>Workstream = Baseline</td>
-</tr>
-<tr>
-<td>Sort</td>
-<td>Priority</td>
-</tr>
-<tr>
-<td>Columns</td>
-<td>Task, Assignee, Baseline / Target Metric, Subtasks</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Use for:</strong> Filling census gap and cohort counts during §3.</p>
-<hr>
-<h2 id="5-avi-implementation">5. Avi — implementation</h2>
-<table>
-<thead>
-<tr>
-<th>Setting</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Layout</td>
-<td>Board</td>
-</tr>
-<tr>
-<td>Filter</td>
-<td>Assignee = Avi</td>
-</tr>
-<tr>
-<td>Group</td>
-<td>Section</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Use for:</strong> Build, remediation, dashboards, go-live workload.</p>
-<hr>
-<h2 id="6-go-live-day">6. Go-live day</h2>
-<table>
-<thead>
-<tr>
-<th>Setting</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Layout</td>
-<td>List</td>
-</tr>
-<tr>
-<td>Filter</td>
-<td>Section = Production Go-Live</td>
-</tr>
-<tr>
-<td>Filter</td>
-<td>Incomplete</td>
-</tr>
-<tr>
-<td>Sort</td>
-<td>Dependencies / manual order</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Critical order:</strong> Go/no-go → Leah comms → Prod remediation → Enable rules → Switch dashboards → Census validation → Hypercare</p>
-<hr>
-<h2 id="7-growth-post-launch">7. Growth (post-launch)</h2>
-<table>
-<thead>
-<tr>
-<th>Setting</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Layout</td>
-<td>List</td>
-</tr>
-<tr>
-<td>Filter</td>
-<td>Workstream = Growth</td>
-</tr>
-<tr>
-<td>Filter</td>
-<td>Incomplete</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Use for:</strong> After Production live milestone — do not start early.</p>
-<hr>
-<h2 id="pin-recommended">Pin recommended</h2>
-<p><strong>Decision gates</strong> · <strong>Blocked</strong> · <strong>This week</strong></p></article></main>
+<h2 id="if-they-only-skim-voice-version-30-sec">If they only skim — voice version (30 sec)</h2>
+<blockquote>
+<p>“Problem’s locked. I’m asking you to freeze Joel’s five stages — Lead, Qualifying, Referral in Progress, Active, Discharged — plus Dropped Off if they never start. Active means in care. That unlocks Avi. Anything off on those names, we fix now; board stays out of this conversation.”</p>
+</blockquote></article></main>
   <script>
     mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose" });
   </script>

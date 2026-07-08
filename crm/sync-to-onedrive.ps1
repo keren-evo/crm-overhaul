@@ -70,6 +70,7 @@ if (Test-Path $DecisionWorkspace) {
 }
 
 Copy-Item (Join-Path $CrmSource "onedrive-hub\index.html") (Join-Path $OneDriveRoot "index.html") -Force
+Copy-Item (Join-Path $CrmSource "onedrive-hub\hub.html") (Join-Path $OneDriveRoot "hub.html") -Force
 
 Write-Host "Converting markdown to styled HTML..."
 python $MdScript $OneDriveRoot
