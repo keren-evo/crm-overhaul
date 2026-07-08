@@ -1,6 +1,6 @@
 # Joel’s Model — Glossary Sign-Off One-Pager
 
-**For:** Joel Schlanger (ops), Leah Adelman (coordination)  
+**For:** Hillel (CEO), Joel Schlanger (ops), Leah Adelman (coordination)  
 **From:** Keren · Link Homecare CRM Status Framework  
 **Purpose:** Approve the **patient status framework** for CRM implementation  
 **Problem (already agreed):** Screens and ops don’t share language; authorized ≠ active census  
@@ -45,12 +45,14 @@ Lead → Qualifying → Referral in Progress → Active → Discharged
 
 ## What “approve” unlocks
 
-1. Joel schedules Avi’s CRM implementation review  
-2. Leah coordinates calendar  
-3. Avi does **one-pass** update: labels + filters + backfill together  
-4. Growth / marketing reporting waits until these stages are live  
+1. **Hillel (CEO)** signs → leadership green-light to proceed  
+2. **Joel (ops)** signs → operational truth locked  
+3. Joel schedules Avi’s CRM implementation review  
+4. Leah coordinates calendar  
+5. Avi does **one-pass** update: labels + filters + backfill together  
+6. Growth / marketing reporting waits until these stages are live  
 
-**No CRM field changes until this page (or full glossary) is signed.**
+**No CRM field changes until Joel + Hillel sign this page (or full glossary).**
 
 ---
 
@@ -77,9 +79,12 @@ By signing, this one-pager (and companion glossary / flowcharts) is the **busine
 
 | Role | Name | Initials | Date |
 |------|------|----------|------|
-| Framework | Keren Hapuch Lacadin | | |
+| **CEO** | **Hillel** | | |
 | Operations | Joel Schlanger | | |
+| Framework | Keren Hapuch Lacadin | | |
 | Coordination | Leah Adelman | | |
 | CRM build *(after tech review)* | Avi | | |
+
+**Gate:** Joel (ops) + Hillel (CEO) sign → Joel schedules Avi · Leah coordinates calendar.
 
 ---

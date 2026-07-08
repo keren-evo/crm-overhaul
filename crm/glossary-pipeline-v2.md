@@ -3,6 +3,7 @@
 **Version:** 2.1 (sign-off draft)  
 **Owner:** Keren Hapuch Lacadin  
 **Operational review:** Joel Schlanger, Leah Adelman  
+**Executive approval:** Hillel (CEO)  
 **Technical review:** Avi *(after this document + flowcharts signed)*  
 **Status:** **Pending sign-off** — CRM implementation on hold until signed  
 **Last updated:** July 6, 2026
@@ -19,12 +20,13 @@
 
 | Role | Name | Signed | Date |
 |------|------|--------|------|
-| Framework | Keren Hapuch Lacadin | ☐ | |
+| **CEO** | **Hillel** | ☐ | |
 | Operations | Joel Schlanger | ☐ | |
+| Framework | Keren Hapuch Lacadin | ☐ | |
 | Project coordination | Leah Adelman | ☐ | |
 | CRM implementation | Avi | ☐ *(after tech review meeting)* | |
 
-**When signed:** Joel schedules Avi tech review; Leah coordinates calendar. One-pass CRM update (labels + filters + backfill) may proceed.
+**When Joel + Hillel sign:** Joel schedules Avi tech review; Leah coordinates calendar. One-pass CRM update (labels + filters + backfill) may proceed.
 
 ---
 
@@ -341,6 +343,7 @@ By signing, reviewers agree this glossary is the business source of truth for CR
 
 | Reviewer | Signature / initials | Date |
 |----------|---------------------|------|
-| Keren Hapuch Lacadin | | |
+| Hillel (CEO) | | |
 | Joel Schlanger | | |
+| Keren Hapuch Lacadin | | |
 | Leah Adelman | | |

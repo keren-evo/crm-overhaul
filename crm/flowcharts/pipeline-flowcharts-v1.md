@@ -1,6 +1,6 @@
 # Pipeline Flowcharts — Sign-Off Draft v1
 
-**Owner:** Keren · **Review:** Joel, Leah · **Status:** Pending sign-off  
+**Owner:** Keren · **Review:** Joel, Leah, Hillel (CEO) · **Status:** Pending sign-off  
 **Pairs with:** [`glossary-pipeline-v2.md`](../glossary-pipeline-v2.md) · [`glossary/drop-reasons-for-signoff.md`](../glossary/drop-reasons-for-signoff.md)
 
 **Gate:** Joel schedules Avi tech review · Leah coordinates calendar — **only after these flowcharts are signed.**
@@ -214,9 +214,10 @@ flowchart TD
 | Short-term icon model (§2) | Joel Schlanger | ☐ | |
 | Multi-LOB view (§3) | Joel Schlanger | ☐ | |
 | NIA branch (§4) | Joel Schlanger | ☐ | |
+| **Executive approval** | **Hillel (CEO)** | ☐ | |
 | Coordination / comms gate | Leah Adelman | ☐ | |
 
-**After sign-off:**
+**After Joel + Hillel sign:**
 1. Joel → schedule Avi CRM implementation review
 2. Leah → coordinate calendar and team follow-up
 3. Enrollment specialist dashboard work proceeds in build phase (§7 Dashboards) — adoption after go-live
