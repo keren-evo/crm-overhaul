@@ -8,6 +8,8 @@
 **Status:** **Pending sign-off** — CRM implementation on hold until signed  
 **Last updated:** July 6, 2026
 
+> **Comments:** Use the **Comments** column on each glossary row. In the web version, comments save in your browser — **Copy all comments** when done and send to Keren.
+
 **Companion artifacts:**
 - **One-pager:** [`glossary/joel-model-signoff-onepager.md`](glossary/joel-model-signoff-onepager.md)
 - Flowcharts: [`flowcharts/pipeline-flowcharts-v1.md`](flowcharts/pipeline-flowcharts-v1.md)
@@ -328,12 +330,14 @@ Business labels above map to Nexus **Episode** object. Proposed split:
 
 ## Open items (resolve at sign-off)
 
-- [ ] Joel: Confirm NIA reapply wait (**180 days**?)
-- [ ] Joel: Finalize NHTD, OPWDD, Private Pay eligibility checklists
-- [ ] Joel: Sign [`glossary/drop-reasons-for-signoff.md`](glossary/drop-reasons-for-signoff.md)
-- [ ] Joel: Confirm master bar precedence when multiple LOBs at different stages
-- [ ] Joel: Confirm Active requires **confirmed SOC**
-- [ ] Avi: Technical review — field mapping, one-pass migration plan
+| Item | Owner | Comments |
+|------|-------|----------|
+| Confirm NIA reapply wait (**180 days**?) | Joel | |
+| Finalize NHTD, OPWDD, Private Pay eligibility checklists | Joel | |
+| Sign [`glossary/drop-reasons-for-signoff.md`](glossary/drop-reasons-for-signoff.md) | Joel | |
+| Confirm master bar precedence when multiple LOBs at different stages | Joel | |
+| Confirm Active requires **confirmed SOC** | Joel | |
+| Technical review — field mapping, one-pass migration plan | Avi | |
 
 ---
 
