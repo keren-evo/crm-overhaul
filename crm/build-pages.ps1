@@ -64,6 +64,8 @@ if (Test-Path $DecisionWorkspace) {
 
 Copy-Item (Join-Path $CrmSource "onedrive-hub\index.html") (Join-Path $SiteRoot "index.html") -Force
 Copy-Item (Join-Path $CrmSource "onedrive-hub\hub.html") (Join-Path $SiteRoot "hub.html") -Force
+Copy-Item (Join-Path $CrmSource "onedrive-hub\signoff-comments.js") (Join-Path $SiteRoot "signoff-comments.js") -Force
+Copy-Item (Join-Path $CrmSource "onedrive-hub\signoff-comments.css") (Join-Path $SiteRoot "signoff-comments.css") -Force
 New-Item -ItemType File -Force -Path (Join-Path $SiteRoot ".nojekyll") | Out-Null
 
 Write-Host "Converting markdown to styled HTML..."

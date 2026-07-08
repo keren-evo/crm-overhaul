@@ -2,10 +2,10 @@
 
 **Purpose:** Replace long, confusing drop-reason picklists with **10 clear categories** for CRM filtering, reporting, and enrollment specialist workflow.  
 **Maps to:** Nexus `Episode.outcome` / ReferralOutcome picklist  
-**Owner:** Keren · **Sign-off:** Joel Schlanger  
+**Prepared by:** Keren · **Sign-off:** Joel Schlanger (ops)  
 **Status:** **Pending Joel sign-off** — required before ReferralOutcome export and backfill
 
-> **Comments:** Use the **Comments** column on each drop reason. Web version saves in your browser — **Copy all comments** when done.
+> **Comments:** Use the **Comments** column on each row.
 
 **Use when:** Master pipeline moves to **Dropped Off** (anytime before Active).  
 **Not for:** Discharge reasons — see discharge list at bottom.
@@ -82,6 +82,6 @@ Use when master pipeline = **Discharged**. Joel to confirm final list; suggested
 
 ## After sign-off
 
-1. Keren updates `glossary-pipeline-v2.md` and flowcharts if needed  
+1. Keren updates `glossary-pipeline-v2.md` and flowcharts if needed *(handoff — not sign-off)*  
 2. Avi exports current ReferralOutcome values and maps old → new for backfill  
-3. Leah may coordinate Avi meeting per project gate  
+3. Leah coordinates Avi meeting per project gate (Joel → Avi → Leah → Hillel)  

@@ -6,7 +6,7 @@
     "source": "crm/meeting-notes/2026-07-pipeline-alignment.md",
     "agreed_pipeline": "Lead → Qualifying → Referral in Progress → Active → Discharged; Dropped Off anytime before Active",
     "short_term_care": "Parallel track with icon UI until authorized; then Active on main pipeline",
-    "crm_gate": "Finalize labels + flowcharts before Avi tech implementation; one-pass update planned",
+    "crm_gate": "Joel (ops) → Avi → Leah coordinates → Hillel (CEO) final sign on labels + flowcharts; one-pass update after gate",
     "nia_reapply_wait": "~180 days — Joel to confirm",
     "drop_reasons_target": "~10 categories",
     "supersedes": "Prior 3-stage Referral → Active → Discharged UI draft — reconcile at Avi meeting"
@@ -194,7 +194,7 @@
             "Show Dropped Off as terminal before Active from any prior stage",
             "Short-term care parallel track + icon UI spec (does not affect main bar until authorized)",
             "Multi-LOB simultaneous status display wireframe",
-            "Joel + Leah sign-off — unlocks Avi tech meeting and CRM build"
+            "Joel (ops) → Avi → Leah coordinates → Hillel (CEO) final — unlocks CRM build"
           ]
         },
         {
@@ -348,8 +348,8 @@
           "subtasks": [
             "Compile signed glossary (pipeline v2), flowcharts, LOB matrix, drop reasons, NIA rules",
             "Publish to Teams + repo",
-            "Joel ops sign-off + Leah comms alignment + Avi technical feasibility",
-            "Unlock Joel → Avi implementation review meeting and CRM Build workstream"
+            "Joel (ops) → Avi → Leah coordinates → Hillel (CEO) final sign-off",
+            "Unlock one-pass CRM build after all signatories sign"
           ]
         }
       ]

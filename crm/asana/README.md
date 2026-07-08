@@ -14,6 +14,7 @@ Workstream-based project structure for the Link Homecare / Nexus CRM status over
 | 6 | Mark 6 milestones + wire dependencies | [`milestones.json`](milestones.json) · [`dependencies.json`](dependencies.json) |
 | 7 | Create saved views | [`saved-views.md`](saved-views.md) |
 | 8 | Pin Jul 2026 workshop comment | [`workshop-jul2026-asana-sync.md`](workshop-jul2026-asana-sync.md) |
+| 9 | Map sign-off web package → tasks | [`signoff-package-asana-map.md`](signoff-package-asana-map.md) |
 
 ## Files
 
@@ -30,7 +31,7 @@ Workstream-based project structure for the Link Homecare / Nexus CRM status over
 | `custom-fields.json` | 8 custom field definitions |
 | `milestones.json` | 6 outcome-based milestones |
 | `dependencies.json` | Cross-section and within-section blockers |
-| `asana-ai-apply.prompt.md` | Single prompt for Asana AI |
+| `signoff-package-asana-map.md` | **Sign-off web package → Asana tasks** (Joel → Avi → Hilleh · cc Leah) |
 | `saved-views.md` | 7 saved view specs |
 
 ## Structure at a glance

@@ -1,12 +1,12 @@
 # Joel’s Model — Glossary Sign-Off One-Pager
 
-**For:** Hillel (CEO), Joel Schlanger (ops), Leah Adelman (coordination)  
+**For:** Joel Schlanger (ops), Avi, Hillel (CEO)  
 **From:** Keren · Link Homecare CRM Status Framework  
 **Purpose:** Approve the **patient status framework** for CRM implementation  
 **Problem (already agreed):** Screens and ops don’t share language; authorized ≠ active census  
 **Status:** Ready for sign-off  
 
-> **Comments:** Add notes in the **Comments** column on each row (web version). Use **Copy all comments** when finished.
+> **Comments:** Use the **Comments** column on each row.
 
 **Full glossary:** [`glossary-pipeline-v2.md`](../glossary-pipeline-v2.md)  
 **Flowcharts:** [`flowcharts/pipeline-flowcharts-v1.md`](../flowcharts/pipeline-flowcharts-v1.md)  
@@ -47,14 +47,14 @@ Lead → Qualifying → Referral in Progress → Active → Discharged
 
 ## What “approve” unlocks
 
-1. **Hillel (CEO)** signs → leadership green-light to proceed  
-2. **Joel (ops)** signs → operational truth locked  
-3. Joel schedules Avi’s CRM implementation review  
-4. Leah coordinates calendar  
+1. **Joel (ops)** signs → operational truth locked  
+2. **Avi** signs → CRM implementation feasibility confirmed *(Joel schedules Avi’s review)*  
+3. **Leah** coordinates calendar and team follow-up  
+4. **Hillel (CEO)** signs → final executive approval  
 5. Avi does **one-pass** update: labels + filters + backfill together  
 6. Growth / marketing reporting waits until these stages are live  
 
-**No CRM field changes until Joel + Hillel sign this page (or full glossary).**
+**No CRM field changes until Joel, Avi, and Hillel (CEO) sign this page (or full glossary).**
 
 ---
 
@@ -81,12 +81,10 @@ By signing, this one-pager (and companion glossary / flowcharts) is the **busine
 
 | Role | Name | Initials | Date |
 |------|------|----------|------|
-| **CEO** | **Hillel** | | |
 | Operations | Joel Schlanger | | |
-| Framework | Keren Hapuch Lacadin | | |
-| Coordination | Leah Adelman | | |
-| CRM build *(after tech review)* | Avi | | |
+| CRM implementation | Avi | | |
+| **CEO** *(final)* | **Hillel** | | |
 
-**Gate:** Joel (ops) + Hillel (CEO) sign → Joel schedules Avi · Leah coordinates calendar.
+**Gate:** Joel → Avi → Hillel (CEO) · cc Leah.
 
 ---

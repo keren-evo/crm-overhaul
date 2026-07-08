@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sign-Off Context — Jul 2026 (chat handoff)</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    :root {
+      --bg: #f4f6f9;
+      --card: #ffffff;
+      --text: #172033;
+      --muted: #5c6578;
+      --accent: #0f766e;
+      --accent-light: #e6f4f2;
+      --border: #d8dee9;
+      --code-bg: #f1f5f9;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.65 "Segoe UI", system-ui, -apple-system, sans-serif;
+    }
+    .topbar {
+      background: linear-gradient(135deg, #0f766e 0%, #134e4a 100%);
+      color: #fff;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.9rem;
+    }
+    .topbar a {
+      color: #fff;
+      text-decoration: none;
+      opacity: 0.95;
+    }
+    .topbar a:hover { text-decoration: underline; }
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+    article {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem 2.25rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    article h1 {
+      margin-top: 0;
+      font-size: 1.75rem;
+      color: #0d5c56;
+      line-height: 1.25;
+      border-bottom: 2px solid var(--accent-light);
+      padding-bottom: 0.5rem;
+    }
+    article h2 {
+      margin-top: 2rem;
+      font-size: 1.25rem;
+      color: #134e4a;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.35rem;
+    }
+    article h3 { margin-top: 1.5rem; color: #1e3a38; }
+    article h4 { margin-top: 1.25rem; }
+    a { color: var(--accent); }
+    a:hover { color: #0d5c56; }
+    p { margin: 0.85rem 0; }
+    ul, ol { padding-left: 1.5rem; }
+    li { margin: 0.35rem 0; }
+    li > ul { margin-top: 0.25rem; }
+    blockquote {
+      margin: 1.25rem 0;
+      padding: 0.75rem 1rem;
+      border-left: 4px solid var(--accent);
+      background: var(--accent-light);
+      border-radius: 0 8px 8px 0;
+    }
+    blockquote p { margin: 0.35rem 0; }
+    code {
+      font-family: Consolas, "SF Mono", monospace;
+      font-size: 0.9em;
+      background: var(--code-bg);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+    }
+    pre {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 1rem 1.15rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+    pre code {
+      background: transparent;
+      padding: 0;
+      color: inherit;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.25rem 0;
+      font-size: 0.95rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.6rem 0.75rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #f8fafc;
+      font-weight: 600;
+      color: #134e4a;
+    }
+    tr:nth-child(even) td { background: #fafbfc; }
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+    .mermaid {
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+    .toc {
+      background: var(--accent-light);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .toc ul { margin: 0.5rem 0 0; }
+    input[type="checkbox"] { margin-right: 0.35rem; }
+    
+    @media print {
+      body { background: #fff; }
+      .topbar { display: none; }
+      .signoff-toolbar { display: none; }
+      article { box-shadow: none; border: none; }
+      textarea.signoff-comment {
+        border: 1px solid #ccc;
+        min-height: 2.5rem;
+        print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topbar"><a href="../index.html">← Sign-off package</a></nav>
+  <main><article><h1 id="sign-off-context-jul-2026-chat-handoff">Sign-Off Context — Jul 2026 (chat handoff)</h1>
+<p><strong>Purpose:</strong> Full context from CRM sign-off prep work — leadership feedback, meeting playbook, artifacts, gates, and next steps.<br>
+<strong>Audience:</strong> Keren (handoff / new chat / stakeholders joining mid-stream)<br>
+<strong>Status:</strong> Pending sign-off — Joel (ops) → Avi → Leah coordinates → Hillel (CEO) final<br>
+<strong>Hub:</strong> <a href="../onedrive-hub/index.html"><code>../onedrive-hub/index.html</code></a> · <a href="https://keren-evo.github.io/crm-overhaul/">GitHub Pages</a></p>
+<hr>
+<h2 id="1-situation-leadership-feedback">1. Situation &amp; leadership feedback</h2>
+<p><strong>What happened:</strong> Leah relayed feedback from Hillel (CEO). Leadership finds the <strong>Asana board and technical language too complicated</strong> — nobody is following it. They want the <strong>simple idea first</strong>, not actionables, glossary walkthroughs, or project machinery.</p>
+<p><strong>Core tension:</strong> Process was leading (Asana → glossary → Avi). Leadership wants Joel’s operating picture in plain English.</p>
+<p><strong>Problem is already agreed (don’t re-teach in meetings):</strong></p>
+<ul>
+<li>Screens and ops don’t share language</li>
+<li><strong>Authorized ≠ Active</strong> (~1,960 dashboard vs ~1,200–1,300 true census)</li>
+<li>Legacy Salesforce labels cause conflicting tags on one record</li>
+</ul>
+<p><strong>Why sign-off was paused:</strong> On an alignment call, COO and CEO were still working through points live — nothing was treated as locked without an explicit yes.</p>
+<p><strong>Polite framing:</strong></p>
+<blockquote>
+<p>“On the alignment call, leadership was still working through a few points live, so I held off treating the glossary as approved. I’m bringing back one simple path for a clean yes.”</p>
+</blockquote>
+<hr>
+<h2 id="2-what-this-build-is">2. What this build is</h2>
+<p><strong>Not</strong> a marketing campaign launch. <strong>Primary work:</strong> CRM status/lifecycle rebuild for <strong>Link Homecare NY</strong> on <strong>Nexus</strong> (<code>crm.linkhomecare.com</code>).</p>
+<p><strong>Secondary (later):</strong> Evo Growth stack (LeadTrap, Meta, attribution) — only after CRM stages are trustworthy.</p>
+<p><strong>Program goals:</strong></p>
+<ol>
+<li>Trustworthy census (Active = in care, not “authorized”)</li>
+<li>Clear workflow (stage visible in ≤3 seconds)</li>
+<li>Growth-ready data (~10 drop reasons, reliable funnel)</li>
+</ol>
+<p><strong>Gate:</strong> Joel (ops) signs → Avi signs <em>(Joel schedules review)</em> → Leah coordinates → <strong>Hillel (CEO)</strong> final sign → <strong>one-pass</strong> CRM update (labels + filters + backfill). <strong>No CRM field changes until Joel, Avi, and Hillel sign.</strong></p>
+<hr>
+<h2 id="3-joels-model-freeze-this">3. Joel’s model — freeze this</h2>
+<pre><code>Lead → Qualifying → Referral in Progress → Active → Discharged
+                    ↘ Dropped Off (never became Active)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Plain English</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Lead</strong></td>
+<td>Brand-new inquiry</td>
+</tr>
+<tr>
+<td><strong>Qualifying</strong></td>
+<td>Checking fit — intake <strong>not</strong> open yet</td>
+</tr>
+<tr>
+<td><strong>Referral in Progress</strong></td>
+<td>Intake open for a specific program</td>
+</tr>
+<tr>
+<td><strong>Active</strong></td>
+<td><strong>Receiving care</strong> = real census</td>
+</tr>
+<tr>
+<td><strong>Discharged</strong></td>
+<td>Left agency after being Active</td>
+</tr>
+<tr>
+<td><strong>Dropped Off</strong></td>
+<td>Never became Active</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Two rules:</strong></p>
+<ol>
+<li><strong>Authorized ≠ Active</strong> — payer yes vs we are giving care</li>
+<li><strong>Dropped Off ≠ Discharged</strong> — never started vs was in care, then left</li>
+</ol>
+<p><strong>Extras (if room):</strong></p>
+<ul>
+<li><strong>Short-term:</strong> parallel icon track until ST authorized → main bar = Active</li>
+<li><strong>Multi-LOB:</strong> one person, multiple programs; drop one LOB ≠ discharge patient</li>
+</ul>
+<hr>
+<h2 id="4-meeting-playbook">4. Meeting playbook</h2>
+<p><strong>Open (20–30 sec):</strong></p>
+<blockquote>
+<p>“We already agreed the problem — screens and ops don’t match, authorized isn’t census. Today is only: confirm Joel’s path as the language we freeze. No board, no slides.”</p>
+</blockquote>
+<p><strong>Center (2–3 min):</strong> Walk five stages + Dropped Off. Hard pause: <em>“Does this match how Link works?”</em></p>
+<p><strong>Ask (45 sec):</strong></p>
+<blockquote>
+<p>“Is Joel’s path the language we freeze? Yes → sign and move. No → we fix the one sentence that’s off, here.”</p>
+</blockquote>
+<p><strong>Do not:</strong> Open Asana, walk glossary line-by-line, preview Avi tickets, or pitch growth/LeadTrap.</p>
+<p><strong>Reset if they drift:</strong></p>
+<blockquote>
+<p>“Reset — problem’s locked. We’re only confirming Joel’s path. Still on that?”</p>
+</blockquote>
+<p><strong>Pocket card:</strong> Idea first · Authorized ≠ Active · Joel’s path · Dropped ≠ Discharged · Joel → Avi → Leah → Hillel sign · No Asana in room</p>
+<hr>
+<h2 id="5-sign-off-roles">5. Sign-off roles</h2>
+<table>
+<thead>
+<tr>
+<th>Who</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Joel Schlanger</strong></td>
+<td>Ops truth — signs first; path, SOC, NIA, drop reasons; schedules Avi review</td>
+</tr>
+<tr>
+<td><strong>Avi</strong></td>
+<td>CRM implementation — signs after Joel</td>
+</tr>
+<tr>
+<td><strong>Hillel</strong></td>
+<td>CEO — final executive sign-off</td>
+</tr>
+<tr>
+<td><strong>Leah Adelman</strong></td>
+<td>Calendar and team scheduling</td>
+</tr>
+<tr>
+<td><strong>Keren</strong></td>
+<td>Prepared framework docs</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Hillel (30 sec):</strong></p>
+<blockquote>
+<p>“I need your final executive sign-off on Joel’s simple path. Joel locks ops truth, Avi confirms we can build it, then my yes lets the CRM update proceed. Joel owns the details.”</p>
+</blockquote>
+<hr>
+<h2 id="6-artifacts">6. Artifacts</h2>
+<table>
+<thead>
+<tr>
+<th>Artifact</th>
+<th>Path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hub / index</td>
+<td><code>crm/onedrive-hub/index.html</code> → <code>docs/index.html</code></td>
+</tr>
+<tr>
+<td>One-pager (<strong>send first</strong>)</td>
+<td><code>crm/glossary/joel-model-signoff-onepager.md</code></td>
+</tr>
+<tr>
+<td>Full glossary v2.1</td>
+<td><code>crm/glossary-pipeline-v2.md</code></td>
+</tr>
+<tr>
+<td>Flowcharts</td>
+<td><code>crm/flowcharts/pipeline-flowcharts-v1.md</code></td>
+</tr>
+<tr>
+<td>Drop reasons (10)</td>
+<td><code>crm/glossary/drop-reasons-for-signoff.md</code></td>
+</tr>
+<tr>
+<td>Teams/email ask (<strong>internal</strong>)</td>
+<td><code>crm/glossary/_teams-ask-glossary-signoff.md</code></td>
+</tr>
+<tr>
+<td>Full hub index</td>
+<td><code>crm/onedrive-hub/hub.html</code></td>
+</tr>
+<tr>
+<td>Comment UI</td>
+<td><code>crm/onedrive-hub/signoff-comments.css</code>, <code>signoff-comments.js</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Build:</strong> <code>powershell -File crm/build-pages.ps1</code><br>
+<strong>OneDrive sync:</strong> <code>powershell -File crm/sync-to-onedrive.ps1</code></p>
+<p><strong>Comments:</strong> Each glossary row has a <strong>Comments</strong> column on web pages. Reviewers use <strong>Copy all comments</strong> and share feedback when finished (saved in browser localStorage).</p>
+<p><strong>Canvas (Cursor only, not in hub):</strong> <code>canvases/joel-patient-pipeline.canvas.tsx</code> — visual for Keren’s prep; facilitator script removed.</p>
+<hr>
+<h2 id="7-open-items-at-joel-sign-off">7. Open items at Joel sign-off</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Active requires confirmed <strong>SOC</strong></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>NIA fail → reapply wait</td>
+<td>~180 days (Joel confirm)</td>
+</tr>
+<tr>
+<td>Multi-LOB master bar</td>
+<td>Most advanced open gold LOB</td>
+</tr>
+<tr>
+<td>10 drop reasons</td>
+<td>Sign drop-reasons sheet</td>
+</tr>
+<tr>
+<td>Short-term icon model</td>
+<td>Parallel until Authorized → Active</td>
+</tr>
+<tr>
+<td>NHTD / OPWDD / Private Pay checklists</td>
+<td>Joel-owned; doesn’t block Avi meeting</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="8-what-to-send">8. What to send</h2>
+<p><strong>Send:</strong> Index or one-pager — not Asana.</p>
+<p><strong>Subject:</strong> Approve Joel’s patient path — Joel → Avi → Hillel sign-off</p>
+<p><strong>Voice (30 sec):</strong></p>
+<blockquote>
+<p>“Problem’s locked. I need Joel’s ops yes on five stages plus Dropped Off, Avi’s build yes, then Hillel’s final executive yes. That unlocks the CRM update. Board stays out of this.”</p>
+</blockquote>
+<p><strong>After gate complete:</strong> Joel → Avi · Leah → calendar · one-pass build</p>
+<hr>
+<h2 id="9-repo-layout">9. Repo layout</h2>
+<pre><code>crm/                    ← source of truth
+  glossary/             ← sign-off markdown
+  onedrive-hub/         ← index, hub, signoff-comments.*
+  meeting-notes/        ← this file + workshop notes
+  scripts/md-to-html.py
+  build-pages.ps1       ← crm → docs/
+  sync-to-onedrive.ps1
+docs/                   ← built static site (GitHub Pages)
+</code></pre>
+<p><code>crm/README.md</code> ends after Sign-off package + GitHub links (OneDrive/internal sections removed).</p>
+<hr>
+<h2 id="10-one-sentence-summary">10. One-sentence summary</h2>
+<p><strong>Fix how Link counts patients from inquiry to Active census — Joel, Avi, and Hillel sign Joel’s simple path (Leah coordinates) — then Avi updates Nexus once; growth and Asana wait until the words match the floor.</strong></p></article></main>
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose" });
+  </script>
+  
+</body>
+</html>

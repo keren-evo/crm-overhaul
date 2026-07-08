@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CRM Sign-Off Package — Link Homecare</title>
+  <link rel="stylesheet" href="signoff-comments.css" />
   <style>
     :root {
       --bg: #f4f6f9;
@@ -99,6 +100,14 @@
     }
     .badge.sign { background: #fef3c7; color: var(--gate); }
     .badge.html { background: #dbeafe; color: #1d4ed8; }
+    .steps {
+      margin: 0;
+      padding-left: 1.25rem;
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+    .steps li { margin: 0.5rem 0; }
+    .steps strong { color: #0d5c56; }
     .rules {
       margin: 0;
       padding-left: 1.25rem;
@@ -119,7 +128,7 @@
     <h1>CRM Sign-Off Package</h1>
     <p>Link Homecare · Patient status framework · Pending leadership review</p>
     <div class="gate">
-      <strong>Status:</strong> Pending sign-off from <strong>Hillel (CEO)</strong> and <strong>Joel (ops)</strong>.
+      <strong>Status:</strong> Pending sign-off — <strong>Joel</strong> → <strong>Avi</strong> → <strong>Hillel</strong> (CEO) · cc Leah.
     </div>
     <div class="path">Lead → Qualifying → Referral in Progress → Active → Discharged<br>↘ Dropped Off if they never become Active</div>
   </header>
@@ -127,82 +136,63 @@
   <main>
     <section>
       <h2>How to review</h2>
-      <ol class="rules">
-        <li>Open each document below — every glossary row has a <strong>Comments</strong> column.</li>
-        <li>Type revisions or questions (saved in your browser on the web version).</li>
-        <li>Click <strong>Copy all comments</strong> and share your feedback when finished.</li>
+      <ol class="steps">
+        <li><strong>Enter your name</strong> below.</li>
+        <li><strong>Open each document</strong> — type in the <strong>Comments</strong> column on any row you want to change. Comments <strong>save automatically</strong> as you type in this browser.</li>
       </ol>
+      <p style="margin:0.75rem 0 0;font-size:0.88rem;color:var(--muted)">Start with the one-pager if you only have a few minutes. When you're done, your comments stay saved here — no extra steps needed.</p>
     </section>
 
     <section>
-      <h2>Sign-off</h2>
-      <ul>
-        <li>
-          <div class="doc" style="cursor: default;">
-            <span class="badge sign">CEO</span>
-            <div>
-              <strong>Hillel</strong>
-              <span>Executive approval</span>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="doc" style="cursor: default;">
-            <span class="badge sign">Ops</span>
-            <div>
-              <strong>Joel Schlanger</strong>
-              <span>Operations approval</span>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="doc" style="cursor: default;">
-            <span class="badge">Coord</span>
-            <div>
-              <strong>Leah Adelman</strong>
-              <span>Project coordination</span>
-            </div>
-          </div>
-        </li>
-      </ul>
+      <h2>Your progress</h2>
+      <div class="package-comments">
+        <div class="reviewer-field">
+          <label for="reviewer-name">Your name</label>
+          <input id="reviewer-name" type="text" placeholder="e.g. Joel Schlanger" autocomplete="name" />
+        </div>
+        <span class="signoff-hint">Comments autosave as you type.</span>
+        <span id="package-save-status" class="save-status" aria-live="polite"></span>
+        <span id="package-comment-count">No comments saved yet</span>
+        <button type="button" id="copy-all-comments-btn" title="Optional — paste into Teams or email">Copy all comments</button>
+      </div>
     </section>
 
     <section>
-      <h2>Documents for review</h2>
+      <h2>Documents</h2>
       <ul>
         <li>
           <a class="doc primary" href="glossary/joel-model-signoff-onepager.html">
-            <span class="badge sign">Summary</span>
+            <span class="badge sign">1</span>
             <div>
               <strong>Patient path — one-pager</strong>
-              <span>Plain-language overview · Authorized ≠ Active · Dropped Off ≠ Discharged</span>
+              <span>Start here · ~3 min</span>
             </div>
           </a>
         </li>
         <li>
           <a class="doc" href="glossary-pipeline-v2.html">
-            <span class="badge sign">Glossary</span>
+            <span class="badge sign">2</span>
             <div>
-              <strong>Full status glossary v2.1</strong>
-              <span>Stages, referral substatuses, LOB, NIA, retired terms</span>
+              <strong>Full glossary</strong>
+              <span>Reference if you need detail</span>
             </div>
           </a>
         </li>
         <li>
           <a class="doc" href="flowcharts/pipeline-flowcharts-v1.html">
-            <span class="badge html">Flowcharts</span>
+            <span class="badge html">3</span>
             <div>
               <strong>Pipeline flowcharts</strong>
-              <span>Main path · short-term icon · multi-LOB · NIA branch</span>
+              <span>Visual walkthrough</span>
             </div>
           </a>
         </li>
         <li>
           <a class="doc" href="glossary/drop-reasons-for-signoff.html">
-            <span class="badge sign">Sign-off</span>
+            <span class="badge sign">4</span>
             <div>
-              <strong>Drop reasons — 10 categories</strong>
-              <span>When a patient never becomes Active</span>
+              <strong>Drop reasons</strong>
+              <span>10 categories when a patient never starts care</span>
             </div>
           </a>
         </li>
@@ -219,5 +209,7 @@
   </main>
 
   <footer>Link Homecare CRM Status Framework · July 2026</footer>
+  <script src="signoff-comments.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () { LinkCrmSignoff.initPackage(); });</script>
 </body>
 </html>

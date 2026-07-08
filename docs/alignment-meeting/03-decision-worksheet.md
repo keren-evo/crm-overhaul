@@ -128,11 +128,12 @@ Carry unresolved items from [discovery notes](../discovery/1-1-CRM-Discovery-Ses
 
 | Role | Name | Aligned on phased plan? | Notes |
 |------|------|-------------------------|-------|
-| Framework | Keren | ☐ | |
-| Operations | Joel | ☐ | |
-| CRM implementation | Avi | ☐ | |
-| Comms | Leah | ☐ | |
+| Framework *(author — not signatory)* | Keren | ☐ | |
+| Operations | Joel | ☐ | Signs first |
+| CRM implementation | Avi | ☐ | Signs after Joel |
+| Comms *(coordinates — not signatory)* | Leah | ☐ | |
 | Sales UAT | Angelo | ☐ | |
+| **CEO** *(final signatory)* | **Hillel** | ☐ | |
 
 **Next action owner for Asana sync:** _______________  
 **Due:** Same day as alignment meeting

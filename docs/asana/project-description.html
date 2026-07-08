@@ -153,7 +153,7 @@
   <main><article><h1 id="link-homecare-crm-status-architecture-rebuild">Link Homecare — CRM Status Architecture Rebuild</h1>
 <p><strong>Program:</strong> CRM Operating Model Rebuild (NY Operations)<br>
 <strong>CRM:</strong> Nexus at <a href="https://crm.linkhomecare.com/">crm.linkhomecare.com</a><br>
-<strong>Framework owner:</strong> Keren · <strong>Operational truth:</strong> Joel · <strong>Executive approval:</strong> Hillel (CEO) · <strong>Build:</strong> Avi · <strong>Comms/scheduling:</strong> Leah</p>
+<strong>Framework author:</strong> Keren <em>(not a signatory)</em> · <strong>Operational truth:</strong> Joel · <strong>CRM build:</strong> Avi · <strong>Executive approval:</strong> Hillel (CEO) · <strong>Comms/scheduling:</strong> Leah</p>
 <hr>
 <h2 id="why-this-project-exists">Why this project exists</h2>
 <p>The CRM inherited Salesforce-era labels that no longer match how Link Homecare operates. Dashboards show ~1,960 "authorized" patients while true active census is ~1,200–1,300. This project fixes <strong>business logic first</strong>, then data, then dashboards.</p>
@@ -167,7 +167,7 @@
 <li><strong>Short-term care</strong> = parallel track with icon UI until authorized; then Active on main pipeline</li>
 <li><strong>Multi-LOB</strong> = simultaneous per-LOB statuses displayed alongside master pipeline</li>
 </ul>
-<p><strong>Gate:</strong> Joel + Hillel (CEO) sign labels + flowcharts → Joel schedules Avi tech implementation. <strong>One-pass</strong> CRM update planned.</p>
+<p><strong>Gate:</strong> Joel (ops) → Avi → Leah coordinates → Hillel (CEO) final sign on labels + flowcharts. <strong>One-pass</strong> CRM update after gate complete.</p>
 <h2 id="program-goals">Program goals</h2>
 <table>
 <thead>
@@ -195,11 +195,12 @@
 <pre><code>Governance → Definitions (GATE) → Baseline ∥ Architecture → Build → Remediation → Dashboards → Go-Live → Training → Growth
 </code></pre>
 <p><strong>Next actions (from Jul 2026 meeting):</strong><br>
-- Keren — refine glossary (<code>crm/glossary-pipeline-v2.md</code>)<br>
+- Keren — refine glossary (<code>crm/glossary-pipeline-v2.md</code>) <em>(author — not a signatory)</em><br>
 - Team — finalize labels + flowcharts<br>
-- <strong>Hillel (CEO) + Joel — sign off</strong> on patient path framework<br>
-- Joel — schedule Avi tech review after sign-off<br>
-- Leah — follow-up chat + coordinate meeting scheduling</p>
+- <strong>Joel — sign ops truth first</strong>; schedule Avi tech review<br>
+- <strong>Avi — sign CRM implementation feasibility</strong><br>
+- <strong>Leah — coordinate calendar</strong> <em>(not a signatory)</em><br>
+- <strong>Hillel (CEO) — final executive sign-off</strong> on patient path framework</p>
 <h2 id="team">Team</h2>
 <table>
 <thead>
@@ -211,23 +212,23 @@
 <tbody>
 <tr>
 <td>Keren</td>
-<td>Glossary, flowcharts, audit, UAT</td>
+<td>Glossary, flowcharts, audit, UAT <em>(author — not a signatory)</em></td>
 </tr>
 <tr>
 <td>Joel</td>
-<td>Pipeline definitions, LOB eligibility, ops sign-off, Avi meeting</td>
-</tr>
-<tr>
-<td>Hillel</td>
-<td>CEO executive approval — unlocks next step</td>
+<td>Pipeline definitions, LOB eligibility; <strong>signs ops truth first</strong></td>
 </tr>
 <tr>
 <td>Avi</td>
-<td>CRM build, one-pass implementation, backfill</td>
+<td>CRM build; <strong>signs implementation feasibility</strong></td>
 </tr>
 <tr>
 <td>Leah</td>
-<td>Follow-up comms, meeting scheduling</td>
+<td>Follow-up comms, meeting scheduling <em>(coordinates — not a signatory)</em></td>
+</tr>
+<tr>
+<td>Hillel</td>
+<td><strong>CEO — final executive sign-off</strong></td>
 </tr>
 <tr>
 <td>Angelo</td>
@@ -267,7 +268,7 @@
 </tbody>
 </table>
 <h2 id="rule">Rule</h2>
-<p><strong>No CRM field updates or backfill until Joel + Hillel (CEO) sign status labels and flowcharts.</strong></p></article></main>
+<p><strong>No CRM field updates or backfill until Joel, Avi, and Hillel (CEO) sign status labels and flowcharts.</strong></p></article></main>
   <script>
     mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose" });
   </script>

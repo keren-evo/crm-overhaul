@@ -152,7 +152,7 @@
   <nav class="topbar"><a href="index.html">← Sign-off package</a></nav>
   <main><article><h1 id="crm-status-framework-implementation-artifacts">CRM Status Framework — Implementation Artifacts</h1>
 <p>Executable specs for the Lead → Referral → Intake → Patient lifecycle overhaul (NY Operations).</p>
-<h2 id="sign-off-package-jul-2026-pending-hillel-joel">Sign-off package (Jul 2026 — pending Hillel + Joel)</h2>
+<h2 id="sign-off-package-jul-2026-pending-joel-avi-hillel">Sign-off package (Jul 2026 — pending Joel → Avi → Hillel)</h2>
 <table>
 <thead>
 <tr>
@@ -187,7 +187,7 @@
 </tr>
 </tbody>
 </table>
-<p><strong>Gate:</strong> Hillel (CEO) + Joel sign one-pager (or full glossary) + flowcharts → Joel schedules Avi · Leah coordinates calendar.</p>
+<p><strong>Gate:</strong> Joel (ops) → Avi → Leah coordinates → Hillel (CEO) final sign on one-pager (or full glossary) + flowcharts. One-pass CRM update after gate complete.</p>
 <h2 id="github-web-hub">GitHub &amp; web hub</h2>
 <table>
 <thead>
@@ -222,142 +222,7 @@
 <td><a href="https://keren-evo.github.io/crm-overhaul/asana/crm_asana_v3.csv">crm_asana_v3.csv</a> (Related Docs = hub links)</td>
 </tr>
 </tbody>
-</table>
-<h2 id="onedrive-hub-clickable-share-with-team">OneDrive hub (clickable — share with team)</h2>
-<table>
-<thead>
-<tr>
-<th>Item</th>
-<th>Path</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Open in browser</strong></td>
-<td><code>O:\EVO\OneDrive - EVO Healthcare Group\Documents\Link Homecare - CRM Overhaul\index.html</code></td>
-</tr>
-<tr>
-<td><strong>Re-sync after repo edits</strong></td>
-<td><code>powershell -File crm/sync-to-onedrive.ps1</code></td>
-</tr>
-</tbody>
-</table>
-<p>Hub source in repo: <code>crm/onedrive-hub/index.html</code>. Share the OneDrive folder with Joel/Leah for clickable links (glossary, flowcharts HTML, drop reasons, workspace, Asana).</p>
-<p><strong>OneDrive web:</strong> Open <code>index.html</code> with <strong>Open in browser</strong> (not the side preview). All pages include a cloud navigation script so links open in a new tab with full SharePoint URLs.</p>
-<h2 id="contents">Contents</h2>
-<table>
-<thead>
-<tr>
-<th>Path</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>schema/enums.ts</code></td>
-<td>TypeScript enums + metadata for app code</td>
-</tr>
-<tr>
-<td><code>schema/enums.json</code></td>
-<td>Schema Manager / picklist import</td>
-</tr>
-<tr>
-<td><code>schema/lifecycle.ts</code></td>
-<td>Master stage computation + transition gates</td>
-</tr>
-<tr>
-<td><code>schema/validation-rules.ts</code></td>
-<td>Blocking validation rule definitions</td>
-</tr>
-<tr>
-<td><code>schema/nexus-episode-status-map.json</code></td>
-<td>Episode-centric migration map (Nexus CRM)</td>
-</tr>
-<tr>
-<td><code>schema/legacy-status-map.json</code></td>
-<td>Legacy Salesforce-era → unified framework</td>
-</tr>
-<tr>
-<td><code>audit/data-integrity-audit.sql</code></td>
-<td>Run against live CRM DB before migration</td>
-</tr>
-<tr>
-<td><code>audit/dashboard-queries.sql</code></td>
-<td>Sales, ops, census, funnel leakage queries</td>
-</tr>
-<tr>
-<td><code>asana/</code></td>
-<td><strong>Asana sprint organization kit</strong> — CSV, sections, dependencies, AI prompt</td>
-</tr>
-<tr>
-<td><code>alignment-meeting/</code></td>
-<td><strong>Alignment meeting package</strong> — share-with-team, walkthrough, decisions, Asana sync, Phase 0 workshop</td>
-</tr>
-<tr>
-<td><code>crm-bot-discovery.prompt.md</code></td>
-<td>Copy-paste prompts for CRM bot discovery (Phase 0–1)</td>
-</tr>
-</tbody>
-</table>
-<h2 id="asana-project-setup">Asana project setup</h2>
-<p>For <strong>EVO CRM Status Label Overhaul Sprint</strong>, use <a href="asana/README.html"><code>asana/README.md</code></a>:</p>
-<ol>
-<li>Paste <a href="asana/project-description.html"><code>asana/project-description.md</code></a> into the Asana project description</li>
-<li>Run <a href="asana/asana-ai-apply.prompt.html"><code>asana/asana-ai-apply.prompt.md</code></a> in Asana AI, or apply <a href="asana/evo-crm-sprint-tasks.csv"><code>asana/evo-crm-sprint-tasks.csv</code></a> manually</li>
-</ol>
-<h2 id="table-name-assumptions-sql">Table name assumptions (SQL)</h2>
-<p>Adjust aliases in SQL files to match your CRM:</p>
-<table>
-<thead>
-<tr>
-<th>Spec name</th>
-<th>Expected table</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>persons</code></td>
-<td>Person / Contact unified record</td>
-<td></td>
-</tr>
-<tr>
-<td><code>intakes</code></td>
-<td>Intake child records</td>
-<td>One row per LOB attempt</td>
-</tr>
-<tr>
-<td><code>authorizations</code></td>
-<td>Authorization object</td>
-<td>Linked from intake</td>
-</tr>
-<tr>
-<td><code>medicaid_tickets</code></td>
-<td>Medicaid application track</td>
-<td>Orthogonal to lifecycle</td>
-</tr>
-<tr>
-<td><code>service_episodes</code></td>
-<td>Active service post-SOC</td>
-<td>Required for census</td>
-</tr>
-</tbody>
-</table>
-<h2 id="usage">Usage</h2>
-<pre><code class="language-bash"># Type-check lifecycle logic (from repo root)
-npx tsc --noEmit crm/schema/*.ts
-
-# Run audit pack (PostgreSQL example)
-psql &quot;$CRM_DATABASE_URL&quot; -f crm/audit/data-integrity-audit.sql
-</code></pre>
-<h2 id="migration-order">Migration order</h2>
-<ol>
-<li>Run <code>audit/data-integrity-audit.sql</code> — baseline counts</li>
-<li>Import <code>schema/enums.json</code> picklists into Schema Manager</li>
-<li>Apply <code>legacy-status-map.json</code> in a staging batch job</li>
-<li>Deploy validation rules from <code>validation-rules.ts</code></li>
-<li>Enable computed <code>lifecycle_stage</code> + rebuild dashboards using <code>dashboard-queries.sql</code></li>
-</ol></article></main>
+</table></article></main>
   <script>
     mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose" });
   </script>

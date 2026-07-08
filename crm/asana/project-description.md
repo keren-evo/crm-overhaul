@@ -2,7 +2,7 @@
 
 **Program:** CRM Operating Model Rebuild (NY Operations)  
 **CRM:** Nexus at [crm.linkhomecare.com](https://crm.linkhomecare.com/)  
-**Framework owner:** Keren · **Operational truth:** Joel · **Executive approval:** Hillel (CEO) · **Build:** Avi · **Comms/scheduling:** Leah
+**Framework author:** Keren *(not a signatory)* · **Operational truth:** Joel · **CRM build:** Avi · **Executive approval:** Hillel (CEO) · **Comms/scheduling:** Leah
 
 ---
 
@@ -22,7 +22,7 @@ Lead → Qualifying → Referral in Progress → Active → Discharged
 - **Short-term care** = parallel track with icon UI until authorized; then Active on main pipeline
 - **Multi-LOB** = simultaneous per-LOB statuses displayed alongside master pipeline
 
-**Gate:** Joel + Hillel (CEO) sign labels + flowcharts → Joel schedules Avi tech implementation. **One-pass** CRM update planned.
+**Gate:** Joel (ops) → Avi → Leah coordinates → Hillel (CEO) final sign on labels + flowcharts. **One-pass** CRM update after gate complete.
 
 ## Program goals
 
@@ -39,21 +39,22 @@ Governance → Definitions (GATE) → Baseline ∥ Architecture → Build → Re
 ```
 
 **Next actions (from Jul 2026 meeting):**
-- Keren — refine glossary (`crm/glossary-pipeline-v2.md`)
+- Keren — refine glossary (`crm/glossary-pipeline-v2.md`) *(author — not a signatory)*
 - Team — finalize labels + flowcharts
-- **Hillel (CEO) + Joel — sign off** on patient path framework
-- Joel — schedule Avi tech review after sign-off
-- Leah — follow-up chat + coordinate meeting scheduling
+- **Joel — sign ops truth first**; schedule Avi tech review
+- **Avi — sign CRM implementation feasibility**
+- **Leah — coordinate calendar** *(not a signatory)*
+- **Hillel (CEO) — final executive sign-off** on patient path framework
 
 ## Team
 
 | Person | Role |
 |--------|------|
-| Keren | Glossary, flowcharts, audit, UAT |
-| Joel | Pipeline definitions, LOB eligibility, ops sign-off, Avi meeting |
-| Hillel | CEO executive approval — unlocks next step |
-| Avi | CRM build, one-pass implementation, backfill |
-| Leah | Follow-up comms, meeting scheduling |
+| Keren | Glossary, flowcharts, audit, UAT *(author — not a signatory)* |
+| Joel | Pipeline definitions, LOB eligibility; **signs ops truth first** |
+| Avi | CRM build; **signs implementation feasibility** |
+| Leah | Follow-up comms, meeting scheduling *(coordinates — not a signatory)* |
+| Hillel | **CEO — final executive sign-off** |
 | Angelo | Sales UAT |
 | Enrollment specialists | Status updates; dashboard users when live |
 
@@ -68,4 +69,4 @@ Governance → Definitions (GATE) → Baseline ∥ Architecture → Build → Re
 
 ## Rule
 
-**No CRM field updates or backfill until Joel + Hillel (CEO) sign status labels and flowcharts.**
+**No CRM field updates or backfill until Joel, Avi, and Hillel (CEO) sign status labels and flowcharts.**

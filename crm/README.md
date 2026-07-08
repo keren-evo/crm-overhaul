@@ -2,7 +2,7 @@
 
 Executable specs for the Lead → Referral → Intake → Patient lifecycle overhaul (NY Operations).
 
-## Sign-off package (Jul 2026 — pending Hillel + Joel)
+## Sign-off package (Jul 2026 — pending Joel → Avi → Hillel)
 
 | Path | Purpose |
 |------|---------|
@@ -13,7 +13,7 @@ Executable specs for the Lead → Referral → Intake → Patient lifecycle over
 | `meeting-notes/2026-07-pipeline-alignment.md` | Workshop capture |
 | `Link-Homecare-CRM-Status-Architecture-Execution-Workspace.md` | Full execution workspace |
 
-**Gate:** Hillel (CEO) + Joel sign one-pager (or full glossary) + flowcharts → Joel schedules Avi · Leah coordinates calendar.
+**Gate:** Joel (ops) → Avi → Leah coordinates → Hillel (CEO) final sign on one-pager (or full glossary) + flowcharts. One-pass CRM update after gate complete.
 
 ## GitHub & web hub
 

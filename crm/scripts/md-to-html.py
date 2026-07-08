@@ -260,196 +260,31 @@ SIGNOFF_CSS = """
     }
 """
 
-SIGNOFF_SCRIPT = """
-  <script>
-  (function () {
-    var article = document.querySelector("article");
-    if (!article) return;
+def signoff_banner(md_path: Path, root: Path) -> str:
+    prefix = asset_prefix(md_path, root)
+    return (
+        f'<div class="signoff-banner"><strong>Sign-off:</strong> Joel → Avi → Hillel (CEO) · cc Leah. '
+        f'<strong>How to comment:</strong> Type in the '
+        f'<strong>Comments</strong> column on any row — saved automatically as you type. '
+        f'<a href="{prefix}index.html">Back to sign-off package</a>.</div>'
+    )
 
-    var docId = location.pathname.replace(/[^a-zA-Z0-9]+/g, "_").replace(/^_|_$/g, "") || "signoff";
 
-    function storageKey(id) {
-      return "link-crm-signoff:" + docId + ":" + id;
-    }
+def asset_prefix(md_path: Path, root: Path) -> str:
+    rel = md_path.parent.relative_to(root)
+    depth = len(rel.parts)
+    return "../" * depth if depth else ""
 
-    function shouldSkipTable(table) {
-      var header = (table.querySelector("tr") || {}).textContent || "";
-      header = header.replace(/\\s+/g, " ").toLowerCase();
-      if (/role.*name.*signed.*date/.test(header)) return true;
-      if (/reviewer.*signature.*date/.test(header)) return true;
-      if (/artifact.*reviewer.*signed/.test(header)) return true;
-      if (header.indexOf("tag") !== -1 && header.indexOf("meaning") !== -1 && header.split(" ").length < 8) return true;
-      return false;
-    }
 
-    function commentColIndex(row) {
-      var cells = row.cells;
-      for (var i = 0; i < cells.length; i++) {
-        if (/comment/i.test(cells[i].textContent)) return i;
-      }
-      return -1;
-    }
-
-    function makeTextarea(rowId, placeholder) {
-      var ta = document.createElement("textarea");
-      ta.className = "signoff-comment";
-      ta.dataset.rowId = rowId;
-      ta.placeholder = placeholder || "Comment or revision…";
-      ta.rows = 2;
-      try { ta.value = localStorage.getItem(storageKey(rowId)) || ""; } catch (e) {}
-      ta.addEventListener("input", function () {
-        try { localStorage.setItem(storageKey(rowId), ta.value); } catch (e) {}
-        updateCount();
-      });
-      return ta;
-    }
-
-    function enhanceTables() {
-      var tables = article.querySelectorAll("table");
-      tables.forEach(function (table, tableIdx) {
-        if (shouldSkipTable(table)) {
-          table.classList.add("no-comments");
-          return;
-        }
-        var rows = table.querySelectorAll("tr");
-        if (!rows.length) return;
-        var headerRow = rows[0];
-        var colIdx = commentColIndex(headerRow);
-        if (colIdx === -1) {
-          var th = document.createElement("th");
-          th.textContent = "Comments";
-          headerRow.appendChild(th);
-          colIdx = headerRow.cells.length - 1;
-        }
-        for (var i = 1; i < rows.length; i++) {
-          var tr = rows[i];
-          if (!tr.cells.length) continue;
-          var rowId = "t" + tableIdx + "-r" + i;
-          var label = (tr.cells[0] && tr.cells[0].textContent.trim()) || ("Row " + i);
-          var td = tr.cells[colIdx];
-          if (!td) {
-            td = document.createElement("td");
-            tr.appendChild(td);
-          }
-          if (td.querySelector("textarea.signoff-comment")) continue;
-          var existing = td.textContent.trim();
-          var ta = makeTextarea(rowId, "Comment on: " + label.slice(0, 48));
-          if (existing && existing !== "—" && existing !== "-") ta.value = existing;
-          td.textContent = "";
-          td.appendChild(ta);
-          try {
-            if (ta.value) localStorage.setItem(storageKey(rowId), ta.value);
-          } catch (e) {}
-        }
-        table.classList.add("signoff-table");
-      });
-    }
-
-    function enhanceSections() {
-      article.querySelectorAll("h2").forEach(function (h2, idx) {
-        var id = h2.id || ("section-" + idx);
-        if (!h2.id) h2.id = id;
-        if (article.querySelector('[data-section-id="' + id + '"]')) return;
-        var wrap = document.createElement("div");
-        wrap.className = "section-comment-wrap";
-        wrap.dataset.sectionId = id;
-        var label = document.createElement("label");
-        label.textContent = "Section comment — " + h2.textContent.trim();
-        label.setAttribute("for", "sec-" + id);
-        var ta = document.createElement("textarea");
-        ta.className = "section-comment";
-        ta.id = "sec-" + id;
-        ta.placeholder = "Comments on this section…";
-        var key = "section:" + id;
-        try { ta.value = localStorage.getItem(storageKey(key)) || ""; } catch (e) {}
-        ta.addEventListener("input", function () {
-          try { localStorage.setItem(storageKey(key), ta.value); } catch (e) {}
-          updateCount();
-        });
-        wrap.appendChild(label);
-        wrap.appendChild(ta);
-        h2.insertAdjacentElement("afterend", wrap);
-      });
-    }
-
-    function collectComments() {
-      var lines = ["Sign-off comments — " + document.title, "Source: " + location.href, ""];
-      article.querySelectorAll("h2").forEach(function (h2) {
-        var id = h2.id;
-        var ta = document.getElementById("sec-" + id);
-        if (ta && ta.value.trim()) {
-          lines.push("## " + h2.textContent.trim());
-          lines.push(ta.value.trim());
-          lines.push("");
-        }
-      });
-      article.querySelectorAll("table.signoff-table tr").forEach(function (tr, i) {
-        if (i === 0) return;
-        var ta = tr.querySelector("textarea.signoff-comment");
-        if (!ta || !ta.value.trim()) return;
-        var item = (tr.cells[0] && tr.cells[0].textContent.trim()) || ("Row " + i);
-        lines.push("- **" + item + "**: " + ta.value.trim().replace(/\\n/g, " "));
-      });
-      return lines.join("\\n");
-    }
-
-    function updateCount() {
-      var n = 0;
-      article.querySelectorAll("textarea.signoff-comment, textarea.section-comment").forEach(function (ta) {
-        if (ta.value.trim()) n++;
-      });
-      var el = document.getElementById("comment-count");
-      if (el) el.textContent = n ? n + " comment(s) saved" : "No comments yet";
-    }
-
-    var toolbar = document.createElement("div");
-    toolbar.className = "signoff-toolbar";
-    toolbar.innerHTML =
-      '<span class="signoff-hint">Add comments on each row or section. Saved in this browser until you copy or clear.</span>' +
-      '<span id="comment-count">No comments yet</span>' +
-      '<button type="button" class="primary" id="copy-comments-btn">Copy all comments</button>' +
-      '<button type="button" id="clear-comments-btn">Clear all</button>';
-    article.insertBefore(toolbar, article.firstChild);
-
-    enhanceTables();
-    enhanceSections();
-    updateCount();
-
-    document.getElementById("copy-comments-btn").addEventListener("click", function () {
-      var text = collectComments();
-      if (!text.trim() || text.indexOf("- **") === -1 && text.split("\\n").length < 4) {
-        alert("No comments to copy yet.");
-        return;
-      }
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(function () {
-          alert("Comments copied — paste into Teams or email to share feedback.");
-        });
-      } else {
-        prompt("Copy these comments:", text);
-      }
-    });
-
-    document.getElementById("clear-comments-btn").addEventListener("click", function () {
-      if (!confirm("Clear all comments on this page?")) return;
-      article.querySelectorAll("textarea.signoff-comment, textarea.section-comment").forEach(function (ta) {
-        ta.value = "";
-        var id = ta.dataset.rowId;
-        if (!id && ta.id) id = "section:" + ta.id.replace(/^sec-/, "");
-        if (!id) return;
-        try { localStorage.removeItem(storageKey(id)); } catch (e) {}
-      });
-      updateCount();
-    });
-  })();
-  </script>
-"""
-
-SIGNOFF_BANNER = (
-    '<div class="signoff-banner"><strong>Reviewers:</strong> Use the '
-    '<strong>Comments</strong> column on each glossary row (and section boxes below headings). '
-    'Comments save in your browser — click <strong>Copy all comments</strong> when finished.</div>'
-)
+def signoff_assets(md_path: Path, root: Path) -> tuple[str, str]:
+    prefix = asset_prefix(md_path, root)
+    css = f'<link rel="stylesheet" href="{prefix}signoff-comments.css" />'
+    scripts = (
+        f'<script src="{prefix}signoff-comments.js"></script>\n'
+        "  <script>document.addEventListener('DOMContentLoaded', function () { "
+        "LinkCrmSignoff.initPage(); });</script>"
+    )
+    return css, scripts
 
 SIGNOFF_DOCS = frozenset({
     "joel-model-signoff-onepager.md",
@@ -538,16 +373,18 @@ def convert_file(md_path: Path, root: Path) -> Path:
 
     signoff = is_signoff_doc(md_path)
     if signoff:
-        body = SIGNOFF_BANNER + body
+        body = signoff_banner(md_path, root) + body
 
     nav = hub_link(md_path, root)
+    _, signoff_scripts = signoff_assets(md_path, root) if signoff else ("", "")
+
     html = HTML_SHELL.format(
         title=title,
         nav=nav,
         body=body,
         class_attr=' class="signoff-doc"' if signoff else "",
         extra_css=SIGNOFF_CSS if signoff else "",
-        extra_scripts=SIGNOFF_SCRIPT if signoff else "",
+        extra_scripts=signoff_scripts,
     )
 
     out_path = md_path.with_suffix(".html")

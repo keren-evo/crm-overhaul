@@ -1,14 +1,12 @@
 # Link Homecare CRM — Status Terminology & Pipeline Glossary
 
 **Version:** 2.1 (sign-off draft)  
-**Owner:** Keren Hapuch Lacadin  
-**Operational review:** Joel Schlanger, Leah Adelman  
-**Executive approval:** Hillel (CEO)  
-**Technical review:** Avi *(after this document + flowcharts signed)*  
+**Prepared by:** Keren Hapuch Lacadin  
+**Sign-off:** Joel Schlanger (ops) → Avi → Hillel (CEO) · cc Leah Adelman  
 **Status:** **Pending sign-off** — CRM implementation on hold until signed  
 **Last updated:** July 6, 2026
 
-> **Comments:** Use the **Comments** column on each glossary row. In the web version, comments save in your browser — **Copy all comments** when finished.
+> **Comments:** Use the **Comments** column on each row.
 
 **Companion artifacts:**
 - **One-pager:** [`glossary/joel-model-signoff-onepager.md`](glossary/joel-model-signoff-onepager.md)
@@ -20,15 +18,13 @@
 
 ## Sign-off gate
 
-| Role | Name | Signed | Date |
-|------|------|--------|------|
-| **CEO** | **Hillel** | ☐ | |
-| Operations | Joel Schlanger | ☐ | |
-| Framework | Keren Hapuch Lacadin | ☐ | |
-| Project coordination | Leah Adelman | ☐ | |
-| CRM implementation | Avi | ☐ *(after tech review meeting)* | |
+| Order | Role | Name | Signed | Date |
+|-------|------|------|--------|------|
+| 1 | Operations | Joel Schlanger | ☐ | |
+| 2 | CRM implementation | Avi | ☐ | |
+| 3 | **CEO** *(final)* | **Hillel** | ☐ | |
 
-**When Joel + Hillel sign:** Joel schedules Avi tech review; Leah coordinates calendar. One-pass CRM update (labels + filters + backfill) may proceed.
+**When the gate is complete:** Joel schedules Avi’s review; cc Leah; Hillel gives final executive approval. One-pass CRM update (labels + filters + backfill) may proceed.
 
 ---
 
@@ -55,8 +51,8 @@ Lead → Qualifying → Referral in Progress → Active → Discharged
 
 ### Stage definitions
 
-| Stage | Plain English | When to use | Who updates | Should NOT mean |
-|-------|---------------|-------------|-------------|-----------------|
+| Stage | Plain English | When to use | Who updates | Should NOT mean | Comments |
+|-------|---------------|-------------|-------------|-----------------|----------|
 | **Lead** | Brand-new inquiry | Record created; little or no outreach yet | Growth, sales, enrollment | Active patient; authorized |
 | **Qualifying** | Lead in progress | Contact started; insurance, diagnosis, and LOB eligibility being confirmed; **intake not yet opened** | Enrollment specialists | Referral in Progress; intake opened |
 | **Referral in Progress** | Intake opened for a LOB | Enrollment opened intake and is processing patient for a specific line of business | Enrollment specialists, intake | Generic "in progress"; master label "Intake"; legacy "Converted" |
@@ -345,9 +341,8 @@ Business labels above map to Nexus **Episode** object. Proposed split:
 
 By signing, reviewers agree this glossary is the business source of truth for CRM status implementation.
 
-| Reviewer | Signature / initials | Date |
-|----------|---------------------|------|
-| Hillel (CEO) | | |
-| Joel Schlanger | | |
-| Keren Hapuch Lacadin | | |
-| Leah Adelman | | |
+| Signatory | Signature / initials | Date |
+|-----------|---------------------|------|
+| Joel Schlanger (ops) | | |
+| Avi (CRM implementation) | | |
+| Hillel (CEO — final) | | |

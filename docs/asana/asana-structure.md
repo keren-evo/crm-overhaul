@@ -132,7 +132,7 @@ Multi-LOB: per-LOB status chips alongside master pipeline
 | Task | Owner | P | Decision? | Subtasks |
 |------|-------|---|-----------|----------|
 | Refine CRM glossary (living doc) | Keren | P0 | | Pipeline v2 terms · short-term track · retire Pre-Intake/Closed/Converted |
-| **Finalize patient status labels and lifecycle flowcharts** | Keren | P0 | **Yes** | Main + short-term + multi-LOB wireframes · **Joel + Leah sign-off** |
+| **Finalize patient status labels and lifecycle flowcharts** | Keren | P0 | **Yes** | Main + short-term + multi-LOB wireframes · **Joel → Avi → Hillel sign-off** |
 | Confirm master lifecycle model (Jul 2026 alignment) | Joel | P0 | **Yes** | 5-stage pipeline agreed · map to Nexus at Avi meeting |
 | Confirm layer separation model | Keren | P0 | **Yes** | Master pipeline + LOB + intake + auth + Medicaid + outcome |
 | Resolve edge case decision log | Joel | L | P0 | **Yes** | NIA ~180-day wait · multi-LOB · CDPAP · Girling · return patient |
@@ -142,7 +142,7 @@ Multi-LOB: per-LOB status chips alongside master pipeline
 | Document short-term care integration rules | Keren | M | P0 | | Icon UI · parallel statuses · promote to Active when authorized |
 | Document LOB eligibility criteria matrix | Joel | M | P0 | | MLTC · Custodial · Short-term · NHTD/OPWDD/Private Pay |
 | Export and sign off ReferralOutcome picklist | Avi | S | P0 | **Yes** | After ~10 drop reasons finalized |
-| **🏁 Sign Status Framework v1** | Keren | S | P0 | **Yes** | After flowcharts signed · unlocks Avi meeting + build |
+| **🏁 Sign Status Framework v1** | Keren | S | P0 | **Yes** | Compile artifacts · Joel → Avi → Leah coordinates → Hillel (CEO) final · unlocks CRM build |
 
 ### §1 additions (from meeting)
 
