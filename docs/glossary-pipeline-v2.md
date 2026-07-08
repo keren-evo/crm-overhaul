@@ -8,6 +8,8 @@
 **Last updated:** July 6, 2026
 
 **Companion artifacts:**
+- **Leadership one-pager (send first):** [`glossary/joel-model-signoff-onepager.md`](glossary/joel-model-signoff-onepager.md)
+- **Teams/email ask:** [`glossary/teams-ask-glossary-signoff.md`](glossary/teams-ask-glossary-signoff.md)
 - Flowcharts: [`flowcharts/pipeline-flowcharts-v1.md`](flowcharts/pipeline-flowcharts-v1.md)
 - Drop reasons (Joel sign-off): [`glossary/drop-reasons-for-signoff.md`](glossary/drop-reasons-for-signoff.md)
 - Meeting notes: [`meeting-notes/2026-07-pipeline-alignment.md`](meeting-notes/2026-07-pipeline-alignment.md)
