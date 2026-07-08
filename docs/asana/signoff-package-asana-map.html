@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sign-Off Package → Asana Map</title>
+  
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    :root {
+      --bg: #f4f6f9;
+      --card: #ffffff;
+      --text: #172033;
+      --muted: #5c6578;
+      --accent: #0f766e;
+      --accent-light: #e6f4f2;
+      --border: #d8dee9;
+      --code-bg: #f1f5f9;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.65 "Segoe UI", system-ui, -apple-system, sans-serif;
+    }
+    .topbar {
+      background: linear-gradient(135deg, #0f766e 0%, #134e4a 100%);
+      color: #fff;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.9rem;
+    }
+    .topbar a {
+      color: #fff;
+      text-decoration: none;
+      opacity: 0.95;
+    }
+    .topbar a:hover { text-decoration: underline; }
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+    article {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem 2.25rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    article h1 {
+      margin-top: 0;
+      font-size: 1.75rem;
+      color: #0d5c56;
+      line-height: 1.25;
+      border-bottom: 2px solid var(--accent-light);
+      padding-bottom: 0.5rem;
+    }
+    article h2 {
+      margin-top: 2rem;
+      font-size: 1.25rem;
+      color: #134e4a;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.35rem;
+    }
+    article h3 { margin-top: 1.5rem; color: #1e3a38; }
+    article h4 { margin-top: 1.25rem; }
+    a { color: var(--accent); }
+    a:hover { color: #0d5c56; }
+    p { margin: 0.85rem 0; }
+    ul, ol { padding-left: 1.5rem; }
+    li { margin: 0.35rem 0; }
+    li > ul { margin-top: 0.25rem; }
+    blockquote {
+      margin: 1.25rem 0;
+      padding: 0.75rem 1rem;
+      border-left: 4px solid var(--accent);
+      background: var(--accent-light);
+      border-radius: 0 8px 8px 0;
+    }
+    blockquote p { margin: 0.35rem 0; }
+    code {
+      font-family: Consolas, "SF Mono", monospace;
+      font-size: 0.9em;
+      background: var(--code-bg);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+    }
+    pre {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 1rem 1.15rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+    pre code {
+      background: transparent;
+      padding: 0;
+      color: inherit;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.25rem 0;
+      font-size: 0.95rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.6rem 0.75rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #f8fafc;
+      font-weight: 600;
+      color: #134e4a;
+    }
+    tr:nth-child(even) td { background: #fafbfc; }
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+    .mermaid {
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+    .toc {
+      background: var(--accent-light);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .toc ul { margin: 0.5rem 0 0; }
+    input[type="checkbox"] { margin-right: 0.35rem; }
+    
+    @media print {
+      body { background: #fff; }
+      .topbar { display: none; }
+      .signoff-toolbar { display: none; }
+      article { box-shadow: none; border: none; }
+      textarea.signoff-comment {
+        border: 1px solid #ccc;
+        min-height: 2.5rem;
+        print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topbar"><a href="../index.html">← Sign-off package</a></nav>
+  <main><article><h1 id="sign-off-package-asana-map">Sign-Off Package → Asana Map</h1>
+<p><strong>Gate:</strong> Joel → Avi → Hillel (CEO) · cc Leah<br>
+<strong>Web package:</strong> <a href="https://keren-evo.github.io/crm-overhaul/">Sign-off index</a><br>
+<strong>Asana section:</strong> §2 Business Definitions &amp; Sign-Off<br>
+<strong>Milestone:</strong> 🏁 Sign Status Framework v1 <em>(blocks §5 CRM Build — Staging)</em></p>
+<hr>
+<h2 id="web-docs-asana-tasks">Web docs → Asana tasks</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Sign-off package page</th>
+<th>Repo / URL</th>
+<th>Primary Asana task</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>—</td>
+<td><strong>Index</strong> (landing)</td>
+<td><code>onedrive-hub/index.html</code></td>
+<td><strong>Sign Status Framework v1</strong> (milestone)</td>
+</tr>
+<tr>
+<td>1</td>
+<td><strong>Patient path — one-pager</strong></td>
+<td><code>glossary/joel-model-signoff-onepager.md</code></td>
+<td><strong>Confirm master lifecycle model</strong> (Joel)</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Full glossary</strong></td>
+<td><code>glossary-pipeline-v2.md</code></td>
+<td><strong>Refine CRM glossary</strong> (Keren)</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Pipeline flowcharts</strong></td>
+<td><code>flowcharts/pipeline-flowcharts-v1.md</code></td>
+<td><strong>Finalize patient status labels and lifecycle flowcharts</strong> (Keren)</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Drop reasons</strong></td>
+<td><code>glossary/drop-reasons-for-signoff.md</code></td>
+<td><strong>Simplify drop reasons to ~10 categories</strong> (Keren) + <strong>Export and sign off ReferralOutcome picklist</strong> (Avi)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Supporting tasks</strong> (same section, not separate web pages):</p>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Asana task</th>
+<th>Assignee</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SOC / census definition</td>
+<td>Confirm census definition</td>
+<td>Joel</td>
+</tr>
+<tr>
+<td>NIA 180-day wait</td>
+<td>Joel: Confirm NIA re-application waiting period</td>
+<td>Joel</td>
+</tr>
+<tr>
+<td>LOB checklists</td>
+<td>Document LOB eligibility criteria matrix</td>
+<td>Joel</td>
+</tr>
+<tr>
+<td>Short-term icon model</td>
+<td>Document short-term care integration rules</td>
+<td>Keren</td>
+</tr>
+<tr>
+<td>Layer model (Episode vs intake vs auth)</td>
+<td>Confirm layer separation model</td>
+<td>Keren</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="sign-off-steps-asana-who-does-what">Sign-off steps → Asana (who does what)</h2>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Who</th>
+<th>Asana task / action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1</strong></td>
+<td><strong>Joel</strong></td>
+<td><strong>Confirm master lifecycle model</strong> — mark complete when one-pager path is yes</td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td><strong>Avi</strong></td>
+<td><strong>Export and sign off ReferralOutcome picklist</strong> — feasibility + drop-reason mapping</td>
+</tr>
+<tr>
+<td><strong>3</strong></td>
+<td><strong>Hillel</strong></td>
+<td>Subtask on <strong>Sign Status Framework v1</strong>: executive sign-off (final)</td>
+</tr>
+<tr>
+<td><strong>cc</strong></td>
+<td><strong>Leah</strong></td>
+<td>Collaborator on milestone; subtask: schedule Avi review + calendar after Joel signs</td>
+</tr>
+<tr>
+<td><strong>Compile</strong></td>
+<td><strong>Keren</strong></td>
+<td><strong>Sign Status Framework v1</strong> — publish package, collect comments, mark milestone when all three sign</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Dependency chain in Asana:</strong></p>
+<pre><code>Finalize flowcharts
+    → Sign Status Framework v1  🏁
+        → §5 CRM Build — Staging (blocked until milestone)
+</code></pre>
+<hr>
+<h2 id="comments-asana-consolidated-feedback">Comments → Asana (consolidated feedback)</h2>
+<table>
+<thead>
+<tr>
+<th>What</th>
+<th>Where</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Executives type comments</td>
+<td>Web package — Comments column on each doc</td>
+</tr>
+<tr>
+<td>Each person exports</td>
+<td>Index → <strong>Copy all comments</strong></td>
+</tr>
+<tr>
+<td><strong>You consolidate</strong></td>
+<td>Paste as <strong>one comment</strong> on <strong>Sign Status Framework v1</strong> (pin this task)</td>
+</tr>
+<tr>
+<td>Optional inbox</td>
+<td>Duplicate task: <strong>Sign-off feedback inbox</strong> — only for pasted comments, not the full board</td>
+</tr>
+</tbody>
+</table>
+<p>Do <strong>not</strong> send executives into §1–§10 task lists during sign-off. One milestone task + one-pager link is enough.</p>
+<hr>
+<h2 id="minimal-asana-view-for-leadership">Minimal Asana view for leadership</h2>
+<p>Create a saved view <strong>“Sign-off only”</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Filter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Section</td>
+<td>Business Definitions &amp; Sign-Off</td>
+</tr>
+<tr>
+<td>Tasks</td>
+<td>Confirm master lifecycle model · Sign Status Framework v1 · Export ReferralOutcome picklist</td>
+</tr>
+<tr>
+<td>Or</td>
+<td>Decision Gate = Yes</td>
+</tr>
+</tbody>
+</table>
+<p><strong>3 tasks visible.</strong> Everything else hidden until gate clears.</p>
+<hr>
+<h2 id="after-gate-complete">After gate complete</h2>
+<table>
+<thead>
+<tr>
+<th>Next Asana work</th>
+<th>Trigger</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Joel: Schedule CRM implementation review with Avi's team</td>
+<td>Joel signed</td>
+</tr>
+<tr>
+<td>§5 CRM Build — Staging</td>
+<td>Sign Status Framework v1 milestone ✅</td>
+</tr>
+<tr>
+<td>Leah: coordinate Avi calendar</td>
+<td>cc on milestone — not a signatory row</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="quick-paste-for-asana-project-description">Quick paste for Asana project description</h2>
+<pre><code>Sign-off package: https://keren-evo.github.io/crm-overhaul/
+Gate: Joel → Avi → Hillel (CEO) · cc Leah
+Milestone: Sign Status Framework v1 blocks CRM build.
+Feedback: paste Copy all comments onto Sign Status Framework v1 task.
+</code></pre></article></main>
+  <script>
+    mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose" });
+  </script>
+  
+</body>
+</html>

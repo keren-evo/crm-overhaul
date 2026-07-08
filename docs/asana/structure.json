@@ -6,7 +6,7 @@
     "source": "crm/meeting-notes/2026-07-pipeline-alignment.md",
     "agreed_pipeline": "Lead → Qualifying → Referral in Progress → Active → Discharged; Dropped Off anytime before Active",
     "short_term_care": "Parallel track with icon UI until authorized; then Active on main pipeline",
-    "crm_gate": "Joel (ops) → Avi → Leah coordinates → Hillel (CEO) final sign on labels + flowcharts; one-pass update after gate",
+    "crm_gate": "Joel → Avi → Hillel (CEO) final sign on labels + flowcharts · cc Leah; one-pass update after gate",
     "nia_reapply_wait": "~180 days — Joel to confirm",
     "drop_reasons_target": "~10 categories",
     "supersedes": "Prior 3-stage Referral → Active → Discharged UI draft — reconcile at Avi meeting"
@@ -346,10 +346,13 @@
           "blocker": "Yes",
           "depends_on": "Finalize patient status labels and lifecycle flowcharts",
           "subtasks": [
-            "Compile signed glossary (pipeline v2), flowcharts, LOB matrix, drop reasons, NIA rules",
-            "Publish to Teams + repo",
-            "Joel (ops) → Avi → Leah coordinates → Hillel (CEO) final sign-off",
-            "Unlock one-pass CRM build after all signatories sign"
+            "Compile signed glossary (pipeline v2), flowcharts, drop reasons",
+            "Publish sign-off package: https://keren-evo.github.io/crm-overhaul/",
+            "Joel — ops sign-off (one-pager / lifecycle model)",
+            "Avi — CRM implementation feasibility sign-off",
+            "Hillel (CEO) — final executive sign-off",
+            "cc Leah — schedule Avi review + calendar",
+            "Unlock one-pass CRM build after Joel, Avi, and Hillel sign"
           ]
         }
       ]

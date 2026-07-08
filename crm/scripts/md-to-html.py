@@ -19,6 +19,7 @@ HTML_SHELL = """<!DOCTYPE html>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{title}</title>
+  {extra_head}
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
   <style>
     :root {{
@@ -376,13 +377,14 @@ def convert_file(md_path: Path, root: Path) -> Path:
         body = signoff_banner(md_path, root) + body
 
     nav = hub_link(md_path, root)
-    _, signoff_scripts = signoff_assets(md_path, root) if signoff else ("", "")
+    signoff_css_link, signoff_scripts = signoff_assets(md_path, root) if signoff else ("", "")
 
     html = HTML_SHELL.format(
         title=title,
         nav=nav,
         body=body,
         class_attr=' class="signoff-doc"' if signoff else "",
+        extra_head=signoff_css_link,
         extra_css=SIGNOFF_CSS if signoff else "",
         extra_scripts=signoff_scripts,
     )
