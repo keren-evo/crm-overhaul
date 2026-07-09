@@ -33,6 +33,17 @@
       text-decoration: none;
     }
     a:hover { text-decoration: underline; }
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
     .hero {
       background: linear-gradient(135deg, #6d28d9 0%, #7c3aed 55%, #5b21b6 100%);
       color: #fff;
@@ -51,12 +62,12 @@
     }
     .hero-inner h1 {
       margin: 0;
-      font-size: 1.05rem;
+      font-size: 1.2rem;
       line-height: 1.2;
     }
     .hero-copy {
       display: grid;
-      gap: 0.28rem;
+      gap: 0.45rem;
     }
     .hero-status {
       font-size: 0.84rem;
@@ -66,6 +77,47 @@
     .hero-status-label {
       font-weight: 700;
     }
+    .hero-guide {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.55rem;
+      max-width: 34rem;
+      font-size: 0.82rem;
+      line-height: 1.45;
+      color: rgba(255,255,255,0.9);
+    }
+    .hero-guide__icon {
+      flex: 0 0 auto;
+      width: 1.35rem;
+      height: 1.35rem;
+      margin-top: 0.05rem;
+      border-radius: 7px;
+      background: rgba(255,255,255,0.16);
+      border: 1px solid rgba(255,255,255,0.18);
+      position: relative;
+    }
+    .hero-guide__icon::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 0.28rem;
+      width: 0.16rem;
+      height: 0.48rem;
+      border-radius: 999px;
+      background: #fff;
+      transform: translateX(-50%);
+    }
+    .hero-guide__icon::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 0.28rem;
+      width: 0.2rem;
+      height: 0.2rem;
+      border-radius: 999px;
+      background: #fff;
+      transform: translateX(-50%);
+    }
     .hero-reviewer {
       padding: 0.7rem 0.8rem;
       border-radius: 12px;
@@ -73,15 +125,9 @@
       border: 1px solid rgba(255,255,255,0.18);
     }
     .hero-reviewer-title {
-      margin: 0 0 0.15rem;
+      margin: 0 0 0.45rem;
       font-size: 0.9rem;
       font-weight: 600;
-    }
-    .hero-reviewer-copy {
-      margin: 0 0 0.55rem;
-      font-size: 0.79rem;
-      line-height: 1.45;
-      opacity: 0.9;
     }
     main {
       margin-top: -0.35rem;
@@ -93,11 +139,6 @@
       border-radius: 18px;
       box-shadow: 0 8px 24px rgba(91, 33, 182, 0.07);
       margin-bottom: 1rem;
-    }
-    .glossary-head h2 {
-      margin: 0;
-      font-size: 1.05rem;
-      color: var(--accent-dark);
     }
     .package-comments {
       margin-top: 0.9rem;
@@ -151,22 +192,23 @@
     .glossary-shell {
       overflow: hidden;
     }
-    .glossary-head {
-      padding: 0.9rem 1rem 0.8rem;
+    .glossary-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.65rem 1rem;
+      align-items: center;
+      padding: 0.7rem 1rem;
       border-bottom: 1px solid var(--border-soft);
-      background: linear-gradient(180deg, #faf7ff, #ffffff);
+      background: #fff;
+      font-size: 0.84rem;
+      color: var(--muted);
     }
     .glossary-links {
       display: flex;
       flex-wrap: wrap;
       gap: 0.45rem 0.65rem;
       align-items: center;
-      margin-top: 0.35rem;
-      font-size: 0.84rem;
-      color: var(--muted);
-    }
-    .glossary-note {
-      display: none;
     }
     .glossary-frame {
       width: 100%;
@@ -174,24 +216,6 @@
       border: 0;
       display: block;
       background: #fff;
-    }
-    .utility-row {
-      padding: 0.8rem 1rem 0.95rem;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 0.75rem 1rem;
-      align-items: center;
-      border-top: 1px solid var(--border-soft);
-      background: #fff;
-    }
-    .utility-links,
-    .utility-rules {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem 1rem;
-      font-size: 0.88rem;
-      color: var(--muted);
     }
     footer {
       text-align: center;
@@ -206,9 +230,8 @@
       main {
         padding: 0 0.75rem 1.5rem;
       }
-      .glossary-head,
-      .utility-row {
-        padding: 0.9rem;
+      .glossary-toolbar {
+        padding: 0.75rem 0.9rem;
       }
       .glossary-frame {
         height: 840px;
@@ -220,15 +243,18 @@
   <header class="hero">
     <div class="hero-inner">
       <div class="hero-copy">
-        <h1>Pipeline glossary review</h1>
+        <h1>Pipeline glossary</h1>
         <div class="hero-status"><span class="hero-status-label">Pending sign-off:</span> Joel → Avi → Hillel</div>
+        <div class="hero-guide">
+          <span class="hero-guide__icon" aria-hidden="true"></span>
+          <span>Hover any stage for a quick tooltip. Click for full detail — current CRM labels vs proposed where they differ. Comments autosave.</span>
+        </div>
       </div>
       <div class="hero-reviewer">
-        <p class="hero-reviewer-title">Reviewer</p>
-        <p class="hero-reviewer-copy">Enter your name, then review in the glossary below. Comments autosave.</p>
+        <p class="hero-reviewer-title">Your name</p>
         <div class="package-comments">
           <div class="reviewer-field">
-            <label for="reviewer-name">Your name</label>
+            <label for="reviewer-name" class="visually-hidden">Your name</label>
             <input id="reviewer-name" type="text" placeholder="e.g. Joel Schlanger" autocomplete="name" />
           </div>
           <span class="signoff-hint">Comments autosave as you type.</span>
@@ -241,33 +267,22 @@
 
   <main>
     <section class="card glossary-shell">
-      <div class="glossary-head">
-        <div>
-          <h2>Pipeline glossary</h2>
-          <div class="glossary-links">
-            <a href="glossary-pipeline-v2.html">Open standalone</a>
-            <span>•</span>
-            <a href="glossary/drop-reasons-for-signoff.html">Drop reasons</a>
-            <span>•</span>
-            <a href="glossary/joel-model-signoff-onepager.html">Backup one-pager</a>
-          </div>
+      <div class="glossary-toolbar">
+        <div class="glossary-links">
+          <a href="glossary-pipeline-v2.html">Open standalone</a>
+          <span>•</span>
+          <a href="glossary/drop-reasons-for-signoff.html">Drop reasons</a>
+          <span>•</span>
+          <a href="glossary/joel-model-signoff-onepager.html">Backup one-pager</a>
         </div>
+        <span>Authorized ≠ Active · Dropped Off ≠ Discharged</span>
       </div>
       <iframe
         class="glossary-frame"
-        src="glossary-pipeline-v2.html#glossary-pipeline-explorer"
+        src="glossary-pipeline-v2.html?embed=1#glossary-pipeline-explorer"
         title="Pipeline glossary preview"
         loading="lazy"
       ></iframe>
-      <div class="utility-row">
-        <div class="utility-rules">
-          <span>Authorized != Active</span>
-          <span>Dropped Off != Discharged</span>
-        </div>
-        <div class="utility-links">
-          <span>Comments autosave locally.</span>
-        </div>
-      </div>
     </section>
   </main>
 

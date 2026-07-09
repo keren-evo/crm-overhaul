@@ -298,7 +298,13 @@ GLOSSARY_INTERACTIVE_DOC = "glossary-pipeline-v2.md"
 def glossary_interactive_shell() -> str:
     return (
         '<div id="glossary-pipeline-explorer" class="glossary-explorer">'
-        '<h2 class="glossary-explorer-title">Pipeline glossary: interactive flowcharts for the proposed patient path.</h2>'
+        '<div class="glossary-explorer-header">'
+        '<h2 class="glossary-explorer-title">Pipeline glossary</h2>'
+        '<div class="glossary-explorer-note">'
+        '<span class="glossary-explorer-note__icon" aria-hidden="true"></span>'
+        "<p>Hover any stage for a quick tooltip. Click for full detail — current CRM labels vs proposed where they differ.</p>"
+        "</div>"
+        "</div>"
         "</div>"
     )
 

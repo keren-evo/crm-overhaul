@@ -631,18 +631,15 @@
 
   function renderIntroCompare() {
     var box = el("glossary-intro-compare");
-    var stageId = displayStageId();
-    var s = stageId ? STAGES[stageId] : null;
-    if (!box || !s) return;
+    if (!box) return;
+    if (!activeStage || !STAGES[activeStage]) {
+      box.hidden = true;
+      box.innerHTML = "";
+      return;
+    }
+    var s = STAGES[activeStage];
+    box.hidden = false;
     box.innerHTML =
-      '<div class="glossary-intro-compare__title-group">' +
-      '<div class="glossary-intro-compare__title">' +
-      s.title +
-      "</div>" +
-      '<div class="glossary-intro-compare__subtitle">' +
-      stageDescriptor(stageId) +
-      "</div>" +
-      "</div>" +
       '<div class="glossary-intro-compare__card glossary-intro-compare__card--current">' +
       '<span class="glossary-intro-compare__label">Current CRM</span>' +
       "<p>" +
@@ -661,7 +658,7 @@
       '<div class="glossary-intro-compare__why">' +
       '<span class="glossary-intro-compare__label">Why this is better</span>' +
       "<p>" +
-      whyBetter(stageId) +
+      whyBetter(activeStage) +
       "</p>" +
       "</div>";
   }
@@ -1091,8 +1088,7 @@
       panel.className = "glossary-stage-detail empty";
       panel.innerHTML =
         '<div class="glossary-detail-empty">' +
-        '<span class="glossary-detail-empty__icon" aria-hidden="true"></span>' +
-        "<p><strong>Hover</strong> any stage for a quick tooltip. <strong>Click</strong> for full detail — <strong>current CRM labels vs proposed</strong> where they differ.</p>" +
+        "<p>Select a stage to review status details and comments.</p>" +
         "</div>";
       return;
     }
@@ -1138,12 +1134,12 @@
       '<button type="button" class="glossary-detail-viewtab' +
       (activeDetailPanel === "status" ? " active" : "") +
       '" data-detail-view="status">' +
-      s.title +
+      "Status" +
       "</button>" +
       (hasLayers
         ? '<button type="button" class="glossary-detail-viewtab' +
           (activeDetailPanel === "layers" ? " active" : "") +
-          '" data-detail-view="layers">Show layers</button>'
+          '" data-detail-view="layers">Layers</button>'
         : "") +
       "</div>" +
       "</div>" +
@@ -1326,18 +1322,26 @@
     article.dataset.refWrapped = "1";
   }
 
+  function isEmbedded() {
+    try {
+      return /(?:^|[?&])embed=1(?:&|$)/.test(location.search) || window.self !== window.top;
+    } catch (e) {
+      return true;
+    }
+  }
+
   function init() {
     var root = el("glossary-pipeline-explorer");
     if (!root || root.dataset.bound) return;
     root.dataset.bound = "1";
 
+    if (isEmbedded()) {
+      root.classList.add("glossary-explorer--embedded");
+      document.body.classList.add("glossary-embedded");
+    }
+
     var layout = document.createElement("div");
     layout.className = "glossary-explorer-layout";
-
-    var compareIntro = document.createElement("div");
-    compareIntro.id = "glossary-intro-compare";
-    compareIntro.className = "glossary-intro-compare";
-    layout.appendChild(compareIntro);
 
     layout.appendChild(renderTabs(root));
 
@@ -1361,6 +1365,12 @@
       '<span class="glossary-rule-pill"><strong>Authorized ≠ Active</strong></span>' +
       '<span class="glossary-rule-pill"><strong>Dropped Off ≠ Discharged</strong></span>';
     layout.appendChild(rules);
+
+    var compareIntro = document.createElement("div");
+    compareIntro.id = "glossary-intro-compare";
+    compareIntro.className = "glossary-intro-compare";
+    compareIntro.hidden = true;
+    layout.appendChild(compareIntro);
 
     var detail = document.createElement("div");
     detail.id = "glossary-stage-detail";
