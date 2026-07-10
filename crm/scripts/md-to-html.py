@@ -299,10 +299,11 @@ def glossary_interactive_shell() -> str:
     return (
         '<div id="glossary-pipeline-explorer" class="glossary-explorer">'
         '<div class="glossary-explorer-header">'
-        '<h2 class="glossary-explorer-title">Pipeline glossary</h2>'
+        '<h2 class="glossary-explorer-title">CRM Lifecycle Standard — Decision Review</h2>'
         '<div class="glossary-explorer-note">'
         '<span class="glossary-explorer-note__icon" aria-hidden="true"></span>'
-        "<p>Hover any stage for a quick tooltip. Click for full detail — current CRM labels vs proposed where they differ.</p>"
+        "<p>Approve the logic that defines the business — so we can build and measure it correctly. "
+        "Click each stage and decide: definition, entry/exit, edge cases, transitions.</p>"
         "</div>"
         "</div>"
         "</div>"

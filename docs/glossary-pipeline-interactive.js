@@ -52,55 +52,79 @@
   var STAGES = {
     lead: {
       title: "Lead",
-      plain: "Brand-new inquiry",
+      plain: "New inbound or created record with no qualification yet",
       when: "Record created; little or no outreach yet",
-      not: "Active patient; authorized",
-      who: "Growth, sales, enrollment",
+      entry: "Record created · No qualification activity completed",
+      exit: "Moves to Qualifying · Or marked Dropped Off",
+      not: "Active patient; authorized; already in qualification",
+      who: "Growth / Sales / Intake (confirm)",
+      impact: "Feeds top-of-funnel volume · Impacts true demand measurement",
+      map: '"New", "Lead" → Lead',
       crmToday: 'EpisodeStatus "New" or "Lead"; LeadStatus "New"',
       anchor: "#1-master-patient-pipeline-agreed",
     },
     qualifying: {
       title: "Qualifying",
-      plain: "Lead in progress — checking fit",
+      plain: "Lead in progress — checking fit before intake opens",
       when: "Contact started; insurance, diagnosis, and LOB eligibility confirmed; intake not yet opened",
+      entry: "Outreach / eligibility work started · Intake not opened",
+      exit: "Moves to Referral in Progress · Or marked Dropped Off",
       not: "Referral in Progress; intake opened",
-      who: "Enrollment specialists",
+      who: "Enrollment specialists (confirm)",
+      impact: "Separates real qualification from vague In Progress · Protects funnel conversion accuracy",
+      map: '"In Progress" (pre-intake) → Qualifying',
       crmToday: 'LeadStatus "In Progress" (often used for everyone — ~56 leads today); EpisodeStatus "Lead"',
       anchor: "#1-master-patient-pipeline-agreed",
     },
     referral: {
       title: "Referral in Progress",
-      plain: "Intake opened for a LOB",
+      plain: "Intake opened for a specific line of business",
       when: "Enrollment opened intake and is processing patient for a specific line of business",
+      entry: "Intake opened for a LOB · Pre-Active work underway",
+      exit: "Moves to Active (SOC) · Or marked Dropped Off",
       not: 'Generic "in progress"; master label "Intake"; legacy "Converted"',
-      who: "Enrollment specialists, intake",
+      who: "Enrollment specialists / Intake (confirm)",
+      impact: "Makes intake-open work explicit · Improves LOB handoffs and stage conversion",
+      map: '"In Progress" / "Converted" / "On Hold" → Referral in Progress',
       crmToday: 'LeadStatus "In Progress" or legacy "Converted"; EpisodeStatus "Converted" / "On Hold"',
       anchor: "#1-master-patient-pipeline-agreed",
     },
     active: {
       title: "Active",
-      plain: "Receiving agency service",
+      plain: "Receiving agency service under at least one LOB",
       when: "Patient is actively serviced under at least one LOB (SOC confirmed)",
+      entry: "SOC confirmed · Service started on at least one LOB",
+      exit: "Moves to Discharged when no active LOBs remain",
       not: "Authorized only; referral still being worked",
-      who: "Operations, enrollment",
+      who: "Operations / Enrollment (confirm)",
+      impact: "Census accuracy · Eliminates inflated Active counts from authorization-only records",
+      map: '"Active" (true SOC) stays Active · "Authorized" alone does not',
       crmToday: 'EpisodeStatus "Active" — but "authorized" inflates census (~1,960 vs ~1,200 true active)',
       anchor: "#1-master-patient-pipeline-agreed",
     },
     discharged: {
       title: "Discharged",
-      plain: "Left agency entirely",
+      plain: "Left the agency after having been Active",
       when: "No active LOBs remain; patient ended relationship with Link",
+      entry: "Was Active · All LOBs ended · Relationship closed",
+      exit: "Terminal — no further main-path stage",
       not: "Dropped Off; temporary pause",
-      who: "Operations",
+      who: "Operations (confirm)",
+      impact: "Preserves outcomes reporting · Separates never-started from previously active",
+      map: '"Discharged" → Discharged (only if previously Active)',
       crmToday: 'EpisodeStatus "Discharged" (same label — requires patient was Active once)',
       anchor: "#1-master-patient-pipeline-agreed",
     },
     dropped: {
       title: "Dropped Off",
-      plain: "Never became Active",
+      plain: "Terminal exit before ever becoming Active",
       when: "Opted out, ineligible, or failed qualification before first Active service",
+      entry: "Any pre-Active stage · Record will not proceed to Active",
+      exit: "Terminal — not Discharged",
       not: 'Discharged; legacy "Closed"',
-      who: "Enrollment specialists",
+      who: "Enrollment specialists (confirm)",
+      impact: "Keeps drop reasons measurable · Prevents false discharge / census distortion",
+      map: '"Dropped" / "Dropped Off" → Dropped Off (pre-Active only)',
       crmToday: 'EpisodeStatus "Dropped"; LeadStatus "Dropped Off" — not the same as Discharged',
       anchor: "#1-master-patient-pipeline-agreed",
     },
@@ -270,30 +294,53 @@
 
   function whyBetter(stageId) {
     if (stageId === "lead") {
-      return "It keeps brand-new inquiries separate from real qualification work, so early leads are not overstated.";
+      return "Protects true demand measurement — brand-new volume is not mixed with qualification work.";
     }
     if (stageId === "qualifying") {
-      return "It splits the vague In Progress bucket into a real pre-intake stage, so teams know intake is not open yet.";
+      return "Fixes funnel visibility — pre-intake work is no longer buried in a vague In Progress bucket.";
     }
     if (stageId === "referral" || stageId === "referral-ltc") {
-      return "It makes intake-open work explicit, which improves handoffs, list views, and reporting by line of business.";
+      return "Makes intake-open work explicit — stage-to-stage conversion and LOB handoffs become measurable.";
     }
     if (stageId === "active" || stageId === "auth-path") {
-      return "It prevents payer approval from being mistaken for real service, so census and ops reporting stay honest.";
+      return "Protects census accuracy — payer approval alone can no longer inflate Active counts.";
     }
     if (stageId === "discharged" || stageId === "dropped" || stageId === "nia-failed") {
-      return "It preserves the difference between never started and previously active, which matters for outcomes and follow-up.";
+      return "Keeps outcomes honest — never-started is not reported as previously active.";
     }
     if (stageId.indexOf("st-") === 0) {
-      return "It keeps short-term progress visible without distorting the main patient path before service truly starts.";
+      return "Keeps short-term progress visible without distorting main-path census before service starts.";
     }
     if (stageId === "patient" || stageId === "master" || stageId.indexOf("lob-") === 0) {
-      return "It lets one patient have multiple program states at once instead of forcing everything into one flattened status.";
+      return "Supports multi-program reality — one patient can have different LOB states without ambiguous master labels.";
     }
     if (stageId.indexOf("nia-") === 0) {
-      return "It keeps NIA and authorization as visible substeps instead of hiding them inside one ambiguous status.";
+      return "Surfaces NIA/auth work as explicit substeps — not hidden inside one disputed status.";
     }
-    return "It gives each label one clear meaning, which improves handoffs, filtering, and reporting.";
+    return "One meaning per label — reporting and decisions stop depending on tribal knowledge.";
+  }
+
+  function businessImpactCopy() {
+    return (
+      "Census accuracy (eliminates inflated counts) · Funnel visibility (clean stage-to-stage conversion) · " +
+      "Growth attribution (source → active tracking) · Operational consistency (same logic across teams)"
+    );
+  }
+
+  function stageEntry(s) {
+    return s.entry || s.when;
+  }
+
+  function stageExit(s) {
+    return s.exit || ("Should NOT mean: " + s.not);
+  }
+
+  function stageMap(s) {
+    return s.map || s.crmToday || "Confirm current → proposed mapping";
+  }
+
+  function stageImpact(s, stageId) {
+    return s.impact || whyBetter(stageId);
   }
 
   function stageDescriptor(stageId) {
@@ -567,42 +614,11 @@
       '<div class="glossary-layers-items">' +
       currentSet.items
         .map(function (item) {
-          return (
-            '<button type="button" class="glossary-layer-item' +
-            (item.id === currentItem.id ? " active" : "") +
-            '" data-layer-item="' +
-            item.id +
-            '">' +
-            "<strong>" +
-            item.title +
-            "</strong>" +
-            "<span>" +
-            item.summary +
-            "</span>" +
-            "</button>"
-          );
+          return renderLayerItemButton(item, item.id === currentItem.id);
         })
         .join("") +
       "</div>" +
-      '<div class="glossary-layer-detail">' +
-      '<span class="glossary-layer-detail__eyebrow">' +
-      currentSet.title +
-      "</span>" +
-      "<h4>" +
-      currentItem.title +
-      "</h4>" +
-      "<p>" +
-      currentItem.summary +
-      "</p>" +
-      '<dl class="glossary-layer-detail__grid">' +
-      "<dt>Lives on</dt><dd>" +
-      (currentItem.lives || "Business layer") +
-      "</dd>" +
-      "<dt>Rule</dt><dd>" +
-      (currentItem.rule || "Keep separate from the master bar.") +
-      "</dd>" +
-      "</dl>" +
-      "</div>" +
+      renderLayerDetail(currentSet, currentItem) +
       "</div>";
     panel.querySelectorAll(".glossary-layers-tab").forEach(function (btn) {
       btn.addEventListener("click", function () {
@@ -640,15 +656,25 @@
     var s = STAGES[activeStage];
     box.hidden = false;
     box.innerHTML =
+      '<div class="glossary-intro-compare__head">' +
+      "<h3>How current CRM maps to this model</h3>" +
+      "<p>We are not removing data — we are standardizing how it’s interpreted. Review carefully — this drives migration accuracy.</p>" +
+      "</div>" +
       '<div class="glossary-intro-compare__card glossary-intro-compare__card--current">' +
-      '<span class="glossary-intro-compare__label">Current CRM</span>' +
+      '<span class="glossary-intro-compare__label">' +
+      '<span class="glossary-detail-card__icon" aria-hidden="true">' +
+      fieldIcon("current") +
+      "</span>Current CRM</span>" +
       "<p>" +
       (s.crmToday || "No current CRM comparison noted.") +
       "</p>" +
       "</div>" +
       '<div class="glossary-intro-compare__arrow" aria-hidden="true">→</div>' +
       '<div class="glossary-intro-compare__card glossary-intro-compare__card--proposed">' +
-      '<span class="glossary-intro-compare__label">Proposed</span>' +
+      '<span class="glossary-intro-compare__label">' +
+      '<span class="glossary-detail-card__icon" aria-hidden="true">' +
+      fieldIcon("proposed") +
+      "</span>Proposed</span>" +
       "<p><strong>" +
       s.title +
       "</strong> — " +
@@ -656,9 +682,12 @@
       "</p>" +
       "</div>" +
       '<div class="glossary-intro-compare__why">' +
-      '<span class="glossary-intro-compare__label">Why this is better</span>' +
+      '<span class="glossary-intro-compare__label">' +
+      '<span class="glossary-detail-card__icon" aria-hidden="true">' +
+      fieldIcon("impact") +
+      "</span>Business impact</span>" +
       "<p>" +
-      whyBetter(activeStage) +
+      stageImpact(s, activeStage) +
       "</p>" +
       "</div>";
   }
@@ -947,13 +976,144 @@
     renderDetail();
   }
 
+  function fieldIcon(kind) {
+    var icons = {
+      definition:
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M8 7h8M8 11h6"/></svg>',
+      entry:
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>',
+      exit:
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>',
+      mapping:
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>',
+      impact:
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-6"/></svg>',
+      ownership:
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>',
+      decision:
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>',
+      edge:
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
+      current:
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>',
+      proposed:
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>',
+      lives:
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v6c0 1.7 4 3 9 3s9-1.3 9-3V5"/><path d="M3 11v6c0 1.7 4 3 9 3s9-1.3 9-3v-6"/></svg>',
+      rule:
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>',
+      reason:
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>',
+      nia:
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/></svg>',
+      reengage:
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>',
+      auth:
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>',
+      hold:
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="10" y1="15" x2="10" y2="9"/><line x1="14" y1="15" x2="14" y2="9"/></svg>',
+      payer:
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>',
+      eligibility:
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>',
+      lob:
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>',
+      schedule:
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>',
+      layer:
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>',
+    };
+    return icons[kind] || icons.definition;
+  }
+
+  function layerIconKind(item) {
+    var text = (((item && item.id) || "") + " " + ((item && item.title) || "")).toLowerCase();
+    if (/drop.?reason|reason required/.test(text)) return "reason";
+    if (/nia|assessor|failed/.test(text)) return "nia";
+    if (/re-?engage|return|new episode/.test(text)) return "reengage";
+    if (/auth|authorized|soc|pending auth/.test(text)) return "auth";
+    if (/hold|pause/.test(text)) return "hold";
+    if (/medicaid|payer|insurance|coverage/.test(text)) return "payer";
+    if (/eligib|fit|qual/.test(text)) return "eligibility";
+    if (/lob|program|track/.test(text)) return "lob";
+    if (/schedul|appointment/.test(text)) return "schedule";
+    if (/outcome|pass|fail/.test(text)) return "decision";
+    return "layer";
+  }
+
+  function renderLayerItemButton(item, isActive) {
+    var kind = layerIconKind(item);
+    return (
+      '<button type="button" class="glossary-layer-item glossary-layer-item--' +
+      kind +
+      (isActive ? " active" : "") +
+      '" data-layer-item="' +
+      item.id +
+      '">' +
+      '<span class="glossary-layer-item__icon" aria-hidden="true">' +
+      fieldIcon(kind) +
+      "</span>" +
+      '<span class="glossary-layer-item__text">' +
+      "<strong>" +
+      item.title +
+      "</strong>" +
+      "<span>" +
+      item.summary +
+      "</span>" +
+      "</span>" +
+      "</button>"
+    );
+  }
+
+  function renderLayerDetail(currentSet, currentItem) {
+    return (
+      '<div class="glossary-layer-detail">' +
+      '<span class="glossary-layer-detail__eyebrow">' +
+      '<span class="glossary-detail-card__icon" aria-hidden="true">' +
+      fieldIcon("layer") +
+      "</span>" +
+      currentSet.title +
+      "</span>" +
+      "<h4>" +
+      currentItem.title +
+      "</h4>" +
+      "<p>" +
+      currentItem.summary +
+      "</p>" +
+      '<dl class="glossary-layer-detail__grid">' +
+      '<div class="glossary-layer-detail__row">' +
+      '<dt><span class="glossary-detail-card__icon" aria-hidden="true">' +
+      fieldIcon("lives") +
+      "</span>Lives on</dt>" +
+      "<dd>" +
+      (currentItem.lives || "Business layer") +
+      "</dd>" +
+      "</div>" +
+      '<div class="glossary-layer-detail__row">' +
+      '<dt><span class="glossary-detail-card__icon" aria-hidden="true">' +
+      fieldIcon("rule") +
+      "</span>Rule</dt>" +
+      "<dd>" +
+      (currentItem.rule || "Keep separate from the master bar.") +
+      "</dd>" +
+      "</div>" +
+      "</dl>" +
+      "</div>"
+    );
+  }
+
   function detailCard(label, value, variant) {
     return (
       '<div class="glossary-detail-card glossary-detail-card--' +
       variant +
       '">' +
       '<span class="glossary-detail-card__label">' +
+      '<span class="glossary-detail-card__icon" aria-hidden="true">' +
+      fieldIcon(variant) +
+      "</span>" +
+      "<span>" +
       label +
+      "</span>" +
       "</span>" +
       '<p class="glossary-detail-card__value">' +
       value +
@@ -963,26 +1123,30 @@
   }
 
   function renderCompare(s) {
-    if (!s.crmToday) return "";
+    if (!s.crmToday && !s.map) return "";
     var changed = needsCompare(s);
     return (
       '<div class="glossary-compare' +
       (changed ? "" : " glossary-compare--aligned") +
       '">' +
       '<div class="glossary-compare__col glossary-compare__col--current">' +
-      '<span class="glossary-compare__heading">Current CRM</span>' +
+      '<span class="glossary-compare__heading">' +
+      '<span class="glossary-detail-card__icon" aria-hidden="true">' +
+      fieldIcon("current") +
+      "</span>Current CRM</span>" +
       "<p>" +
-      s.crmToday +
+      (s.crmToday || "Confirm current labels") +
       "</p>" +
       "</div>" +
       '<div class="glossary-compare__arrow" aria-hidden="true">→</div>' +
       '<div class="glossary-compare__col glossary-compare__col--new">' +
-      '<span class="glossary-compare__heading">Proposed (sign-off)</span>' +
+      '<span class="glossary-compare__heading">' +
+      '<span class="glossary-detail-card__icon" aria-hidden="true">' +
+      fieldIcon("proposed") +
+      "</span>Proposed mapping</span>" +
       "<p><strong>" +
-      s.title +
-      "</strong> — " +
-      s.plain +
-      "</p>" +
+      stageMap(s) +
+      "</strong></p>" +
       "</div>" +
       "</div>"
     );
@@ -1041,42 +1205,11 @@
       '<div class="glossary-layers-items">' +
       currentSet.items
         .map(function (item) {
-          return (
-            '<button type="button" class="glossary-layer-item' +
-            (item.id === currentItem.id ? " active" : "") +
-            '" data-layer-item="' +
-            item.id +
-            '">' +
-            "<strong>" +
-            item.title +
-            "</strong>" +
-            "<span>" +
-            item.summary +
-            "</span>" +
-            "</button>"
-          );
+          return renderLayerItemButton(item, item.id === currentItem.id);
         })
         .join("") +
       "</div>" +
-      '<div class="glossary-layer-detail">' +
-      '<span class="glossary-layer-detail__eyebrow">' +
-      currentSet.title +
-      "</span>" +
-      "<h4>" +
-      currentItem.title +
-      "</h4>" +
-      "<p>" +
-      currentItem.summary +
-      "</p>" +
-      '<dl class="glossary-layer-detail__grid">' +
-      "<dt>Lives on</dt><dd>" +
-      (currentItem.lives || "Business layer") +
-      "</dd>" +
-      "<dt>Rule</dt><dd>" +
-      (currentItem.rule || "Keep separate from the master bar.") +
-      "</dd>" +
-      "</dl>" +
-      "</div>" +
+      renderLayerDetail(currentSet, currentItem) +
       "</div>"
     );
   }
@@ -1088,7 +1221,7 @@
       panel.className = "glossary-stage-detail empty";
       panel.innerHTML =
         '<div class="glossary-detail-empty">' +
-        "<p>Select a stage to review status details and comments.</p>" +
+        "<p>Select a stage to approve definition, entry/exit logic, and mapping.</p>" +
         "</div>";
       return;
     }
@@ -1123,7 +1256,7 @@
       "</div>" +
       "</div>" +
       '<div class="glossary-detail-heading">' +
-      "<h3>" +
+      "<h3>Stage: " +
       s.title +
       "</h3>" +
       '<p class="glossary-detail-subtitle">' +
@@ -1147,15 +1280,35 @@
         ? renderLayersInline()
         : renderCompare(s) +
           '<div class="glossary-detail-cards">' +
-          detailCard("Plain English", s.plain, "plain") +
-          detailCard("When to use", s.when, "when") +
-          detailCard("Should NOT mean", s.not, "not") +
-          detailCard("Who updates", s.who, "who") +
+          detailCard("Definition", s.plain, "definition") +
+          detailCard("Entry criteria", stageEntry(s), "entry") +
+          detailCard("Exit criteria", stageExit(s), "exit") +
+          detailCard("System mapping", stageMap(s), "mapping") +
+          detailCard("Downstream impact", stageImpact(s, activeStage), "impact") +
+          detailCard("Ownership", s.who, "ownership") +
+          "</div>" +
+          '<div class="glossary-decision">' +
+          '<div class="glossary-decision__title">' +
+          '<span class="glossary-detail-card__icon" aria-hidden="true">' +
+          fieldIcon("decision") +
+          "</span>Decision required</div>" +
+          "<ul>" +
+          "<li>Is this definition correct?</li>" +
+          "<li>Are entry/exit conditions sufficient?</li>" +
+          "<li>Any missing edge cases?</li>" +
+          "</ul>" +
+          "</div>" +
+          '<div class="glossary-edge">' +
+          '<div class="glossary-edge__title">' +
+          '<span class="glossary-detail-card__icon" aria-hidden="true">' +
+          fieldIcon("edge") +
+          "</span>Edge cases &amp; exceptions</div>" +
+          "<p>Call out scenarios where records don’t follow the standard flow, status is unclear/disputed, or multiple interpretations exist. These must be resolved before build.</p>" +
           "</div>" +
           '<div class="glossary-detail-comment">' +
           '<label class="glossary-detail-comment__label" for="glossary-comment-' +
           activeStage +
-          '">Comments on ' +
+          '">Decision notes — ' +
           s.title +
           "</label>" +
           '<textarea id="glossary-comment-' +
@@ -1164,7 +1317,7 @@
           activeStage +
           '" data-stage-label="' +
           s.title.replace(/"/g, "&quot;") +
-          '" placeholder="Comments on ' +
+          '" placeholder="Approve, challenge, or flag an edge case for ' +
           s.title.replace(/"/g, "&quot;") +
           '…">' +
           getExplorerComment(activeStage) +
@@ -1324,6 +1477,8 @@
 
   function isEmbedded() {
     try {
+      var root = el("glossary-pipeline-explorer");
+      if (root && root.getAttribute("data-embed") === "1") return true;
       return /(?:^|[?&])embed=1(?:&|$)/.test(location.search) || window.self !== window.top;
     } catch (e) {
       return true;
@@ -1335,13 +1490,47 @@
     if (!root || root.dataset.bound) return;
     root.dataset.bound = "1";
 
-    if (isEmbedded()) {
+    var embedded = isEmbedded();
+
+    if (embedded) {
       root.classList.add("glossary-explorer--embedded");
       document.body.classList.add("glossary-embedded");
     }
 
     var layout = document.createElement("div");
     layout.className = "glossary-explorer-layout";
+
+    if (!embedded) {
+      var overview = document.createElement("div");
+      overview.className = "glossary-overview";
+      overview.innerHTML =
+        "<h3>Proposed lifecycle (single source of truth)</h3>" +
+        "<p>Every record must follow a consistent lifecycle:</p>" +
+        '<p class="glossary-overview__path"><strong>Lead → Qualifying → Referral in Progress → Active → Discharged</strong></p>' +
+        "<ul>" +
+        '<li>"Dropped Off" is a terminal state from any pre-Active stage</li>' +
+        "<li>No parallel or ambiguous statuses</li>" +
+        "</ul>" +
+        '<p class="glossary-overview__goal">Goal: eliminate multiple interpretations of the same record</p>';
+      layout.appendChild(overview);
+
+      var impact = document.createElement("div");
+      impact.className = "glossary-impact";
+      impact.innerHTML =
+        "<h3>Business impact</h3>" +
+        "<p>This directly affects:</p>" +
+        "<p>" +
+        businessImpactCopy() +
+        "</p>" +
+        '<p class="glossary-impact__risk">If this is wrong, reporting and decisions will remain unreliable.</p>';
+      layout.appendChild(impact);
+    } else {
+      var embedCue = document.createElement("p");
+      embedCue.className = "glossary-embed-cue";
+      embedCue.textContent =
+        "Lead → Qualifying → Referral in Progress → Active → Discharged · Click a stage to decide";
+      layout.appendChild(embedCue);
+    }
 
     layout.appendChild(renderTabs(root));
 
@@ -1365,6 +1554,16 @@
       '<span class="glossary-rule-pill"><strong>Authorized ≠ Active</strong></span>' +
       '<span class="glossary-rule-pill"><strong>Dropped Off ≠ Discharged</strong></span>';
     layout.appendChild(rules);
+
+    if (!embedded) {
+      var migration = document.createElement("div");
+      migration.className = "glossary-migration";
+      migration.innerHTML =
+        "<h3>Why this review is critical</h3>" +
+        "<p>These definitions will be used to map all existing records, drive migration logic, and power dashboards and reporting.</p>" +
+        '<p class="glossary-migration__risk">Incorrect definitions = incorrect data at scale</p>';
+      layout.appendChild(migration);
+    }
 
     var compareIntro = document.createElement("div");
     compareIntro.id = "glossary-intro-compare";

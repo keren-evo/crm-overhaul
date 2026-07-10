@@ -3,11 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CRM Sign-Off Package — Link Homecare</title>
+  <title>CRM Lifecycle Standard — Decision Review</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="signoff-comments.css" />
+  <link rel="stylesheet" href="glossary-pipeline-interactive.css" />
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
   <style>
     :root {
       --bg: #f5f3ff;
@@ -19,7 +21,9 @@
       --accent-light: #f3e8ff;
       --border: #ddd6fe;
       --border-soft: #ece7ff;
-      --shadow: 0 18px 45px rgba(91, 33, 182, 0.10);
+      --warn: #b45309;
+      --warn-bg: #fffbeb;
+      --warn-border: #fcd34d;
     }
     * { box-sizing: border-box; }
     body {
@@ -47,7 +51,7 @@
     .hero {
       background: linear-gradient(135deg, #6d28d9 0%, #7c3aed 55%, #5b21b6 100%);
       color: #fff;
-      padding: 0.9rem 1rem 1rem;
+      padding: 1rem 1rem 1.15rem;
     }
     .hero-inner,
     main {
@@ -56,73 +60,52 @@
     }
     .hero-inner {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(260px, 320px);
-      gap: 0.85rem 1rem;
-      align-items: end;
+      grid-template-columns: minmax(0, 1fr) minmax(240px, 300px);
+      gap: 1rem 1.25rem;
+      align-items: start;
+    }
+    .hero-badge {
+      display: inline-block;
+      margin: 0 0 0.55rem;
+      padding: 0.28rem 0.55rem;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      line-height: 1.35;
+      color: rgba(255, 255, 255, 0.95);
     }
     .hero-inner h1 {
       margin: 0;
-      font-size: 1.2rem;
+      font-size: 1.35rem;
       line-height: 1.2;
     }
     .hero-copy {
       display: grid;
       gap: 0.45rem;
     }
+    .hero-sub {
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.45;
+      color: rgba(255, 255, 255, 0.92);
+      max-width: 36rem;
+    }
     .hero-status {
       font-size: 0.84rem;
       line-height: 1.5;
-      color: rgba(255,255,255,0.88);
+      color: rgba(255, 255, 255, 0.88);
     }
     .hero-status-label {
       font-weight: 700;
     }
-    .hero-guide {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.55rem;
-      max-width: 34rem;
-      font-size: 0.82rem;
-      line-height: 1.45;
-      color: rgba(255,255,255,0.9);
-    }
-    .hero-guide__icon {
-      flex: 0 0 auto;
-      width: 1.35rem;
-      height: 1.35rem;
-      margin-top: 0.05rem;
-      border-radius: 7px;
-      background: rgba(255,255,255,0.16);
-      border: 1px solid rgba(255,255,255,0.18);
-      position: relative;
-    }
-    .hero-guide__icon::before {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 0.28rem;
-      width: 0.16rem;
-      height: 0.48rem;
-      border-radius: 999px;
-      background: #fff;
-      transform: translateX(-50%);
-    }
-    .hero-guide__icon::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      bottom: 0.28rem;
-      width: 0.2rem;
-      height: 0.2rem;
-      border-radius: 999px;
-      background: #fff;
-      transform: translateX(-50%);
-    }
     .hero-reviewer {
       padding: 0.7rem 0.8rem;
       border-radius: 12px;
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.18);
     }
     .hero-reviewer-title {
       margin: 0 0 0.45rem;
@@ -140,14 +123,69 @@
       box-shadow: 0 8px 24px rgba(91, 33, 182, 0.07);
       margin-bottom: 1rem;
     }
-    .package-comments {
-      margin-top: 0.9rem;
-      padding: 0.95rem 1rem;
-      border-radius: 14px;
-      background: linear-gradient(180deg, #faf7ff, #ffffff);
-      border: 1px solid var(--border-soft);
+    .need-card,
+    .build-card,
+    .approval-card {
+      padding: 1rem 1.1rem 1.05rem;
     }
-    .hero-reviewer .package-comments {
+    .need-card {
+      margin-top: 0.85rem;
+    }
+    .need-card h2,
+    .build-card h2,
+    .approval-card h2,
+    .lifecycle-heading {
+      margin: 0 0 0.55rem;
+      font-size: 1rem;
+      color: var(--accent-dark);
+    }
+    .need-card > p,
+    .build-card > p,
+    .approval-card > p {
+      margin: 0 0 0.55rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .need-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 0.35rem;
+    }
+    .need-list li {
+      display: flex;
+      gap: 0.45rem;
+      align-items: flex-start;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+    .need-list li::before {
+      content: "✓";
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      width: 1.1rem;
+      height: 1.1rem;
+      margin-top: 0.05rem;
+      border-radius: 4px;
+      background: var(--accent-light);
+      border: 1px solid var(--border);
+      color: var(--accent-dark);
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+    .need-focus {
+      margin: 0.75rem 0 0;
+      padding: 0.55rem 0.7rem;
+      border-radius: 10px;
+      background: var(--warn-bg);
+      border: 1px solid var(--warn-border);
+      color: var(--warn);
+      font-size: 0.86rem;
+      font-weight: 600;
+    }
+    .package-comments {
       margin-top: 0;
       padding: 0;
       border: 0;
@@ -169,23 +207,12 @@
     }
     .hero-reviewer .reviewer-field input {
       min-height: 38px;
-      border: 1px solid rgba(255,255,255,0.28);
-      background: rgba(255,255,255,0.96);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      background: rgba(255, 255, 255, 0.96);
     }
     .hero-reviewer .signoff-hint,
-    .hero-reviewer #package-comment-count {
-      font-size: 0.78rem;
-      opacity: 0.88;
-    }
-    .hero-reviewer .signoff-hint {
-      display: none;
-    }
-    .hero-reviewer #package-comment-count {
-      display: none;
-    }
-    .hero-reviewer #package-save-status {
-      display: none;
-    }
+    .hero-reviewer #package-comment-count,
+    .hero-reviewer #package-save-status,
     .hero-reviewer #copy-all-comments-btn {
       display: none;
     }
@@ -210,12 +237,74 @@
       gap: 0.45rem 0.65rem;
       align-items: center;
     }
-    .glossary-frame {
-      width: 100%;
-      height: 1120px;
+    .lifecycle-head {
+      padding: 0.85rem 1rem 0;
+    }
+    .lifecycle-head p {
+      margin: 0;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+    #glossary-pipeline-explorer.glossary-explorer {
+      margin: 0;
       border: 0;
-      display: block;
+      border-radius: 0;
+      box-shadow: none;
       background: #fff;
+    }
+    .build-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 0.65rem;
+    }
+    .build-list li {
+      display: grid;
+      grid-template-columns: 2rem minmax(0, 1fr);
+      gap: 0.65rem;
+      align-items: start;
+      padding: 0.7rem 0.75rem;
+      border-radius: 12px;
+      border: 1px solid var(--border-soft);
+      background: linear-gradient(180deg, #faf7ff, #fff);
+    }
+    .build-list__num {
+      display: grid;
+      place-items: center;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 8px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+    .build-list strong {
+      display: block;
+      font-size: 0.92rem;
+      color: var(--text);
+    }
+    .build-list span {
+      display: block;
+      margin-top: 0.15rem;
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+    .approval-list {
+      margin: 0 0 0.7rem;
+      padding-left: 1.15rem;
+      font-size: 0.9rem;
+    }
+    .approval-list li {
+      margin: 0.2rem 0;
+    }
+    .approval-focus {
+      margin: 0;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--accent-dark);
     }
     footer {
       text-align: center;
@@ -233,9 +322,6 @@
       .glossary-toolbar {
         padding: 0.75rem 0.9rem;
       }
-      .glossary-frame {
-        height: 840px;
-      }
     }
   </style>
 </head>
@@ -243,12 +329,10 @@
   <header class="hero">
     <div class="hero-inner">
       <div class="hero-copy">
-        <h1>Pipeline glossary</h1>
+        <div class="hero-badge">This defines how we measure the business — not just CRM labels</div>
+        <h1>CRM Lifecycle Standard — Decision Review</h1>
+        <p class="hero-sub">We need alignment on how the business is defined, measured, and reported.</p>
         <div class="hero-status"><span class="hero-status-label">Pending sign-off:</span> Joel → Avi → Hillel</div>
-        <div class="hero-guide">
-          <span class="hero-guide__icon" aria-hidden="true"></span>
-          <span>Hover any stage for a quick tooltip. Click for full detail — current CRM labels vs proposed where they differ. Comments autosave.</span>
-        </div>
       </div>
       <div class="hero-reviewer">
         <p class="hero-reviewer-title">Your name</p>
@@ -266,7 +350,19 @@
   </header>
 
   <main>
-    <section class="card glossary-shell">
+    <section class="card need-card" aria-labelledby="need-heading">
+      <h2 id="need-heading">What we need from you</h2>
+      <p>Please review each section and comment on:</p>
+      <ul class="need-list">
+        <li>Is the definition correct?</li>
+        <li>Are entry/exit conditions clear?</li>
+        <li>Are any edge cases missing?</li>
+        <li>Are any transitions incorrect?</li>
+      </ul>
+      <p class="need-focus">Focus on logic — not UI or wording</p>
+    </section>
+
+    <section class="card glossary-shell" aria-labelledby="lifecycle-heading">
       <div class="glossary-toolbar">
         <div class="glossary-links">
           <a href="glossary-pipeline-v2.html">Open standalone</a>
@@ -277,17 +373,75 @@
         </div>
         <span>Authorized ≠ Active · Dropped Off ≠ Discharged</span>
       </div>
-      <iframe
-        class="glossary-frame"
-        src="glossary-pipeline-v2.html?embed=1#glossary-pipeline-explorer"
-        title="Pipeline glossary preview"
-        loading="lazy"
-      ></iframe>
+      <div class="lifecycle-head">
+        <h2 id="lifecycle-heading" class="lifecycle-heading">Main lifecycle</h2>
+        <p>Single source of truth — click a stage to approve definition, entry/exit, and mapping.</p>
+      </div>
+      <div id="glossary-pipeline-explorer" class="glossary-explorer" data-embed="1"></div>
+    </section>
+
+    <section class="card build-card" aria-labelledby="build-heading">
+      <h2 id="build-heading">After sign-off — CRM build order</h2>
+      <p>Start with the main lifecycle. Do not rebuild secondary tracks first.</p>
+      <ol class="build-list">
+        <li>
+          <span class="build-list__num">1</span>
+          <div>
+            <strong>Replace visible lead-status language</strong>
+            <span>New → Lead · In Progress → split · Converted → retire · Dropped Off → keep</span>
+          </div>
+        </li>
+        <li>
+          <span class="build-list__num">2</span>
+          <div>
+            <strong>Rebuild lead list filters</strong>
+            <span>Make Qualifying and Referral in Progress separate queues.</span>
+          </div>
+        </li>
+        <li>
+          <span class="build-list__num">3</span>
+          <div>
+            <strong>Rebuild detail progress bar</strong>
+            <span>Use glossary funnel labels and remove Converted from user-facing UI.</span>
+          </div>
+        </li>
+        <li>
+          <span class="build-list__num">4</span>
+          <div>
+            <strong>Add work chips under Referral in Progress</strong>
+            <span>Pending NIA · Pending Auth · Authorized – pending SOC · On Hold · Medicaid Pending</span>
+          </div>
+        </li>
+        <li>
+          <span class="build-list__num">5</span>
+          <div>
+            <strong>Simplify action hierarchy</strong>
+            <span>One primary next action, one secondary, everything else in overflow.</span>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="card approval-card" aria-labelledby="approval-heading">
+      <h2 id="approval-heading">Approval required</h2>
+      <p>We need explicit confirmation on:</p>
+      <ul class="approval-list">
+        <li>Lifecycle definitions</li>
+        <li>Stage transitions</li>
+        <li>Status mapping</li>
+      </ul>
+      <p class="approval-focus">This unlocks CRM build and prevents rework.</p>
     </section>
   </main>
 
-  <footer>Link Homecare CRM Status Framework - July 2026</footer>
+  <footer>Link Homecare CRM Status Framework — July 2026</footer>
   <script src="signoff-comments.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () { LinkCrmSignoff.initPackage(); });</script>
+  <script src="glossary-pipeline-interactive.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.LinkCrmSignoff) LinkCrmSignoff.initPackage();
+      if (window.LinkGlossaryPipeline) LinkGlossaryPipeline.init();
+    });
+  </script>
 </body>
 </html>
